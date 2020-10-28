@@ -1,0 +1,392 @@
+
+        * {
+            margin: 0px;
+            padding-top: 0px;
+            font-family: 'Noto Sans KR', sans-serif;
+            font-weight: 100;
+        }
+
+        body{
+            max-width: 1920px;
+            margin: 0 auto; 
+            background-color: rgb(248, 248, 248);
+        }
+
+        /* 상단 타이틀 */
+        .hTitle {
+            width: 1920px;
+            height:60px;
+            background-color: white;
+            border-bottom: 1px solid rgb(230, 230, 230);
+            top: 0px;
+            position: fixed;
+            z-index: 10;
+        }
+
+        .hTitle1{
+            float: left;
+            width: 466px;
+        }
+
+        .nav1{
+            width: 1400px;
+            height: 50px;
+            margin-left: 260px;
+        }
+
+        .titleImg{
+            width: 75px;
+            height: 40px;
+            margin-top: 9px;
+        }
+
+        /* 검색창 */
+
+        .sUrl{
+            margin: 13px 50px;
+            padding-left: 50px;
+            -webkit-box-flex: 5;
+                -ms-flex-positive: 5;
+                    flex-grow: 5;
+        }
+
+        .searchInput {
+            font-family: system-ui, Helvetica, Arial, sans-serif;
+            font-size: 14px !important;
+            width: 200px;
+            border: none;
+            margin-top: 7px;
+            background-color: transparent;
+        }
+
+        .searchInput:focus {
+            outline: none;
+        }
+
+        .sAfter {
+            width: 200px;
+            height: 1.1px;
+            background: linear-gradient(to right, rgb(90, 90, 90) 50%, transparent 50%);
+            background-color: rgb(201, 201, 201);
+            background-size: 200% 100%;
+            background-position: 100% 0;
+            -webkit-transition: all 0.3s ease;
+            -o-transition: all 0.3s ease;
+            transition: all 0.3s ease;
+        }
+
+        .searchInput:focus ~ .sAfter {
+            background-position: 0 0;
+        }
+
+        .searchInput::placeholder {
+            color: rgb(156, 156, 156);
+            font-size: 15px;
+        }
+
+        /* 검색창 */
+
+        /* 알림 채팅 마이페이지 */
+
+        .htMenu div{
+            float: right;
+        }
+
+        .htMenu img{
+            width: 22px;
+            height: 22px;
+            margin-top: 18px;
+            margin-left: 13px;
+            cursor:pointer; 
+        }
+        /* 알림 채팅 마이페이지 */
+
+        /* 마이페이지 메뉴 */
+        .mySub{
+            position: absolute;
+            right: 258px;
+            top: 41px;
+            background-color: rgb(255, 255, 255);
+            padding: 0;
+            margin: 0;
+            border-radius: 4px;
+            box-shadow: 0px 0px 11px rgb(220,220,220);
+        }
+
+        .mySub li{
+            list-style-type:none;
+            height: 30px;
+            font-size: 15px;
+            cursor:pointer; 
+            text-align: center;
+        }
+
+        .mySub1{
+            margin: 3px 5px 3px 5px;
+            color: rgb(94, 94, 94);
+        }
+
+        .mySub li:hover{
+            background-color: rgba(238, 238, 238, 0.699);
+        }
+
+        .mySub a{
+            text-decoration: none;
+        }
+
+        /* 마이페이지 메뉴 */
+
+        /* 해쉬태그 검색 구역 */
+        .hashtagSection{
+            width: 1920px;
+            min-width: 1400px;
+            height: 460px;
+            margin-top: 60px;
+        }
+        
+        .hashInfo{
+            padding-top: 16px;
+            height: 60px;
+        }
+
+        .hashtag{
+            float: left;
+            font-size: 30px;
+            font-weight: 500;
+            color: black;
+            margin-left: 400px;
+        }
+
+        .hashMore{
+            float: left;
+            margin: 15px 15px 0px;
+        }
+
+        /* 검색 게시물 테이블 */
+        .hashTable{
+            padding: 12px 386px;
+        }
+
+        .content{
+            position: relative;
+            width: 350px;
+            height: 350px;
+            background-color: rgb(160, 160, 160);
+            margin: 12px;
+        }
+
+        .cImg{
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        /* =========== 컨텐츠 마우스오버 했을 때 =========== */
+        .chover{
+            position: absolute;
+            width: 350px;
+            height: 350px;
+        }
+
+        .chContnet{
+            position: static;
+            background: rgba(0, 0, 0, 0.404);
+            width: 350px;
+            height: 150px;
+            margin-top: 200px;
+        }
+
+        /* 유저정보 */
+        .user{
+            width: 100%;
+            height: 50px;
+        }
+
+        .userImg{
+            width: 50px;
+            height: 50px;
+            float: left;
+            border: 1px solid rgb(190, 190, 190);
+            border-radius: 50%;
+            background: gray;
+            margin: 10px;
+            overflow: hidden;
+        }
+
+        .userImg img{
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin: -1px;
+        }
+
+        .userId{
+            float: left;
+            color: white;
+            margin: 19px 2px;
+            font-weight: 400;
+            font-size: 19px;
+        }
+
+        /* 게시물 내용 */
+        .con{
+            width: 100%;
+            height: 50px;
+        }
+
+        .userCon{
+            height: 50px;
+            font-weight: 300;
+            margin: 0px 10px;
+        }
+
+        .userCon p{
+            width: 320px;
+            height: 50px;
+            font-size: 17px;
+            text-overflow: ellipsis;
+            color: white;
+            display: block;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        /* 게시물 버튼 */
+        .cBtn{
+            width: 100%;
+            height: 50px;
+        }
+
+        .cHeart{
+            width: 116px;
+            height: 100%;
+            float: left;
+            cursor:pointer;
+        }
+
+        .cHeart img{
+            width: 24px;
+            height: 24px;
+            margin: 13px 46px;
+        }
+
+        .cComment{
+            width: 118px;
+            height: 100%;
+            float: left;
+            cursor:pointer; 
+        }
+
+        .cbox{
+            position: absolute;
+            width: 118px;
+            height: 30px;
+            margin: 10px 0px;
+            float: left;
+            border-left: 1px solid white;
+            border-right: 1px solid white;
+        }
+
+        .cComment img{
+            width: 29px;
+            height: 27px;
+            margin: 12px 45px;
+        }
+
+        .cEtc{
+            width: 116px;
+            height: 100%;
+            float: left;
+            cursor:pointer; 
+        }
+
+        .cEtc img{
+            width: 22px;
+            height: 20px;
+            margin: 15px 48px;
+        }
+
+        /* 사용자 검색 구역 */
+        .userSection{
+            width: 1920px;
+            min-width: 1400px;
+            height: 500px;
+        }
+
+        .userInfo{
+            padding-top: 16px;
+            height: 60px;
+        }
+
+        .suser{
+            float: left;
+            font-size: 30px;
+            font-weight: 500;
+            color: black;
+            margin-left: 400px;
+        }
+
+        .suserMore{
+            float: left;
+            margin: 15px 15px 0px;
+        }
+
+        /* 사용자 테이블 */
+        .userTable{
+            padding: 12px 386px;
+        }
+        
+        .infoDiv{
+            position: relative;
+            width: 540px;
+            height: 90px;
+            border-radius: 8px 8px;
+            border:1px solid rgb(216, 213, 213);
+            background: white;
+            margin: 12px;
+        }
+
+        .uImg{
+            width: 65px;
+            height: 65px;
+            float: left;
+            border: 1px solid rgb(190, 190, 190);
+            border-radius: 50%;
+            background: gray;
+            margin: 12px 20px;
+            overflow: hidden;
+        }
+
+        .uImg img{
+            width: 67px;
+            height: 67px;
+            border-radius: 50%;
+            margin: -1px;
+        }
+
+        .uName{
+            float: left;
+            margin: 17px 0px;
+            width: 360px;
+        }
+
+        .uName .uid{
+            font-weight: 400;
+            font-size: 20px;
+        }
+
+        .uName .uname{
+            font-weight: 300;
+            font-size: 16px;
+        }
+
+        .follow{
+            float: left;
+            width: 50px;
+            margin: 32px 20px 32px 0px;
+        }
+
+
+
+
