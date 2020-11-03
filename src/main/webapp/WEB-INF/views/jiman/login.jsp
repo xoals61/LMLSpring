@@ -1,10 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <!DOCTYPE html>
 <html>
     <head>
         <title>로그인 / 회원가입 폼 템플릿</title>
-        <link rel="stylesheet" href="./CSS/final_login.css">
+        <link rel="stylesheet" href="">
     </head>
     <body>
         <div class="wrap">
@@ -15,9 +16,9 @@
                     <button type="button" class="togglebtn" onclick="register()">REGISTER</button>
                 </div>
                 <div class="social-icons">
-                    <img src="./images/fb.png" alt="facebook">
-                    <img src="./images/tw.png" alt="twitter">
-                    <img src="images/gl.png" alt="google">
+                    <img src="../../resources/images/jmImg/fb.png" alt="facebook">
+                    <img src="../../resources/images/jmImg/tw.png" alt="twitter">
+                    <img src="../../resources/images/jmImg/gl.png" alt="google">
                 </div>
                 <form id="login" action="" class="input-group">
                     <input type="text" class="input-field" placeholder="User name or Email" required>
