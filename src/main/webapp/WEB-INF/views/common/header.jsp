@@ -4,6 +4,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>헤더</title>
+	<script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
     <link rel="stylesheet" href="./././resources/css/final_main.css">
     <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
@@ -26,7 +27,7 @@
                             <img src="./resources/images/icon/menu/iconmonstr-menu-thin-72.png"><!-- 이미지 클릭 시 서브메뉴 나옴 -->
                             <ul class="mySub">
                                 <a href='MyPage.do'><li><div class="mySub1">마이페이지</div></li></a>
-                                <a href="Settings.do"><li><div class="mySub1">설정</div></li></a>
+                                <a href='Settings.do'><li><div class="mySub1">설정</div></li></a>
                                 <a href="./lml_main_logout.html"><li><div class="mySub1">로그아웃</div></li></a>
                                  <a href="login.do"><li><div class="mySub1">로그인</div></li></a>
                             </ul>

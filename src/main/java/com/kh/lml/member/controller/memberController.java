@@ -13,7 +13,7 @@ public class memberController {
 	public String login() {
 		return "jiman/login";
 	}
-	@RequestMapping("settings.do")
+	@RequestMapping("Settings.do")
 	public String setting() {
 		return "settings/lml_Settings";
 	}
