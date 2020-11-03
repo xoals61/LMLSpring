@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="./css/final_Settings_Email.css">
 </head>
 <body>
-   <jsp:include page="WEB-INF/views/common/header.jsp"/>
+   <jsp:include page="../common/header.jsp"/>
     <section>
         <div class="AContent">
             <div class="Atable">

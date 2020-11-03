@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="resources/css/final_Settings_ChangePWd.css">
 </head>
 <body>
- <jsp:include page="WEB-INF/views/common/header.jsp"/>
+ <jsp:include page="../common/header.jsp"/>
     <section>
         <div class="AContent">
             <div class="Atable">
