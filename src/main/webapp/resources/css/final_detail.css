@@ -7,8 +7,15 @@
     width: 100%; /* Full width */
     height: 100%; /* Full height */
     overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    background-color: rgba(0, 0, 0, 0.781); /* Fallback color */
+}
+
+a{
+    color:#000;
+}
+
+a:hover{
+    color:#000;
 }
 
 
@@ -16,111 +23,296 @@
     width: 955px;
     height: 850px;
     background-color: white;
-    /* position: fixed; */
     position: absolute;
     left: 450px;
-    top: 37px;
-    /* border:  1px solid #1a4664; */
-    /* display: none; */
-}
-.board-detail > img{
-    width: 597px;
-    height: auto;
-    display: inline-block;
-    position: relative;
-    top: -274px;
-}
-.board-detail .right{
-    display: inline-block;
-    position:relative;
-}
-.board-detail .right .board-title{
-    width: 250px;
-    height: 40px;
-    /* border:  1px solid #1a4664; */
-    /* padding-top: 50px; */
-    position: relative;
-    /* top: -300px; */
-    margin-top: 15px;
-    margin-left: 20px;
-    margin-bottom: 15px;
-
-}
-.board-detail .right .board-title img{
-    width: 40px;
-    height: auto;
-    border-radius: 20px;
-    position: relative;
-}
-.board-detail .right .board-title .board-id{
-    display: inline-block;
-    color: lightslategray;
-    margin-left: 10px;
-    font-size: 10px;
-}
-.board-detail .right .board-title .board-name{
-    display: inline-block;
-    font-weight: bolder;
-    margin-left: 10px;
+    top: 25px;
 }
 
-.board-detail .right .board-text{
-    border:  1px solid #1a4664;
-    width: 350px;
-    height: 250px;
-    position: relative;
-    /* top: -250px; */
-}
-.board-hashtag{
-    /* border:  1px solid #1a4664; */
-    width: 330px;
-    min-height: 50px;
-    position:absolute; bottom:0px; /*아래로 내리기*/
-    color: mediumblue;
-    margin: 0px 10px;
-}
-.board-detail .right .board-comment{
-    border:  1px solid #1a4664;
-    width: 310px;
-    height: 47px;
-    position: relative;
-    margin-top: 10px;
-    margin-left: 10px;
-}
-.board-detail .right .board-commentboard{
-    overflow:auto;
-    height: 171px;
-    width: 350px;
-    margin-top: 10px;
-}
-.board-stateicon div{
-    display: inline-block;
-    margin-left: 15px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-}
-.board-stateicon img{
-    width: 25px;
-    height: auto;
-}
-.board-commentWriter{
-    width: 275px;
-    height: 47px;
-    border:  1px solid #1a4664;
-    display: inline-block;
+/* 사진 */
+.board-img{
+    width: 600px;
+    height: 600px;
+    background-color: lightgray;
+    position: absolute;
 }
 
-.board-commentWriter-submit{
-    margin: 0 auto;
-    border:  1px solid #1a4664;
-    border-bottom-right-radius: 20px;
-    border-top-right-radius: 20px;
+.board-img img{
+    width: 600px;
+    height: 600px;
+}
+
+/* right 글, 옷정보 */
+.board-right{
+    width: 355px;
+    height: 850px;
+    position: absolute;
+    margin: 0px 0px 0px 600px;
+}
+
+.board-user{
+    width: 355px;
+    height: 80px;
+    border-bottom: 1px solid  rgb(216, 213, 213);
+}
+
+.board-userImg{
+    width: 55px;
+    height: 55px;
+    float: left;
+    border: 1px solid rgb(190, 190, 190);
+    border-radius: 50%;
+    background: gray;
+    margin: 13px 14px;
+    overflow: hidden;
+}
+
+.board-userImg img{
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    margin: -1px;
     cursor: pointer;
-    height: 48px;
-    width: 70px;
-    background-color: white;
 }
-.board-commentWriter-submit:hover {
-    background: tomato; 
-    color: white;
-  }
+
+.board-id{
+    width: 200px;
+    height: 80px;
+    float: left;
+    padding: 24px 0px;
+}
+
+.board-id p{
+    font-size: 17px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.board-follow{
+    width: 60px;
+    height: 80px;
+    float: left;
+    font-size: 18px;
+    font-weight: 500;
+    padding: 23px 8px 23px 0px;
+    cursor: pointer;
+    color: lightslategrey;
+}
+
+.board-textDiv{
+    width: 355px;
+    height: 345px;
+    border-bottom: 1px solid  rgb(216, 213, 213);
+}
+
+.board-text{
+    width: 335px;
+    height: 267px;
+    position: absolute;
+    margin: 10px 10px 0px;
+}
+
+.board-hashtag{
+    width: 328px;
+    height: 58px;
+    position: absolute;
+    margin: 278px 14px 8px;
+    color: rgb(0, 46, 83);
+    font-weight: 300;
+}
+
+.board-stateicon{
+    width: 355px;
+    height: 53px;
+    border-bottom: 1px solid  rgb(216, 213, 213);
+}
+
+.board-heartCount{
+    width: 200px;
+    height: 27px;
+    font-size: 15px;
+    font-weight: 400;
+    margin: 13px 0px 13px 11px;
+    float: left;
+}
+
+.board-heart{
+    width: 25px;
+    height: 25px;
+    margin: 14px 0px 13px 72px;
+    float: left;
+}
+
+.board-heart img{
+    width: 25px;
+    height: 25px;
+}
+
+.board-etc{
+    width: 25px;
+    height: 25px;
+    margin: 14px 2px 13px 12px;
+    float: left;
+}
+
+.board-etc img{
+    width: 22px;
+    height: 23px;
+}
+
+
+/* 옷정보 */
+.board-clothesInfo{
+    width: 355px;
+    height: 345px;
+}
+
+.clothesInfo-div{
+    width: 355px;
+    height: 70px;
+}
+
+.clothes-img{
+    width: 50px;
+    height: 50px;
+    border-radius: 3px 3px;
+    margin: 19px 0px 0px 15px;
+    float: left;
+    position: absolute;
+    background: rgb(236, 236, 236);
+}
+
+.clothes-img img{
+    width: 40px;
+    height: 40px;
+    margin: 5px 6px;
+}
+
+.clothes-p{
+    width: 50px;
+    height: 30px;
+    float: left;
+    position: absolute;
+    margin: 18px 78px;
+    font-weight: 300;
+    font-size: 15px;
+}
+
+.clothes-info{
+    width: 180px;
+    height: 30px;
+    position: absolute;
+    margin: 40px 78px;
+    font-weight: 400;
+}
+
+
+/* bottom 댓글 */
+.board-bottom{
+    width: 600px;
+    height: 250px;
+    position: absolute;
+    margin: 600px 0px 0px 0px;
+    border-right: 1px solid  rgb(216, 213, 213);
+}
+
+.commentCount{
+    width: 600px;
+    height: 30px;
+    border-bottom: 1px solid rgb(216, 213, 213);
+}
+
+.commentCount p{
+    font-size: 15px;
+    font-weight: 400;
+    margin: 0px 0px 0px 10px;
+    padding-top: 3px;
+}
+
+.board-commentDiv{
+    width: 600px;
+    height: 160px;
+    overflow: auto;
+    border-bottom: 1px solid  rgb(216, 213, 213);
+}
+
+.board-bottom ::-webkit-scrollbar { display: none; }
+
+.board-comment{
+    height: 45px;
+    width: 570px;
+    margin: 0px 14px;
+    border-bottom: 1px solid rgb(236, 236, 236);
+}
+
+.comment-img{
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: gray;
+    border: 1px solid rgb(190, 190, 190);
+    float: left;
+    margin: 6px 12px 5px 2px;
+}
+
+.comment-img img{
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+}
+
+.comment-content{
+    width: 515px;
+    height: 37px;
+    margin: 4px 0px;
+    float: left;
+}
+
+.comment-user{
+    float: left;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.comment-comment{
+    float: left;
+    width: 440px;
+    font-size: 14px;
+    font-weight: 300;
+    margin-left: 10px;
+    overflow: auto;
+}
+
+.board-commentWrite{
+    width: 600px;
+    height: 60px;
+}
+
+
+
+.comment-write{
+    width: 520px;
+    height: 60px;
+    overflow: auto;
+    float: left;
+}
+
+.comment-write input{
+    border: 0px;
+    width: 515px;
+    height: 44px;
+    margin: 8px 2px;
+    padding-left: 20px;
+}
+
+input:focus {outline:none;}
+
+.comment-submit{
+    width: 35px;
+    height: 31px;
+    float: left;
+    margin: 15px 22px;
+    text-align: center;
+    font-weight: 400;
+    color: lightslategrey;
+    cursor: pointer;
+}
