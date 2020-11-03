@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -9,60 +10,20 @@
     <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
-    <link rel="stylesheet" href="./css/final_main.css">
-    <link rel="stylesheet" href="./css/final_Settings_ChangePWd.css">
+    <link rel="stylesheet" href="resources/css/final_Settings_ChangePWd.css">
 </head>
 <body>
-    <header>
-        <div class="hTitle">
-            <div class="nav1">
-                <div class="hTitle1"><a href="./lml_main.html"><img src="./images/logo/logo_medium.png" class="titleImg"/></a></div>
-                <div class="hTitle1">
-                    <form action="#" autocomplete="off">
-                        <fieldset class="sUrl">
-                            <input class="searchInput" type="text" required placeholder=" 검색">
-                            <div class="sAfter"></div>
-                        </fieldset>
-                    </form>
-                </div>
-                <div class="hTitle1">
-                    <div class="htMenu">
-                        <div class="myMenu">
-                            <img src="./images/icon/menu/iconmonstr-menu-thin-72.png"><!-- 이미지 클릭 시 서브메뉴 나옴 -->
-                            <ul class="mySub">
-                                <li><div class="mySub1">마이페이지</div></li>
-                                <a href="./lml_Settings.html"><li><div class="mySub1">설정</div></li></a>
-                                <a href="./lml_main_logout.html"><li><div class="mySub1">로그아웃</div></li></a>
-                            </ul>
-                        </div><!--메뉴-->
-                        <div class="heart"><img src="./images/icon/menu/iconmonstr-heart-thin-72.png" class="heart heartIcon"></div><!--알림-->
-                        <div><img src="./images/icon/menu/iconmonstr-speech-bubble-thin-72.png"></div><!--채팅-->
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="hMenu">
-            <div class="hMenu1">
-                <div class="hMenu2 on"><span>인기순</span></div>
-                <div class="hMenu2"><span>최신순</span></div>
-                <div class="hMenu2"><span>팔로잉</span></div>
-                <div class="hMenu2"><span>QnA</span></div>
-                <span></span>
-            </div>
-            
-        </div>
-    </header>
+ <jsp:include page="WEB-INF/views/common/header.jsp"/>
     <section>
         <div class="AContent">
             <div class="Atable">
                 <div class="Abox">
                    <div class="lContent">
                     <div class="lmenu">
-                        <li class="minimenu"><a href="./lml_Settings.html" class="Ma"> <img class="mainbtn" src="./images/icon/settings/Mprofile.png">프로필 수정</a></li>
-                        <li class="minimenu put"><a href="./lml_Settings_2.html" class="Ma"> <img class="mainbtn" src="./images/icon/settings/Mrock.png">비밀번호 변경</a></li>
-                        <li class="minimenu"><a href="./lml_Settings_5.html" class="Ma"> <img class="mainbtn" src="./images/icon/settings/xxx.png">친구관리</a></li>
-                        <li class="minimenu"><a href="./lml_Settings_3.html" class="Ma"> <img class="mainbtn" src="./images/icon/settings/Memail.png">이메일 문의</a></li>
+                        <li class="minimenu"><a href="./lml_Settings.html" class="Ma"> <img class="mainbtn" src="resources/images/icon/settings/Mprofile.png">프로필 수정</a></li>
+                        <li class="minimenu put"><a href="./lml_Settings_2.html" class="Ma"> <img class="mainbtn" src="resources/images/icon/settings/Mrock.png">비밀번호 변경</a></li>
+                        <li class="minimenu"><a href="./lml_Settings_5.html" class="Ma"> <img class="mainbtn" src="resources/images/icon/settings/xxx.png">친구관리</a></li>
+                        <li class="minimenu"><a href="./lml_Settings_3.html" class="Ma"> <img class="mainbtn" src="resources/images/icon/settings/Memail.png">이메일 문의</a></li>
                      </div>
                 </div>
                    <div class="rContent">

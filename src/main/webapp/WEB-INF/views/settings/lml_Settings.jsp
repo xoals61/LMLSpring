@@ -19,10 +19,10 @@
                 <div class="Abox">
                    <div class="lContent">
                     <div class="lmenu">
-                        <li class="minimenu put"><a href="./lml_Settings.html" class="Ma"> <img class="mainbtn" src="./images/icon/settings/Mprofile.png">프로필 수정</a></li>
-                        <li class="minimenu"><a href="./lml_Settings_2.html" class="Ma"> <img class="mainbtn" src="./images/icon/settings/Mrock.png">비밀번호 변경</a></li>
-                        <li class="minimenu"><a href="./lml_Settings_5.html" class="Ma"> <img class="mainbtn" src="./images/icon/settings/xxx.png">친구관리</a></li>
-                        <li class="minimenu"><a href="./lml_Settings_3.html" class="Ma"> <img class="mainbtn" src="./images/icon/settings/Memail.png">이메일 문의</a></li>
+                        <li class="minimenu put"><a href="./lml_Settings.html" class="Ma"> <img class="mainbtn" src="resources/images/icon/settings/Mprofile.png">프로필 수정</a></li>
+                        <li class="minimenu"><a href="./lml_Settings_2.html" class="Ma"> <img class="mainbtn" src="resources/images/icon/settings/Mrock.png">비밀번호 변경</a></li>
+                        <li class="minimenu"><a href="./lml_Settings_5.html" class="Ma"> <img class="mainbtn" src="resources/images/icon/settings/xxx.png">친구관리</a></li>
+                        <li class="minimenu"><a href="./lml_Settings_3.html" class="Ma"> <img class="mainbtn" src="resources/images/icon/settings/Memail.png">이메일 문의</a></li>
                     </div>
                 </div>
                
@@ -30,7 +30,7 @@
                     <form class="MyInfo" method="POST" action="#">
                         <div class="profile">
                             <div class="photo">
-                                <img src="./images/mainImg/jessie.jpg" id="Myimg">
+                                <img src="resources/images/mainImg/jessie.jpg" id="Myimg">
                             </div>
                             <div class="ChangeBtn">
                                  <input type="file" id="file" name="file" onchange="changeValue(this)"  accept="image/*" />
@@ -55,7 +55,7 @@
                             <textarea id="inrtoduce" name="inrtoduce" type="text" placeholder="맛집 추천해주세요"></textarea><br>
                         </div>
                         <div class="Fbtn">
-                            <button class="btns2"id="Delbtn" type="button" onClick="location.href='lml_Settings_4.html'">탈퇴</button>
+                            <button class="btns2"id="Delbtn" type="button" onClick="location.href='lml_Settings_4.jsp'">탈퇴</button>
                             <input class="btns2" id="Sbtn" type="submit" value="변경하기"/>
                         </div>
                     </form>
