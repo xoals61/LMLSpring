@@ -16,9 +16,9 @@
                     <button type="button" class="togglebtn" onclick="register()">REGISTER</button>
                 </div>
                 <div class="social-icons">
-                    <img src="../../resources/images/jmImg/fb.png" alt="facebook">
-                    <img src="../../resources/images/jmImg/tw.png" alt="twitter">
-                    <img src="../../resources/images/jmImg/gl.png" alt="google">
+                    <img src="resources/images/jmImg/fb.png" alt="facebook">
+                    <img src="resources/images/jmImg/tw.png" alt="twitter">
+                    <img src="resources/images/jmImg/gl.png" alt="google">
                 </div>
                 <form id="login" action="" class="input-group">
                     <input type="text" class="input-field" placeholder="User name or Email" required>

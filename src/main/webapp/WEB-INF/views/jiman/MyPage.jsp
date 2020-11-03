@@ -11,15 +11,15 @@
     <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../../resources/css/final_main.css">
-    <link rel="stylesheet" href="../../resources/css/final_main2.css">
-    <link rel="stylesheet" href="../../resources/css/jmCSS/final_mypage.css">
+    <link rel="stylesheet" href="resources/css/final_main.css">
+    <link rel="stylesheet" href="resources/css/final_main2.css">
+    <link rel="stylesheet" href="resources/css/jmCSS/final_mypage.css">
 </head>
 <body>
     <header>
         <div class="hTitle">
             <div class="nav1">
-                <div class="hTitle1"><a href="../lml_main.html"><img src="../../resources/images/logo/logo_medium.png" class="titleImg"/></a></div>
+                <div class="hTitle1"><a href="../lml_main.html"><img src="resources/images/logo/logo_medium.png" class="titleImg"/></a></div>
                 <div class="hTitle1">
                     <form action="#" autocomplete="off">
                         <fieldset class="sUrl">
@@ -31,7 +31,7 @@
                 <div class="hTitle1">
                     <div class="htMenu">
                         <div class="myMenu">
-                            <img src="../../resources/images/icon/menu/iconmonstr-menu-thin-72.png"><!-- 이미지 클릭 시 서브메뉴 나옴 -->
+                            <img src="resources/images/icon/menu/iconmonstr-menu-thin-72.png"><!-- 이미지 클릭 시 서브메뉴 나옴 -->
                             <ul class="mySub">
                                 <a href="#"><li><div class="mySub1">마이페이지</div></li></a>
                                 <a href="../lml_Settings.html"><li><div class="mySub1">설정</div></li></a>
@@ -62,11 +62,11 @@
             <div class="my_top" >
                 <div class="top">
                 <div class="my_photo">
-                    <img src="../../resources/images/jmImg/프로필.png">
+                    <img src="resources/images/jmImg/프로필.png">
                 </div>
                 <div class="my_info">
                     <div class="info">
-                          <h2>ooOP._.s  <button class="info_btn" onclick="location.href='../lml_Settings.html'" ><img src="../../resources/images/jmImg/설정.png" class="btn_img">
+                          <h2>ooOP._.s  <button class="info_btn" onclick="location.href='../lml_Settings.html'" ><img src="resources/images/jmImg/설정.png" class="btn_img">
                         </button> </h2>
                     </div>
                     <div class="info" >
@@ -92,15 +92,15 @@
                 <tr>
                     <td>
                         <div class="content">
-                            <div class=img><img src="../../resources/images/jmImg/블루 (1).jpg" class="cImg"></div>
+                            <div class=img><img src="resources/images/jmImg/블루 (1).jpg" class="cImg"></div>
                     </td>
                     <td>
                         <div class="content">
-                            <div class=img><img src="../../resources/images/jmImg/블루 (3).jpg" class="cImg"></div>
+                            <div class=img><img src="resources/images/jmImg/블루 (3).jpg" class="cImg"></div>
                     </td>
                     <td>
                         <div class="content">
-                            <div class=img><img src="../../resources/images/jmImg/무지갱.ico" class="cImg"></div>
+                            <div class=img><img src="resources/images/jmImg/무지갱.ico" class="cImg"></div>
                     </td>
                 </tr>
             </table>
@@ -111,29 +111,29 @@
                 <tr>
                     <td>
                         <div class="content">
-                            <div class=img><img src="../../resources/images/jmImg/블루 (1).jpg" class="cImg"></div>
+                            <div class=img><img src="resources/images/jmImg/블루 (1).jpg" class="cImg"></div>
                     </td>
                     <td>
                         <div class="content">
-                            <div class=img><img src="../../resources/images/jmImg/블루 (3).jpg" class="cImg"></div>
+                            <div class=img><img src="resources/images/jmImg/블루 (3).jpg" class="cImg"></div>
                     </td>
                     <td>
                         <div class="content">
-                            <div class=img><img src="../../resources/images/jmImg/무지갱.ico" class="cImg"></div>
+                            <div class=img><img src="resources/images/jmImg/무지갱.ico" class="cImg"></div>
                     </td>
                 </tr>
                 <tr>
                     <td>
                         <div class="content">
-                            <div class=img><img src="../../resources/images/jmImg블루 (1).jpg" class="cImg"></div>
+                            <div class=img><img src="resources/images/jmImg블루 (1).jpg" class="cImg"></div>
                     </td>
                     <td>
                         <div class="content">
-                            <div class=img><img src="../../resources/images/jmImg/블루 (3).jpg" class="cImg"></div>
+                            <div class=img><img src="resources/images/jmImg/블루 (3).jpg" class="cImg"></div>
                     </td>
                     <td>
                         <div class="content">
-                            <div class=img><img src="../../resources/images/jmImg/무지갱.ico" class="cImg"></div>
+                            <div class=img><img src="resources/images/jmImg/무지갱.ico" class="cImg"></div>
                     </td>
                 </tr>
             </table>
