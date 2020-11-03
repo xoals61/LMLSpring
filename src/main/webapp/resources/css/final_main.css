@@ -87,15 +87,20 @@
 
         /* 로그인 버튼 */
         .loginBtn{
-            width: 100px;
-            height: 30px;
-            background: rgb(156, 156, 156);
-            margin: 10px 0px;
-            border-radius: 12px 12px;
+            width: 120px;
+            height: 36px;
+            margin: 12px 0px;
+            padding-top: 4px;
+            border-radius: 25px 25px;
             text-align: center;
-            color: white;
+            color: rgba(94, 94, 94, 0.74);
             font-weight: 400;
         }
+
+        .loginBtn:hover{
+            color:  rgba(94, 94, 94, 0.842);
+            font-weight: 500;
+        }   
 
         /* 알림 채팅 마이페이지 */
 
@@ -202,25 +207,4 @@
         .hMenu2:nth-child(3).on ~ span{ left: 92px; opacity: 1; }
         .hMenu2:nth-child(4).on ~ span{ left: 138px; opacity: 1; }
 
-
-
-        /* 본문 */
-        .sContent {
-            height: 2000px;
-            background-color: rgb(248, 248, 248);
-        }
-
-        .ctable{
-            width: 1920px;
-            min-width: 1400px;
-            height: 100%;
-            padding: 170px 400px;
-        }
-
-        .content{
-            width: 350px;
-            height: 350px;
-            background-color: rgb(160, 160, 160);
-            margin: 12px;
-        }
 
