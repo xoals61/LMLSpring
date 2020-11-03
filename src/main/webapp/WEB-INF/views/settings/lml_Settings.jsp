@@ -1,6 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -21,7 +21,7 @@
                 <div class="hTitle1">
                     <form action="#" autocomplete="off">
                         <fieldset class="sUrl">
-                            <input class="searchInput" type="text" required placeholder=" ê²ì">
+                            <input class="searchInput" type="text" required placeholder=" 검색">
                             <div class="sAfter"></div>
                         </fieldset>
                     </form>
@@ -29,15 +29,15 @@
                 <div class="hTitle1">
                     <div class="htMenu">
                         <div class="myMenu">
-                            <img src="./images/icon/menu/iconmonstr-menu-thin-72.png"><!-- ì´ë¯¸ì§ í´ë¦­ ì ìë¸ë©ë´ ëì´ -->
+                            <img src="./images/icon/menu/iconmonstr-menu-thin-72.png"><!-- 이미지 클릭 시 서브메뉴 나옴 -->
                             <ul class="mySub">
-                                <li><div class="mySub1">ë§ì´íì´ì§</div></li>
-                                <a href="./lml_Settings.html"><li><div class="mySub1">ì¤ì </div></li></a>
-                                <a href="./lml_main_logout.html"><li><div class="mySub1">ë¡ê·¸ìì</div></li></a>
+                                <li><div class="mySub1">마이페이지</div></li>
+                                <a href="./lml_Settings.html"><li><div class="mySub1">설정</div></li></a>
+                                <a href="./lml_main_logout.html"><li><div class="mySub1">로그아웃</div></li></a>
                             </ul>
-                        </div><!--ë©ë´-->
-                        <div class="heart"><img src="./images/icon/menu/iconmonstr-heart-thin-72.png" class="heart heartIcon"></div><!--ìë¦¼-->
-                        <div><img src="./images/icon/menu/iconmonstr-speech-bubble-thin-72.png"></div><!--ì±í-->
+                        </div><!--메뉴-->
+                        <div class="heart"><img src="./images/icon/menu/iconmonstr-heart-thin-72.png" class="heart heartIcon"></div><!--알림-->
+                        <div><img src="./images/icon/menu/iconmonstr-speech-bubble-thin-72.png"></div><!--채팅-->
                     </div>
                 </div>
             </div>
@@ -46,9 +46,9 @@
         </div>
         <div class="hMenu">
             <div class="hMenu1">
-                <div class="hMenu2 on"><span>ì¸ê¸°ì</span></div>
-                <div class="hMenu2"><span>ìµì ì</span></div>
-                <div class="hMenu2"><span>íë¡ì</span></div>
+                <div class="hMenu2 on"><span>인기순</span></div>
+                <div class="hMenu2"><span>최신순</span></div>
+                <div class="hMenu2"><span>팔로잉</span></div>
                 <div class="hMenu2"><span>QnA</span></div>
                 <span></span>
             </div>
@@ -61,10 +61,10 @@
                 <div class="Abox">
                    <div class="lContent">
                     <div class="lmenu">
-                        <li class="minimenu put"><a href="./lml_Settings.html" class="Ma"> <img class="mainbtn" src="./images/icon/settings/Mprofile.png">íë¡í ìì </a></li>
-                        <li class="minimenu"><a href="./lml_Settings_2.html" class="Ma"> <img class="mainbtn" src="./images/icon/settings/Mrock.png">ë¹ë°ë²í¸ ë³ê²½</a></li>
-                        <li class="minimenu"><a href="./lml_Settings_5.html" class="Ma"> <img class="mainbtn" src="./images/icon/settings/xxx.png">ì¹êµ¬ê´ë¦¬</a></li>
-                        <li class="minimenu"><a href="./lml_Settings_3.html" class="Ma"> <img class="mainbtn" src="./images/icon/settings/Memail.png">ì´ë©ì¼ ë¬¸ì</a></li>
+                        <li class="minimenu put"><a href="./lml_Settings.html" class="Ma"> <img class="mainbtn" src="./images/icon/settings/Mprofile.png">프로필 수정</a></li>
+                        <li class="minimenu"><a href="./lml_Settings_2.html" class="Ma"> <img class="mainbtn" src="./images/icon/settings/Mrock.png">비밀번호 변경</a></li>
+                        <li class="minimenu"><a href="./lml_Settings_5.html" class="Ma"> <img class="mainbtn" src="./images/icon/settings/xxx.png">친구관리</a></li>
+                        <li class="minimenu"><a href="./lml_Settings_3.html" class="Ma"> <img class="mainbtn" src="./images/icon/settings/Memail.png">이메일 문의</a></li>
                     </div>
                 </div>
                
@@ -76,29 +76,29 @@
                             </div>
                             <div class="ChangeBtn">
                                  <input type="file" id="file" name="file" onchange="changeValue(this)"  accept="image/*" />
-                                 <button type="button" id="btn-upload">íë¡í ì¬ì§ ë°ê¾¸ê¸°</button></div>
+                                 <button type="button" id="btn-upload">프로필 사진 바꾸기</button></div>
                         </div>
                         <div class="ModifyInfo">
-                            <label class=Info>ëë¤ì &nbsp;&nbsp;&nbsp;
-                                 <input class="infoinput" name="id" type="text" placeholder="ì ëì§±"></label><br>
-                            <label class=Info>ì´ë©ì¼ &nbsp;&nbsp;&nbsp; 
+                            <label class=Info>닉네임 &nbsp;&nbsp;&nbsp;
+                                 <input class="infoinput" name="id" type="text" placeholder="유니짱"></label><br>
+                            <label class=Info>이메일 &nbsp;&nbsp;&nbsp; 
                                 <input class="infoinput" name="email" type="email" placeholder="yoon2zzang@naver.com"></label><br>
-                            <label class=Info>ì íë²í¸  
+                            <label class=Info>전화번호  
                                 <input class="infoinput" name="phone" type="text" placeholder="010-2612-2238"></label><br>
-                            <label class=Info>ì±  ë³ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-                                <input class="gender" type="radio" name="gender" value="woman" checked>ì¬
-                                <input class="gender" type="radio" name="gender" value="man">ë¨
+                            <label class=Info>성  별 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                                <input class="gender" type="radio" name="gender" value="woman" checked>여
+                                <input class="gender" type="radio" name="gender" value="man">남
                             </label><br>
-                            <label class=Info>ëª¸ë¬´ê² &nbsp;&nbsp;&nbsp;
+                            <label class=Info>몸무게 &nbsp;&nbsp;&nbsp;
                                  <input class="infoinput" name="weight" type="text" placeholder="70" maxlength="3" numberOnly></label><br>
-                            <label class=Info>í¤ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                            <label class=Info>키 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
                                 <input class="infoinput" name="height" type="text" maxlength="3" placeholder="180" numberOnly></label><br>
-                            <label class=Info2 id="infomy">ìê¸°ìê°</label> &nbsp; 
-                            <textarea id="inrtoduce" name="inrtoduce" type="text" placeholder="ë§ì§ ì¶ì²í´ì£¼ì¸ì"></textarea><br>
+                            <label class=Info2 id="infomy">자기소개</label> &nbsp; 
+                            <textarea id="inrtoduce" name="inrtoduce" type="text" placeholder="맛집 추천해주세요"></textarea><br>
                         </div>
                         <div class="Fbtn">
-                            <button class="btns2"id="Delbtn" type="button" onClick="location.href='lml_Settings_4.html'">íí´</button>
-                            <input class="btns2" id="Sbtn" type="submit" value="ë³ê²½íê¸°"/>
+                            <button class="btns2"id="Delbtn" type="button" onClick="location.href='lml_Settings_4.html'">탈퇴</button>
+                            <input class="btns2" id="Sbtn" type="submit" value="변경하기"/>
                         </div>
                     </form>
                </div>
@@ -109,15 +109,15 @@
 
     
     <script>
-        /*ì ì¶ ë²í¼ ëë ì ë*/
+        /*제출 버튼 눌렀을 때*/
         $(document).ready(function(){
           $('#Sbtn').on('click', function(){
-            alert("ë³ê²½ëììµëë¤.")
+            alert("변경되었습니다.")
           });
       });
   </script>
     <script>
-        /*ì í ë©ë´ ê³ ì */
+        /*선택 메뉴 고정*/
           $(document).ready(function(){
             $('.minimenu').on('click', function(){
                 $(this).addClass('put');
@@ -129,33 +129,33 @@
   <script>
     function changeValue(value) {
 
-        console.log("ì¤íëë");
+        console.log("실행되니");
 
-        // srcë¥¼ ë³ê²½í  imgíê·¸
+        // src를 변경할 img태그
        var preview = document.querySelector('#Myimg');
         
-        // ìë°ì¤í¬ë¦½í¸ìì 0, -0, null, false, NaN, undefined, ''ì ê°ì ê°ì§ë©´ falseì´ê³ , ëë¨¸ì§ë trueì´ë¤.
-        // ê°ì²´ or ë³ìë¥¼ ë£ê² ëë©´ trueê° ëì¤ë¯ë¡ ì¤íì´ ëë ê²ì´ë¤..!!
+        // 자바스크립트에서 0, -0, null, false, NaN, undefined, ''의 값을 가지면 false이고, 나머지는 true이다.
+        // 객체 or 변수를 넣게 되면 true가 나오므로 실행이 되는 것이다..!!
         if(value.files && value.files[0]) {
            
-           // FileReaderë?
-   // ì¹ ì íë¦¬ì¼ì´ìì´ ë¹ëê¸°ì ì¼ë¡ ë°ì´í°ë¥¼ ì½ê¸° ìíì¬ ì½ì íì¼ì ê°ë¦¬í¤ë Fileí¹ì Blobê°ì²´ë¥¼ ì´ì©í´ 
-   // íì¼ì ë´ì©ì(í¹ì raw dataë²í¼ë¡) ì½ê³  ì¬ì©ìì ì»´í¨í°ì ì ì¥íë ê²ì ê°ë¥íê² íë¤.
+           // FileReader란?
+   // 웹 애플리케이션이 비동기적으로 데이터를 읽기 위하여 읽을 파일을 가리키는 File혹은 Blob객체를 이용해 
+   // 파일의 내용을(혹은 raw data버퍼로) 읽고 사용자의 컴퓨터에 저장하는 것을 가능하게 한다.
              var reader = new FileReader();
            
              reader.onload = function (e) {
-                console.log(e); // ProgressEventê°ì²´
-                console.log(e.target); // FileReaderê°ì²´
-                console.log(e.target.result); // íì¼ì Stringê°ì¼ë¡ ì ì¥íë¤.
-                 $('#Myimg').attr('src', e.target.result); // srcë¥¼ ë¶ë¬ì¨ Stringê°ì¼ë¡ ì¹ííë¤.
+                console.log(e); // ProgressEvent객체
+                console.log(e.target); // FileReader객체
+                console.log(e.target.result); // 파일을 String값으로 저장한다.
+                 $('#Myimg').attr('src', e.target.result); // src를 불러온 String값으로 치환한다.
              }
-             reader.readAsDataURL(value.files[0]); // DataURL íìì¼ë¡ íì¼ì ì½ì´ì¤ë¤.
+             reader.readAsDataURL(value.files[0]); // DataURL 형식으로 파일을 읽어준다.
         }
     }
 </script>
 
 <script type="text/javascript">
-    /*iputíê·¸ íì¼*/
+    /*iput태그 파일*/
     $(function () {    
     $('#btn-upload').click(function (e) {
     e.preventDefault();   
@@ -167,7 +167,7 @@
     </script>
 
       <script>
-          /* ìë¨ ë©ë´ ì¤í¬ë¡¤ */
+          /* 상단 메뉴 스크롤 */
           $(function () {
             var lastScrollTop = 0,
                 delta = 15;
@@ -192,7 +192,7 @@
       </script>
 
       <script>
-        /* ë§ì´íì´ì§ íë²ê±°ë©ë´ */
+        /* 마이페이지 햄버거메뉴 */
         $(document).ready(function(){
             $(".mySub").hide();
             $(".myMenu").click(function(){
@@ -207,12 +207,12 @@
         });
 
 
-        /* ìë¦¼ ìì´ì½ í´ë¦­ ì ìì´ì½ ë³ê²½ */
+        /* 알림 아이콘 클릭 시 아이콘 변경 */
         $(".heart").click(function(){
             $('.heartIcon').attr('src','./images/icon/menu/iconmonstr-favorite-3-72.png');
         });
 
-        // ë¤ë¥¸ê³³ í´ë¦­íë©´ íí¸ ìëëë¡
+        // 다른곳 클릭하면 하트 원래대로
         $("body").click(function(e){
             if(!$(".heart").has(e.target).length){
                 $('.heartIcon').attr('src','./images/icon/menu/iconmonstr-heart-thin-72.png');

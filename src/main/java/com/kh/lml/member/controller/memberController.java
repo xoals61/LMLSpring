@@ -9,4 +9,12 @@ public class memberController {
 	public String myPage() {
 		return "jiman/MyPage";
 	}
+	@RequestMapping("login.do")
+	public String login() {
+		return "jiman/login";
+	}
+	@RequestMapping("settings.do")
+	public String setting() {
+		return "settings/lml_Settings";
+	}
 }

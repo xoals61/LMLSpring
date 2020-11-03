@@ -5,7 +5,7 @@
 <html>
     <head>
         <title>로그인 / 회원가입 폼 템플릿</title>
-        <link rel="stylesheet" href="">
+          <link rel="stylesheet" href="resources/css/jmCSS/final_login.css">
     </head>
     <body>
         <div class="wrap">

@@ -1,17 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html>
-<html lang="ko">
 <head>
 	<meta charset="UTF-8">
 	<title>헤더</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
     <link rel="stylesheet" href="./././resources/css/final_main.css">
     <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
-	<c:url var="mypage" value="MyPage.do"/>
 </head>
-<body>
 	<header>
         <div class="hTitle">
             <div class="nav1">
@@ -30,8 +26,9 @@
                             <img src="./resources/images/icon/menu/iconmonstr-menu-thin-72.png"><!-- 이미지 클릭 시 서브메뉴 나옴 -->
                             <ul class="mySub">
                                 <a href='MyPage.do'><li><div class="mySub1">마이페이지</div></li></a>
-                                <a href="${settings}"><li><div class="mySub1">설정</div></li></a>
+                                <a href="Settings.do"><li><div class="mySub1">설정</div></li></a>
                                 <a href="./lml_main_logout.html"><li><div class="mySub1">로그아웃</div></li></a>
+                                 <a href="login.do"><li><div class="mySub1">로그인</div></li></a>
                             </ul>
                         </div><!--메뉴-->
                         <div class="heart"><img src="./resources/images/icon/menu/iconmonstr-heart-thin-72.png" class="heart heartIcon"></div><!--알림-->
@@ -102,5 +99,3 @@
             }
         });
     </script>
-</body>
-</html>

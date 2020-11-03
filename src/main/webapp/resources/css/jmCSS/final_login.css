@@ -8,7 +8,7 @@
 .wrap {
     height: 100%;
     width: 100%;
-    background-image: url(../images/back4.jpg);
+    background-image: url('../../images/jmImg/back4.jpg');
     background-position: center;
     background-size: cover;
     position: absolute;
