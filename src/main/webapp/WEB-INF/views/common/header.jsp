@@ -12,7 +12,7 @@
 	<header>
         <div class="hTitle">
             <div class="nav1">
-                <div class="hTitle1"><a href="./lml_main.html"><img src="./resources/images/logo/logo_medium.png" class="titleImg"/></a></div>
+                <div class="hTitle1"><a href='Index.do'><img src="./resources/images/logo/logo_medium.png" class="titleImg"/></a></div>
                 <div class="hTitle1">
                     <form action="#" autocomplete="off">
                         <fieldset class="sUrl">

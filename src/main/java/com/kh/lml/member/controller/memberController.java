@@ -17,4 +17,8 @@ public class memberController {
 	public String setting() {
 		return "settings/lml_Settings";
 	}
+	@RequestMapping("Index.do")
+	public String index() {
+		return "../../index";
+	}
 }
