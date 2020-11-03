@@ -25,7 +25,7 @@
                 </div>
                 <div class="my_info">
                     <div class="info">
-                          <h2>ooOP._.s  <button class="info_btn" onclick="location.href='../lml_Settings.html'" ><img src="resources/images/jmImg/설정.png" class="btn_img">
+                          <h2>ooOP._.s  <button class="info_btn" onclick="location.href='Settings.do'" ><img src="resources/images/jmImg/설정.png" class="btn_img">
                         </button> </h2>
                     </div>
                     <div class="info" >
