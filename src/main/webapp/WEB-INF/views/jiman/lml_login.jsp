@@ -28,6 +28,7 @@
                 </form>
                 <form id="register" action="" class="input-group">
                     <input type="text" class="input-field" placeholder="User id" required>
+                    <input type="text" class="input-field" placeholder="name" required>
                     <input type="email" class="input-field" placeholder="Your Email" required>
                     <input type="password" class="input-field" placeholder="Enter Password" required>
                     <input type="tel" class="input-field" placeholder="phone" required>
