@@ -6,14 +6,14 @@
 <meta charset="UTF-8">
 <title>검색 더보기(사용자)</title>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./././resources/css/final_search_user.css">
+    <link rel="stylesheet" href="resources/css/final_search_user.css">
 </head>
 <body>
 	<jsp:include page="../common/header.jsp"/>
 
     <section>
         <div class="upBtn">
-            <img src="./././resources/images/icon/main/arrow.png">
+            <img src="resources/images/icon/main/arrow.png">
         </div>
         <div class="userSection">
             <div class="userInfo">
@@ -30,7 +30,7 @@
                         <td>
                             <div class="infoDiv">
                                 <div class="uImg">
-                                    <img src="./././resources/images/mainImg/buzz.jpg">
+                                    <img src="resources/images/mainImg/buzz.jpg">
                                 </div>
                                 <div class="uName">
                                     <div class="uid">@daliyiambuzz</div>
@@ -44,7 +44,7 @@
                         <td>
                             <div class="infoDiv">
                                 <div class="uImg">
-                                    <img src="./././resources/images/mainImg/jessie.jpg">
+                                    <img src="resources/images/mainImg/jessie.jpg">
                                 </div>
                                 <div class="uName">
                                     <div class="uid">@iambuzz</div>
@@ -60,7 +60,7 @@
                         <td>
                             <div class="infoDiv">
                                 <div class="uImg">
-                                    <img src="./././resources/images/mainImg/ppotato.jpg">
+                                    <img src="resources/images/mainImg/ppotato.jpg">
                                 </div>
                                 <div class="uName">
                                     <div class="uid">@daliyiambuzz</div>
@@ -74,7 +74,7 @@
                         <td>
                             <div class="infoDiv">
                                 <div class="uImg">
-                                    <img src="./././resources/images/mainImg/prex.jpg">
+                                    <img src="resources/images/mainImg/prex.jpg">
                                 </div>
                                 <div class="uName">
                                     <div class="uid">@daliyiambuzz</div>
@@ -90,7 +90,7 @@
                         <td>
                             <div class="infoDiv">
                                 <div class="uImg">
-                                    <img src="./././resources/images/mainImg/pandy.jpg">
+                                    <img src="resources/images/mainImg/pandy.jpg">
                                 </div>
                                 <div class="uName">
                                     <div class="uid">@iambuzz</div>
@@ -104,7 +104,7 @@
                         <td>
                             <div class="infoDiv">
                                 <div class="uImg">
-                                    <img src="./././resources/images/mainImg/palien.png">
+                                    <img src="resources/images/mainImg/palien.png">
                                 </div>
                                 <div class="uName">
                                     <div class="uid">@iambuzz</div>
@@ -120,7 +120,7 @@
                         <td>
                             <div class="infoDiv">
                                 <div class="uImg">
-                                    <img src="./././resources/images/mainImg/pandy.jpg">
+                                    <img src="resources/images/mainImg/pandy.jpg">
                                 </div>
                                 <div class="uName">
                                     <div class="uid">@iambuzz</div>
@@ -134,7 +134,7 @@
                         <td>
                             <div class="infoDiv">
                                 <div class="uImg">
-                                    <img src="./././resources/images/mainImg/palien.png">
+                                    <img src="resources/images/mainImg/palien.png">
                                 </div>
                                 <div class="uName">
                                     <div class="uid">@iambuzz</div>
@@ -150,7 +150,7 @@
                         <td>
                             <div class="infoDiv">
                                 <div class="uImg">
-                                    <img src="./././resources/images/mainImg/pandy.jpg">
+                                    <img src="resources/images/mainImg/pandy.jpg">
                                 </div>
                                 <div class="uName">
                                     <div class="uid">@iambuzz</div>
@@ -164,7 +164,7 @@
                         <td>
                             <div class="infoDiv">
                                 <div class="uImg">
-                                    <img src="./././resources/images/mainImg/palien.png">
+                                    <img src="resources/images/mainImg/palien.png">
                                 </div>
                                 <div class="uName">
                                     <div class="uid">@iambuzz</div>
@@ -180,7 +180,7 @@
                         <td>
                             <div class="infoDiv">
                                 <div class="uImg">
-                                    <img src="./././resources/images/mainImg/pandy.jpg">
+                                    <img src="resources/images/mainImg/pandy.jpg">
                                 </div>
                                 <div class="uName">
                                     <div class="uid">@iambuzz</div>
@@ -194,7 +194,7 @@
                         <td>
                             <div class="infoDiv">
                                 <div class="uImg">
-                                    <img src="./././resources/images/mainImg/palien.png">
+                                    <img src="resources/images/mainImg/palien.png">
                                 </div>
                                 <div class="uName">
                                     <div class="uid">@iambuzz</div>
@@ -210,7 +210,7 @@
                         <td>
                             <div class="infoDiv">
                                 <div class="uImg">
-                                    <img src="./././resources/images/mainImg/pandy.jpg">
+                                    <img src="resources/images/mainImg/pandy.jpg">
                                 </div>
                                 <div class="uName">
                                     <div class="uid">@iambuzz</div>
@@ -224,7 +224,7 @@
                         <td>
                             <div class="infoDiv">
                                 <div class="uImg">
-                                    <img src="./././resources/images/mainImg/palien.png">
+                                    <img src="resources/images/mainImg/palien.png">
                                 </div>
                                 <div class="uName">
                                     <div class="uid">@iambuzz</div>
@@ -240,7 +240,7 @@
                         <td>
                             <div class="infoDiv">
                                 <div class="uImg">
-                                    <img src="./././resources/images/mainImg/pandy.jpg">
+                                    <img src="resources/images/mainImg/pandy.jpg">
                                 </div>
                                 <div class="uName">
                                     <div class="uid">@iambuzz</div>
@@ -254,7 +254,7 @@
                         <td>
                             <div class="infoDiv">
                                 <div class="uImg">
-                                    <img src="./././resources/images/mainImg/palien.png">
+                                    <img src="resources/images/mainImg/palien.png">
                                 </div>
                                 <div class="uName">
                                     <div class="uid">@iambuzz</div>
@@ -295,7 +295,7 @@
             var td = '<td>' +
                         '<div class="infoDiv">' +
                             '<div class="uImg">' +
-                                '<img src="./././resources/images/mainImg/palien.png">' +
+                                '<img src="resources/images/mainImg/palien.png">' +
                             '</div>' +
                             '<div class="uName">' +
                                 '<div class="uid">@iambuzz</div>' +
