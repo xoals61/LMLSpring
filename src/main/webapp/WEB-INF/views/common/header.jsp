@@ -6,13 +6,13 @@
 	<title>헤더</title>
 	<script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
-    <link rel="stylesheet" href="./././resources/css/final_main.css">
+    <link rel="stylesheet" href="resources/css/final_main.css">
     <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 </head>
 	<header>
         <div class="hTitle">
             <div class="nav1">
-                <div class="hTitle1"><a href='Index.do'><img src="./resources/images/logo/logo_medium.png" class="titleImg"/></a></div>
+                <div class="hTitle1"><a href='Index.do'><img src="resources/images/logo/logo_medium.png" class="titleImg"/></a></div>
                 <div class="hTitle1">
                     <form action="#" autocomplete="off">
                         <fieldset class="sUrl">
@@ -24,16 +24,16 @@
                 <div class="hTitle1">
                     <div class="htMenu">
                         <div class="myMenu">
-                            <img src="./resources/images/icon/menu/iconmonstr-menu-thin-72.png"><!-- 이미지 클릭 시 서브메뉴 나옴 -->
+                            <img src="resources/images/icon/menu/iconmonstr-menu-thin-72.png"><!-- 이미지 클릭 시 서브메뉴 나옴 -->
                             <ul class="mySub">
                                 <a href='MyPage.do'><li><div class="mySub1">마이페이지</div></li></a>
                                 <a href='Settings.do'><li><div class="mySub1">설정</div></li></a>
-                                <a href="./lml_main_logout.html"><li><div class="mySub1">로그아웃</div></li></a>
+                                <a href="Logout.do"><li><div class="mySub1">로그아웃</div></li></a>
                                  <a href="login.do"><li><div class="mySub1">로그인</div></li></a>
                             </ul>
                         </div><!--메뉴-->
-                        <div class="heart"><img src="./resources/images/icon/menu/iconmonstr-heart-thin-72.png" class="heart heartIcon"></div><!--알림-->
-                        <div><a href="./lml_message.html"><img src="./resources/images/icon/menu/iconmonstr-speech-bubble-thin-72.png"></a></div><!--채팅-->
+                        <div class="heart"><img src="resources/images/icon/menu/iconmonstr-heart-thin-72.png" class="heart heartIcon"></div><!--알림-->
+                        <div><a href="./lml_message.html"><img src="resources/images/icon/menu/iconmonstr-speech-bubble-thin-72.png"></a></div><!--채팅-->
                     </div>
                 </div>
             </div>
@@ -90,13 +90,13 @@
 
         /* 알림 아이콘 클릭 시 아이콘 변경 */
         $(".heart").click(function(){
-            $('.heartIcon').attr('src','./resources/images/icon/menu/iconmonstr-favorite-3-72.png');
+            $('.heartIcon').attr('src','resources/images/icon/menu/iconmonstr-favorite-3-72.png');
         });
 
         // 다른곳 클릭하면 하트 원래대로
         $("body").click(function(e){
             if(!$(".heart").has(e.target).length){
-                $('.heartIcon').attr('src','./resources/images/icon/menu/iconmonstr-heart-thin-72.png');
+                $('.heartIcon').attr('src','resources/images/icon/menu/iconmonstr-heart-thin-72.png');
             }
         });
         
