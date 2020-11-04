@@ -16,7 +16,7 @@
                 <div class="hTitle1">
                     <form action="#" autocomplete="off">
                         <fieldset class="sUrl">
-                            <input class="searchInput" type="text" required placeholder=" 검색">
+                            <input class="searchInput" type="text"  required placeholder=" 검색" onKeyPress="if( event.keyCode==13 ){search();}">
                             <div class="sAfter"></div>
                         </fieldset>
                     </form>
@@ -99,4 +99,9 @@
                 $('.heartIcon').attr('src','./resources/images/icon/menu/iconmonstr-heart-thin-72.png');
             }
         });
+        
+        // 검색 페이지 이동
+        function search(){
+            location.href="Search.do";
+        };
     </script>

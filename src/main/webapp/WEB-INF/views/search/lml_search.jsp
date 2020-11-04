@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>검색</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="./css/final_search.css">
+<link rel="stylesheet" href="./././resources/css/final_search.css">
 </head>
 <body>
 	<jsp:include page="../common/header.jsp"/>
@@ -28,12 +28,12 @@
                     <tr>
                         <td>
                             <div class="content">
-                                <div><img src="./images/mainImg/buzz.jpg" class="cImg"></div>
+                                <div><img src="./././resources/images/mainImg/buzz.jpg" class="cImg"></div>
                                 <div class="chover">
                                     <div class="chContnet">
                                         <div class="user">
                                             <div class="userImg">
-                                                <img src="./images/mainImg/pbuzz.jpg">
+                                                <img src="./././resources/images/mainImg/pbuzz.jpg">
                                             </div>
                                             <div class="userId">iambuzz</div>
                                         </div>
@@ -41,9 +41,9 @@
                                             <div class="userCon"><p>To Infinity and Beyond</p></div>
                                         </div>
                                         <div class="cBtn">
-                                            <div class="cHeart"><img src="./images/icon/main/heart.png" class="cheart"></div>
-                                            <div class="cComment"><div class="cbox"></div><img src="./images/icon/main/comment.png"></div>
-                                            <div class="cEtc"><img src="images/icon/main/etc.png"></div>
+                                            <div class="cHeart"><img src="./././resources/images/icon/main/heart.png" class="cheart"></div>
+                                            <div class="cComment"><div class="cbox"></div><img src="./././resources/images/icon/main/comment.png"></div>
+                                            <div class="cEtc"><img src="./././resources/images/icon/main/etc.png"></div>
                                         </div>
                                     </div>
                                 </div>
@@ -51,12 +51,12 @@
                         </td>
                         <td>
                             <div class="content">
-                                <div><img src="./images/mainImg/alien.jpg" class="cImg"></div>
+                                <div><img src="./././resources/images/mainImg/alien.jpg" class="cImg"></div>
                                 <div class="chover">
                                     <div class="chContnet">
                                         <div class="user">
                                             <div class="userImg">
-                                                <img src="./images/mainImg/palien.png">
+                                                <img src="./././resources/images/mainImg/palien.png">
                                             </div>
                                             <div class="userId">_alien88_</div>
                                         </div>
@@ -64,9 +64,9 @@
                                             <div class="userCon"><p>To To To Infinity Infinity Infinity and and and Beyond Beyond Beyond</p></div>
                                         </div>
                                         <div class="cBtn">
-                                            <div class="cHeart"><img src="./images/icon/main/heart.png" class="cheart"></div>
-                                            <div class="cComment"><div class="cbox"></div><img src="./images/icon/main/comment.png"></div>
-                                            <div class="cEtc"><img src="images/icon/main/etc.png"></div>
+                                            <div class="cHeart"><img src="./././resources/images/icon/main/heart.png" class="cheart"></div>
+                                            <div class="cComment"><div class="cbox"></div><img src="./././resources/images/icon/main/comment.png"></div>
+                                            <div class="cEtc"><img src="./././resources/images/icon/main/etc.png"></div>
                                         </div>
                                     </div>
                                 </div>
@@ -74,12 +74,12 @@
                         </td>
                         <td>
                             <div class="content">
-                                <div><img src="./images/mainImg/andy.jpg" class="cImg"></div>
+                                <div><img src="./././resources/images/mainImg/andy.jpg" class="cImg"></div>
                                 <div class="chover">
                                     <div class="chContnet">
                                         <div class="user">
                                             <div class="userImg">
-                                                <img src="./images/mainImg/pandy.jpg">
+                                                <img src="./././resources/images/mainImg/pandy.jpg">
                                             </div>
                                             <div class="userId">chilly_b_f</div>
                                         </div>
@@ -87,9 +87,9 @@
                                             <div class="userCon"><p>시작부터 다 예상밖에 놀라운 스따일 작은 스탭들로 뿜어내 빅바입</p></div>
                                         </div>
                                         <div class="cBtn">
-                                            <div class="cHeart"><img src="./images/icon/main/heart.png"  class="cheart"></div>
-                                            <div class="cComment"><div class="cbox"></div><img src="./images/icon/main/comment.png"></div>
-                                            <div class="cEtc"><img src="images/icon/main/etc.png"></div>
+                                            <div class="cHeart"><img src="./././resources/images/icon/main/heart.png"  class="cheart"></div>
+                                            <div class="cComment"><div class="cbox"></div><img src="./././resources/images/icon/main/comment.png"></div>
+                                            <div class="cEtc"><img src="./././resources/images/icon/main/etc.png"></div>
                                         </div>
                                     </div>
                                 </div>
@@ -119,7 +119,7 @@
                         <td>
                             <div class="infoDiv">
                                 <div class="uImg">
-                                    <img src="./images/mainImg/buzz.jpg">
+                                    <img src="./././resources/images/mainImg/buzz.jpg">
                                 </div>
                                 <div class="uName">
                                     <div class="uid">@daliyiambuzz</div>
@@ -133,7 +133,7 @@
                         <td>
                             <div class="infoDiv">
                                 <div class="uImg">
-                                    <img src="./images/mainImg/jessie.jpg">
+                                    <img src="./././resources/images/mainImg/jessie.jpg">
                                 </div>
                                 <div class="uName">
                                     <div class="uid">@iambuzz</div>
@@ -149,7 +149,7 @@
                         <td>
                             <div class="infoDiv">
                                 <div class="uImg">
-                                    <img src="./images/mainImg/ppotato.jpg">
+                                    <img src="./././resources/images/mainImg/ppotato.jpg">
                                 </div>
                                 <div class="uName">
                                     <div class="uid">@daliyiambuzz</div>
@@ -163,7 +163,7 @@
                         <td>
                             <div class="infoDiv">
                                 <div class="uImg">
-                                    <img src="./images/mainImg/prex.jpg">
+                                    <img src="./././resources/images/mainImg/prex.jpg">
                                 </div>
                                 <div class="uName">
                                     <div class="uid">@daliyiambuzz</div>
@@ -179,7 +179,7 @@
                         <td>
                             <div class="infoDiv">
                                 <div class="uImg">
-                                    <img src="./images/mainImg/pandy.jpg">
+                                    <img src="./././resources/images/mainImg/pandy.jpg">
                                 </div>
                                 <div class="uName">
                                     <div class="uid">@iambuzz</div>
@@ -193,7 +193,7 @@
                         <td>
                             <div class="infoDiv">
                                 <div class="uImg">
-                                    <img src="./images/mainImg/palien.png">
+                                    <img src="./././resources/images/mainImg/palien.png">
                                 </div>
                                 <div class="uName">
                                     <div class="uid">@iambuzz</div>
