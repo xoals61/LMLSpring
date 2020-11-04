@@ -32,8 +32,13 @@
                                  <a href="login.do"><li><div class="mySub1">로그인</div></li></a>
                             </ul>
                         </div><!--메뉴-->
+<<<<<<< HEAD
                         <div class="heart"><img src="resources/images/icon/menu/iconmonstr-heart-thin-72.png" class="heart heartIcon"></div><!--알림-->
                         <div><a href="./lml_message.html"><img src="resources/images/icon/menu/iconmonstr-speech-bubble-thin-72.png"></a></div><!--채팅-->
+=======
+                        <div class="heart"><img src="./resources/images/icon/menu/iconmonstr-heart-thin-72.png" class="heart heartIcon"></div><!--알림-->
+                        <div><a href="Message.do"><img src="./resources/images/icon/menu/iconmonstr-speech-bubble-thin-72.png"></a></div><!--채팅-->
+>>>>>>> branch 'master' of https://github.com/xoals61/LMLSpring.git
                     </div>
                 </div>
             </div>
