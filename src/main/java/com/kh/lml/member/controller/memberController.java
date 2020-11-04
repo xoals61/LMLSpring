@@ -75,5 +75,9 @@ public class memberController {
 	public String Post() {
 		return "post/lml_post";
 	}
+	@RequestMapping("mInsert.do")
+	public String mInsert() {
+		return "";
+	}
 	
 }

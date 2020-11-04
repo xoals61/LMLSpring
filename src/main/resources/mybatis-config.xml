@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd" >
+<configuration>
+	<settings>
+		<setting name="jdbcTypeForNull" value="NULL"/>
+	</settings>
+	
+	<!-- typeAliases -->
+	<typeAliases>
+		<!-- <typeAlias type="com.kh.spring.member.model.vo.Member" alias="Member"/> -->
+		
+	</typeAliases>
+	
+	<!-- environments 엘리먼트로 dataSource 등의 DB정보들을 작성했었다.
+	     => 스프링에서는 그정보를 여기서는 안쓴다.
+	     root-context.xml에 작성하게된다.(DataSource 등록은 서버 연동과 같이 이루어져야하기때문에) 
+	-->
+	
+	<mappers>
+		<mapper resource="mappers/member-mapper.xml"/>
+	</mappers>
+</configuration>
