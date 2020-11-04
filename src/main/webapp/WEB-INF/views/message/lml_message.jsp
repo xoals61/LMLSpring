@@ -5,15 +5,12 @@
     <head>
         <meta charset="UTF-8">
         <title>채팅</title>
-        <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
         <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
         <link rel="stylesheet" href="resources/css/final_message.css">
     </head>
     <body>
-        <header>
-            <jsp:include page="../common/header.jsp"/>
+       <jsp:include page="../common/header.jsp"/>
 
         <section>
             <div class="sContent" >
@@ -75,6 +72,7 @@
         </section>
 
         <jsp:include page="../common/footer.jsp"/>
+        
         <script>
             $(document).ready(function () {
                 $('.direct-user').on('click', function () {
