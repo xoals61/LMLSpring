@@ -1,10 +1,23 @@
 package com.kh.lml.member.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
+import com.kh.lml.member.model.service.MemberService;
+import com.kh.lml.member.model.vo.Member;
+
+
+@SessionAttributes("loginUser") // Model에 loginUser라는 키값으로 객체가 추가되면 자동으로 세션에추가하라는 의미의 어노테이션
 @Controller
 public class memberController {
+	
+	@Autowired
+	private MemberService mService;
+	
+	
 	// 인덱스 메인
 	@RequestMapping("Index.do")
 		public String index() {
@@ -75,9 +88,19 @@ public class memberController {
 	public String Post() {
 		return "post/lml_post";
 	}
+	
 	@RequestMapping("mInsert.do")
-	public String mInsert() {
-		return "";
+	public String mInsert(Member m,Model model) {
+		System.out.println(m);
+		int result = mService.insertMember(m);
+		if(result>0) {
+			return "redirect:login.do";
+		}
+		else {
+			model.addAttribute("msg","회원가입실패");
+			return "common/errorpage";
+		}
+		
 	}
 	
 }

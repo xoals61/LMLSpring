@@ -26,18 +26,18 @@
                     <input type="checkbox" class="checkbox"><span>Remember Password</span>
                     <button class="submit" onclick="location.href='../lml_main.html'"> Login</button>
                 </form>
-                <form id="register" action="" class="input-group">
-                    <input type="text" class="input-field" placeholder="User id" required>
-                    <input type="text" class="input-field" placeholder="name" required>
-                    <input type="email" class="input-field" placeholder="Your Email" required>
-                    <input type="password" class="input-field" placeholder="Enter Password" required>
-                    <input type="tel" class="input-field" placeholder="phone" required>
-                    <input type="number" class="input-field" placeholder="hight" required style="width: 100px;">cm
+                <form id="register" action="mInsert.do" class="input-group">
+                    <input name="id" type="text" class="input-field" placeholder="User id" required>
+                    <input name="uname" type="text" class="input-field" placeholder="name" required>
+                    <input name="mail" type="email" class="input-field" placeholder="Your Email" required>
+                    <input name="upwd" type="password" class="input-field" placeholder="Enter Password" required>
+                    <input name="m_phone" type="tel" class="input-field" placeholder="phone" required>
+                    <input name="height" type="number" class="input-field" placeholder="hight" required style="width: 100px;">cm
                   &nbsp; &nbsp;
-                    <input type="number" class="input-field"  placeholder="weight" required style="width: 100px;" >kg <br>
+                    <input name="weight" type="number" class="input-field"  placeholder="weight" required style="width: 100px;" >kg <br>
                     <div class="radio_gender">
-                    <input type="radio" name="gender"  class="radio" value="male">male &nbsp;
-                    <input type="radio" name="gender" class="radio"  value="female">female <br>
+                    <input type="radio" name="gender"  class="radio" value="M">male &nbsp;
+                    <input type="radio" name="gender" class="radio"  value="F">female <br>
                     </div>
                     <div class="Register">
                         <input type="checkbox" class="checkbox"><span>Terms and conditions</span>
