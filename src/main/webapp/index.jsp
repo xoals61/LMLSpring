@@ -9,8 +9,8 @@
     <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500&display=swap" rel="stylesheet">
    
-    <link rel="stylesheet" href="./resources/css/final_main2.css">
-    <link rel="stylesheet" href="./resources/css/final_detail.css">
+    <link rel="stylesheet" href="resources/css/final_main2.css">
+    <link rel="stylesheet" href="resources/css/final_detail.css">
 	<c:url var="mypage" value="MyPage.do"/>
 </head>
 <body>
@@ -20,12 +20,12 @@
         <div class="myModal" id="myModal" style="display: none;">
             <div class="board-detail" id="board-detail"  style="display: none;">
                 <div class="board-img">
-                    <img src="./resources/images/detailImg/theman.jpg">
+                    <img src="resources/images/detailImg/theman.jpg">
                 </div>
                 <div class="board-right">
                     <div class="board-user">
                         <div class="board-userImg">
-                            <a href="./jiman/MyPage.html"><img src="./resources/images/detailImg/40x40man.jpg"></a>
+                            <a href="./jiman/MyPage.html"><img src="resources/images/detailImg/40x40man.jpg"></a>
                         </div>
                         <a href="./jiman/MyPage.html"><div class="board-id"><p>__maybenotyet__</p></div></a>
                         <div class="board-follow">팔로잉</div>
@@ -36,13 +36,13 @@
                     </div>
                     <div class="board-stateicon">
                         <div class="board-heartCount">좋아요 234개</div>
-                        <div class="board-heart"><img src="./resources/images/icon/menu/iconmonstr-heart-thin-72.png"></div>
-                        <div class="board-etc"><img src="./resources/images/icon/main/menu1.png"></div>
+                        <div class="board-heart"><img src="resources/images/icon/menu/iconmonstr-heart-thin-72.png"></div>
+                        <div class="board-etc"><img src="resources/images/icon/main/menu1.png"></div>
                     </div>
                     <div class="board-clothesInfo">
                         <div class="clothesInfo-div">
                             <div class="clothes-img">
-                                <img src="./resources/images/detailImg/top.png">
+                                <img src="resources/images/detailImg/top.png">
                             </div>
                             <div class="clothes-p">
                                 상의
@@ -53,7 +53,7 @@
                         </div>
                         <div class="clothesInfo-div">
                             <div class="clothes-img">
-                                <img src="./resources/images/detailImg/pants.png">
+                                <img src="resources/images/detailImg/pants.png">
                             </div>
                             <div class="clothes-p">
                                 하의
@@ -64,7 +64,7 @@
                         </div>
                         <div class="clothesInfo-div">
                             <div class="clothes-img">
-                                <img src="./resources/images/detailImg/shoes.png">
+                                <img src="resources/images/detailImg/shoes.png">
                             </div>
                             <div class="clothes-p">
                                 신발
@@ -75,7 +75,7 @@
                         </div>
                         <div class="clothesInfo-div">
                             <div class="clothes-img">
-                                <img src="./resources/images/detailImg/watch.png">
+                                <img src="resources/images/detailImg/watch.png">
                             </div>
                             <div class="clothes-p">
                                 Acc
@@ -86,7 +86,7 @@
                         </div>
                         <div class="clothesInfo-div">
                             <div class="clothes-img">
-                                <img src="./resources/images/detailImg/bag.png">
+                                <img src="resources/images/detailImg/bag.png">
                             </div>
                             <div class="clothes-p">
                                 Etc
@@ -102,7 +102,7 @@
                     <div class="board-commentDiv">
                         <div class="board-comment">
                             <div class="comment-img">
-                                <a href="./jiman/MyPage.html"><img src="./resources/images/mainImg/andy.jpg"></a>
+                                <a href="./jiman/MyPage.html"><img src="resources/images/mainImg/andy.jpg"></a>
                             </div>
                             <div class="comment-content">
                                     <p class="comment-user">iamandy</p>
@@ -111,7 +111,7 @@
                         </div>
                         <div class="board-comment">
                             <div class="comment-img">
-                                <a href="./jiman/MyPage.html"><img src="./resources/images/mainImg/andy.jpg"></a>
+                                <a href="./jiman/MyPage.html"><img src="resources/images/mainImg/andy.jpg"></a>
                             </div>
                             <div class="comment-content">
                                     <p class="comment-user">iamandy</p>
@@ -120,7 +120,7 @@
                         </div>
                         <div class="board-comment">
                             <div class="comment-img">
-                                <a href="./jiman/MyPage.html"><img src="./resources/images/mainImg/andy.jpg"></a>
+                                <a href="./jiman/MyPage.html"><img src="resources/images/mainImg/andy.jpg"></a>
                             </div>
                             <div class="comment-content">
                                     <p class="comment-user">iamandy</p>
@@ -129,7 +129,7 @@
                         </div>
                         <div class="board-comment">
                             <div class="comment-img">
-                                <a href="./jiman/MyPage.html"><img src="./resources/images/mainImg/andy.jpg"></a>
+                                <a href="./jiman/MyPage.html"><img src="resources/images/mainImg/andy.jpg"></a>
                             </div>
                             <div class="comment-content">
                                     <p class="comment-user">iamandy</p>
@@ -138,7 +138,7 @@
                         </div>
                         <div class="board-comment">
                             <div class="comment-img">
-                                <a href="./jiman/MyPage.html"><img src="./resources/images/mainImg/andy.jpg"></a>
+                                <a href="./jiman/MyPage.html"><img src="resources/images/mainImg/andy.jpg"></a>
                             </div>
                             <div class="comment-content">
                                     <p class="comment-user">iamandy</p>
@@ -147,7 +147,7 @@
                         </div>
                         <div class="board-comment">
                             <div class="comment-img">
-                                <a href="./jiman/MyPage.html"><img src="./resources/images/mainImg/andy.jpg"></a>
+                                <a href="./jiman/MyPage.html"><img src="resources/images/mainImg/andy.jpg"></a>
                             </div>
                             <div class="comment-content">
                                     <p class="comment-user">iamandy</p>
@@ -156,7 +156,7 @@
                         </div>
                         <div class="board-comment">
                             <div class="comment-img">
-                                <a href="./jiman/MyPage.html"><img src="./resources/images/mainImg/andy.jpg"></a>
+                                <a href="./jiman/MyPage.html"><img src="resources/images/mainImg/andy.jpg"></a>
                             </div>
                             <div class="comment-content">
                                     <p class="comment-user">iamandy</p>
@@ -165,7 +165,7 @@
                         </div>
                         <div class="board-comment">
                             <div class="comment-img">
-                                <a href="./jiman/MyPage.html"><img src="./resources/images/mainImg/andy.jpg"></a>
+                                <a href="./jiman/MyPage.html"><img src="resources/images/mainImg/andy.jpg"></a>
                             </div>
                             <div class="comment-content">
                                     <p class="comment-user">iamandy</p>
@@ -185,11 +185,11 @@
         <!-- ===================================================== 모달 ======================================================== -->
         <div class="scContent">
             <div class="upBtn">
-                <img src="./resources/images/icon/main/arrow.png">
+                <img src="resources/images/icon/main/arrow.png">
             </div>
             <a href="./lml_Post.html">
                 <div class="postBtn">
-                    <img src="./resources/images/icon/main/plus.png">
+                    <img src="resources/images/icon/main/plus.png">
                 </div>
             </a>
             <div class="choice">
@@ -222,7 +222,7 @@
                         <div class="choiceBtn">체형별 보기</div>
                     </div>
                     <div class="close">
-                        <img src="./resources/images/icon/main/close.png">
+                        <img src="resources/images/icon/main/close.png">
                     </div>
                 </div>
             </div>
@@ -231,13 +231,13 @@
                     <tr>
                         <td>
                             <div class="content">
-                                <div><img src="./resources/images/mainImg/buzz.jpg" class="cImg"></div>
+                                <div><img src="resources/images/mainImg/buzz.jpg" class="cImg"></div>
                                 <div class="chover">
                                     <div class="hover-detail-content"></div>
                                     <div class="chContnet">
                                         <div class="user">
                                             <div class="userImg">
-                                                <a href="./jiman/MyPage.html"><img src="./resources/images/mainImg/pbuzz.jpg"></a>
+                                                <a href="./jiman/MyPage.html"><img src="resources/images/mainImg/pbuzz.jpg"></a>
                                             </div>
                                             <a href="./jiman/MyPage.html"><div class="userId">iambuzz</div></a>
                                         </div>
@@ -245,9 +245,9 @@
                                             <div class="userCon"><p>To Infinity and Beyond</p></div>
                                         </div>
                                         <div class="cBtn">
-                                            <div class="cHeart"><img src="./resources/images/icon/main/heart.png" class="cheart"></div>
-                                            <div class="cComment"><div class="cbox"></div><img src="./resources/images/icon/main/comment.png"></div>
-                                            <div class="cEtc"><img src="./resources/images/icon/main/etc.png"></div>
+                                            <div class="cHeart"><img src="resources/images/icon/main/heart.png" class="cheart"></div>
+                                            <div class="cComment"><div class="cbox"></div><img src="resources/images/icon/main/comment.png"></div>
+                                            <div class="cEtc"><img src="resources/images/icon/main/etc.png"></div>
                                         </div>
                                     </div>
                                 </div>
@@ -255,13 +255,13 @@
                         </td>
                         <td>
                             <div class="content">
-                                <div><img src="./resources/images/mainImg/alien.jpg" class="cImg"></div>
+                                <div><img src="resources/images/mainImg/alien.jpg" class="cImg"></div>
                                 <div class="chover">
                                     <div class="hover-detail-content"></div>
                                     <div class="chContnet">
                                         <div class="user">
                                             <div class="userImg">
-                                                <a href="./jiman/MyPage.html"><img src="./resources/images/mainImg/palien.png"></a>
+                                                <a href="./jiman/MyPage.html"><img src="resources/images/mainImg/palien.png"></a>
                                             </div>
                                             <a href="./jiman/MyPage.html"><div class="userId">_alien88_</div></a>
                                         </div>
@@ -269,9 +269,9 @@
                                             <div class="userCon"><p>To To To Infinity Infinity Infinity and and and Beyond Beyond Beyond</p></div>
                                         </div>
                                         <div class="cBtn">
-                                            <div class="cHeart"><img src="./resources/images/icon/main/heart.png" class="cheart"></div>
-                                            <div class="cComment"><div class="cbox"></div><img src="./resources/images/icon/main/comment.png"></div>
-                                            <div class="cEtc"><img src="./resources/images/icon/main/etc.png"></div>
+                                            <div class="cHeart"><img src="resources/images/icon/main/heart.png" class="cheart"></div>
+                                            <div class="cComment"><div class="cbox"></div><img src="resources/images/icon/main/comment.png"></div>
+                                            <div class="cEtc"><img src="resources/images/icon/main/etc.png"></div>
                                         </div>
                                     </div>
                                 </div>
@@ -279,13 +279,13 @@
                         </td>
                         <td>
                             <div class="content">
-                                <div><img src="./resources/images/mainImg/andy.jpg" class="cImg"></div>
+                                <div><img src="resources/images/mainImg/andy.jpg" class="cImg"></div>
                                 <div class="chover">
                                     <div class="hover-detail-content"></div>
                                     <div class="chContnet">
                                         <div class="user">
                                             <div class="userImg">
-                                                <a href="./jiman/MyPage.html"><img src="./resources/images/mainImg/pandy.jpg"></a>
+                                                <a href="./jiman/MyPage.html"><img src="resources/images/mainImg/pandy.jpg"></a>
                                             </div>
                                             <a href="./jiman/MyPage.html"><div class="userId">chilly_b_f</div></a>
                                         </div>
@@ -293,9 +293,9 @@
                                             <div class="userCon"><p>시작부터 다 예상밖에 놀라운 스따일 작은 스탭들로 뿜어내 빅바입</p></div>
                                         </div>
                                         <div class="cBtn">
-                                            <div class="cHeart"><img src="./resources/images/icon/main/heart.png"  class="cheart"></div>
-                                            <div class="cComment"><div class="cbox"></div><img src="./resources/images/icon/main/comment.png"></div>
-                                            <div class="cEtc"><img src="./resources/images/icon/main/etc.png"></div>
+                                            <div class="cHeart"><img src="resources/images/icon/main/heart.png"  class="cheart"></div>
+                                            <div class="cComment"><div class="cbox"></div><img src="resources/images/icon/main/comment.png"></div>
+                                            <div class="cEtc"><img src="resources/images/icon/main/etc.png"></div>
                                         </div>
                                     </div>
                                 </div>
@@ -305,13 +305,13 @@
                     <tr>
                         <td>
                             <div class="content">
-                                <div><img src="./resources/images/mainImg/jessie.jpg" class="cImg"></div>
+                                <div><img src="resources/images/mainImg/jessie.jpg" class="cImg"></div>
                                 <div class="chover">
                                     <div class="hover-detail-content"></div>
                                     <div class="chContnet">
                                         <div class="user">
                                             <div class="userImg">
-                                                <a href="./jiman/MyPage.html"><img src="./resources/images/mainImg/pjessie.jpg"></a>
+                                                <a href="./jiman/MyPage.html"><img src="resources/images/mainImg/pjessie.jpg"></a>
                                             </div>
                                             <a href="./jiman/MyPage.html"><div class="userId">xjexxiex</div></a>
                                         </div>
@@ -319,9 +319,9 @@
                                             <div class="userCon"><p>To Infinity and Beyond</p></div>
                                         </div>
                                         <div class="cBtn">
-                                            <div class="cHeart"><img src="./resources/images/icon/main/heart.png" class="cheart"></div>
-                                            <div class="cComment"><div class="cbox"></div><img src="./resources/images/icon/main/comment.png"></div>
-                                            <div class="cEtc"><img src="./resources/images/icon/main/etc.png"></div>
+                                            <div class="cHeart"><img src="resources/images/icon/main/heart.png" class="cheart"></div>
+                                            <div class="cComment"><div class="cbox"></div><img src="resources/images/icon/main/comment.png"></div>
+                                            <div class="cEtc"><img src="resources/images/icon/main/etc.png"></div>
                                         </div>
                                     </div>
                                 </div>
@@ -329,13 +329,13 @@
                         </td>
                         <td>
                             <div class="content">
-                                <div><img src="./resources/images/mainImg/woody.jpg" class="cImg"></div>
+                                <div><img src="resources/images/mainImg/woody.jpg" class="cImg"></div>
                                 <div class="chover">
                                     <div class="hover-detail-content"></div>
                                     <div class="chContnet">
                                         <div class="user">
                                             <div class="userImg">
-                                                <a href="./jiman/MyPage.html"><img src="./resources/images/mainImg/pwoody.jpg"></a>
+                                                <a href="./jiman/MyPage.html"><img src="resources/images/mainImg/pwoody.jpg"></a>
                                             </div>
                                             <a href="./jiman/MyPage.html"><div class="userId">woody79</div></a>
                                         </div>
@@ -343,9 +343,9 @@
                                             <div class="userCon"><p>To Infinity and Beyond</p></div>
                                         </div>
                                         <div class="cBtn">
-                                            <div class="cHeart"><img src="./resources/images/icon/main/heart.png" class="cheart"></div>
-                                            <div class="cComment"><div class="cbox"></div><img src="./resources/images/icon/main/comment.png"></div>
-                                            <div class="cEtc"><img src="./resources/images/icon/main/etc.png"></div>
+                                            <div class="cHeart"><img src="resources/images/icon/main/heart.png" class="cheart"></div>
+                                            <div class="cComment"><div class="cbox"></div><img src="resources/images/icon/main/comment.png"></div>
+                                            <div class="cEtc"><img src="resources/images/icon/main/etc.png"></div>
                                         </div>
                                     </div>
                                 </div>
@@ -353,13 +353,13 @@
                         </td>
                         <td>
                             <div class="content">
-                                <div><img src="./resources/images/mainImg/rex.jpg" class="cImg"></div>
+                                <div><img src="resources/images/mainImg/rex.jpg" class="cImg"></div>
                                 <div class="chover">
                                     <div class="hover-detail-content"></div>
                                     <div class="chContnet">
                                         <div class="user">
                                             <div class="userImg">
-                                                <a href="./jiman/MyPage.html"><img src="./resources/images/mainImg/prex.jpg"></a>
+                                                <a href="./jiman/MyPage.html"><img src="resources/images/mainImg/prex.jpg"></a>
                                             </div>
                                             <a href="./jiman/MyPage.html"><div class="userId">nice_rex</div></a>
                                         </div>
@@ -367,9 +367,9 @@
                                             <div class="userCon"><p>To Infinity and Beyond</p></div>
                                         </div>
                                         <div class="cBtn">
-                                            <div class="cHeart"><img src="./resources/images/icon/main/heart.png" class="cheart"></div>
-                                            <div class="cComment"><div class="cbox"></div><img src="./resources/images/icon/main/comment.png"></div>
-                                            <div class="cEtc"><img src="./resources/images/icon/main/etc.png"></div>
+                                            <div class="cHeart"><img src="resources/images/icon/main/heart.png" class="cheart"></div>
+                                            <div class="cComment"><div class="cbox"></div><img src="resources/images/icon/main/comment.png"></div>
+                                            <div class="cEtc"><img src="resources/images/icon/main/etc.png"></div>
                                         </div>
                                     </div>
                                 </div>
@@ -379,13 +379,13 @@
                     <tr>
                         <td id="conte">
                             <div class="content">
-                                <div><img src="./resources/images/mainImg/potato.jpg" class="cImg"></div>
+                                <div><img src="resources/images/mainImg/potato.jpg" class="cImg"></div>
                                 <div class="chover">
                                     <div class="hover-detail-content"></div>
                                     <div class="chContnet">
                                         <div class="user">
                                             <div class="userImg">
-                                                <a href="./jiman/MyPage.html"><img src="./resources/images/mainImg/ppotato.jpg"></a>
+                                                <a href="./jiman/MyPage.html"><img src="resources/images/mainImg/ppotato.jpg"></a>
                                             </div>
                                             <a href="./jiman/MyPage.html"><div class="userId">potato_man</div></a>
                                         </div>
@@ -393,9 +393,9 @@
                                             <div class="userCon"><p>To Infinity and Beyond</p></div>
                                         </div>
                                         <div class="cBtn">
-                                            <div class="cHeart"><img src="./resources/images/icon/main/heart.png" class="cheart"></div>
-                                            <div class="cComment"><div class="cbox"></div><img src="./resources/images/icon/main/comment.png"></div>
-                                            <div class="cEtc"><img src="./resources/images/icon/main/etc.png"></div>
+                                            <div class="cHeart"><img src="resources/images/icon/main/heart.png" class="cheart"></div>
+                                            <div class="cComment"><div class="cbox"></div><img src="resources/images/icon/main/comment.png"></div>
+                                            <div class="cEtc"><img src="resources/images/icon/main/etc.png"></div>
                                         </div>
                                     </div>
                                 </div>
@@ -403,13 +403,13 @@
                         </td>
                         <td>
                             <div class="content">
-                                <div><img src="./resources/images/mainImg/potato.jpg" class="cImg"></div>
+                                <div><img src="resources/images/mainImg/potato.jpg" class="cImg"></div>
                                 <div class="chover">
                                     <div class="hover-detail-content"></div>
                                     <div class="chContnet">
                                         <div class="user">
                                             <div class="userImg">
-                                                <a href="./jiman/MyPage.html"><img src="./resources/images/mainImg/ppotato.jpg"></a>
+                                                <a href="./jiman/MyPage.html"><img src="resources/images/mainImg/ppotato.jpg"></a>
                                             </div>
                                             <a href="./jiman/MyPage.html"><div class="userId">potato_man</div></a>
                                         </div>
@@ -417,9 +417,9 @@
                                             <div class="userCon"><p>To Infinity and Beyond</p></div>
                                         </div>
                                         <div class="cBtn">
-                                            <div class="cHeart"><img src="./resources/images/icon/main/heart.png" class="cheart"></div>
-                                            <div class="cComment"><div class="cbox"></div><img src="./resources/images/icon/main/comment.png"></div>
-                                            <div class="cEtc"><img src="./resources/images/icon/main/etc.png"></div>
+                                            <div class="cHeart"><img src="resources/images/icon/main/heart.png" class="cheart"></div>
+                                            <div class="cComment"><div class="cbox"></div><img src="resources/images/icon/main/comment.png"></div>
+                                            <div class="cEtc"><img src="resources/images/icon/main/etc.png"></div>
                                         </div>
                                     </div>
                                 </div>
@@ -427,13 +427,13 @@
                         </td>
                         <td>
                             <div class="content">
-                                <div><img src="./resources/images/mainImg/potato.jpg" class="cImg"></div>
+                                <div><img src="resources/images/mainImg/potato.jpg" class="cImg"></div>
                                 <div class="chover">
                                     <div class="hover-detail-content"></div>
                                     <div class="chContnet">
                                         <div class="user">
                                             <div class="userImg">
-                                                <a href="./jiman/MyPage.html"><img src="./resources/images/mainImg/ppotato.jpg"></a>
+                                                <a href="./jiman/MyPage.html"><img src="resources/images/mainImg/ppotato.jpg"></a>
                                             </div>
                                             <a href="./jiman/MyPage.html"><div class="userId">potato_man</div></a>
                                         </div>
@@ -441,9 +441,9 @@
                                             <div class="userCon"><p>To Infinity and Beyond</p></div>
                                         </div>
                                         <div class="cBtn">
-                                            <div class="cHeart"><img src="./resources/images/icon/main/heart.png" class="cheart"></div>
-                                            <div class="cComment"><div class="cbox"></div><img src="./resources/images/icon/main/comment.png"></div>
-                                            <div class="cEtc"><img src="./resources/images/icon/main/etc.png"></div>
+                                            <div class="cHeart"><img src="resources/images/icon/main/heart.png" class="cheart"></div>
+                                            <div class="cComment"><div class="cbox"></div><img src="resources/images/icon/main/comment.png"></div>
+                                            <div class="cEtc"><img src="resources/images/icon/main/etc.png"></div>
                                         </div>
                                     </div>
                                 </div>
@@ -454,184 +454,161 @@
             </div>
         </div>
     </section>
-    <footer>
-        <div class="footer">
-            <div class="footer-div1">
-                <div class="footer-phone">
-                    <div class="phone-p">고객센터 안내</div>
-                    <div class="phone-number">1633-1633</div>
-                    <div class="phone-time">평일 09:00 ~ 17:30 (점심시간 12:00 ~ 13:00)</div>
-                </div>
-                <div class="footer-email">
-                    <div class="email-p">문의사항</div>
-                    <div class="email-email">feedback@lml.com</div>
-                </div>
-            </div>
-            <div class="footer-div2">
-                <div class="footer-info">
-                    <div class="info-name">상호명 : Look My Look</div>
-                    <div class="info-address">주소 : 서울 강남구 테헤란로14길 6 남도빌딩 3층 H반</div>
-                    <div class="info-boss">대표자 : 박태민</div>
-                </div>
-            </div>
-        </div>
-    </footer>
+    
+    <jsp:include page="WEB-INF/views/common/footer.jsp"/>
 
 
-      <script>
-        // 게시물 마우스오버
-        $(document).ready(function(){
-            $('.chover').hide();
-            $('.content').mouseover(function(){
-                $('.chover',this).show();
-            });
-            $('.content').mouseout(function(){
-                $('.chover').hide();
-            });
-        });
+    <script>
+      // 게시물 마우스오버
+      $(document).ready(function(){
+          $('.chover').hide();
+          $('.content').mouseover(function(){
+              $('.chover',this).show();
+          });
+          $('.content').mouseout(function(){
+              $('.chover').hide();
+          });
+      });
 
-        
+
+      /* 체형별 */
+      $( document ).ready( function() {
+          $('.choice1').hide();
+          $( '.pchoice' ).click( function() {
+              $( '.choice' ).animate( {
+                  width: '1106px',
+                  height: '50px',
+                  cursor: 'pointer'
+              }, 400 );
+              $('.choice').css('cursor','default');
+              $('.choice1').show();
+              $('.pchoice').hide();
+          } );
+          $( '.close' ).click( function() {
+              $( '.choice' ).animate( {
+                  width: '100px',
+                  height: '30px'
+              }, 400 );
+              $('.choice1').hide();
+              setTimeout(function() {
+                  $('.pchoice').show();
+              }, 400);
+              $('.choice').css('cursor','pointer');
+          } );
+
+
+      });
+
+          //스크롤 바닥 감지
+          window.onscroll = function (e) {
+
+              // 게시물 마우스오버
+              $(document).ready(function(){
+                  $('.chover').hide();
+                  $('.content').mouseover(function(){
+                      $('.chover',this).show();
+                  });
+                  $('.content').mouseout(function(){
+                      $('.chover').hide();
+                  });
+              });
+
+              /* 게시물 좋아요 아이콘 클릭 시 아이콘 변경 */
+              $(".cHeart").click(function(){
+                  $('.cheart',this).attr('src','./resources/images/icon/main/heart2.png');
+              });
+
+              /* 모달팝업 디테일 */
+              var modal = document.getElementById('myModal');
+              var detail = document.getElementById('board-detail');
+              var content = document.getElementById('conte');
+
+              $('.hover-detail-content, .con, .cComment').click(function(){
+                  $('.myModal').css('display','block');
+                  $('.board-detail').css('display','block');
+              });
       
-     
-
-        /* 체형별 */
-        $( document ).ready( function() {
-            $('.choice1').hide();
-            $( '.pchoice' ).click( function() {
-                $( '.choice' ).animate( {
-                    width: '1106px',
-                    height: '50px',
-                    cursor: 'pointer'
-                }, 400 );
-                $('.choice').css('cursor','default');
-                $('.choice1').show();
-                $('.pchoice').hide();
-            } );
-            $( '.close' ).click( function() {
-                $( '.choice' ).animate( {
-                    width: '100px',
-                    height: '30px'
-                }, 400 );
-                $('.choice1').hide();
-                setTimeout(function() {
-                    $('.pchoice').show();
-                }, 400);
-                $('.choice').css('cursor','pointer');
-            } );
-
-
-        });
-
-            //스크롤 바닥 감지
-            window.onscroll = function (e) {
-
-                // 게시물 마우스오버
-                $(document).ready(function(){
-                    $('.chover').hide();
-                    $('.content').mouseover(function(){
-                        $('.chover',this).show();
-                    });
-                    $('.content').mouseout(function(){
-                        $('.chover').hide();
-                    });
-                });
-
-                /* 게시물 좋아요 아이콘 클릭 시 아이콘 변경 */
-                $(".cHeart").click(function(){
-                    $('.cheart',this).attr('src','./resources/images/icon/main/heart2.png');
-                });
-
-                /* 모달팝업 디테일 */
-                var modal = document.getElementById('myModal');
-                var detail = document.getElementById('board-detail');
-                var content = document.getElementById('conte');
-
-                $('.hover-detail-content, .con, .cComment').click(function(){
-                    $('.myModal').css('display','block');
-                    $('.board-detail').css('display','block');
-                });
-        
-                window.onclick = function(event) {
-                    if (event.target == modal) {
-                        modal.style.display = "none";
-                        detail.style.display = "none";
-                    }
-                }
-            
-            var td = '<td>' + 
-                        '<div class="content">' +
-                            '<div><img src="./resources/images/mainImg/potato.jpg" class="cImg"></div>' +
-                            '<div class="chover">' +
-                                '<div class="hover-detail-content"></div>' +
-                                '<div class="chContnet">' +
-                                    '<div class="user">' +
-                                        '<div class="userImg"><a href="./jiman/MyPage.html"><img src="./resources/images/mainImg/ppotato.jpg"></a></div>' +
-                                        '<a href="./jiman/MyPage.html"><div class="userId">potato_man</div></a>' +
-                                    '</div>' + 
-                                    '<div class="con">' +
-                                        '<div class="userCon"><p>To Infinity and Beyond</p></div>' +
-                                    '</div>' +
-                                    '<div class="cBtn">' + 
-                                        '<div class="cHeart"><img src="./resources/images/icon/main/heart.png" class="cheart"></div>' +
-                                        '<div class="cComment"><div class="cbox"></div><img src="./resources/images/icon/main/comment.png"></div>' +
-                                        '<div class="cEtc"><img src="./resources/images/icon/main/etc.png"></div>' +
-                                    '</div>' +
-                                '</div>' +
-                            '</div>' +
-                        '</div>' + 
-                    '</td>';
+              window.onclick = function(event) {
+                  if (event.target == modal) {
+                      modal.style.display = "none";
+                      detail.style.display = "none";
+                  }
+              }
+          
+          var td = '<td>' + 
+                      '<div class="content">' +
+                          '<div><img src="./resources/images/mainImg/potato.jpg" class="cImg"></div>' +
+                          '<div class="chover">' +
+                              '<div class="hover-detail-content"></div>' +
+                              '<div class="chContnet">' +
+                                  '<div class="user">' +
+                                      '<div class="userImg"><a href="./jiman/MyPage.html"><img src="./resources/images/mainImg/ppotato.jpg"></a></div>' +
+                                      '<a href="./jiman/MyPage.html"><div class="userId">potato_man</div></a>' +
+                                  '</div>' + 
+                                  '<div class="con">' +
+                                      '<div class="userCon"><p>To Infinity and Beyond</p></div>' +
+                                  '</div>' +
+                                  '<div class="cBtn">' + 
+                                      '<div class="cHeart"><img src="./resources/images/icon/main/heart.png" class="cheart"></div>' +
+                                      '<div class="cComment"><div class="cbox"></div><img src="./resources/images/icon/main/comment.png"></div>' +
+                                      '<div class="cEtc"><img src="./resources/images/icon/main/etc.png"></div>' +
+                                  '</div>' +
+                              '</div>' +
+                          '</div>' +
+                      '</div>' + 
+                  '</td>';
     
-            //추가되는 콘텐츠
-            //window height + window scrollY 값이 document height보다 클 경우,
-            if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
-                //실행할 로직 (콘텐츠 추가)
+          //추가되는 콘텐츠
+          //window height + window scrollY 값이 document height보다 클 경우,
+          if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+              //실행할 로직 (콘텐츠 추가)
     
-                var addContent = '<tr>' + td + td + td + '</tr>' + '<tr>' + td + td + td + '</tr>' + '<tr>' + td + td + td + '</tr>' + '<tr>' + td + td + td + '</tr>';
+              var addContent = '<tr>' + td + td + td + '</tr>' + '<tr>' + td + td + td + '</tr>' + '<tr>' + td + td + td + '</tr>' + '<tr>' + td + td + td + '</tr>';
     
-                    //article에 추가되는 콘텐츠를 append
-                    $('#table').append(addContent);
-                }
-            }; 
+                  //article에 추가되는 콘텐츠를 append
+                  $('#table').append(addContent);
+              }
+          }; 
 
-            /* 맨 위로 가는 버튼 */
-            $( document ).ready( function() {
-                $('.upBtn').hide();
-                $( window ).scroll( function() {
-                    if ( $( this ).scrollTop() > 200 ) {
-                        $( '.upBtn' ).fadeIn();
-                    } else {
-                        $( '.upBtn' ).fadeOut();
-                    }
-                } );
-                $( '.upBtn' ).click( function() {
-                    $( 'html, body' ).animate( { scrollTop : 0 }, 400 );
-                    return false;
-                } );
-            } );
+          /* 맨 위로 가는 버튼 */
+          $( document ).ready( function() {
+              $('.upBtn').hide();
+              $( window ).scroll( function() {
+                  if ( $( this ).scrollTop() > 200 ) {
+                      $( '.upBtn' ).fadeIn();
+                  } else {
+                      $( '.upBtn' ).fadeOut();
+                  }
+              } );
+              $( '.upBtn' ).click( function() {
+                  $( 'html, body' ).animate( { scrollTop : 0 }, 400 );
+                  return false;
+              } );
+          } );
 
-        /* 게시물 좋아요 아이콘 클릭 시 아이콘 변경 */
-        $(".cHeart").click(function(){
-            $('.cheart',this).attr('src','./resources/images/icon/main/heart2.png');
-        });
+      /* 게시물 좋아요 아이콘 클릭 시 아이콘 변경 */
+      $(".cHeart").click(function(){
+          $('.cheart',this).attr('src','./resources/images/icon/main/heart2.png');
+      });
 
-        /* 모달팝업 디테일 */
-        var modal = document.getElementById('myModal');
-        var detail = document.getElementById('board-detail');
-        var content = document.getElementById('conte');
+      /* 모달팝업 디테일 */
+      var modal = document.getElementById('myModal');
+      var detail = document.getElementById('board-detail');
+      var content = document.getElementById('conte');
 
-        $('.hover-detail-content, .con, .cComment').click(function(){
-            $('.myModal').css('display','block');
-            $('.board-detail').css('display','block');
-        });
+      $('.hover-detail-content, .con, .cComment').click(function(){
+          $('.myModal').css('display','block');
+          $('.board-detail').css('display','block');
+      });
  
-        window.onclick = function(event) {
-            if (event.target == modal) {
-                modal.style.display = "none";
-                detail.style.display = "none";
-            }
-        }
-        
-      </script>
+      window.onclick = function(event) {
+          if (event.target == modal) {
+              modal.style.display = "none";
+              detail.style.display = "none";
+          }
+      }
+      
+    </script>
 
       
 </body>
