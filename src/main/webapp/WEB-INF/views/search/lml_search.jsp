@@ -17,7 +17,7 @@
                 <div class="hashtag">
                     #daily
                 </div>
-                <a href="./lml_search_hashtag.html">
+                <a href="SearchHash.do">
                     <div class="hashMore">
                         132,542 개의 게시물 더보기
                     </div>
@@ -107,7 +107,7 @@
                 <div class="suser">
                     사용자
                 </div>
-                <a href="./lml_search_user.html">
+                <a href="SearchUser.do">
                     <div class="suserMore">
                         542 명의 사용자 더보기
                     </div>
