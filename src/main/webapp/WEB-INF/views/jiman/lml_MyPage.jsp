@@ -21,7 +21,7 @@
             <div class="my_top" >
                 <div class="top">
                 <div class="my_photo">
-                    <img src="resources/images/jmImg/프로필.png">
+                    <img src="resources/images/jmImg/${loginUser.profile_img}">
                 </div>
                 <div class="my_info">
                     <div class="info">
