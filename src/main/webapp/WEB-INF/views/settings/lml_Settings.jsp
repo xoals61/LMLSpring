@@ -30,7 +30,7 @@
                     <form class="MyInfo" method="POST" action="#">
                         <div class="profile">
                             <div class="photo">
-                                <img src="resources/images/mainImg/jessie.jpg" id="Myimg">
+                                <img src="resources/images/mainImg/${loginUser.profile_img}" id="Myimg">
                             </div>
                             <div class="ChangeBtn">
                                  <input type="file" id="file" name="file" onchange="changeValue(this)"  accept="image/*" />
@@ -38,21 +38,21 @@
                         </div>
                         <div class="ModifyInfo">
                             <label class=Info>닉네임 &nbsp;&nbsp;&nbsp;
-                                 <input class="infoinput" name="id" type="text" placeholder="유니짱"></label><br>
+                                 <input class="infoinput" name="id" type="text" placeholder="${loginUser.uname}"></label><br>
                             <label class=Info>이메일 &nbsp;&nbsp;&nbsp; 
-                                <input class="infoinput" name="email" type="email" placeholder="yoon2zzang@naver.com"></label><br>
+                                <input class="infoinput" name="email" type="email" placeholder="${loginUser.mail}"></label><br>
                             <label class=Info>전화번호  
-                                <input class="infoinput" name="phone" type="text" placeholder="010-2612-2238"></label><br>
+                                <input class="infoinput" name="phone" type="text" placeholder="${loginUser.m_phone}"></label><br>
                             <label class=Info>성  별 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
                                 <input class="gender" type="radio" name="gender" value="woman" checked>여
                                 <input class="gender" type="radio" name="gender" value="man">남
                             </label><br>
                             <label class=Info>몸무게 &nbsp;&nbsp;&nbsp;
-                                 <input class="infoinput" name="weight" type="text" placeholder="70" maxlength="3" numberOnly></label><br>
+                                 <input class="infoinput" name="weight" type="text" placeholder="${loginUser.weight}" maxlength="3" numberOnly></label><br>
                             <label class=Info>키 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-                                <input class="infoinput" name="height" type="text" maxlength="3" placeholder="180" numberOnly></label><br>
+                                <input class="infoinput" name="height" type="text" maxlength="3" placeholder="${loginUser.height}" numberOnly></label><br>
                             <label class=Info2 id="infomy">자기소개</label> &nbsp; 
-                            <textarea id="inrtoduce" name="inrtoduce" type="text" placeholder="맛집 추천해주세요"></textarea><br>
+                            <textarea id="inrtoduce" name="inrtoduce" type="text" placeholder="${loginUser.intro}"></textarea><br>
                         </div>
                         <div class="Fbtn">
                             <button class="btns2"id="Delbtn" type="button" onClick="location.href='Settings4.do'">탈퇴</button>
