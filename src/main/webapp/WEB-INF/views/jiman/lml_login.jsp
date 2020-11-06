@@ -41,11 +41,11 @@
 						<input type="hidden" name="nameDuplicateCheck" id="nameDuplicateCheck" value="0">
 					
                     <input name="mail" id="inputemail" type="email" class="input-field" placeholder="Your Email" required>
-                    <input name="upwd" type="password" class="input-field" placeholder="Enter Password" required>
-                    <input name="m_phone" type="tel" class="input-field" placeholder="phone" required>
-                    <input name="height" type="number" class="input-field" placeholder="hight" required style="width: 100px;">cm
+                    <input name="upwd" id="inputpwd" type="password" class="input-field" placeholder="Enter Password (문자+숫자+특수문자)" required>
+                    <input name="m_phone"  type="tel" class="input-field" placeholder="phone" required>
+                    <input name="height" id="inheight" type="number" class="input-field" placeholder="hight" required style="width: 100px;">cm
                   &nbsp; &nbsp;
-                    <input name="weight" type="number" class="input-field"  placeholder="weight" required style="width: 100px;" >kg <br>
+                    <input name="weight" id="inweight" type="number" class="input-field"  placeholder="weight" required style="width: 100px;" >kg <br>
                     <div class="radio_gender">
                     <input type="radio" name="gender"  class="radio" value="M">male &nbsp;
                     <input type="radio" name="gender" class="radio"  value="F">female <br>
@@ -76,21 +76,55 @@
             }
             
             function validate(){
-    			// 아이디 중복체크 여부
+    			// 중복체크 여부,유효성검사
+    			
+    			//비밀번호 유효성 검사
+			      var pw = $("#inputpwd").val();
+			      var id = $("#userId").val();
+				    var checkNumber = pw.search(/[0-9]/g);
+				    var checkEnglish = pw.search(/[a-z]/ig);
+				 
+				    if(!/^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,25}$/.test(pw)){            
+				        alert('숫자+영문자+특수문자 조합으로 8자리 이상 사용해야 합니다.');
+				        return false;
+				    }else if(checkNumber <0 || checkEnglish <0){
+				        alert("숫자와 영문자를 혼용하여야 합니다.");
+				        return false;
+				    }else if(/(\w)\1\1\1/.test(pw)){
+				        alert('같은 문자를 4번 이상 사용하실 수 없습니다.');
+				        return false;
+				    }else if(pw.search(id) > -1){
+				        alert("비밀번호에 아이디가 포함되었습니다.");
+				        return false;
+				    }else {
+					console.log("비밀번호 ok")	
+					}
+				   
+			//아이디 중복 검사
     			if($("#idDuplicateCheck").val() == 0){
     				alert("사용가능한 아이디를 입력해주세요");
     				$("#userId").focus();
     				return false;
-    			}else{
-    				return true;
     			}
+			//이름 중복 검사 
     			if($("#nameDuplicateCheck").val() == 0){
     				alert("사용가능한 이름을 입력해주세요");
     				$("#inputname").focus();
     				return false;
-    			}else{
-    				return true;
     			}
+			//키 유효성
+			if($("#inheight").val()<50 ||("#inheight").val()>300 ){
+				alert("키는 50이상 300이하여야 합니다.");
+				return false;
+			}
+			//몸무게 유효성
+			if($("#inweight").val()<30){
+				alert("30kg이상의 값을 입력해주세요.");
+				return false;
+			}
+
+			
+			return true;
     		}
     	
     		$(function(){
@@ -132,7 +166,7 @@
     		});
     		
     		
-    		
+    		//닉네임 중복 체크 여부
     		$(function(){
     			$("#inputname").on("keyup",function(){
     				console.log("이름 여까지2");
@@ -170,6 +204,9 @@
     				});
     			});
     		});
+    		
+    		
+    
         </script>
     </body>
 </html> 
