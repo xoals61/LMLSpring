@@ -35,4 +35,10 @@ public class MemberServiceImpl implements MemberService {
 		return mDao.loginMember(m);
 	}
 
+	@Override
+	public int nameCheck(String name) {
+		
+		return mDao.nameCheck(name);
+	}
+
 }

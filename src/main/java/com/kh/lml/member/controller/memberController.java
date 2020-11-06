@@ -100,7 +100,7 @@ public class memberController {
 	@ResponseBody
 	@RequestMapping("idCheck.do")
 	public String idCheck(String id){
-		
+		System.out.println(id);
 		int result = mService.idCheck(id);
 		
 		if(result > 0) { // 중복 존재
@@ -109,6 +109,22 @@ public class memberController {
 			return "ok";
 		}
 	}
+	
+	@ResponseBody
+	@RequestMapping("nameCheck.do")
+	public String nameCheck(String name) {
+		System.out.println(name);
+		int result = mService.nameCheck(name);
+		
+		if(result >0) {
+			return "fail";
+		}else {
+			return "ok";
+		}
+		
+		
+	}
+	
 	// 글쓰기
 	@RequestMapping("Post.do")
 	public String Post() {

@@ -22,7 +22,7 @@
                     <img src="resources/images/jmImg/gl.png" alt="google">
                 </div>
                 <form id="login" action="mLogin.do" class="input-group" method="post">
-                    <input name="id" type="text" class="input-field" placeholder="User id" required>
+                    <input name="id"  type="text" class="input-field" placeholder="User id" required>
                     <input name="upwd" type="password" class="input-field" placeholder="Enter Password" required>
                     <input type="checkbox" class="checkbox"><span>Remember Password</span>
                     <button class="submit"> Login</button>
@@ -35,8 +35,12 @@
 						<input type="hidden" name="idDuplicateCheck" id="idDuplicateCheck" value="0">
 						<!-- 아이디 중복 체크 끝 -->
                    
-                    <input name="uname" type="text" class="input-field" placeholder="name" required>
-                    <input name="mail" type="email" class="input-field" placeholder="Your Email" required>
+                    <input name="uname" id="inputname" type="text" class="input-field" placeholder="name" required>
+                    <span class="guides oks">사용가능</span>
+						<span class="guides errors">사용불가능</span>
+						<input type="hidden" name="nameDuplicateCheck" id="nameDuplicateCheck" value="0">
+					
+                    <input name="mail" id="inputemail" type="email" class="input-field" placeholder="Your Email" required>
                     <input name="upwd" type="password" class="input-field" placeholder="Enter Password" required>
                     <input name="m_phone" type="tel" class="input-field" placeholder="phone" required>
                     <input name="height" type="number" class="input-field" placeholder="hight" required style="width: 100px;">cm
@@ -80,12 +84,18 @@
     			}else{
     				return true;
     			}
+    			if($("#nameDuplicateCheck").val() == 0){
+    				alert("사용가능한 이름을 입력해주세요");
+    				$("#inputname").focus();
+    				return false;
+    			}else{
+    				return true;
+    			}
     		}
     	
     		$(function(){
-    			console.log("여까지1");
     			$("#userId").on("keyup",function(){
-    				console.log("여까지2");
+    				console.log("아이디 여까지2");
     				var userId = $(this).val();
     				
     				if(userId.length < 2){
@@ -121,6 +131,45 @@
     			});
     		});
     		
+    		
+    		
+    		$(function(){
+    			$("#inputname").on("keyup",function(){
+    				console.log("이름 여까지2");
+    				var userName = $("#inputname").val();
+    				
+    				if(userName.length < 2){
+    					$(".guides").hide();
+    					$("#nameDuplicateCheck").val(0);
+    					return;
+    				}
+    				
+    				$.ajax({
+    					url:"nameCheck.do",
+    					data:{name:userName},
+    					type:"post",
+    					success:function(data){
+    						console.log(data);
+    						if(data == "ok"){
+    							$(".errors").hide();
+    							$(".oks").show();
+    							$("#nameDuplicateCheck").val(1);
+    						}else{
+    							$(".oks").hide();
+    							$(".errors").show();
+    							$("#nameDuplicateCheck").val(0);
+    						}
+    					},
+    					error:function(jqxhr, textStatus,errorThrown){
+    						console.log("ajax 처리 실패");
+    						//에러 로그
+    						console.log(jqxhr);
+    						console.log(textStatus);
+    						console.log(errorThrown);
+    					}
+    				});
+    			});
+    		});
         </script>
     </body>
 </html> 
