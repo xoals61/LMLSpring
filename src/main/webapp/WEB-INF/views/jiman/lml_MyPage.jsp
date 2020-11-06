@@ -25,7 +25,7 @@
                 </div>
                 <div class="my_info">
                     <div class="info">
-                          <h2>ooOP._.s  <button class="info_btn" onclick="location.href='Settings.do'" ><img src="resources/images/jmImg/설정.png" class="btn_img">
+                          <h2>${loginUser.id}  <button class="info_btn" onclick="location.href='Settings.do'" ><img src="resources/images/jmImg/설정.png" class="btn_img">
                         </button> </h2>
                     </div>
                     <div class="info" >
@@ -34,8 +34,14 @@
                         <div class="iftext"><span>팔로잉</span></div>
                     </div>
                     <div class="info">
-                        <div class="name">유지만</div>
-                        <div class="iftext_2">여러분 파이팅~~</div>
+                        <div class="name">${loginUser.uname} </div>
+                        <c:if test="${empty loginUser.intro}">
+                         <div class="iftext_2">자기소개를 등록해주세요.</div>
+                        </c:if>
+                        <c:if test="${!empty loginUser.intro}">
+                        <div class="iftext_2">${loginUser.intro}</div>
+                        </c:if>
+                        
                     </div>
                
                 </div>
