@@ -23,23 +23,23 @@
                 </div>
                 <div class="hTitle1">
                     <div class="htMenu">
+                    	<c:if test="${ !empty sessionScope.loginUser }">
                         <div class="myMenu">
                             <img src="resources/images/icon/menu/iconmonstr-menu-thin-72.png"><!-- 이미지 클릭 시 서브메뉴 나옴 -->
                             <ul class="mySub">
                                 <a href='MyPage.do'><li><div class="mySub1">마이페이지</div></li></a>
                                 <a href='Settings.do'><li><div class="mySub1">설정</div></li></a>
-                                <c:if test="${ !empty sessionScope.loginUser }">
+                                
                                 <a href="logout.do"><li><div class="mySub1">로그아웃</div></li></a>
-                                </c:if>
-                                <c:if test="${ empty sessionScope.loginUser }">
-                                 <a href="login.do"><li><div class="mySub1">로그인</div></li></a>
-                                 </c:if>
                             </ul>
                         </div><!--메뉴-->
-
                         <div class="heart"><img src="./resources/images/icon/menu/iconmonstr-heart-thin-72.png" class="heart heartIcon"></div><!--알림-->
                         <div><a href="Message.do"><img src="./resources/images/icon/menu/iconmonstr-speech-bubble-thin-72.png"></a></div><!--채팅-->
-
+                        </c:if>
+                        
+						<c:if test="${ empty sessionScope.loginUser }">
+                        	<a href="login.do"><div class="loginBtn">로그인/가입</div></a>
+                        </c:if>
                     </div>
                 </div>
             </div>
