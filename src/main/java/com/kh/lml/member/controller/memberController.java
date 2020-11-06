@@ -1,11 +1,14 @@
 package com.kh.lml.member.controller;
 
+import java.io.IOException;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.kh.lml.member.model.service.MemberService;
@@ -84,6 +87,25 @@ public class memberController {
 	@RequestMapping("Message.do")
 	public String Message() {
 		return "message/lml_message";
+	}
+	/**
+	 * 아이디 중복체크
+	 *  @ResponseBody를사용
+	 * @param id
+	 * @param response
+	 * @throws IOException
+	 */
+	@ResponseBody
+	@RequestMapping("idCheck.do")
+	public String idCheck(String id){
+		
+		int result = mService.idCheck(id);
+		
+		if(result > 0) { // 중복 존재
+			return "fail";
+		}else {
+			return "ok";
+		}
 	}
 	// 글쓰기
 	@RequestMapping("Post.do")

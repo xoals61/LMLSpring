@@ -20,9 +20,12 @@
 	INSERT INTO LML_MEM
 		VALUES(#{id},#{mail},#{upwd},#{m_phone},#{height},#{weight},#{gender},#{uname},#{intro},DEFAULT,LML_MEM_SEQ.NEXTVAL)
 	
-	
-	
 	</insert>
+	<select id="idCheck" parameterType="string" resultType="_int">
+		SELECT COUNT(*)
+		FROM LML_MEM
+		WHERE ID=#{id}
+	</select>
 	
 </mapper>
 

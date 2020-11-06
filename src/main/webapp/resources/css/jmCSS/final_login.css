@@ -121,3 +121,6 @@ span {
 #register {
     left: 450px;
 } 
+	span.guide{display:none; font-size:12px; top:12px; right:10px;}
+	span.ok{color:green;}
+	span.error{color:red;}
