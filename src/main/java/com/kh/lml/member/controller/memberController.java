@@ -1,5 +1,7 @@
 package com.kh.lml.member.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,15 +15,15 @@ import com.kh.lml.member.model.vo.Member;
 @SessionAttributes("loginUser") // Model에 loginUser라는 키값으로 객체가 추가되면 자동으로 세션에추가하라는 의미의 어노테이션
 @Controller
 public class memberController {
-	
+
 	@Autowired
 	private MemberService mService;
-	
-	
+
+
 	// 인덱스 메인
 	@RequestMapping("Index.do")
-		public String index() {
-			return "../../index";
+	public String index() {
+		return "../../index";
 	}
 	// 로그아웃(임시로 만들어놓음)
 	@RequestMapping("Logout.do")
@@ -30,8 +32,8 @@ public class memberController {
 	}
 	// 로그인페이지
 	@RequestMapping("login.do")
-		public String login() {
-			return "jiman/lml_login";
+	public String login() {
+		return "jiman/lml_login";
 	}
 	// 마이페이지
 	@RequestMapping("MyPage.do")
@@ -45,50 +47,50 @@ public class memberController {
 	}
 	// 세팅2(비번수정)	
 	@RequestMapping("Settings2.do")
-	   public String setting2() {
-	      return "settings/lml_Settings_2";
+	public String setting2() {
+		return "settings/lml_Settings_2";
 	}
 	// 세팅3(이메일문의)
 	@RequestMapping("Settings3.do")
-	   public String setting3() {
-	      return "settings/lml_Settings_3";
+	public String setting3() {
+		return "settings/lml_Settings_3";
 	}
 	// 세팅4(탈퇴)
 	@RequestMapping("Settings4.do")
-	   public String setting4() {
-	      return "settings/lml_Settings_4";
+	public String setting4() {
+		return "settings/lml_Settings_4";
 	}
 	// 세팅5(친구관리)
 	@RequestMapping("Settings5.do")
-	   public String setting5() {
-	      return "settings/lml_Settings_5";
+	public String setting5() {
+		return "settings/lml_Settings_5";
 	}
 	// 검색페이지
 	@RequestMapping("Search.do")
-	   public String Search() {
-	      return "search/lml_search";
+	public String Search() {
+		return "search/lml_search";
 	}
 	// 검색(해쉬태그)
 	@RequestMapping("SearchHash.do")
-	   public String SearchHash() {
-	      return "search/lml_search_hashtag";
+	public String SearchHash() {
+		return "search/lml_search_hashtag";
 	}
 	// 검색(사용자)
 	@RequestMapping("SearchUser.do")
-	   public String SearchUser() {
-	      return "search/lml_search_user";
+	public String SearchUser() {
+		return "search/lml_search_user";
 	}
 	// 채팅
 	@RequestMapping("Message.do")
-		public String Message() {
-			return "message/lml_message";
+	public String Message() {
+		return "message/lml_message";
 	}
 	// 글쓰기
 	@RequestMapping("Post.do")
 	public String Post() {
 		return "post/lml_post";
 	}
-	
+
 	@RequestMapping("mInsert.do")
 	public String mInsert(Member m,Model model) {
 		System.out.println(m);
@@ -100,7 +102,23 @@ public class memberController {
 			model.addAttribute("msg","회원가입실패");
 			return "common/errorpage";
 		}
-		
+
 	}
-	
+
+//	@RequestMapping("mLogin.do")
+//	public String mLogin(Member m,Model model,HttpSession session) {
+//		Member loginUser = mService.loginMember(m);
+//
+//		if(loginUser != null) {
+//			model.addAttribute("loginUser", loginUser);
+//			return "redirect:home.do";
+//
+//		}else {
+//			model.addAttribute("msg","로그인 실패!");
+//			return "common/errorPage";
+//		}
+//
+//
+//
+//	}
 }

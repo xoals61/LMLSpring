@@ -10,6 +10,9 @@ public class Member {
 	private char gender;
 	private String uname;
 	private String intro;
+	private String profile_img;
+	private int user_num;
+	
 	public Member() {
 		super();
 	}
@@ -30,8 +33,10 @@ public class Member {
 
 
 
+
+
 	public Member(String id, String mail, String upwd, int m_phone, int height, int weight, char gender, String uname,
-			String intro) {
+			String intro, String profile_img, int user_num) {
 		super();
 		this.id = id;
 		this.mail = mail;
@@ -42,6 +47,32 @@ public class Member {
 		this.gender = gender;
 		this.uname = uname;
 		this.intro = intro;
+		this.profile_img = profile_img;
+		this.user_num = user_num;
+	}
+
+
+
+	public String getProfile_img() {
+		return profile_img;
+	}
+
+
+
+	public void setProfile_img(String profile_img) {
+		this.profile_img = profile_img;
+	}
+
+
+
+	public int getUser_num() {
+		return user_num;
+	}
+
+
+
+	public void setUser_num(int user_num) {
+		this.user_num = user_num;
 	}
 
 
@@ -157,10 +188,10 @@ public class Member {
 	@Override
 	public String toString() {
 		return "Member [id=" + id + ", mail=" + mail + ", upwd=" + upwd + ", m_phone=" + m_phone + ", height=" + height
-				+ ", weight=" + weight + ", gender=" + gender + ", uname=" + uname + ", intro=" + intro + "]";
+				+ ", weight=" + weight + ", gender=" + gender + ", uname=" + uname + ", intro=" + intro
+				+ ", profile_img=" + profile_img + ", user_num=" + user_num + "]";
 	}
-	
-	
-	
+
+
 	
 }

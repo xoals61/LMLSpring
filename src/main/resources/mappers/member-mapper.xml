@@ -11,11 +11,14 @@
 		<result property="weight" column="WEIGHT"/>
 		<result property="uname" column="UNAME"/>
 		<result property="intro" column="INTRO"/>
+		<result property="profile_img" column="PROFILE_IMG"/>
+		<result property="user_num" column="USER_NUM"/>
+		
 	</resultMap>
 	
 	<insert id="insertMember" parameterType="Member">
 	INSERT INTO LML_MEM
-		VALUES(#{id},#{mail},#{upwd},#{m_phone},#{height},#{weight},#{gender},#{uname},#{intro})
+		VALUES(#{id},#{mail},#{upwd},#{m_phone},#{height},#{weight},#{gender},#{uname},#{intro},DEFAULT,LML_MEM_SEQ.NEXTVAL)
 	
 	
 	
