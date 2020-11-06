@@ -1,5 +1,6 @@
 package com.kh.lml.member.model.service;
 
+import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,6 +12,9 @@ public class MemberServiceImpl implements MemberService {
 	@Autowired
 	private MemberDao mDao;
 
+	@Autowired
+	SqlSessionTemplate sqlSession; // 트랜잭션 처리용
+	
 	//회원가입
 	@Override
 	public int insertMember(Member m) {
@@ -23,6 +27,12 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public int idCheck(String id) {
 	return mDao.idCheck(id);
+	}
+
+	@Override
+	public Member loginMember(Member m) {
+		
+		return mDao.loginMember(m);
 	}
 
 }

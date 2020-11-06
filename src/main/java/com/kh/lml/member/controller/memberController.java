@@ -8,8 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 
 import com.kh.lml.member.model.service.MemberService;
 import com.kh.lml.member.model.vo.Member;
@@ -126,21 +128,30 @@ public class memberController {
 		}
 
 	}
+	
+	@RequestMapping(value="mLogin.do",method=RequestMethod.POST)
+	public String mLogin(Member m,Model model,HttpSession session) {
+		System.out.println(m);
+		Member loginUser = mService.loginMember(m);
+		System.out.println(loginUser);
+		if(loginUser != null) {
+			model.addAttribute("loginUser", loginUser);
+			return "redirect:Index.do";
 
-//	@RequestMapping("mLogin.do")
-//	public String mLogin(Member m,Model model,HttpSession session) {
-//		Member loginUser = mService.loginMember(m);
-//
-//		if(loginUser != null) {
-//			model.addAttribute("loginUser", loginUser);
-//			return "redirect:home.do";
-//
-//		}else {
-//			model.addAttribute("msg","로그인 실패!");
-//			return "common/errorPage";
-//		}
-//
-//
-//
-//	}
+		}else {
+			model.addAttribute("msg","로그인 실패!");
+			return "common/errorPage";
+		}
+
+
+
+	}
+	
+	@RequestMapping("logout.do")
+	public String logout(SessionStatus status) {
+		
+		// 세션의 상태를 확정지어주는 메소드 호출이 필요하다
+		status.setComplete();
+		return "redirect:Index.do";
+	}
 }

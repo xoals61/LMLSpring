@@ -21,11 +21,11 @@
                     <img src="resources/images/jmImg/tw.png" alt="twitter">
                     <img src="resources/images/jmImg/gl.png" alt="google">
                 </div>
-                <form id="login" action="" class="input-group">
-                    <input type="text" class="input-field" placeholder="User id" required>
-                    <input type="password" class="input-field" placeholder="Enter Password" required>
+                <form id="login" action="mLogin.do" class="input-group" method="post">
+                    <input name="id" type="text" class="input-field" placeholder="User id" required>
+                    <input name="upwd" type="password" class="input-field" placeholder="Enter Password" required>
                     <input type="checkbox" class="checkbox"><span>Remember Password</span>
-                    <button class="submit" onclick="location.href='../lml_main.html'"> Login</button>
+                    <button class="submit"> Login</button>
                 </form>
                 <form id="register" action="mInsert.do" class="input-group">
                                        <!-- 아이디 중복 체크  --> 

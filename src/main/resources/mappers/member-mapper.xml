@@ -15,6 +15,15 @@
 		<result property="user_num" column="USER_NUM"/>
 		
 	</resultMap>
+	<select id="loginMember" parameterType="Member" resultMap="memberResultSet">
+		 
+		SELECT * 
+		FROM LML_MEM
+		WHERE ID=#{id}
+		AND UPWD=#{upwd}
+
+	</select>
+	
 	
 	<insert id="insertMember" parameterType="Member">
 	INSERT INTO LML_MEM
@@ -26,6 +35,8 @@
 		FROM LML_MEM
 		WHERE ID=#{id}
 	</select>
+	
+	
 	
 </mapper>
 

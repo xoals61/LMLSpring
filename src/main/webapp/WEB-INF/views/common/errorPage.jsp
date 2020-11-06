@@ -8,6 +8,8 @@
 </head>
 <body>
 	<jsp:include page="header.jsp"/>
-	<h1 align="center">${ msg }</h1>
+	<div style="float: left">
+	<h1 style="margin: 119px;">${ msg }</h1>
+	</div>
 </body>
 </html>

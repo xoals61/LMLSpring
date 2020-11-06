@@ -28,8 +28,12 @@
                             <ul class="mySub">
                                 <a href='MyPage.do'><li><div class="mySub1">마이페이지</div></li></a>
                                 <a href='Settings.do'><li><div class="mySub1">설정</div></li></a>
-                                <a href="Logout.do"><li><div class="mySub1">로그아웃</div></li></a>
+                                <c:if test="${ !empty sessionScope.loginUser }">
+                                <a href="logout.do"><li><div class="mySub1">로그아웃</div></li></a>
+                                </c:if>
+                                <c:if test="${ empty sessionScope.loginUser }">
                                  <a href="login.do"><li><div class="mySub1">로그인</div></li></a>
+                                 </c:if>
                             </ul>
                         </div><!--메뉴-->
 
