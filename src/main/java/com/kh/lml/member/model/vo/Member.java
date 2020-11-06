@@ -12,7 +12,7 @@ public class Member {
 	private String intro;
 	private String profile_img;
 	private int user_num;
-	
+//	gdENs
 	public Member() {
 		super();
 	}
