@@ -21,5 +21,9 @@ public class MemberDao {
 		System.out.println("dao : " + m);
 		return (Member)sqlSession.selectOne("memberMapper.loginMember",m);
 	}
+	public int nameCheck(String name) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("memberMapper.nameCheck",name);
+	}
 
 }

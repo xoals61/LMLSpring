@@ -36,8 +36,11 @@
 		WHERE ID=#{id}
 	</select>
 	
-	
-	
+	<select id="nameCheck" parameterType="string" resultType="_int">
+		SELECT COUNT(*)
+		FROM LML_MEM
+		WHERE UNAME=#{uname}
+	</select>
 </mapper>
 
 
