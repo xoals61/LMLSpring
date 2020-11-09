@@ -2,6 +2,7 @@ package com.kh.lml.member.controller;
 
 import java.io.IOException;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
@@ -102,29 +104,29 @@ public class memberController {
 	public String idCheck(String id){
 		System.out.println(id);
 		int result = mService.idCheck(id);
-		
+
 		if(result > 0) { // 중복 존재
 			return "fail";
 		}else {
 			return "ok";
 		}
 	}
-	
+
 	@ResponseBody
 	@RequestMapping("nameCheck.do")
 	public String nameCheck(String name) {
 		System.out.println(name);
 		int result = mService.nameCheck(name);
-		
+
 		if(result >0) {
 			return "fail";
 		}else {
 			return "ok";
 		}
-		
-		
+
+
 	}
-	
+
 	// 글쓰기
 	@RequestMapping("Post.do")
 	public String Post() {
@@ -133,6 +135,7 @@ public class memberController {
 
 	@RequestMapping("mInsert.do")
 	public String mInsert(Member m,Model model) {
+
 		System.out.println(m);
 		int result = mService.insertMember(m);
 		if(result>0) {
@@ -144,7 +147,7 @@ public class memberController {
 		}
 
 	}
-	
+
 	@RequestMapping(value="mLogin.do",method=RequestMethod.POST)
 	public String mLogin(Member m,Model model,HttpSession session) {
 		System.out.println(m);
@@ -162,12 +165,63 @@ public class memberController {
 
 
 	}
-	
+
 	@RequestMapping("logout.do")
 	public String logout(SessionStatus status) {
-		
+
 		// 세션의 상태를 확정지어주는 메소드 호출이 필요하다
 		status.setComplete();
 		return "redirect:Index.do";
+	}
+
+	@RequestMapping("mUpdate.do")
+	public String mUpdate(Member m,Model model) {
+		System.out.println("update "+m);
+		int result =mService.mUpdate(m);
+		if(result >0) {
+			model.addAttribute("loginUser", m);
+			return "redirect:Settings.do";
+		}
+		else {
+			model.addAttribute("msg","회원 수정 실패");
+			return "common/errorPage";
+		}
+	}
+
+	@ResponseBody
+	@RequestMapping("pwdCheck.do")
+	public String pwdCheck(String pwd ,String id){
+		Member m = new Member(id,pwd);
+		System.out.println(m);
+		int result = mService.pwdCheck(m);
+
+		if(result >0) {
+			return "fail";
+		}else {
+			return "ok";
+		}
+	}
+	@RequestMapping("changePwd.do")
+	public String changePwd(HttpServletRequest request,
+			@RequestParam("password1")String pwd,@RequestParam("id")String id, Model model) {
+		System.out.println("pwd :" + pwd);
+		System.out.println("id : " + id);
+		Member changeM = new Member(id,pwd);
+		int result = mService.changePwd(changeM);
+		
+		HttpSession session = request.getSession();
+		
+		
+		if(result>0) {
+		Member m = (Member)session.getAttribute("loginUser");
+		m.setUpwd(pwd);
+		model.addAttribute("loginUser");
+		return "redirect:Settings2.do";
+		
+		
+		}else {
+			model.addAttribute("msg","회원 수정 실패");
+			return "common/errorPage";
+		}
 	}
 }

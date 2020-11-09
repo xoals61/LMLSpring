@@ -42,7 +42,7 @@
 					
                     <input name="mail" id="inputemail" type="email" class="input-field" placeholder="Your Email" required>
                     <input name="upwd" id="inputpwd" type="password" class="input-field" placeholder="Enter Password (문자+숫자+특수문자)" required>
-                    <input name="m_phone"  type="tel" class="input-field" placeholder="phone" required>
+                    <input name="m_phone"  type="number" class="input-field" placeholder="phone" required>
                     <input name="height" id="inheight" type="number" class="input-field" placeholder="hight" required style="width: 100px;">cm
                   &nbsp; &nbsp;
                     <input name="weight" id="inweight" type="number" class="input-field"  placeholder="weight" required style="width: 100px;" >kg <br>
@@ -157,9 +157,7 @@
     					error:function(jqxhr, textStatus,errorThrown){
     						console.log("ajax 처리 실패");
     						//에러 로그
-    						console.log(jqxhr);
-    						console.log(textStatus);
-    						console.log(errorThrown);
+    			
     					}
     				});
     			});
@@ -197,9 +195,7 @@
     					error:function(jqxhr, textStatus,errorThrown){
     						console.log("ajax 처리 실패");
     						//에러 로그
-    						console.log(jqxhr);
-    						console.log(textStatus);
-    						console.log(errorThrown);
+    					
     					}
     				});
     			});

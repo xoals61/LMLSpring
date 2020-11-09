@@ -41,6 +41,22 @@
 		FROM LML_MEM
 		WHERE UNAME=#{uname}
 	</select>
+	
+	<update id="memberUpdate" parameterType="Member" >
+		UPDATE LML_MEM SET MAIL=#{mail} ,UNAME=#{uname},M_PHONE=#{m_phone},HEIGHT=#{height},WEIGHT=#{weight},GENDER=#{gender},INTRO=#{intro}
+		WHERE ID=#{id}
+	</update>
+	<select id="pwdCheck" parameterType="Member" resultType="_int">
+	SELECT COUNT(*)
+	FROM LML_MEM 
+	WHERE UPWD=#{upwd} AND ID=#{id}
+	</select>
+	
+	<update id="pwdChange" parameterType="Member">
+	UPDATE LML_MEM SET UPWD=#{upwd} WHERE ID=#{id} 
+	</update>
+	
+	
 </mapper>
 
 

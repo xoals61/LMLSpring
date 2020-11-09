@@ -22,8 +22,17 @@ public class MemberDao {
 		return (Member)sqlSession.selectOne("memberMapper.loginMember",m);
 	}
 	public int nameCheck(String name) {
-		// TODO Auto-generated method stub
 		return sqlSession.selectOne("memberMapper.nameCheck",name);
+	}
+	public int mUpdate(Member m) {
+		return sqlSession.update("memberMapper.memberUpdate",m);
+	}
+	public int pwdCheck(Member m) {
+		return sqlSession.selectOne("memberMapper.pwdCheck",m);
+	}
+	public int changePwd(Member changeM) {
+		System.out.println("DDAO : " + changeM);
+		return sqlSession.update("memberMapper.pwdChange",changeM);
 	}
 
 }

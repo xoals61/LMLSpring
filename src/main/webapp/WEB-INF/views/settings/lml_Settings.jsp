@@ -30,6 +30,7 @@
                     <form class="MyInfo" method="POST" action="mUpdate.do">
                         <div class="profile">
                             <div class="photo">
+                            	<input name="profile_img" value="${loginUser.profile_img }" hidden="true">
                                 <img src="resources/images/mainImg/${loginUser.profile_img}" id="Myimg">
                             </div>
                             <div class="ChangeBtn">
@@ -37,12 +38,16 @@
                                  <button type="button" id="btn-upload">프로필 사진 바꾸기</button></div>
                         </div>
                         <div class="ModifyInfo">
+                        	<input name="id" value="${loginUser.id }" hidden="true">
+                        	<input name="upwd" value="${loginUser.upwd }" hidden="true">
+                        	
+                        	<input name="user_num" value="${loginUser.user_num }" hidden="true">
                             <label class=Info>닉네임 &nbsp;&nbsp;&nbsp;
-                                 <input class="infoinput" name="id" type="text" placeholder="${loginUser.uname}"></label><br>
+                                 <input class="infoinput" name="uname" type="text" value="${loginUser.uname}"></label><br>
                             <label class=Info>이메일 &nbsp;&nbsp;&nbsp; 
-                                <input class="infoinput" name="email" type="email" placeholder="${loginUser.mail}"></label><br>
+                                <input class="infoinput" name="mail" type="email" value="${loginUser.mail}"></label><br>
                             <label class=Info>전화번호  
-                                <input class="infoinput" name="phone" type="text" placeholder="${loginUser.m_phone}"></label><br>
+                                <input class="infoinput" name="m_phone" type="text" value="${loginUser.m_phone}"></label><br>
                             <label class=Info>성  별 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
                            		<!-- <input class="gender" type="radio" name="gender" value="f" checked>여
                                	<input class="gender" type="radio" name="gender" value="m">남 -->
@@ -62,11 +67,11 @@
                             </c:choose>
                             </label><br>
                             <label class=Info>몸무게 &nbsp;&nbsp;&nbsp;
-                                 <input class="infoinput" name="weight" type="text" placeholder="${loginUser.weight}" maxlength="3" numberOnly></label><br>
+                                 <input class="infoinput" name="weight" type="text" value="${loginUser.weight}" maxlength="3" numberOnly></label><br>
                             <label class=Info>키 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-                                <input class="infoinput" name="height" type="text" maxlength="3" placeholder="${loginUser.height}" numberOnly></label><br>
+                                <input class="infoinput" name="height" type="text" maxlength="3" value="${loginUser.height}" numberOnly></label><br>
                             <label class=Info2 id="infomy">자기소개</label> &nbsp; 
-                            <textarea id="inrtoduce" name="inrtoduce" type="text" placeholder="${loginUser.intro}"></textarea><br>
+                            <textarea id="inrtoduce" name="intro">${loginUser.intro}</textarea><br>
                         </div>
                         <div class="Fbtn">
                             <button class="btns2"id="Delbtn" type="button" onClick="location.href='Settings4.do'">탈퇴</button>
@@ -80,14 +85,7 @@
     </section>
 
     
-    <script>
-        /*제출 버튼 눌렀을 때*/
-        $(document).ready(function(){
-          $('#Sbtn').on('click', function(){
-            alert("변경되었습니다.")
-          });
-      });
-  </script>
+
     <script>
         /*선택 메뉴 고정*/
           $(document).ready(function(){

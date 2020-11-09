@@ -52,6 +52,14 @@ public class Member {
 	}
 
 
+	//비밀번호 체크용
+	public Member(String id, String upwd) {
+		super();
+		this.id = id;
+		this.upwd = upwd;
+	}
+
+
 
 	public String getProfile_img() {
 		return profile_img;

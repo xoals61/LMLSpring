@@ -41,4 +41,19 @@ public class MemberServiceImpl implements MemberService {
 		return mDao.nameCheck(name);
 	}
 
+	@Override
+	public int mUpdate(Member m) {
+		return mDao.mUpdate(m);
+	}
+
+	@Override
+	public int pwdCheck(Member m) {
+		return mDao.pwdCheck(m);
+	}
+
+	@Override
+	public int changePwd(Member changeM) {
+		return mDao.changePwd(changeM);
+	}
+
 }

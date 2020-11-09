@@ -12,4 +12,10 @@ public interface MemberService {
 	Member loginMember(Member m);
 
 	int nameCheck(String name);
+
+	int mUpdate(Member m);
+
+	int pwdCheck(Member m);
+
+	int changePwd(Member changeM);
 }
