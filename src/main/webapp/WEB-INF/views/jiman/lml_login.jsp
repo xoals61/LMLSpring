@@ -47,11 +47,11 @@
                   &nbsp; &nbsp;
                     <input name="weight" id="inweight" type="number" class="input-field"  placeholder="weight" required style="width: 100px;" >kg <br>
                     <div class="radio_gender">
-                    <input type="radio" name="gender"  class="radio" value="M">male &nbsp;
-                    <input type="radio" name="gender" class="radio"  value="F">female <br>
+                    <input type="radio"  name="gender"  class="radio" value="M" >male &nbsp;
+                    <input type="radio"  name="gender" class="radio"  value="F">female <br>
                     </div>
                     <div class="Register">
-                        <input type="checkbox" class="checkbox"><span>Terms and conditions</span>
+                        <input type="checkbox" id="termsbtn" class="checkbox"><span>Terms and conditions</span>
                         </div>
                         <button class="submit" onclick="return validate();">REGISTER</button>
                 </form>
@@ -75,8 +75,13 @@
                 z.style.left = "110px";
             }
             
+            
+            
             function validate(){
     			// 중복체크 여부,유효성검사
+    			
+    			if($("#termsbtn").prop("checked")==true){
+    				
     			
     			//비밀번호 유효성 검사
 			      var pw = $("#inputpwd").val();
@@ -113,7 +118,7 @@
     				return false;
     			}
 			//키 유효성
-			if($("#inheight").val()<50 ||("#inheight").val()>300 ){
+			if($("#inheight").val()<50 || $("#inheight").val()>300 ){
 				alert("키는 50이상 300이하여야 합니다.");
 				return false;
 			}
@@ -122,10 +127,32 @@
 				alert("30kg이상의 값을 입력해주세요.");
 				return false;
 			}
+			
+
+
+
+			//if($("input:radio[name='gender']").is(":checked")== true){
+				if($(".radio").is(":checked")== false){
+				alert("성별을 체크해주세요.");
+				return false;
+			}
 
 			
 			return true;
+			
+    		}else{
+    			console.log(' ㅠㅠ');
+    			alert('이용약관에 동의해주세요');
+    			return false;
     		}
+    		
+            }
+            
+            
+            
+            
+            
+            
     	
     		$(function(){
     			$("#userId").on("keyup",function(){
@@ -137,6 +164,7 @@
     					$("#idDuplicateCheck").val(0);
     					return;
     				}
+    				
     				
     				$.ajax({
     					url:"idCheck.do",
