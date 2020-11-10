@@ -63,6 +63,17 @@ public class MemberServiceImpl implements MemberService {
 		return mDao.selectFollowList(uNum);
 	}
 
+	@Override
+	public ArrayList<Member> selectFollowerList(int uNum) {
+		
+		return mDao.selectFollowerList(uNum);
+	}
+
+	@Override
+	public ArrayList<Member> selectBlockList(int uNum) {
+		return mDao.selectBlockList(uNum);
+	}
+
 
 
 }

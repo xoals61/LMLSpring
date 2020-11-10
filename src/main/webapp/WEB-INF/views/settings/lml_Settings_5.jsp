@@ -52,36 +52,33 @@
                             </ul>
                         </div>
                     <div class="address" id="address">
-                            <table class="add_table">
-                                <tr>
-                                    <td class="imgtd" rowspan="2" style="width: 10%;"><img class="userimg" src="resources/images/jmImg/무지갱.ico" alt="#"></td>
-                                    <td class="idtd" style="width: 30%;">팔로워친구목록</td>
-                                    <td class="btntd" rowspan="2" style="width: 30%;"><input class="button2" type="button" value="팔로잉"></td>
-                                </tr>
-                                <tr>
-                                    <td>팔로워친구목록입니다</td>
-                                </tr>
-                            </table>
-                            <table class="add_table">
-                                <tr>
-                                    <td class="imgtd" rowspan="2" style="width: 10%;"><img class="userimg" src="resources/images/jmImg/블루 (1).jpg" alt="#"></td>
-                                    <td class="idtd" style="width: 30%;">유지만</td>
-                                    <td class="btntd" rowspan="2" style="width: 30%;"><input class="button1" type="button" value="팔로우"></td>
-                                </tr>
-                                <tr>
-                                    <td>닉네임</td>
-                                </tr>
-                            </table>
-                            <table class="add_table">
-                                <tr>
-                                    <td class="imgtd" rowspan="2" style="width: 10%;"><img class="userimg" src="resources/images/jmImg/블루 (3).jpg" alt="#"></td>
-                                    <td class="idtd" style="width: 30%;">강은지</td>
-                                    <td class="btntd" rowspan="2" style="width: 30%;"><input class="button2" type="button" value="팔로잉"></td>
-                                </tr>
-                                <tr>
-                                    <td>닉네임</td>
-                                </tr>
-                            </table>
+                    	<!-- 팔로워친구 -->
+                    	<c:if test="${ !empty FollowerList }">
+							<c:forEach var="fwer" items="${ FollowerList }">
+	                       		<table class="add_table">
+		                            <tr>
+		                                <td class="imgtd" rowspan="2" style="width: 10%;"><img class="userimg" src="resources/images/jmImg/${fwer.profile_img }" alt="#"></td>
+		                                <td class="idtd" style="width: 30%;">${fwer.id }</td>
+		                                <td class="btntd" rowspan="2" style="width: 30%;"><input class="button1" type="button" value="팔로우"></td>
+		                            </tr>
+		                            <tr>
+		                                <td>${fwer.uname }</td>
+		                            </tr>
+		                        </table>
+	                       </c:forEach>
+						</c:if>
+						<c:if test="${ empty FollowList }">
+							<table class="add_table">
+			                    <tr>
+			                        <td class="imgtd" rowspan="2" style="width: 10%;"></td>
+			                        <td class="idtd" style="width: 30%;">팔로워 없음</td>
+			                        <td class="btntd" rowspan="2" style="width: 30%;"></td>
+			                    </tr>
+			                    <tr>
+			                        <td></td>
+			                    </tr>
+		                	</table>
+						</c:if>
                     </div>
                     <div id="address_woo" class="address">
                       <!-- 팔로우친구 -->
@@ -114,37 +111,34 @@
                         
                 </div>
                 <div id="address_block" class="address">
-                    <table class="add_table">
-                        <tr>
-                            <td class="imgtd" rowspan="2" style="width: 10%;"><img class="userimg" src="resources/images/jmImg/무지갱.ico" alt="#"></td>
-                            <td class="idtd" style="width: 30%;">차단친구</td>
-                            <td class="btntd" rowspan="2" style="width: 30%;"><input class="button3" type="button" value="차단"></td>
-                        </tr>
-                        <tr>
-                            <td>차단친구목록입니다</td>
-                        </tr>
-                    </table>
-                    <table class="add_table">
-                        <tr>
-                            <td class="imgtd" rowspan="2" style="width: 10%;"><img class="userimg" src="resources/images/jmImg/블루 (1).jpg" alt="#"></td>
-                            <td class="idtd" style="width: 30%;">유지만</td>
-                            <td class="btntd" rowspan="2" style="width: 30%;"><input class="button3" type="button" value="차단"></td>
-                        </tr>
-                        <tr>
-                            <td>닉네임</td>
-                        </tr>
-                    </table>
-                    <table class="add_table">
-                        <tr>
-                            <td class="imgtd" rowspan="2" style="width: 10%;"><img class="userimg" src="resources/images/jmImg/블루 (3).jpg" alt="#"></td>
-                            <td class="idtd" style="width: 30%;">강은지</td>
-                            <td class="btntd" rowspan="2" style="width: 30%;"><input class="button3" type="button" value="차단"></td>
-                        </tr>
-                        <tr>
-                            <td>닉네임</td>
-                        </tr>
-                    </table>
-            </div>
+                    <!-- 차단친구 -->
+                    	<c:if test="${ !empty BlockList }">
+							<c:forEach var="bl" items="${ BlockList }">
+	                       		<table class="add_table">
+		                            <tr>
+		                                <td class="imgtd" rowspan="2" style="width: 10%;"><img class="userimg" src="resources/images/jmImg/${bl.profile_img }" alt="#"></td>
+		                                <td class="idtd" style="width: 30%;">${bl.id }</td>
+		                                <td class="btntd" rowspan="2" style="width: 30%;"><input class="button3" type="button" value="차단"></td>
+		                            </tr>
+		                            <tr>
+		                                <td>${bl.uname }</td>
+		                            </tr>
+		                        </table>
+	                       </c:forEach>
+						</c:if>
+						<c:if test="${ empty BlockList }">
+							<table class="add_table">
+			                    <tr>
+			                        <td class="imgtd" rowspan="2" style="width: 10%;"></td>
+			                        <td class="idtd" style="width: 30%;">차단한 사람 없음</td>
+			                        <td class="btntd" rowspan="2" style="width: 30%;"></td>
+			                    </tr>
+			                    <tr>
+			                        <td></td>
+			                    </tr>
+		                	</table>
+						</c:if>
+            	</div>
                </div>
                 </div>
             </div>

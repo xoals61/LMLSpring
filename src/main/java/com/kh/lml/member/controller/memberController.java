@@ -228,8 +228,12 @@ public class memberController {
 	public ModelAndView setting5(ModelAndView mv, int uNum) {
 		
 		ArrayList<Member> FollowList = mService.selectFollowList(uNum);
+		ArrayList<Member> FollowerList = mService.selectFollowerList(uNum);
+		ArrayList<Member> BlockList = mService.selectBlockList(uNum);
 		
 		mv.addObject("FollowList", FollowList);
+		mv.addObject("FollowerList", FollowerList);
+		mv.addObject("BlockList", BlockList);
 		mv.setViewName("settings/lml_Settings_5");
 		
 		return mv;

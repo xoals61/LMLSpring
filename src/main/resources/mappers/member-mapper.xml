@@ -62,10 +62,26 @@
 	</update>
 	
 	<select id="selectFollowList" resultMap="memberResultSet">
-		SELECT FROM_FOLLOW, TO_FOLLOW, TO_FOLLOWER, FROM_FOLLOWER, F_BLOCK, ID, UNAME, PROFILE_IMG
+		SELECT FROM_FOLLOW, TO_FOLLOW, ID, UNAME, PROFILE_IMG
 		FROM FOLLOW_LIST
 		JOIN LML_MEM ON (TO_FOLLOW = USER_NUM)
 		WHERE FROM_FOLLOW = #{uNum}
+		AND F_BLOCK = 'N'
+	</select>
+	
+	<select id="selectFollowerList" resultMap="memberResultSet">
+		SELECT TO_FOLLOWER, FROM_FOLLOWER, ID, UNAME, PROFILE_IMG
+		FROM FOLLOW_LIST
+		JOIN LML_MEM ON (FROM_FOLLOWER = USER_NUM)
+		WHERE TO_FOLLOWER = #{uNum}
+	</select>
+	
+	<select id="selectBlockList" resultMap="memberResultSet">
+		SELECT FROM_FOLLOW, TO_FOLLOW, ID, UNAME, PROFILE_IMG
+		FROM FOLLOW_LIST
+		JOIN LML_MEM ON (TO_FOLLOW = USER_NUM)
+		WHERE FROM_FOLLOW = #{uNum}
+		AND F_BLOCK = 'Y'
 	</select>
 	
 	

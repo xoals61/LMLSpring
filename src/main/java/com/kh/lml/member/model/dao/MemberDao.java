@@ -39,6 +39,12 @@ public class MemberDao {
 	public ArrayList<Member> selectFollowList(int uNum) {
 		return (ArrayList)sqlSession.selectList("memberMapper.selectFollowList",uNum);
 	}
+	public ArrayList<Member> selectFollowerList(int uNum) {
+		return (ArrayList)sqlSession.selectList("memberMapper.selectFollowerList",uNum);
+	}
+	public ArrayList<Member> selectBlockList(int uNum) {
+		return (ArrayList)sqlSession.selectList("memberMapper.selectBlockList",uNum);
+	}
 	
 
 
