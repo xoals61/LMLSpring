@@ -27,5 +27,9 @@ public interface MemberService {
 
 	ArrayList<Member> selectBlockList(int uNum);
 
+	int countFollowList(int uNum);
+
+	int countFollowerList(int uNum);
+
 
 }

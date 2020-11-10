@@ -30,8 +30,8 @@
                     </div>
                     <div class="info" >
                         <div class="iftext_1"><span>게시글</span></div>
-                        <div class="iftext"><span>팔로워</span></div>
-                        <div class="iftext"><span>팔로잉</span></div>
+                        <div class="iftext"><span>팔로워&nbsp; ${Follower} </span></div>
+                        <div class="iftext"><span>팔로우&nbsp; ${Follow}</span></div>
                     </div>
                     <div class="info">
                         <div class="name">${loginUser.uname} </div>

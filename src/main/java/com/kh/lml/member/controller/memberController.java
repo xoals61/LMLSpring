@@ -46,8 +46,16 @@ public class memberController {
 	}
 	// 마이페이지
 	@RequestMapping("MyPage.do")
-	public String myPage() {
-		return "jiman/lml_MyPage";
+	public ModelAndView myPage(ModelAndView mv, int uNum) {
+		
+		int Follow = mService.countFollowList(uNum);
+		int Follower = mService.countFollowerList(uNum);
+		
+		mv.addObject("Follow", Follow);
+		mv.addObject("Follower", Follower);
+		mv.setViewName("jiman/lml_MyPage");
+		
+		return mv;
 	}
 	// 세팅(정보수정)
 	@RequestMapping("Settings.do")

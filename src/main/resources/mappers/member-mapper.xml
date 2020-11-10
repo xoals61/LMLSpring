@@ -84,6 +84,19 @@
 		AND F_BLOCK = 'Y'
 	</select>
 	
+	<select id="countFollowList" resultType="_int">
+		SELECT COUNT(*)
+		FROM FOLLOW_LIST
+		WHERE FROM_FOLLOW = #{uNum}
+		AND F_BLOCK = 'N'
+	</select>
+	
+	<select id="countFollowerList" resultType="_int">
+		SELECT COUNT(*)
+		FROM FOLLOW_LIST
+		WHERE TO_FOLLOW = #{uNum}
+	</select>
+	
 	
 </mapper>
 

@@ -27,7 +27,10 @@
                         <div class="myMenu">
                             <img src="resources/images/icon/menu/iconmonstr-menu-thin-72.png"><!-- 이미지 클릭 시 서브메뉴 나옴 -->
                             <ul class="mySub">
-                                <a href='MyPage.do'><li><div class="mySub1">마이페이지</div></li></a>
+	                            <c:url var="mypage" value="MyPage.do">
+									<c:param name="uNum" value="${ loginUser.user_num }"/>
+								</c:url>
+                                <a href='${mypage}'><li><div class="mySub1">마이페이지</div></li></a>
                                 <a href='Settings.do'><li><div class="mySub1">설정</div></li></a>
                                 
                                 <a href="logout.do"><li><div class="mySub1">로그아웃</div></li></a>
