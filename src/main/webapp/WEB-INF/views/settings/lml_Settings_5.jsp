@@ -5,7 +5,7 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <title>lml_Email</title>
+    <title>lml_Follow</title>
     <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500&display=swap" rel="stylesheet">
@@ -59,7 +59,19 @@
 		                            <tr>
 		                                <td class="imgtd" rowspan="2" style="width: 10%;"><img class="userimg" src="resources/images/jmImg/${fwer.profile_img }" alt="#"></td>
 		                                <td class="idtd" style="width: 30%;">${fwer.id }</td>
-		                                <td class="btntd" rowspan="2" style="width: 30%;"><input class="button1" type="button" value="팔로우"></td>
+		                                <td class="btntd" rowspan="2" style="width: 30%;">
+		                                	<c:set var="doneLoop" value="false"/>
+		                                	<c:forEach var="check" items="${ FollowList }">
+			                                	<c:if test="${fwer.id eq check.id}">
+													<input class="button2" type="button" value="팔로잉">
+													<c:set var="doneLoop" value="true"/>
+												</c:if>
+												<c:if test="${fwer.id ne check.id}">
+													<input class="button1" type="button" value="팔로우">
+													<c:set var="doneLoop" value="true"/>
+												</c:if>
+											</c:forEach>
+										</td>
 		                            </tr>
 		                            <tr>
 		                                <td>${fwer.uname }</td>
@@ -67,7 +79,7 @@
 		                        </table>
 	                       </c:forEach>
 						</c:if>
-						<c:if test="${ empty FollowList }">
+						<c:if test="${ empty FollowerList }">
 							<table class="add_table">
 			                    <tr>
 			                        <td class="imgtd" rowspan="2" style="width: 10%;"></td>
