@@ -1,5 +1,7 @@
 package com.kh.lml.member.model.dao;
 
+import java.util.ArrayList;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -34,5 +36,10 @@ public class MemberDao {
 		System.out.println("DDAO : " + changeM);
 		return sqlSession.update("memberMapper.pwdChange",changeM);
 	}
+	public ArrayList<Member> selectFollowList(int uNum) {
+		return (ArrayList)sqlSession.selectList("memberMapper.selectFollowList",uNum);
+	}
+	
+
 
 }

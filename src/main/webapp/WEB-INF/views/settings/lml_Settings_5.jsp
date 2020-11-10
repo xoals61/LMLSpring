@@ -24,7 +24,14 @@
                     <div class="lmenu">
                        <li class="minimenu"><a href="Settings.do" class="Ma"> <img class="mainbtn" src="resources/images/icon/settings/Mprofile.png">프로필 수정</a></li>
                         <li class="minimenu"><a href="Settings2.do" class="Ma"> <img class="mainbtn" src="resources/images/icon/settings/Mrock.png">비밀번호 변경</a></li>
-                        <li class="minimenu put"><a href="Settings5.do" class="Ma"> <img class="mainbtn" src="resources/images/icon/settings/xxx.png">친구관리</a></li>
+                        <li class="minimenu put">
+							<c:url var="followList" value="Settings5.do">
+								<c:param name="uNum" value="${ loginUser.user_num }"/>
+							</c:url>
+                        	<a href="${followList}" class="Ma"> 
+                        		<img class="mainbtn" src="resources/images/icon/settings/xxx.png">친구관리
+                        	</a>
+						</li>
                         <li class="minimenu"><a href="Settings3.do" class="Ma"> <img class="mainbtn" src="resources/images/icon/settings/Memail.png">이메일 문의</a></li>
                      
                     </div>
@@ -77,36 +84,34 @@
                             </table>
                     </div>
                     <div id="address_woo" class="address">
-                        <table class="add_table">
-                            <tr>
-                                <td class="imgtd" rowspan="2" style="width: 10%;"><img class="userimg" src="resources/images/jmImg/무지갱.ico" alt="#"></td>
-                                <td class="idtd" style="width: 30%;">팔로우친구</td>
-                                <td class="btntd" rowspan="2" style="width: 30%;"><input class="button2" type="button" value="팔로우"></td>
-                            </tr>
-                            <tr>
-                                <td>팔로우친구목록입니다</td>
-                            </tr>
-                        </table>
-                        <table class="add_table">
-                            <tr>
-                                <td class="imgtd" rowspan="2" style="width: 10%;"><img class="userimg" src="resources/images/jmImg/블루 (1).jpg" alt="#"></td>
-                                <td class="idtd" style="width: 30%;">유지만</td>
-                                <td class="btntd" rowspan="2" style="width: 30%;"><input class="button2" type="button" value="팔로우"></td>
-                            </tr>
-                            <tr>
-                                <td>닉네임</td>
-                            </tr>
-                        </table>
-                        <table class="add_table">
-                            <tr>
-                                <td class="imgtd" rowspan="2" style="width: 10%;"><img class="userimg" src="resources/images/jmImg/블루 (3).jpg" alt="#"></td>
-                                <td class="idtd" style="width: 30%;">강은지</td>
-                                <td class="btntd" rowspan="2" style="width: 30%;"><input class="button2" type="button" value="팔로우"></td>
-                            </tr>
-                            <tr>
-                                <td>닉네임</td>
-                            </tr>
-                        </table>
+                      <!-- 팔로우친구 -->
+                      	<c:if test="${ !empty FollowList }">
+							<c:forEach var="f" items="${ FollowList }">
+	                       		<table class="add_table">
+		                            <tr>
+		                                <td class="imgtd" rowspan="2" style="width: 10%;"><img class="userimg" src="resources/images/jmImg/${f.profile_img }" alt="#"></td>
+		                                <td class="idtd" style="width: 30%;">${f.id }</td>
+		                                <td class="btntd" rowspan="2" style="width: 30%;"><input class="button2" type="button" value="팔로우"></td>
+		                            </tr>
+		                            <tr>
+		                                <td>${f.uname }</td>
+		                            </tr>
+		                        </table>
+	                       </c:forEach>
+						</c:if>
+						<c:if test="${ empty FollowList }">
+							<table class="add_table">
+			                    <tr>
+			                        <td class="imgtd" rowspan="2" style="width: 10%;"></td>
+			                        <td class="idtd" style="width: 30%;">다른 사람을 팔로우 해보셔</td>
+			                        <td class="btntd" rowspan="2" style="width: 30%;"></td>
+			                    </tr>
+			                    <tr>
+			                        <td></td>
+			                    </tr>
+		                	</table>
+						</c:if>
+                        
                 </div>
                 <div id="address_block" class="address">
                     <table class="add_table">

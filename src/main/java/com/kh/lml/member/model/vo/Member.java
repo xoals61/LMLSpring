@@ -12,6 +12,15 @@ public class Member {
 	private String intro;
 	private String profile_img;
 	private int user_num;
+	
+	
+	private int from_follow;
+	private int to_follow;
+	private int to_follower;
+	private int from_follower;
+	private char f_block;
+	
+	
 //	gdENs
 	public Member() {
 		super();
@@ -58,12 +67,28 @@ public class Member {
 		this.id = id;
 		this.upwd = upwd;
 	}
+	
+	
+	//팔로잉 조회용
+	public Member(String id, String uname, String profile_img, int from_follow, int to_follow, int to_follower,
+			int from_follower, char f_block) {
+		super();
+		this.id = id;
+		this.uname = uname;
+		this.profile_img = profile_img;
+		this.from_follow = from_follow;
+		this.to_follow = to_follow;
+		this.to_follower = to_follower;
+		this.from_follower = from_follower;
+		this.f_block = f_block;
+	}
 
 
 
 	public String getProfile_img() {
 		return profile_img;
 	}
+
 
 
 
@@ -192,13 +217,77 @@ public class Member {
 	}
 
 
+	public int getFrom_follow() {
+		return from_follow;
+	}
+
+
+
+	public void setFrom_follow(int from_follow) {
+		this.from_follow = from_follow;
+	}
+
+
+
+	public int getTo_follow() {
+		return to_follow;
+	}
+
+
+
+	public void setTo_follow(int to_follow) {
+		this.to_follow = to_follow;
+	}
+
+
+
+	public int getTo_follower() {
+		return to_follower;
+	}
+
+
+
+	public void setTo_follower(int to_follower) {
+		this.to_follower = to_follower;
+	}
+
+
+
+	public int getFrom_follower() {
+		return from_follower;
+	}
+
+
+
+	public void setFrom_follower(int from_follower) {
+		this.from_follower = from_follower;
+	}
+
+
+
+	public char getF_block() {
+		return f_block;
+	}
+
+
+
+	public void setF_block(char f_block) {
+		this.f_block = f_block;
+	}
+
+
 
 	@Override
 	public String toString() {
 		return "Member [id=" + id + ", mail=" + mail + ", upwd=" + upwd + ", m_phone=" + m_phone + ", height=" + height
 				+ ", weight=" + weight + ", gender=" + gender + ", uname=" + uname + ", intro=" + intro
-				+ ", profile_img=" + profile_img + ", user_num=" + user_num + "]";
+				+ ", profile_img=" + profile_img + ", user_num=" + user_num + ", from_follow=" + from_follow
+				+ ", to_follow=" + to_follow + ", to_follower=" + to_follower + ", from_follower=" + from_follower
+				+ ", f_block=" + f_block + "]";
 	}
+
+
+
 
 
 	

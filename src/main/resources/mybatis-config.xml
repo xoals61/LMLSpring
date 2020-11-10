@@ -8,7 +8,6 @@
 	<!-- typeAliases -->
 	<typeAliases>
 		<typeAlias type="com.kh.lml.member.model.vo.Member" alias="Member"/>
-		
 	</typeAliases>
 	
 	<!-- environments 엘리먼트로 dataSource 등의 DB정보들을 작성했었다.

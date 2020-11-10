@@ -1,5 +1,7 @@
 package com.kh.lml.member.model.service;
 
+import java.util.ArrayList;
+
 import com.kh.lml.member.model.vo.Member;
 
 public interface MemberService {
@@ -18,4 +20,8 @@ public interface MemberService {
 	int pwdCheck(Member m);
 
 	int changePwd(Member changeM);
+
+	ArrayList<Member> selectFollowList(int uNum);
+
+
 }

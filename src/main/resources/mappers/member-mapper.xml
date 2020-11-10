@@ -13,6 +13,11 @@
 		<result property="intro" column="INTRO"/>
 		<result property="profile_img" column="PROFILE_IMG"/>
 		<result property="user_num" column="USER_NUM"/>
+		<result property="from_follow" column="FROM_FOLLOW"/>
+		<result property="to_follow" column="TO_FOLLOW"/>
+		<result property="to_follower" column="TO_FOLLOWER"/>
+		<result property="from_follower" column="FROM_FOLLOWER"/>
+		<result property="f_block" column="F_BLOCK"/>
 		
 	</resultMap>
 	<select id="loginMember" parameterType="Member" resultMap="memberResultSet">
@@ -55,6 +60,13 @@
 	<update id="pwdChange" parameterType="Member">
 	UPDATE LML_MEM SET UPWD=#{upwd} WHERE ID=#{id} 
 	</update>
+	
+	<select id="selectFollowList" resultMap="memberResultSet">
+		SELECT FROM_FOLLOW, TO_FOLLOW, TO_FOLLOWER, FROM_FOLLOWER, F_BLOCK, ID, UNAME, PROFILE_IMG
+		FROM FOLLOW_LIST
+		JOIN LML_MEM ON (TO_FOLLOW = USER_NUM)
+		WHERE FROM_FOLLOW = #{uNum}
+	</select>
 	
 	
 </mapper>

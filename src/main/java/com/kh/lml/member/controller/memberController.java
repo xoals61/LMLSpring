@@ -1,6 +1,7 @@
 package com.kh.lml.member.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.lml.member.model.service.MemberService;
 import com.kh.lml.member.model.vo.Member;
@@ -67,11 +69,7 @@ public class memberController {
 	public String setting4() {
 		return "settings/lml_Settings_4";
 	}
-	// 세팅5(친구관리)
-	@RequestMapping("Settings5.do")
-	public String setting5() {
-		return "settings/lml_Settings_5";
-	}
+	
 	// 검색페이지
 	@RequestMapping("Search.do")
 	public String Search() {
@@ -223,5 +221,17 @@ public class memberController {
 			model.addAttribute("msg","회원 수정 실패");
 			return "common/errorPage";
 		}
+	}
+	
+	// 세팅5(친구관리)
+	@RequestMapping("Settings5.do")
+	public ModelAndView setting5(ModelAndView mv, int uNum) {
+		
+		ArrayList<Member> FollowList = mService.selectFollowList(uNum);
+		
+		mv.addObject("FollowList", FollowList);
+		mv.setViewName("settings/lml_Settings_5");
+		
+		return mv;
 	}
 }
