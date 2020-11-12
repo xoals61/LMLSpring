@@ -62,11 +62,10 @@
 	</update>
 	
 	<select id="selectFollowList" resultMap="memberResultSet">
-		SELECT FROM_FOLLOW, TO_FOLLOW, ID, UNAME, PROFILE_IMG
+		SELECT FROM_FOLLOW, TO_FOLLOW, F_BLOCK, ID, UNAME, PROFILE_IMG
 		FROM FOLLOW_LIST
 		JOIN LML_MEM ON (TO_FOLLOW = USER_NUM)
 		WHERE FROM_FOLLOW = #{uNum}
-		AND F_BLOCK = 'N'
 	</select>
 	
 	<select id="selectFollowerList" resultMap="memberResultSet">
@@ -97,7 +96,22 @@
 		WHERE TO_FOLLOW = #{uNum}
 	</select>
 	
+	<insert id="followBtn" parameterType="Member">
+		INSERT INTO FOLLOW_LIST
+		VALUES(#{from_follow},#{to_follow},#{to_follow},#{from_follow},DEFAULT)
+	</insert>
 	
+	<select id="fselectUser" resultMap="memberResultSet">
+		SELECT ID, UNAME, PROFILE_IMG
+		FROM LML_MEM
+		WHERE USER_NUM = #{uNum}
+	</select>
+	
+	<delete id="unfollowBtn" parameterType="Member">
+		DELETE FROM FOLLOW_LIST 
+		WHERE FROM_FOLLOW = #{from_follow} 
+		AND TO_FOLLOW = #{to_follow}
+	</delete>
 </mapper>
 
 

@@ -274,27 +274,52 @@ input, textarea:focus {outline:none;}
     padding-left: 78px;
     margin: 0;
 }
+
+/* 팔로잉 */
+.button1{
+    border: 1px solid lightgray;
+    border-radius: 0.4em;
+    cursor: pointer;
+    color: gray;
+    font-weight: 700;
+    font-size: 18px;
+    background-color: #f5f5f5;
+    outline: none;
+    transition: 0.3s;
+    width: 75px;
+    height: 35px;
+}
+
+/* 팔로우 */
 .button2{
-    border: none;
+    border: 1px solid rgb(50, 158, 230);
     border-radius: 0.4em;
     cursor: pointer;
     color: rgb(255, 255, 255);
     font-weight: 700;
+    font-size: 18px;
     background-color: rgb(50, 158, 230);
     outline: none;
     transition: 0.3s;
+    width: 75px;
+    height: 35px;
 }
-.button1{
-    border: 1px solid #414141;
+
+/* 차단 */
+.button3{
+    border: 1px solid rgb(255, 255, 255);
     border-radius: 0.4em;
     cursor: pointer;
-    color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
     font-weight: 700;
-    background-color: #f5f5f5;
+    font-size: 18px;
+    background-color: #f85961;
     outline: none;
     transition: 0.3s;
-
+    width: 75px;
+    height: 35px;
 }
+
 .tags{
 	margin:0;
 	padding:0;
@@ -357,14 +382,4 @@ input, textarea:focus {outline:none;}
     position: absolute;
     margin-left: 650px;
     margin-top:20px;
-}
-.button3{
-    border: none;
-    border-radius: 0.4em;
-    cursor: pointer;
-    color: rgb(255, 255, 255);
-    font-weight: 700;
-    background-color: #f85961;
-    outline: none;
-    transition: 0.3s;
 }

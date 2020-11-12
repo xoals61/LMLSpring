@@ -51,6 +51,16 @@ public class MemberDao {
 	public int countFollowerList(int uNum) {
 		return sqlSession.selectOne("memberMapper.countFollowerList",uNum);
 	}
+	public int followBtn(Member f) {
+		return sqlSession.insert("memberMapper.followBtn",f);
+	}
+	public Member fselectUser(int uNum) {
+		return sqlSession.selectOne("memberMapper.fselectUser",uNum);
+	}
+	public int unfollowBtn(Member f) {
+		return sqlSession.delete("memberMapper.unfollowBtn",f);
+	}
+
 	
 
 

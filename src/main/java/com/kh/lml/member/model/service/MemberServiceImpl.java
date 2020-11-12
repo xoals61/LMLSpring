@@ -84,6 +84,24 @@ public class MemberServiceImpl implements MemberService {
 		return mDao.countFollowerList(uNum);
 	}
 
+	@Override
+	public int followBtn(Member f) {
+		return mDao.followBtn(f);
+	}
+
+	@Override
+	public Member fselectUser(int uNum) {
+		return mDao.fselectUser(uNum);
+	}
+
+	@Override
+	public int unfollowBtn(Member f) {
+		return mDao.unfollowBtn(f);
+	}
+
+
+
+
 
 
 }

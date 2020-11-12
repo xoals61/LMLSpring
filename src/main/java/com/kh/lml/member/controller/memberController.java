@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,9 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonIOException;
 import com.kh.lml.member.model.service.MemberService;
 import com.kh.lml.member.model.vo.Member;
 
@@ -246,4 +250,53 @@ public class memberController {
 		
 		return mv;
 	}
+	
+	// 팔로우 등록
+	@ResponseBody
+	@RequestMapping(value="followBtn.do")
+	public String followBtn(int toFollow, int fromFollow) {
+		
+		Member f = new Member(fromFollow, toFollow);
+		
+		int result = mService.followBtn(f);
+
+		//int result = mService.followBtn(f);
+		
+		if(result > 0) {
+			return "success";
+		}else {
+			return "fail";
+		}
+	}
+	
+	// 팔로우추가 뷰
+	@RequestMapping(value="fSelectUser.do", produces="application/json; charset=UTF-8")
+	public void fSelectUser(HttpServletResponse response, int uNum) throws JsonIOException, IOException {
+		
+		Member user = mService.fselectUser(uNum);
+		response.setContentType("application/json; charset=utf-8");
+		
+		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+		gson.toJson(user,response.getWriter());
+	}
+	
+	// 언팔로우 등록
+	
+	@ResponseBody
+	@RequestMapping(value="unfollowBtn.do") 
+	public String unfollowBtn(int toUnFollow, int fromFollow) {
+	  
+	  Member f = new Member(fromFollow, toUnFollow);
+	  
+	  int result = mService.unfollowBtn(f);
+	  
+	  if(result > 0) {
+		  return "success"; 
+	  }else { 
+		  return "fail"; 
+	  } 
+
+	  
+	}
+	 
 }

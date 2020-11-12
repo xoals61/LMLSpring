@@ -36,7 +36,7 @@
                      
                     </div>
                 </div>
-                <div class="rContent">
+                <div class="rContent" id="rContent">
                         <div class="friends">
                             <input class="fsearch" type="text">
                             <input class-="fbtn" type="button" value="검색">
@@ -57,20 +57,30 @@
 							<c:forEach var="fwer" items="${ FollowerList }">
 	                       		<table class="add_table">
 		                            <tr>
-		                                <td class="imgtd" rowspan="2" style="width: 10%;"><img class="userimg" src="resources/images/jmImg/${fwer.profile_img }" alt="#"></td>
+		                                <td class="imgtd" rowspan="2" style="width: 10%;"><img class="userimg" src="resources/images/jmImg/${fwer.profile_img}" alt="#"></td>
 		                                <td class="idtd" style="width: 30%;">${fwer.id }</td>
 		                                <td class="btntd" rowspan="2" style="width: 30%;">
-		                                	<c:set var="doneLoop" value="false"/>
 		                                	<c:forEach var="check" items="${ FollowList }">
 			                                	<c:if test="${fwer.id eq check.id}">
-													<input class="button2" type="button" value="팔로잉">
-													<c:set var="doneLoop" value="true"/>
-												</c:if>
-												<c:if test="${fwer.id ne check.id}">
-													<input class="button1" type="button" value="팔로우">
-													<c:set var="doneLoop" value="true"/>
+													<c:set var="followBtn" value="following"/>
+													<c:if test="${check.f_block eq 'Y'.charAt(0) }">
+														<c:set var="followBtn" value="block"/>
+													</c:if>
 												</c:if>
 											</c:forEach>
+											
+											<c:choose>
+												<c:when test="${followBtn eq 'following'}">
+													<input class="button1" id="${fwer.from_follower }" type="button" value="팔로잉">
+												</c:when>
+												<c:when test="${followBtn eq 'block'}">
+													<input class="button3" id="${fwer.from_follower }" type="button" value="차단">
+												</c:when>
+												<c:when test="${followBtn ne 'following'}">
+													<input class="button2" id="${fwer.from_follower }" type="button" value="팔로우">
+												</c:when>
+											</c:choose>
+											
 										</td>
 		                            </tr>
 		                            <tr>
@@ -93,35 +103,35 @@
 						</c:if>
                     </div>
                     <div id="address_woo" class="address">
-                      <!-- 팔로우친구 -->
-                      	<c:if test="${ !empty FollowList }">
+	                    <!-- 팔로우친구 -->
+	                    <c:if test="${ !empty FollowList }">
 							<c:forEach var="f" items="${ FollowList }">
-	                       		<table class="add_table">
-		                            <tr>
-		                                <td class="imgtd" rowspan="2" style="width: 10%;"><img class="userimg" src="resources/images/jmImg/${f.profile_img }" alt="#"></td>
-		                                <td class="idtd" style="width: 30%;">${f.id }</td>
-		                                <td class="btntd" rowspan="2" style="width: 30%;"><input class="button2" type="button" value="팔로우"></td>
-		                            </tr>
-		                            <tr>
-		                                <td>${f.uname }</td>
-		                            </tr>
-		                        </table>
-	                       </c:forEach>
+							<c:set var="fromFollow" value="${f.from_follow}"/>
+		                    	<table class="add_table">
+			                         <tr>
+			                             <td class="imgtd" rowspan="2" style="width: 10%;"><img class="userimg" src="resources/images/jmImg/${f.profile_img }" alt="#"></td>
+			                             <td class="idtd" style="width: 30%;">${f.id }</td>
+			                             <td class="btntd" rowspan="2" style="width: 30%;"><input class="button1" id="${f.to_follow }" type="button" value="팔로잉"></td>
+			                         </tr>
+			                         <tr>
+			                             <td>${f.uname }</td>
+			                         </tr>
+			                     </table>
+		                    </c:forEach>
 						</c:if>
 						<c:if test="${ empty FollowList }">
 							<table class="add_table">
-			                    <tr>
-			                        <td class="imgtd" rowspan="2" style="width: 10%;"></td>
-			                        <td class="idtd" style="width: 30%;">다른 사람을 팔로우 해보셔</td>
-			                        <td class="btntd" rowspan="2" style="width: 30%;"></td>
-			                    </tr>
-			                    <tr>
-			                        <td></td>
-			                    </tr>
-		                	</table>
+				                  <tr>
+				                      <td class="imgtd" rowspan="2" style="width: 10%;"></td>
+				                      <td class="idtd" style="width: 30%;">다른 사람을 팔로우 해보셔</td>
+				                      <td class="btntd" rowspan="2" style="width: 30%;"></td>
+				                  </tr>
+				                  <tr>
+				                      <td></td>
+				                  </tr>
+			              	</table>
 						</c:if>
-                        
-                </div>
+                	</div>
                 <div id="address_block" class="address">
                     <!-- 차단친구 -->
                     	<c:if test="${ !empty BlockList }">
@@ -157,78 +167,186 @@
         </div>
     </section>
 
-    <script>
-        /*선택 메뉴 고정*/
-        $(document).ready(function(){
-          $('.minimenu').on('click', function(){
-              $(this).addClass('put');
-              $(this).siblings().removeClass('put');
-          });
-      });
-  </script>
+	<script>
+		/*선택 메뉴 고정*/
+		$(document).ready(function(){
+			$('.minimenu').on('click', function(){
+				$(this).addClass('put');
+				$(this).siblings().removeClass('put');
+			});
+		});
+		</script>
 
       <script>
-          
-        
-        //버튼 값 변경
-       
+        // button2 팔로우 버튼 눌렀을 때
         $(function(){
-            $('.button1, .button2').click( function() {
-            if( $(this).val() == '팔로우' ) {
-                $(this).val('팔로잉').css("background","rgb(50, 158, 230)");
-            }
-            else {
-                $(this).val('팔로우').css("background"," #f5f5f5");
-            }
-            
-            
-        });
-
-        });
-
-
+			$('.button2',this).click(function(){
+				
+				if($(this).attr('value') == "팔로우"){
+					var followQ = confirm('팔로우 하시겠습니까?');
+					
+					if(followQ){
+						var toFollow = $(this).attr('id');	// 팔로우 할 상대
+						var fromFollow = '<c:out value="${fromFollow}"/>';	// 본인
+						
+						console.log("toFollow : " + toFollow);
+						console.log("fromFollow : " + fromFollow);
+						
+						$.ajax({
+							url:"followBtn.do",
+							data:{toFollow:toFollow, fromFollow:fromFollow},
+							type:"post",
+							success:function(data){
+								if(data == "success"){
+									$('#'+toFollow).attr('class','button1');
+									$('#'+toFollow).attr('value','팔로잉');
+									getFollowList();
+								}else{
+									alert("실패");
+								}
+							},
+							error:function(jqxhr, textStatus,errorThrown){
+								console.log("ajax 처리 실패");
+							}
+						});
+						
+						function getFollowList(){
+				        	var uNum = toFollow;
+				        	console.log("uNum : " + uNum);
+				        	$.ajax({
+				        		url:"fSelectUser.do",
+				        		data:{uNum:uNum},
+				        		dataType:"json",
+				        		success:function(data){
+				        			if(data.id.length > 0){
+				        				$("#address_woo").append('<table class="add_table">' +
+											                         '<tr>' +
+										                             '<td class="imgtd" rowspan="2" style="width: 10%;"><img class="userimg" src="resources/images/jmImg/'+data.profile_img+'" alt="#"></td>'+
+										                             '<td class="idtd" style="width: 30%;">'+data.id+'</td>'+
+										                             '<td class="btntd" rowspan="2" style="width: 30%;"><input class="button1" type="button" value="팔로잉"></td>'+
+										                         '</tr>'+
+										                         '<tr>'+
+										                             '<td>'+data.uname+'</td>'+
+										                         '</tr>'+
+										                     '</table>');
+				        			}else{
+										alert("실패");
+									}
+								},
+								error:function(request,status,errorData){
+									console.log("user 처리 실패");
+									console.log(request.status + ":" + errorData);
+								}
+				        	});
+				        }
+					}else{
+						
+					}
+				}else{
+					
+				}
+			});
+			
+			$('.button1',this).click(function(){
+				
+				console.log($(this).attr('value'));
+				
+				if($(this).attr('value') == "팔로잉"){
+					
+					var unfollowQ = confirm('팔로우를 취소하시겠습니까?');
+					
+					if(unfollowQ){
+						var toUnFollow = $(this).attr('id');	// 팔로우 취소 할 상대
+						var fromFollow = '<c:out value="${fromFollow}"/>';	// 본인
+						
+						console.log("toUnFollow : " + toUnFollow);
+						console.log("fromFollow : " + fromFollow);
+						
+						$.ajax({
+							url:"unfollowBtn.do",
+							data:{toUnFollow:toUnFollow, fromFollow:fromFollow},
+							type:"post",
+							success:function(data){
+								if(data == "success"){
+									$('#'+toUnFollow).attr('class','button2');
+									$('#'+toUnFollow).attr('value','팔로우');
+									//getFollowList();
+								}else{
+									alert("실패");
+								}
+							},
+							error:function(jqxhr, textStatus,errorThrown){
+								console.log("ajax 처리 실패");
+							}
+						});
+						
+						/* function getFollowList(){
+				        	var uNum = toFollow;
+				        	console.log("uNum : " + uNum);
+				        	$.ajax({
+				        		url:"fSelectUser.do",
+				        		data:{uNum:uNum},
+				        		dataType:"json",
+				        		success:function(data){
+				        			if(data.id.length > 0){
+				        				$("#address_woo").append('<table class="add_table">' +
+											                         '<tr>' +
+										                             '<td class="imgtd" rowspan="2" style="width: 10%;"><img class="userimg" src="resources/images/jmImg/'+data.profile_img+'" alt="#"></td>'+
+										                             '<td class="idtd" style="width: 30%;">'+data.id+'</td>'+
+										                             '<td class="btntd" rowspan="2" style="width: 30%;"><input class="button1" type="button" value="팔로잉"></td>'+
+										                         '</tr>'+
+										                         '<tr>'+
+										                             '<td>'+data.uname+'</td>'+
+										                         '</tr>'+
+										                     '</table>');
+				        			}else{
+										alert("실패");
+									}
+								},
+								error:function(request,status,errorData){
+									console.log("user 처리 실패");
+									console.log(request.status + ":" + errorData);
+								}
+				        	});
+				        } */
+					}else{
+						
+					}
+					
+				}else{
+					
+				}
+			});
+		});
+        
      
         $(document).ready(function() {
-        $('#address').show(); //페이지를 로드할 때 표시할 요소
-        $('#address_woo').hide(); //페이지를 로드할 때 숨길 요소
-        $('#address_block').hide(); //페이지를 로드할 때 숨길 요소
-        // $('#add_woo').click(function(){
-        // $ ('#address').hide(); //클릭 시 첫 번째 요소 숨김
-        // $ ('#address_block').hide(); //클릭 시 세번째 요소 숨김
-        // $ ('#address_woo').show(); //클릭 시 두 번째 요소 표시
-        // $('#add_block').click(function(){
-        //  $ ('#address').hide(); //클릭 시 첫 번째 요소 숨김
-        //  $ ('#address_woo').hide(); //클릭 시 두 번째 요소 숨김
-        // $ ('#address_block').show(); //클릭 시 세 번째 요소 표시
-        // })
-        // $('#address').click(function(){
-        //  $ ('#address_woo').hide(); //클릭 시 첫 번째 요소 숨김
-        //  $ ('#address_block').hide(); //클릭 시 두 번째 요소 숨김
-        // $ ('#address').show(); //클릭 시 세 번째 요소 표시
-        // })
-        
-        
-        return false;
-        // });
+	        $('#address').show(); //페이지를 로드할 때 표시할 요소
+	        $('#address_woo').hide(); //페이지를 로드할 때 숨길 요소
+	        $('#address_block').hide(); //페이지를 로드할 때 숨길 요소
+	
+	        return false;
         });
 
         $('#add_woo').click(function(){
-        $ ('#address').hide(); //클릭 시 첫 번째 요소 숨김
-        $ ('#address_block').hide(); //클릭 시 세번째 요소 숨김
-        $ ('#address_woo').show(); //클릭 시 두 번째 요소 표시
-        return false;
+	        $ ('#address').hide(); //클릭 시 첫 번째 요소 숨김
+	        $ ('#address_block').hide(); //클릭 시 세번째 요소 숨김
+	        $ ('#address_woo').show(); //클릭 시 두 번째 요소 표시
+	        return false;
         });
+        
         $('#add_block').click(function(){
-         $ ('#address').hide(); //클릭 시 첫 번째 요소 숨김
-         $ ('#address_woo').hide(); //클릭 시 두 번째 요소 숨김
-        $ ('#address_block').show(); //클릭 시 세 번째 요소 표시
-        return false;
+	        $ ('#address').hide(); //클릭 시 첫 번째 요소 숨김
+	        $ ('#address_woo').hide(); //클릭 시 두 번째 요소 숨김
+	        $ ('#address_block').show(); //클릭 시 세 번째 요소 표시
+	        return false;
         });
+        
         $('#add_wer').click(function(){
-         $ ('#address_woo').hide(); //클릭 시 첫 번째 요소 숨김
-         $ ('#address_block').hide(); //클릭 시 두 번째 요소 숨김
-        $ ('#address').show(); //클릭 시 세 번째 요소 표시
-        return false;
+	        $ ('#address_woo').hide(); //클릭 시 첫 번째 요소 숨김
+	        $ ('#address_block').hide(); //클릭 시 두 번째 요소 숨김
+	        $ ('#address').show(); //클릭 시 세 번째 요소 표시
+	        return false;
         });
 
         </script>

@@ -82,13 +82,19 @@ public class Member {
 		this.from_follower = from_follower;
 		this.f_block = f_block;
 	}
+	
+	// 팔로우용
+	public Member(int from_follow, int to_follow) {
+		super();
+		this.from_follow = from_follow;
+		this.to_follow = to_follow;
+	}
 
 
 
 	public String getProfile_img() {
 		return profile_img;
 	}
-
 
 
 

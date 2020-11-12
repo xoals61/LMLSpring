@@ -31,5 +31,15 @@ public interface MemberService {
 
 	int countFollowerList(int uNum);
 
+	int followBtn(Member f);
+
+	Member fselectUser(int uNum);
+
+	int unfollowBtn(Member f);
+
+
+
+	
+
 
 }
