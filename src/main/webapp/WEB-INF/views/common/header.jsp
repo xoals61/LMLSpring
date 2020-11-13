@@ -19,9 +19,10 @@
             <div class="nav1">
                 <div class="hTitle1"><a href='Index.do'><img src="resources/images/logo/logo_medium.png" class="titleImg"/></a></div>
                 <div class="hTitle1">
-                    <form action="#" autocomplete="off">
+                    <form action="Search.do" autocomplete="off">
                         <fieldset class="sUrl">
-                            <input class="searchInput" type="text"  required placeholder=" 검색" onKeyPress="if( event.keyCode==13 ){search();}">
+                            <input class="searchInput" type="text" name="keyword" required placeholder=" 검색" >
+                            <!-- onKeyPress="if( event.keyCode==13 ){search();}" -->
                             <div class="sAfter"></div>
                         </fieldset>
                     </form>

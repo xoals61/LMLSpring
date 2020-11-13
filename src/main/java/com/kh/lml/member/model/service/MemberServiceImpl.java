@@ -99,8 +99,19 @@ public class MemberServiceImpl implements MemberService {
 		return mDao.unfollowBtn(f);
 	}
 
+	//1113은지
+	@Override
+	public ArrayList<Member> searchUserList1(String keyword) {
+		return mDao.searchUserList1(keyword);
+	}
+
+	@Override
+	public int searchUserCount(String keyword) {
+		return  mDao.searchUserCount(keyword);
+	}
 
 
+	//1113은지
 
 
 

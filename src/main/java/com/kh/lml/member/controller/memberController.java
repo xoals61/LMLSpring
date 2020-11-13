@@ -82,21 +82,6 @@ public class memberController {
 		return "settings/lml_Settings_4";
 	}
 	
-	// 검색페이지
-	@RequestMapping("Search.do")
-	public String Search() {
-		return "search/lml_search";
-	}
-	// 검색(해쉬태그)
-	@RequestMapping("SearchHash.do")
-	public String SearchHash() {
-		return "search/lml_search_hashtag";
-	}
-	// 검색(사용자)
-	@RequestMapping("SearchUser.do")
-	public String SearchUser() {
-		return "search/lml_search_user";
-	}
 	// 채팅
 	@RequestMapping("Message.do")
 	public String Message() {
@@ -298,5 +283,40 @@ public class memberController {
 
 	  
 	}
+	
+	//1113은지
+	// 검색페이지
+	@RequestMapping("Search.do")
+	public ModelAndView Search(ModelAndView mv, String keyword) {
+		
+		// ArrayList<Member> SearchBoard = mService.searchBoardList(keyword);
+		ArrayList<Member> SearchUser = mService.searchUserList1(keyword);
+		int userCount = mService.searchUserCount(keyword);
+		// 6명만 나옴. 
+		// 회원번호, 사진, 아이디, 이름, 팔로우 여부(팔로우 했으면 X, 팔로우 아니면 팔로우 버튼 나오게) -팔로우 버튼 눌렀을 시 팔로우.do
+		// 팔로우 여부는 ajax로 하자..
+		
+		System.out.println("검색 : " + userCount);
+		
+		mv.addObject("searchUser", SearchUser);
+		mv.addObject("userCount",userCount);
+		
+		mv.setViewName("search/lml_search");
+		
+		return mv;
+	}
+	
+	
+	// 검색(해쉬태그)
+	@RequestMapping("SearchHash.do")
+	public String SearchHash() {
+		return "search/lml_search_hashtag";
+	}
+	// 검색(사용자)
+	@RequestMapping("SearchUser.do")
+	public String SearchUser() {
+		return "search/lml_search_user";
+	}
+	//1113은지
 	 
 }

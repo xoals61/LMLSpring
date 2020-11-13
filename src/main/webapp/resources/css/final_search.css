@@ -224,6 +224,15 @@
             border:1px solid rgb(216, 213, 213);
             background: white;
             margin: 12px;
+            cursor:pointer;
+        }
+        
+        .noinfoDiv{
+            position: relative;
+            width: 540px;
+            height: 90px;
+            border-radius: 8px 8px;
+            margin: 12px;
         }
 
         .uImg{
@@ -235,6 +244,7 @@
             background: gray;
             margin: 12px 20px;
             overflow: hidden;
+            cursor:pointer;
         }
 
         .uImg img{
@@ -248,6 +258,7 @@
             float: left;
             margin: 17px 0px;
             width: 360px;
+            cursor:pointer;
         }
 
         .uName .uid{
@@ -263,7 +274,10 @@
         .follow{
             float: left;
             width: 50px;
+            color:rgb(50, 158, 230);
+            font-weight:400;
             margin: 32px 20px 32px 0px;
+            cursor:pointer;
         }
 
 

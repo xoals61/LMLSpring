@@ -60,8 +60,16 @@ public class MemberDao {
 	public int unfollowBtn(Member f) {
 		return sqlSession.delete("memberMapper.unfollowBtn",f);
 	}
+	
+	//1113은지
+	public ArrayList<Member> searchUserList1(String keyword) {
+		return (ArrayList)sqlSession.selectList("memberMapper.searchUserList1", keyword);
+	}
+	public int searchUserCount(String keyword) {
+		return sqlSession.selectOne("memberMapper.searchUserCount",keyword);
+	}
 
 	
-
+	//1113은지
 
 }

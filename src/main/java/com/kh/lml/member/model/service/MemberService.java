@@ -37,7 +37,12 @@ public interface MemberService {
 
 	int unfollowBtn(Member f);
 
+	//1113은지
+	ArrayList<Member> searchUserList1(String keyword);
 
+	int searchUserCount(String keyword);
+
+	//1113은지
 
 	
 
