@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -109,102 +110,51 @@
                 </div>
                 <a href="SearchUser.do">
                     <div class="suserMore">
-                        542 명의 사용자 더보기
+                    	<c:if test="${userCount > 6}">
+                        	${userCount} 명의 사용자 더보기
+                        </c:if>
                     </div>
                 </a>
             </div>
             <div class="userTable">
                 <table>
-                    <tr>
-                        <td>
-                            <div class="infoDiv">
-                                <div class="uImg">
-                                    <img src="resources/images/mainImg/buzz.jpg">
-                                </div>
-                                <div class="uName">
-                                    <div class="uid">@daliyiambuzz</div>
-                                    <div class="uname">강버즈</div>
-                                </div>
-                                <div class="follow">
-                                    <div>팔로우</div>
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="infoDiv">
-                                <div class="uImg">
-                                    <img src="resources/images/mainImg/jessie.jpg">
-                                </div>
-                                <div class="uName">
-                                    <div class="uid">@iambuzz</div>
-                                    <div class="uname">daliy강버즈</div>
-                                </div>
-                                <div class="follow">
-                                    <div>팔로우</div>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="infoDiv">
-                                <div class="uImg">
-                                    <img src="resources/images/mainImg/ppotato.jpg">
-                                </div>
-                                <div class="uName">
-                                    <div class="uid">@daliyiambuzz</div>
-                                    <div class="uname">강버즈</div>
-                                </div>
-                                <div class="follow">
-                                    <div>팔로우</div>
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="infoDiv">
-                                <div class="uImg">
-                                    <img src="resources/images/mainImg/prex.jpg">
-                                </div>
-                                <div class="uName">
-                                    <div class="uid">@daliyiambuzz</div>
-                                    <div class="uname">강버즈</div>
-                                </div>
-                                <div class="follow">
-                                    <div>팔로우</div>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="infoDiv">
-                                <div class="uImg">
-                                    <img src="resources/images/mainImg/pandy.jpg">
-                                </div>
-                                <div class="uName">
-                                    <div class="uid">@iambuzz</div>
-                                    <div class="uname">daliy강버즈</div>
-                                </div>
-                                <div class="follow">
-                                    <div>팔로우</div>
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="infoDiv">
-                                <div class="uImg">
-                                    <img src="resources/images/mainImg/palien.png">
-                                </div>
-                                <div class="uName">
-                                    <div class="uid">@iambuzz</div>
-                                    <div class="uname">강버즈</div>
-                                </div>
-                                <div class="follow">
-                                    <div>팔로우</div>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
+                	<c:if test="${ !empty searchUser }">
+                		<c:set var="i" value="0"/>
+                		<c:forEach var="r" begin="1" end="3">
+                			<tr>
+	                			<c:forEach var="c" begin="1" end="2">
+	                				<c:if test="${ !empty searchUser[i] }">
+		                				<td>
+		                					<c:set var="uNum" value="${searchUser[i].user_num }"/>
+						                    <div class="infoDiv" >
+						                        <div class="uImg" onclick="infoPage();">
+						                            <img src="resources/images/mainImg/${searchUser[i].profile_img}">
+						                        </div>
+						                        <div class="uName" onclick="infoPage();">
+						                            <div class="uid">${searchUser[i].id}</div>
+						                            <div class="uname">${searchUser[i].uname}</div>
+						                        </div>
+						                        <div class="follow">
+						                            <div>팔로우</div>
+						                        </div>
+						                    </div>
+						                </td>
+		                				<c:set var="i" value="${i+1}"/>
+	                				</c:if>
+	                				<c:if test="${ empty searchUser[i] }">
+	                					<td>
+	                						<div class="noinfoDiv">
+	                							
+	                						</div>
+	                					</td>
+	                				</c:if>
+	                			</c:forEach>
+                			</tr>
+                		</c:forEach>
+					</c:if>
+					<c:if test="${ empty searchUser }">
+						<br>&nbsp;&nbsp;&nbsp;&nbsp;검색 결과가 없습니다
+					</c:if>
                 </table>
             </div>
         </div>
@@ -223,6 +173,16 @@
                 $('.chover').hide();
             });
         });
+        
+        function infoPage(){
+        	var uNum = ${uNum};
+        	//console.log("MyPage.do?uNum="+uNum);
+        	location.href="MyPage.do?uNum="+uNum;
+        }
+        
+        function followBtn(){
+        	var uNum = ${uNum};
+        }
     </script>
 </body>
 </html>

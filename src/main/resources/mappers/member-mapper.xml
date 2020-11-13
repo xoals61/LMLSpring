@@ -112,6 +112,23 @@
 		WHERE FROM_FOLLOW = #{from_follow} 
 		AND TO_FOLLOW = #{to_follow}
 	</delete>
+	
+	<!-- 1113은지 -->
+	<select id="searchUserList1" parameterType="string" resultMap="memberResultSet">
+		SELECT USER_NUM, ID, UNAME, PROFILE_IMG
+		FROM LML_MEM
+		WHERE ID LIKE LOWER('%' ||  #{keyword} || '%')
+		OR UNAME LIKE LOWER('%' ||  #{keyword} || '%')
+	</select>
+	
+	<select id="searchUserCount" resultType="_int">
+		SELECT COUNT(*)
+		FROM LML_MEM
+		WHERE ID LIKE LOWER('%' ||  #{keyword} || '%')
+		OR UNAME LIKE LOWER('%' ||  #{keyword} || '%')
+	</select>
+	<!-- 1113은지 -->
+	
 </mapper>
 
 
