@@ -14,16 +14,88 @@
 </head>
 <body>
 	<%
-    String clientId = "xdLgSJ5mS0zQ1kf7UqKd";//애플리케이션 클라이언트 아이디값";
-    String redirectURI = URLEncoder.encode("http://localhost:9090/lml/", "UTF-8");
-    SecureRandom random = new SecureRandom();
-    String state = new BigInteger(130, random).toString();
-    String apiURL = "https://nid.naver.com/oauth2.0/authorize?response_type=code";
-    apiURL += "&client_id=" + clientId;
-    apiURL += "&redirect_uri=" + redirectURI;
-    apiURL += "&state=" + state;
-    session.setAttribute("state", state);
- %>
+		String clientId = "xdLgSJ5mS0zQ1kf7UqKd";//애플리케이션 클라이언트 아이디값";
+	String redirectURI = URLEncoder.encode("http://localhost:9090/lml/", "UTF-8");
+	SecureRandom random = new SecureRandom();
+	String state = new BigInteger(130, random).toString();
+	String apiURL = "https://nid.naver.com/oauth2.0/authorize?response_type=code";
+	apiURL += "&client_id=" + clientId;
+	apiURL += "&redirect_uri=" + redirectURI;
+	apiURL += "&state=" + state;
+	session.setAttribute("state", state);
+	%>
+
+		<!-- ------------------이용약관 동의 팝업-------------------- -->
+	<div class="myModal" id="myModal" style="display: none;">
+		<div class="board-detail" id="board-detail" style="display: none;">
+		<!-- <form action="" id="joinForm"> -->
+            <ul class="join_box">
+                <li class="checkBox check01">
+                    <ul class="clearfix">
+                        <li>이용약관, 개인정보 수집 및 이용,
+                            위치정보 이용약관(선택), 프로모션 안내
+                            메일 수신(선택)에 모두 동의합니다.</li>
+                        <li class="checkAllBtn">
+                            <input type="checkbox" name="chkAll" id="chkAll" class="chk">
+                        </li>
+                    </ul>
+                </li>
+                <li class="checkBox check02">
+                    <ul class="clearfix">
+                        <li>이용약관 동의(필수)</li>
+                        <li class="checkBtn">
+                            <input type="checkbox" class="chk"> 
+                        </li>
+                    </ul>
+                    <textarea name="" id="">여러분을 환영합니다.
+	LML서비스 및 제품(이하 ‘서비스’)을 이용해 주셔서 감사합니다. 본 약관은 다양한 LML 서비스의 이용과 관련하여 LML 서비스를 제공하는 LML 주식회사(이하 ‘LML’)와 이를 이용하는 LML 서비스 회원(이하 ‘회원’) 또는 비회원과의 관계를 설명하며, 아울러 여러분의 LML 서비스 이용에 도움이 될 수 있는 유익한 정보를 포함하고 있습니다.
+       </textarea>
+                </li>
+                <li class="checkBox check03">
+                    <ul class="clearfix">
+                        <li>개인정보 수집 및 이용에 대한 안내(필수)</li>
+                        <li class="checkBtn">
+                            <input type="checkbox" class="chk">
+                        </li>
+                    </ul>
+ 
+                    <textarea name="" id="">여러분을 환영합니다.
+LML 서비스 및 제품(이하 ‘서비스’)을 이용해 주셔서 감사합니다. 본 약관은 다양한 LML 서비스의 이용과 관련하여 LML 서비스를 제공하는 LML 주식회사(이하 ‘LML’)와 이를 이용하는 LML 서비스 회원(이하 ‘회원’) 또는 비회원과의 관계를 설명하며, 아울러 여러분의 LML 서비스 이용에 도움이 될 수 있는 유익한 정보를 포함하고 있습니다.
+       </textarea>
+                </li>
+                <li class="checkBox check03">
+                    <ul class="clearfix">
+                        <li>위치정보 이용약관 동의(선택)</li>
+                        <li class="checkBtn">
+                            <input type="checkbox" class="chk">
+                        </li>
+                    </ul>
+ 
+                    <textarea name="" id="">여러분을 환영합니다.
+LML 서비스 및 제품(이하 ‘서비스’)을 이용해 주셔서 감사합니다. 본 약관은 다양한 LML 서비스의 이용과 관련하여 LML 서비스를 제공하는 LML 주식회사(이하 ‘LML’)와 이를 이용하는 LML 서비스 회원(이하 ‘회원’) 또는 비회원과의 관계를 설명하며, 아울러 여러분의 LML 서비스 이용에 도움이 될 수 있는 유익한 정보를 포함하고 있습니다.
+       </textarea>
+                </li>
+                <li class="checkBox check04">
+                    <ul class="clearfix">
+                        <li>이벤트 등 프로모션 알림 메일 수신(선택)</li>
+                        <li class="checkBtn">
+                            <input type="checkbox" class="chk">
+                        </li>
+                    </ul>
+ 
+                </li>
+            </ul>
+            <ul class="footBtwrap clearfix">
+                <li><button class="disagree_btn">비동의</button></li>
+                <li><button class="agree_btn">동의</button></li>
+            </ul>
+<!--         </form> -->
+
+
+
+		</div>
+	</div>
+	<!-- 여기까지 팝업 -->
 	<div class="wrap">
 		<div class="form-wrap">
 			<div class="button-wrap">
@@ -43,9 +115,10 @@
 					required> <input type="checkbox" class="checkbox"><span>Remember
 					Password</span>
 				<button class="submit">Login</button>
-				
+
 			</form>
-			<a href="<%=apiURL%>"><img height="50" src="http://static.nid.naver.com/oauth/small_g_in.PNG"/></a>
+			<a href="<%=apiURL%>"><img height="50"
+				src="http://static.nid.naver.com/oauth/small_g_in.PNG" /></a>
 			<form id="register" action="mInsert.do" class="input-group">
 				<!-- 아이디 중복 체크  -->
 				<input name="id" type="text" id="userId" class="input-field"
@@ -75,187 +148,208 @@
 					<br>
 				</div>
 				<div class="Register">
-					<input type="checkbox" id="termsbtn" class="checkbox"><span>Terms
-						and conditions</span>
+					<input type="checkbox" id="termsbtn" class="checkbox" disabled> <span><p
+							id="agree">Terms and conditions</p></span>
 				</div>
 				<button class="submit" onclick="return validate();">REGISTER</button>
 			</form>
 		</div>
 	</div>
 	<script>
-            var x = document.getElementById("login");
-            var y = document.getElementById("register");
-            var z = document.getElementById("btn");
-            
-            
-            function login(){
-                x.style.left = "50px";
-                y.style.left = "450px";
-                z.style.left = "0";
-            }
+		/*=========================모달======================*/
+		/* 모달팝업 디테일 */
+		var modal = document.getElementById('myModal');
+		var detail = document.getElementById('board-detail');
+		/* var content = document.getElementById('conte'); */
 
-            function register(){
-                x.style.left = "-400px";
-                y.style.left = "50px";
-                z.style.left = "110px";
-            }
-            
-            
-            
-            function validate(){
-    			// 중복체크 여부,유효성검사
-    			
-    			if($("#termsbtn").prop("checked")==true){
-    				
-    			
-    			//비밀번호 유효성 검사
-			      var pw = $("#inputpwd").val();
-			      var id = $("#userId").val();
-				    var checkNumber = pw.search(/[0-9]/g);
-				    var checkEnglish = pw.search(/[a-z]/ig);
-				 
-				    if(!/^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,25}$/.test(pw)){            
-				        alert('숫자+영문자+특수문자 조합으로 8자리 이상 사용해야 합니다.');
-				        return false;
-				    }else if(checkNumber <0 || checkEnglish <0){
-				        alert("숫자와 영문자를 혼용하여야 합니다.");
-				        return false;
-				    }else if(/(\w)\1\1\1/.test(pw)){
-				        alert('같은 문자를 4번 이상 사용하실 수 없습니다.');
-				        return false;
-				    }else if(pw.search(id) > -1){
-				        alert("비밀번호에 아이디가 포함되었습니다.");
-				        return false;
-				    }else {
-					console.log("비밀번호 ok")	
+		$('#Register,#agree ').click(function() {
+			$('.myModal').css('display', 'block');
+			$('.board-detail').css('display', 'block');
+		});
+
+		window.onclick = function(event) {
+			if (event.target == modal) {
+				modal.style.display = "none";
+				detail.style.display = "none";
+			}
+		}
+		/*모달 체크박스 전체선택 */
+		
+		$('#chkAll').click(function(){
+			$('.chk').prop('checked', this.checked )
+		});
+		
+		//동의버튼 눌렀을 경우 체크박스 활성화
+		$('.agree_btn').click(function(){
+			console.log("ㅎㅇ");
+			$('#termsbtn').attr('checked',true)
+		});
+		
+		
+		
+		
+		
+	
+		//화면 전환!!
+		var x = document.getElementById("login");
+		var y = document.getElementById("register");
+		var z = document.getElementById("btn");
+
+		function login() {
+			x.style.left = "50px";
+			y.style.left = "450px";
+			z.style.left = "0";
+		}
+
+		function register() {
+			x.style.left = "-400px";
+			y.style.left = "50px";
+			z.style.left = "110px";
+		}
+
+		function validate() {
+			// 중복체크 여부,유효성검사
+
+			if ($("#termsbtn").prop("checked") == true) {
+
+				//비밀번호 유효성 검사
+				var pw = $("#inputpwd").val();
+				var id = $("#userId").val();
+				var checkNumber = pw.search(/[0-9]/g);
+				var checkEnglish = pw.search(/[a-z]/ig);
+
+				if (!/^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,25}$/
+						.test(pw)) {
+					alert('숫자+영문자+특수문자 조합으로 8자리 이상 사용해야 합니다.');
+					return false;
+				} else if (checkNumber < 0 || checkEnglish < 0) {
+					alert("숫자와 영문자를 혼용하여야 합니다.");
+					return false;
+				} else if (/(\w)\1\1\1/.test(pw)) {
+					alert('같은 문자를 4번 이상 사용하실 수 없습니다.');
+					return false;
+				} else if (pw.search(id) > -1) {
+					alert("비밀번호에 아이디가 포함되었습니다.");
+					return false;
+				} else {
+					console.log("비밀번호 ok")
+				}
+
+				//아이디 중복 검사
+				if ($("#idDuplicateCheck").val() == 0) {
+					alert("사용가능한 아이디를 입력해주세요");
+					$("#userId").focus();
+					return false;
+				}
+				//이름 중복 검사 
+				if ($("#nameDuplicateCheck").val() == 0) {
+					alert("사용가능한 이름을 입력해주세요");
+					$("#inputname").focus();
+					return false;
+				}
+				//키 유효성
+				if ($("#inheight").val() < 50 || $("#inheight").val() > 300) {
+					alert("키는 50이상 300이하여야 합니다.");
+					return false;
+				}
+				//몸무게 유효성
+				if ($("#inweight").val() < 30) {
+					alert("30kg이상의 값을 입력해주세요.");
+					return false;
+				}
+
+				//if($("input:radio[name='gender']").is(":checked")== true){
+				if ($(".radio").is(":checked") == false) {
+					alert("성별을 체크해주세요.");
+					return false;
+				}
+
+				return true;
+
+			} else {
+				console.log(' ㅠㅠ');
+				alert('이용약관에 동의해주세요');
+				return false;
+			}
+
+		}
+
+		$(function() {
+			$("#userId").on("keyup", function() {
+				console.log("아이디 여까지2");
+				var userId = $(this).val();
+
+				if (userId.length < 2) {
+					$(".guide").hide();
+					$("#idDuplicateCheck").val(0);
+					return;
+				}
+
+				$.ajax({
+					url : "idCheck.do",
+					data : {
+						id : userId
+					},
+					type : "post",
+					success : function(data) {
+						console.log(data);
+						if (data == "ok") {
+							$(".error").hide();
+							$(".ok").show();
+							$("#idDuplicateCheck").val(1);
+						} else {
+							$(".ok").hide();
+							$(".error").show();
+							$("#idDuplicateCheck").val(0);
+						}
+					},
+					error : function(jqxhr, textStatus, errorThrown) {
+						console.log("ajax 처리 실패");
+						//에러 로그
+
 					}
-				   
-			//아이디 중복 검사
-    			if($("#idDuplicateCheck").val() == 0){
-    				alert("사용가능한 아이디를 입력해주세요");
-    				$("#userId").focus();
-    				return false;
-    			}
-			//이름 중복 검사 
-    			if($("#nameDuplicateCheck").val() == 0){
-    				alert("사용가능한 이름을 입력해주세요");
-    				$("#inputname").focus();
-    				return false;
-    			}
-			//키 유효성
-			if($("#inheight").val()<50 || $("#inheight").val()>300 ){
-				alert("키는 50이상 300이하여야 합니다.");
-				return false;
-			}
-			//몸무게 유효성
-			if($("#inweight").val()<30){
-				alert("30kg이상의 값을 입력해주세요.");
-				return false;
-			}
-			
+				});
+			});
+		});
 
+		//닉네임 중복 체크 여부
+		$(function() {
+			$("#inputname").on("keyup", function() {
+				console.log("이름 여까지2");
+				var userName = $("#inputname").val();
 
+				if (userName.length < 2) {
+					$(".guides").hide();
+					$("#nameDuplicateCheck").val(0);
+					return;
+				}
 
-			//if($("input:radio[name='gender']").is(":checked")== true){
-				if($(".radio").is(":checked")== false){
-				alert("성별을 체크해주세요.");
-				return false;
-			}
+				$.ajax({
+					url : "nameCheck.do",
+					data : {
+						name : userName
+					},
+					type : "post",
+					success : function(data) {
+						console.log(data);
+						if (data == "ok") {
+							$(".errors").hide();
+							$(".oks").show();
+							$("#nameDuplicateCheck").val(1);
+						} else {
+							$(".oks").hide();
+							$(".errors").show();
+							$("#nameDuplicateCheck").val(0);
+						}
+					},
+					error : function(jqxhr, textStatus, errorThrown) {
+						console.log("ajax 처리 실패");
+						//에러 로그
 
-			
-			return true;
-			
-    		}else{
-    			console.log(' ㅠㅠ');
-    			alert('이용약관에 동의해주세요');
-    			return false;
-    		}
-    		
-            }
-            
-            
-            
-            
-            
-            
-    	
-    		$(function(){
-    			$("#userId").on("keyup",function(){
-    				console.log("아이디 여까지2");
-    				var userId = $(this).val();
-    				
-    				if(userId.length < 2){
-    					$(".guide").hide();
-    					$("#idDuplicateCheck").val(0);
-    					return;
-    				}
-    				
-    				
-    				$.ajax({
-    					url:"idCheck.do",
-    					data:{id:userId},
-    					type:"post",
-    					success:function(data){
-    						console.log(data);
-    						if(data == "ok"){
-    							$(".error").hide();
-    							$(".ok").show();
-    							$("#idDuplicateCheck").val(1);
-    						}else{
-    							$(".ok").hide();
-    							$(".error").show();
-    							$("#idDuplicateCheck").val(0);
-    						}
-    					},
-    					error:function(jqxhr, textStatus,errorThrown){
-    						console.log("ajax 처리 실패");
-    						//에러 로그
-    			
-    					}
-    				});
-    			});
-    		});
-    		
-    		
-    		//닉네임 중복 체크 여부
-    		$(function(){
-    			$("#inputname").on("keyup",function(){
-    				console.log("이름 여까지2");
-    				var userName = $("#inputname").val();
-    				
-    				if(userName.length < 2){
-    					$(".guides").hide();
-    					$("#nameDuplicateCheck").val(0);
-    					return;
-    				}
-    				
-    				$.ajax({
-    					url:"nameCheck.do",
-    					data:{name:userName},
-    					type:"post",
-    					success:function(data){
-    						console.log(data);
-    						if(data == "ok"){
-    							$(".errors").hide();
-    							$(".oks").show();
-    							$("#nameDuplicateCheck").val(1);
-    						}else{
-    							$(".oks").hide();
-    							$(".errors").show();
-    							$("#nameDuplicateCheck").val(0);
-    						}
-    					},
-    					error:function(jqxhr, textStatus,errorThrown){
-    						console.log("ajax 처리 실패");
-    						//에러 로그
-    					
-    					}
-    				});
-    			});
-    		});
-    		
-    		
-    
-        </script>
+					}
+				});
+			});
+		});
+	</script>
 </body>
 </html>
