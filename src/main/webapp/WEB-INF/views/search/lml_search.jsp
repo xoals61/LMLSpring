@@ -125,7 +125,7 @@
 	                			<c:forEach var="c" begin="1" end="2">
 	                				<c:if test="${ !empty searchUser[i] }">
 		                				<td>
-		                					<c:set var="uNum" value="${searchUser[i].user_num }"/>
+		                					<c:set var="uNum" value="fBtn${searchUser[i].user_num }"/>
 						                    <div class="infoDiv" >
 						                        <div class="uImg" onclick="infoPage();">
 						                            <img src="resources/images/mainImg/${searchUser[i].profile_img}">
@@ -134,7 +134,7 @@
 						                            <div class="uid">${searchUser[i].id}</div>
 						                            <div class="uname">${searchUser[i].uname}</div>
 						                        </div>
-						                        <div class="follow">
+						                        <div class="follow" id="fBtn${searchUSer[i].user_num }" >
 						                            <div>팔로우</div>
 						                        </div>
 						                    </div>
@@ -180,8 +180,31 @@
         	location.href="MyPage.do?uNum="+uNum;
         }
         
-        function followBtn(){
-        	var uNum = ${uNum};
+        $(document).ready(function(){
+        	
+        	searchFollowList();
+        	
+			
+        });
+        
+        function searchFollowList(){
+			var uNum = ${loginUser.user_num};
+			
+        	$.ajax({
+				url:"searchFollowList.do",
+				data:{uNum:uNum},
+				type:"post",
+				success:function(data){
+					if(data == "success"){
+						return data;
+					}else{
+						alert("실패");
+					}
+				},
+				error:function(jqxhr, textStatus,errorThrown){
+					console.log("ajax 처리 실패");
+				}
+			});
         }
     </script>
 </body>
