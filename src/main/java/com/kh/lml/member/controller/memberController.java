@@ -306,6 +306,17 @@ public class memberController {
 		return mv;
 	}
 	
+	// 검색페이지 팔로우 리스트용   
+	@RequestMapping(value="searchFollowList.do", produces="application/json; charset=UTF-8")
+	public void searchFollowList(HttpServletResponse response, int uNum) throws JsonIOException, IOException {
+		
+		ArrayList<Member> FollowList = mService.selectFollowList(uNum);
+		response.setContentType("application/json; charset=utf-8");
+		
+		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+		gson.toJson(FollowList,response.getWriter());
+	}
+	
 	
 	// 검색(해쉬태그)
 	@RequestMapping("SearchHash.do")

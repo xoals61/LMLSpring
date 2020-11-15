@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -125,7 +126,7 @@
 	                			<c:forEach var="c" begin="1" end="2">
 	                				<c:if test="${ !empty searchUser[i] }">
 		                				<td>
-		                					<c:set var="uNum" value="fBtn${searchUser[i].user_num }"/>
+		                					<c:set var="uNum" value="${searchUser[i].user_num }"/>
 						                    <div class="infoDiv" >
 						                        <div class="uImg" onclick="infoPage();">
 						                            <img src="resources/images/mainImg/${searchUser[i].profile_img}">
@@ -134,9 +135,11 @@
 						                            <div class="uid">${searchUser[i].id}</div>
 						                            <div class="uname">${searchUser[i].uname}</div>
 						                        </div>
-						                        <div class="follow" id="fBtn${searchUSer[i].user_num }" >
-						                            <div>팔로우</div>
-						                        </div>
+						                        <c:if test="${ !empty loginUser.id && loginUser.user_num != searchUser[i].user_num}">
+							                        <div class="follow" id="${searchUser[i].user_num }">
+							                            <div>팔로우</div>
+							                        </div>
+							                    </c:if>
 						                    </div>
 						                </td>
 		                				<c:set var="i" value="${i+1}"/>
@@ -181,22 +184,27 @@
         }
         
         $(document).ready(function(){
-        	
-        	searchFollowList();
-        	
+        	var uNum = ${loginUser.user_num};
+			var searchUser = new Array();
+			var searchUserCount = ${fn:length(searchUser)};
 			
-        });
-        
-        function searchFollowList(){
-			var uNum = ${loginUser.user_num};
+			<c:forEach items="${searchUser}" var="su">
+				searchUser.push({num:"${su.user_num}"});
+			</c:forEach>
 			
         	$.ajax({
 				url:"searchFollowList.do",
 				data:{uNum:uNum},
-				type:"post",
+				dataType:"json",
 				success:function(data){
-					if(data == "success"){
-						return data;
+					if(data.length > 0){
+						for(var i=0; i<searchUser.length; i++){
+							for(var j=0; j<data.length; j++){
+								if(searchUser[i].num == data[j].to_follow){
+									$("#"+data[j].to_follow).hide();
+								}
+							}
+						}
 					}else{
 						alert("실패");
 					}
@@ -205,7 +213,37 @@
 					console.log("ajax 처리 실패");
 				}
 			});
-        }
+        });
+        
+        $(".follow").click(function(e){
+        	
+        	var followQ = confirm('팔로우 하시겠습니까?');
+        	
+        	if(followQ){
+	            var to_follow = $(this).attr('id');
+	            var from_follow = ${loginUser.user_num};
+	            console.log(to_follow);
+	            console.log(from_follow);
+	            
+	            $.ajax({
+					url:"followBtn.do",
+					data:{toFollow:to_follow, fromFollow:from_follow},
+					type:"post",
+					success:function(data){
+						if(data == "success"){
+							$("#"+to_follow).hide();
+						}else{
+							alert("실패");
+						}
+					},
+					error:function(jqxhr, textStatus,errorThrown){
+						console.log("ajax 처리 실패");
+					}
+				});
+        	}else{
+        		
+        	}
+        });
     </script>
 </body>
 </html>
