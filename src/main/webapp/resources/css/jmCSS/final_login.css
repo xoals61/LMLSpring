@@ -5,7 +5,16 @@
 	color: #000000;
 	font-weight: bold;
 }
+/* Change the color to your own background color */
+ input:-webkit-autofill,
+    input:-webkit-autofill:hover,
+    input:-webkit-autofill:focus,
+    input:-webkit-autofill:active {
+	 transition: background-color 5000s ease-in-out 0s;
+	 -webkit-transition: background-color 9999s ease-out;
+     -webkit-box-shadow: 0 0 0px 1000px #eeeee inset !important;
 
+   }
 .wrap {
 	height: 100%;
 	width: 100%;
@@ -81,8 +90,12 @@
 }
 
 .social-icons img {
-	width: 30px;
-	cursor: pointer;
+    cursor: pointer;
+    left: 20px;
+    position: absolute;
+    height: 47px;
+    width: 133px;
+    margin: 36px 0 2px 126px;
 }
 
 .input-group {
@@ -95,7 +108,8 @@
 
 input::placeholder {
 	color: #000000;
-}
+} 
+
 
 .input-field {
 	width: 100%;
@@ -133,10 +147,8 @@ input::placeholder {
 }
 
 span {
-	color: #000000;
-	font-size: 14px;
-	bottom: 68px;
-	position: absolute;
+   color: #000000;
+    font-size: 14px;
 }
 
 #login {
@@ -144,7 +156,8 @@ span {
 }
 
 #register {
-	left: 450px;
+	 left: 450px; 
+	top: 110px;
 }
 
 span.guide {
@@ -152,6 +165,7 @@ span.guide {
 	font-size: 12px;
 	top: 12px;
 	right: 10px;
+	position: absolute;
 }
 
 span.ok {
@@ -167,6 +181,7 @@ span.guides {
 	font-size: 12px;
 	top: 61px;
 	right: 10px;
+	position: absolute;
 }
 
 span.oks {
@@ -291,6 +306,7 @@ ul.join_box {
 }
 #agree{
 	font-size:medium; 
+	cursor: pointer;
 }
 #agree:hover{
 	color: #8080ff;
