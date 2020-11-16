@@ -18,7 +18,7 @@
 		<result property="to_follower" column="TO_FOLLOWER"/>
 		<result property="from_follower" column="FROM_FOLLOWER"/>
 		<result property="f_block" column="F_BLOCK"/>
-		
+		<result property="del_flag" column="DEL_FLAG"/>
 	</resultMap>
 	<select id="loginMember" parameterType="Member" resultMap="memberResultSet">
 		 
@@ -26,6 +26,7 @@
 		FROM LML_MEM
 		WHERE ID=#{id}
 		AND UPWD=#{upwd}
+		WHERE DEL_FLAG='N'
 
 	</select>
 	
@@ -39,22 +40,26 @@
 		SELECT COUNT(*)
 		FROM LML_MEM
 		WHERE ID=#{id}
+		AND DEL_FLAG='N'
 	</select>
 	
 	<select id="nameCheck" parameterType="string" resultType="_int">
 		SELECT COUNT(*)
 		FROM LML_MEM
 		WHERE UNAME=#{uname}
+		AND DEL_FLAG='N'
 	</select>
 	
 	<update id="memberUpdate" parameterType="Member" >
 		UPDATE LML_MEM SET MAIL=#{mail} ,UNAME=#{uname},M_PHONE=#{m_phone},HEIGHT=#{height},WEIGHT=#{weight},GENDER=#{gender},INTRO=#{intro}
 		WHERE ID=#{id}
+		
 	</update>
 	<select id="pwdCheck" parameterType="Member" resultType="_int">
 	SELECT COUNT(*)
 	FROM LML_MEM 
 	WHERE UPWD=#{upwd} AND ID=#{id}
+	AND DEL_FLAG='N'
 	</select>
 	
 	<update id="pwdChange" parameterType="Member">
@@ -66,6 +71,7 @@
 		FROM FOLLOW_LIST
 		JOIN LML_MEM ON (TO_FOLLOW = USER_NUM)
 		WHERE FROM_FOLLOW = #{uNum}
+		
 	</select>
 	
 	<select id="selectFollowerList" resultMap="memberResultSet">
@@ -73,6 +79,7 @@
 		FROM FOLLOW_LIST
 		JOIN LML_MEM ON (FROM_FOLLOWER = USER_NUM)
 		WHERE TO_FOLLOWER = #{uNum}
+		
 	</select>
 	
 	<select id="selectBlockList" resultMap="memberResultSet">
@@ -105,6 +112,7 @@
 		SELECT ID, UNAME, PROFILE_IMG
 		FROM LML_MEM
 		WHERE USER_NUM = #{uNum}
+		AND DEL_FLAG='N'
 	</select>
 	
 	<delete id="unfollowBtn" parameterType="Member">
@@ -119,6 +127,7 @@
 		FROM LML_MEM
 		WHERE ID LIKE LOWER('%' ||  #{keyword} || '%')
 		OR UNAME LIKE LOWER('%' ||  #{keyword} || '%')
+		AND DEL_FLAG='N'
 	</select>
 	
 	<select id="searchUserCount" resultType="_int">
@@ -126,8 +135,11 @@
 		FROM LML_MEM
 		WHERE ID LIKE LOWER('%' ||  #{keyword} || '%')
 		OR UNAME LIKE LOWER('%' ||  #{keyword} || '%')
+		AND DEL_FLAG='N'
 	</select>
 	<!-- 1113은지 -->
+	
+	
 	
 </mapper>
 

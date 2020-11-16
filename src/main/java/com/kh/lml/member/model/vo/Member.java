@@ -12,7 +12,7 @@ public class Member {
 	private String intro;
 	private String profile_img;
 	private int user_num;
-	
+	private char del_flag;
 	
 	private int from_follow;
 	private int to_follow;
@@ -90,6 +90,30 @@ public class Member {
 		this.to_follow = to_follow;
 	}
 
+	
+	
+	public Member(String id, String mail, String upwd, int m_phone, int height, int weight, char gender, String uname,
+			String intro, String profile_img, int user_num, char del_flag, int from_follow, int to_follow,
+			int to_follower, int from_follower, char f_block) {
+		super();
+		this.id = id;
+		this.mail = mail;
+		this.upwd = upwd;
+		this.m_phone = m_phone;
+		this.height = height;
+		this.weight = weight;
+		this.gender = gender;
+		this.uname = uname;
+		this.intro = intro;
+		this.profile_img = profile_img;
+		this.user_num = user_num;
+		this.del_flag = del_flag;
+		this.from_follow = from_follow;
+		this.to_follow = to_follow;
+		this.to_follower = to_follower;
+		this.from_follower = from_follower;
+		this.f_block = f_block;
+	}
 
 
 	public String getProfile_img() {
@@ -101,6 +125,7 @@ public class Member {
 	public void setProfile_img(String profile_img) {
 		this.profile_img = profile_img;
 	}
+
 
 
 
@@ -283,17 +308,26 @@ public class Member {
 
 
 
-	@Override
-	public String toString() {
-		return "Member [id=" + id + ", mail=" + mail + ", upwd=" + upwd + ", m_phone=" + m_phone + ", height=" + height
-				+ ", weight=" + weight + ", gender=" + gender + ", uname=" + uname + ", intro=" + intro
-				+ ", profile_img=" + profile_img + ", user_num=" + user_num + ", from_follow=" + from_follow
-				+ ", to_follow=" + to_follow + ", to_follower=" + to_follower + ", from_follower=" + from_follower
-				+ ", f_block=" + f_block + "]";
+	public char getDel_flag() {
+		return del_flag;
 	}
 
 
 
+	public void setDel_flag(char del_flag) {
+		this.del_flag = del_flag;
+	}
+
+
+
+	@Override
+	public String toString() {
+		return "Member [id=" + id + ", mail=" + mail + ", upwd=" + upwd + ", m_phone=" + m_phone + ", height=" + height
+				+ ", weight=" + weight + ", gender=" + gender + ", uname=" + uname + ", intro=" + intro
+				+ ", profile_img=" + profile_img + ", user_num=" + user_num + ", del_flag=" + del_flag
+				+ ", from_follow=" + from_follow + ", to_follow=" + to_follow + ", to_follower=" + to_follower
+				+ ", from_follower=" + from_follower + ", f_block=" + f_block + "]";
+	}
 
 
 	
