@@ -94,22 +94,17 @@ LML 서비스 및 제품(이하 ‘서비스’)을 이용해 주셔서 감사�
 				<button type="button" class="togglebtn" onclick="login()">LOGIN</button>
 				<button type="button" class="togglebtn" onclick="register()">REGISTER</button>
 			</div>
-			<div class="social-icons">
-				<img src="resources/images/jmImg/fb.png" alt="facebook"> <img
-					src="resources/images/jmImg/tw.png" alt="twitter"> <img
-					src="resources/images/jmImg/gl.png" alt="google">
-			</div>
+			
 			<form id="login" action="mLogin.do" class="input-group" method="post">
-				<input id="inID" name="id" type="text" class="input-field"
-					placeholder="User id" required> <input  name="upwd"
-					type="password" class="input-field" placeholder="Enter Password"
-					required> <input id="inCH" type="checkbox" class="checkbox"><span>Remember
-					id</span>
+				<input id="inID" name="id" type="text" class="input-field"	placeholder="User id" required> 
+					<input  name="upwd"	type="password" class="input-field" placeholder="Enter Password" required> <input id="inCH" type="checkbox" class="checkbox"><span>Remember ID</span>
 				<button class="submit">Login</button>
-
-			</form>
-			<a href="<%=apiURL%>"><img height="50"
+<div class="social-icons">
+				<a href="<%=apiURL%>"><img height="50"
 				src="http://static.nid.naver.com/oauth/small_g_in.PNG" /></a>
+			</div>
+			</form>
+			
 			<form id="register" action="mInsert.do" class="input-group">
 				<!-- 아이디 중복 체크  -->
 				<input name="id" type="text" id="userId" class="input-field"
