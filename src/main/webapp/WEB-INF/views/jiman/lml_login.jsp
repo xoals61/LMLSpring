@@ -10,9 +10,12 @@
 <head>
 <title>로그인 / 회원가입 폼 템플릿</title>
 <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="${contextPath}/resources/js/js.cookie.js"></script>
 <link rel="stylesheet" href="resources/css/jmCSS/final_login.css">
 </head>
 <body>
+
+
 	<%
 		String clientId = "xdLgSJ5mS0zQ1kf7UqKd";//애플리케이션 클라이언트 아이디값";
 	String redirectURI = URLEncoder.encode("http://localhost:9090/lml/", "UTF-8");
@@ -379,6 +382,8 @@ LML 서비스 및 제품(이하 ‘서비스’)을 이용해 주셔서 감사�
 				});
 			});
 		});
+		
+		$("#")
 	</script>
 </body>
 </html>
