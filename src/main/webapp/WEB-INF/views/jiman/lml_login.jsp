@@ -10,7 +10,6 @@
 <head>
 <title>로그인 / 회원가입 폼 템플릿</title>
 <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script src="${contextPath}/resources/js/js.cookie.js"></script>
 <link rel="stylesheet" href="resources/css/jmCSS/final_login.css">
 </head>
 <body>
@@ -87,7 +86,7 @@ LML 서비스 및 제품(이하 ‘서비스’)을 이용해 주셔서 감사�
 
 		</div>
 	</div>
-	<!-- 여기까지 팝업 -->
+	<!-- ----------------------여기까지 팝업 -------------------------->
 	<div class="wrap">
 		<div class="form-wrap">
 			<div class="button-wrap">
@@ -101,10 +100,10 @@ LML 서비스 및 제품(이하 ‘서비스’)을 이용해 주셔서 감사�
 					src="resources/images/jmImg/gl.png" alt="google">
 			</div>
 			<form id="login" action="mLogin.do" class="input-group" method="post">
-				<input name="id" type="text" class="input-field"
-					placeholder="User id" required> <input name="upwd"
+				<input id="inID" name="id" type="text" class="input-field"
+					placeholder="User id" required> <input  name="upwd"
 					type="password" class="input-field" placeholder="Enter Password"
-					required> <input type="checkbox" class="checkbox"><span>Remember
+					required> <input id="inCH" type="checkbox" class="checkbox"><span>Remember
 					id</span>
 				<button class="submit">Login</button>
 
@@ -148,6 +147,62 @@ LML 서비스 및 제품(이하 ‘서비스’)을 이용해 주셔서 감사�
 		</div>
 	</div>
 	<script>
+		//아이디 기억하기
+		$(document).ready(function () {//저장된 쿠키캆 가져와서 넣어줌
+			  var key = getCookie("key");	
+			$("#inID").val(key);
+			
+			if($("#inID").val() != ""){ //아이디 저장해서 페이지 로딩할때 
+				$("#inCH").attr("checked",true); //ID저장하기 체크상태
+			}
+		
+		
+		$("#inCH").change(function(){
+			if($("#inCH").is(":checked")){
+				setCookie("key",$("#inID").val(),7); //쿠키7일 보관
+			}else{
+				deleteCookie("key");
+			}
+		});
+		$("#inID").keyup(function(){ // ID 입력 칸에 ID를 입력할 때,
+	        if($("#inCH").is(":checked")){ // ID 저장하기를 체크한 상태라면,
+	            setCookie("key", $("#inID").val(), 7); // 7일 동안 쿠키 보관
+	        }
+	    });
+	});
+	
+		function setCookie(cookieName,value,exdays){
+			var exdate = new Date();
+			exdate.setDate(exdate.getDate()+exdays);
+			var cookieValue = escape(value)+((exdays==null) ? "" : "; expires=" + exdate.toGMTString());
+		    document.cookie = cookieName + "=" + cookieValue;
+		}
+		function deleteCookie(cookieName){
+		    var expireDate = new Date();
+		    expireDate.setDate(expireDate.getDate() - 1);
+		    document.cookie = cookieName + "= " + "; expires=" + expireDate.toGMTString();
+		}
+		function getCookie(cookieName) {
+		    cookieName = cookieName + '=';
+		    var cookieData = document.cookie;
+		    var start = cookieData.indexOf(cookieName);
+		    var cookieValue = '';
+		    if(start != -1){
+		        start += cookieName.length;
+		        var end = cookieData.indexOf(';', start);
+		        if(end == -1)end = cookieData.length;
+		        cookieValue = cookieData.substring(start, end);
+		    }
+		    return unescape(cookieValue);
+		}
+		
+		
+	
+	
+	
+	
+	
+	
 		/*=========================모달======================*/
 		/* 모달팝업 디테일 */
 		var modal = document.getElementById('myModal');
@@ -383,7 +438,7 @@ LML 서비스 및 제품(이하 ‘서비스’)을 이용해 주셔서 감사�
 			});
 		});
 		
-		$("#")
+		
 	</script>
 </body>
 </html>
