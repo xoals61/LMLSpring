@@ -242,7 +242,7 @@ ul.join_box {
 	width: 85%;
 	padding: 15px;
 	font-weight: 600;
-	color: #888;
+	color: #000000;
 }
 
 .checkBox>ul>li:nth-child(2) {
@@ -282,12 +282,18 @@ ul.join_box {
 
 .fpmgBt1 {
 	background-color: #fff;
-	color: #888
+	color: #888;
 }
 
 .fpmgBt2 {
 	background-color: lightsalmon;
-	color: #fff
+	color: #fff;
+}
+#agree{
+	font-size:medium; 
+}
+#agree:hover{
+	color: #8080ff;
+	font-size:large; 
 }
 
-}
