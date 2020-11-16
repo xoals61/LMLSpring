@@ -10,9 +10,12 @@
 <head>
 <title>로그인 / 회원가입 폼 템플릿</title>
 <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="${contextPath}/resources/js/js.cookie.js"></script>
 <link rel="stylesheet" href="resources/css/jmCSS/final_login.css">
 </head>
 <body>
+
+
 	<%
 		String clientId = "xdLgSJ5mS0zQ1kf7UqKd";//애플리케이션 클라이언트 아이디값";
 	String redirectURI = URLEncoder.encode("http://localhost:9090/lml/", "UTF-8");
@@ -25,71 +28,60 @@
 	session.setAttribute("state", state);
 	%>
 
-		<!-- ------------------이용약관 동의 팝업-------------------- -->
+	<!-- ------------------이용약관 동의 팝업-------------------- -->
 	<div class="myModal" id="myModal" style="display: none;">
 		<div class="board-detail" id="board-detail" style="display: none;">
-		<!-- <form action="" id="joinForm"> -->
-            <ul class="join_box">
-                <li class="checkBox check01">
-                    <ul class="clearfix">
-                        <li>이용약관, 개인정보 수집 및 이용,
-                            위치정보 이용약관(선택), 프로모션 안내
-                            메일 수신(선택)에 모두 동의합니다.</li>
-                        <li class="checkAllBtn">
-                            <input type="checkbox" name="chkAll" id="chkAll" class="chk">
-                        </li>
-                    </ul>
-                </li>
-                <li class="checkBox check02">
-                    <ul class="clearfix">
-                        <li>이용약관 동의(필수)</li>
-                        <li class="checkBtn">
-                            <input type="checkbox" class="chk"> 
-                        </li>
-                    </ul>
-                    <textarea name="" id="">여러분을 환영합니다.
+			<!-- <form action="" id="joinForm"> -->
+			<ul class="join_box">
+				<li class="checkBox check01">
+					<ul class="clearfix">
+						<li>이용약관, 개인정보 수집 및 이용, 위치정보 이용약관(선택), 프로모션 안내 메일 수신(선택)에 모두
+							동의합니다.</li>
+						<li class="checkAllBtn"><input type="checkbox" name="chkAll"
+							id="chkAll" class="chk"></li>
+					</ul>
+				</li>
+				<li class="checkBox check02">
+					<ul class="clearfix">
+						<li>이용약관 동의(필수)</li>
+						<li class="checkBtn"><input type="checkbox" class="chk"
+							id="requebtn1"></li>
+					</ul> <textarea name="" id="">여러분을 환영합니다.
 	LML서비스 및 제품(이하 ‘서비스’)을 이용해 주셔서 감사합니다. 본 약관은 다양한 LML 서비스의 이용과 관련하여 LML 서비스를 제공하는 LML 주식회사(이하 ‘LML’)와 이를 이용하는 LML 서비스 회원(이하 ‘회원’) 또는 비회원과의 관계를 설명하며, 아울러 여러분의 LML 서비스 이용에 도움이 될 수 있는 유익한 정보를 포함하고 있습니다.
        </textarea>
-                </li>
-                <li class="checkBox check03">
-                    <ul class="clearfix">
-                        <li>개인정보 수집 및 이용에 대한 안내(필수)</li>
-                        <li class="checkBtn">
-                            <input type="checkbox" class="chk">
-                        </li>
-                    </ul>
- 
-                    <textarea name="" id="">여러분을 환영합니다.
+				</li>
+				<li class="checkBox check03">
+					<ul class="clearfix">
+						<li>개인정보 수집 및 이용에 대한 안내(필수)</li>
+						<li class="checkBtn"><input type="checkbox" class="chk"
+							id="requebtn2"></li>
+					</ul> <textarea name="" id="">여러분을 환영합니다.
 LML 서비스 및 제품(이하 ‘서비스’)을 이용해 주셔서 감사합니다. 본 약관은 다양한 LML 서비스의 이용과 관련하여 LML 서비스를 제공하는 LML 주식회사(이하 ‘LML’)와 이를 이용하는 LML 서비스 회원(이하 ‘회원’) 또는 비회원과의 관계를 설명하며, 아울러 여러분의 LML 서비스 이용에 도움이 될 수 있는 유익한 정보를 포함하고 있습니다.
        </textarea>
-                </li>
-                <li class="checkBox check03">
-                    <ul class="clearfix">
-                        <li>위치정보 이용약관 동의(선택)</li>
-                        <li class="checkBtn">
-                            <input type="checkbox" class="chk">
-                        </li>
-                    </ul>
- 
-                    <textarea name="" id="">여러분을 환영합니다.
+				</li>
+				<li class="checkBox check03">
+					<ul class="clearfix">
+						<li>위치정보 이용약관 동의(선택)</li>
+						<li class="checkBtn"><input type="checkbox" class="chk">
+						</li>
+					</ul> <textarea name="" id="">여러분을 환영합니다.
 LML 서비스 및 제품(이하 ‘서비스’)을 이용해 주셔서 감사합니다. 본 약관은 다양한 LML 서비스의 이용과 관련하여 LML 서비스를 제공하는 LML 주식회사(이하 ‘LML’)와 이를 이용하는 LML 서비스 회원(이하 ‘회원’) 또는 비회원과의 관계를 설명하며, 아울러 여러분의 LML 서비스 이용에 도움이 될 수 있는 유익한 정보를 포함하고 있습니다.
        </textarea>
-                </li>
-                <li class="checkBox check04">
-                    <ul class="clearfix">
-                        <li>이벤트 등 프로모션 알림 메일 수신(선택)</li>
-                        <li class="checkBtn">
-                            <input type="checkbox" class="chk">
-                        </li>
-                    </ul>
- 
-                </li>
-            </ul>
-            <ul class="footBtwrap clearfix">
-                <li><button class="disagree_btn">비동의</button></li>
-                <li><button class="agree_btn">동의</button></li>
-            </ul>
-<!--         </form> -->
+				</li>
+				<li class="checkBox check04">
+					<ul class="clearfix">
+						<li>이벤트 등 프로모션 알림 메일 수신(선택)</li>
+						<li class="checkBtn"><input type="checkbox" class="chk">
+						</li>
+					</ul>
+
+				</li>
+			</ul>
+			<ul class="footBtwrap clearfix">
+				<li><button class="disagree_btn" onclick="bye();">비동의</button></li>
+				<li><button class="agree_btn">동의</button></li>
+			</ul>
+			<!--         </form> -->
 
 
 
@@ -113,7 +105,7 @@ LML 서비스 및 제품(이하 ‘서비스’)을 이용해 주셔서 감사�
 					placeholder="User id" required> <input name="upwd"
 					type="password" class="input-field" placeholder="Enter Password"
 					required> <input type="checkbox" class="checkbox"><span>Remember
-					Password</span>
+					id</span>
 				<button class="submit">Login</button>
 
 			</form>
@@ -148,8 +140,8 @@ LML 서비스 및 제품(이하 ‘서비스’)을 이용해 주셔서 감사�
 					<br>
 				</div>
 				<div class="Register">
-					<input type="checkbox" id="termsbtn" class="checkbox" disabled> <span><p
-							id="agree">Terms and conditions</p></span>
+					<input type="checkbox" id="termsbtn" class="checkbox" disabled>
+					<span><button style="text-decoration: underline;background: none;border: none;" id="agree">Terms and conditions</button></span>
 				</div>
 				<button class="submit" onclick="return validate();">REGISTER</button>
 			</form>
@@ -175,15 +167,55 @@ LML 서비스 및 제품(이하 ‘서비스’)을 이용해 주셔서 감사�
 		}
 		/*모달 체크박스 전체선택 */
 		
+		function bye(){
+			$('#termsbtn').attr('checked',false);
+			$('#termsbtn').attr('disabled',true);
+			$('.chk').prop('checked',false);
+			modal.style.display = "none";
+			detail.style.display = "none";
+
+		}
+		//모두 체크 
 		$('#chkAll').click(function(){
-			$('.chk').prop('checked', this.checked )
+			$('.chk').prop('checked', this.checked );
+		});
+	
+	
+		
+		//동의버튼 눌렀을 경우 체크박스 체크,활성화 false
+		
+		$('.agree_btn').click(function(){
+			if($('#requebtn1').is(":checked")==false){
+				alert('필수 항목을 체크해주세요');
+				
+			}else if($('#requebtn2').is(":checked")==false){
+				alert('필수 항목을 체크해주세요');
+			
+			}
+			else{
+			$('#termsbtn').prop('checked',true);
+			$('#termsbtn').prop('disabled',false);
+			modal.style.display = "none";
+			detail.style.display = "none";
+			console.log('와 아 악');
+			
+			
+		}
+			
 		});
 		
-		//동의버튼 눌렀을 경우 체크박스 활성화
-		$('.agree_btn').click(function(){
-			console.log("ㅎㅇ");
-			$('#termsbtn').attr('checked',true)
-		});
+		//해제했을때 ㄴ
+		$('#termsbtn').click(function(){
+			$('#termsbtn').attr('disabled',true);
+
+			$('.chk').prop('checked',false);
+			
+			console.log('와 아 악');
+			
+			
+		}
+			
+		);
 		
 		
 		
@@ -350,6 +382,8 @@ LML 서비스 및 제품(이하 ‘서비스’)을 이용해 주셔서 감사�
 				});
 			});
 		});
+		
+		$("#")
 	</script>
 </body>
 </html>
