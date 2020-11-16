@@ -51,14 +51,14 @@ public class memberController {
 	// 마이페이지
 	@RequestMapping("MyPage.do")
 	public ModelAndView myPage(ModelAndView mv, int uNum) {
-		
+
 		int Follow = mService.countFollowList(uNum);
 		int Follower = mService.countFollowerList(uNum);
-		
+
 		mv.addObject("Follow", Follow);
 		mv.addObject("Follower", Follower);
 		mv.setViewName("jiman/lml_MyPage");
-		
+
 		return mv;
 	}
 	// 세팅(정보수정)
@@ -81,7 +81,7 @@ public class memberController {
 	public String setting4() {
 		return "settings/lml_Settings_4";
 	}
-	
+
 	// 채팅
 	@RequestMapping("Message.do")
 	public String Message() {
@@ -203,121 +203,121 @@ public class memberController {
 		System.out.println("id : " + id);
 		Member changeM = new Member(id,pwd);
 		int result = mService.changePwd(changeM);
-		
+
 		HttpSession session = request.getSession();
-		
-		
+
+
 		if(result>0) {
-		Member m = (Member)session.getAttribute("loginUser");
-		m.setUpwd(pwd);
-		model.addAttribute("loginUser");
-		return "redirect:Settings2.do";
-		
-		
+			Member m = (Member)session.getAttribute("loginUser");
+			m.setUpwd(pwd);
+			model.addAttribute("loginUser");
+			return "redirect:Settings2.do";
+
+
 		}else {
 			model.addAttribute("msg","회원 수정 실패");
 			return "common/errorPage";
 		}
 	}
-	
+
 	// 세팅5(친구관리)
 	@RequestMapping("Settings5.do")
 	public ModelAndView setting5(ModelAndView mv, int uNum) {
-		
+
 		ArrayList<Member> FollowList = mService.selectFollowList(uNum);
 		ArrayList<Member> FollowerList = mService.selectFollowerList(uNum);
 		ArrayList<Member> BlockList = mService.selectBlockList(uNum);
-		
+
 		mv.addObject("FollowList", FollowList);
 		mv.addObject("FollowerList", FollowerList);
 		mv.addObject("BlockList", BlockList);
 		mv.setViewName("settings/lml_Settings_5");
-		
+
 		return mv;
 	}
-	
+
 	// 팔로우 등록
 	@ResponseBody
 	@RequestMapping(value="followBtn.do")
 	public String followBtn(int toFollow, int fromFollow) {
-		
+
 		Member f = new Member(fromFollow, toFollow);
-		
+
 		int result = mService.followBtn(f);
 
 		//int result = mService.followBtn(f);
-		
+
 		if(result > 0) {
 			return "success";
 		}else {
 			return "fail";
 		}
 	}
-	
+
 	// 팔로우추가 뷰
 	@RequestMapping(value="fSelectUser.do", produces="application/json; charset=UTF-8")
 	public void fSelectUser(HttpServletResponse response, int uNum) throws JsonIOException, IOException {
-		
+
 		Member user = mService.fselectUser(uNum);
 		response.setContentType("application/json; charset=utf-8");
-		
+
 		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
 		gson.toJson(user,response.getWriter());
 	}
-	
+
 	// 언팔로우 등록
-	
+
 	@ResponseBody
 	@RequestMapping(value="unfollowBtn.do") 
 	public String unfollowBtn(int toUnFollow, int fromFollow) {
-	  
-	  Member f = new Member(fromFollow, toUnFollow);
-	  
-	  int result = mService.unfollowBtn(f);
-	  
-	  if(result > 0) {
-		  return "success"; 
-	  }else { 
-		  return "fail"; 
-	  } 
 
-	  
+		Member f = new Member(fromFollow, toUnFollow);
+
+		int result = mService.unfollowBtn(f);
+
+		if(result > 0) {
+			return "success"; 
+		}else { 
+			return "fail"; 
+		} 
+
+
 	}
-	
+
 	//1113은지
 	// 검색페이지
 	@RequestMapping("Search.do")
 	public ModelAndView Search(ModelAndView mv, String keyword) {
-		
+
 		// ArrayList<Member> SearchBoard = mService.searchBoardList(keyword);
 		ArrayList<Member> SearchUser = mService.searchUserList1(keyword);
 		int userCount = mService.searchUserCount(keyword);
 		// 6명만 나옴. 
 		// 회원번호, 사진, 아이디, 이름, 팔로우 여부(팔로우 했으면 X, 팔로우 아니면 팔로우 버튼 나오게) -팔로우 버튼 눌렀을 시 팔로우.do
 		// 팔로우 여부는 ajax로 하자..
-		
+
 		System.out.println("검색 : " + userCount);
-		
+
 		mv.addObject("searchUser", SearchUser);
 		mv.addObject("userCount",userCount);
-		
+
 		mv.setViewName("search/lml_search");
-		
+
 		return mv;
 	}
-	
+
 	// 검색페이지 팔로우 리스트용   
 	@RequestMapping(value="searchFollowList.do", produces="application/json; charset=UTF-8")
 	public void searchFollowList(HttpServletResponse response, int uNum) throws JsonIOException, IOException {
-		
+
 		ArrayList<Member> FollowList = mService.selectFollowList(uNum);
 		response.setContentType("application/json; charset=utf-8");
-		
+
 		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
 		gson.toJson(FollowList,response.getWriter());
 	}
-	
-	
+
+
 	// 검색(해쉬태그)
 	@RequestMapping("SearchHash.do")
 	public String SearchHash() {
@@ -329,5 +329,22 @@ public class memberController {
 		return "search/lml_search_user";
 	}
 	//1113은지
-	 
+
+
+
+	@RequestMapping("mDelete.do")
+	public String mDelete(String id,Model model) {
+		
+		int result = mService.mDelete(id);
+		
+		if(result>0) {
+
+			return "redirect:logout.do";
+		}else{
+			model.addAttribute("msg","회원 탈퇴 실패");
+			return "common/errorPage";
+		}
+	}
+	
+	
 }

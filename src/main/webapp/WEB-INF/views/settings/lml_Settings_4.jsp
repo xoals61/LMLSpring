@@ -36,27 +36,27 @@
                      </div>
                 </div>
                    <div class="rContent">
-                    <form method="POST" action="./lml_main.html" class="withdrawal_info">
+                    <form method="POST" action="mDelete.do" class="withdrawal_info">
                         <div class="Withdraw_input_container">
                             <div class="Email With">이메일
-                                <input class="withdraw_input" id="email" name="origin_password" type="email" maxlength="30" >
+                                <input class="withdraw_input" id="email" name="email" type="email" maxlength="30" >
                             </div>
                             
                             <div class="Id With">아이디
-                                <input class="withdraw_input" id="id" name="password1" type="text" maxlength="13" >
+                                <input class="withdraw_input" id="id" name="id" type="text" maxlength="13" >
                             </div>
 
                             <div class="PWD With">비밀번호
-                                <input class="withdraw_input" id="Pwd" name="password2" type="password" maxlength="13" >
+                                <input class="withdraw_input" id="pwd" name="password" type="password" maxlength="13" >
                             </div>
                             
                         </div>
                         <div class="withdrawal_btn_container">
                             <input type="submit" class="withdrawal" id="submit" value="탈퇴하기">
                         </div>
+		            </form>
                     </div>
                 </div>
-            </form>
                 </div>
             </div>
         </div>
@@ -65,13 +65,22 @@
     <script>
         /*입력이 되지 않았을 때*/
         $("#submit").click(function(){
-             if($.trim($("#email").val())==''||$.trim($("#id").val())==''||$.trim($("#Pwd").val())==''){
-                  alert("모두 입력해주세요.");
+             if($("#email").val()!="${loginUser.mail}"){
+                 console.log("hi");
+                 
+                 
+            	 
+            	 alert("이메일 다릅니다.");
                   return false;
-                } else{
-                    alert("탈퇴되었습니다.");
-                }
+                }else if($("#id").val()!="${loginUser.id}"){
+                    alert("아이디 다릅니다.");
+                    return false;
+                }else if($("#pwd").val()!="${loginUser.upwd}"){
+                    alert("패스워드 다릅니다.");
+                    return false;
+                }else{
                  $(".withdrawal_info").submit();
+                }
          });
     </script>
         

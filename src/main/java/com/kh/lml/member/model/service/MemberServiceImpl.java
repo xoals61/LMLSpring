@@ -110,6 +110,12 @@ public class MemberServiceImpl implements MemberService {
 		return  mDao.searchUserCount(keyword);
 	}
 
+	@Override
+	public int mDelete(String id) {
+		
+		return mDao.mDelete(id);
+	}
+
 
 	//1113은지
 

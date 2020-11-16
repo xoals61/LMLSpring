@@ -68,6 +68,9 @@ public class MemberDao {
 	public int searchUserCount(String keyword) {
 		return sqlSession.selectOne("memberMapper.searchUserCount",keyword);
 	}
+	public int mDelete(String id) {
+		return sqlSession.update("memberMapper.deleteMember",id);
+	}
 
 	
 	//1113은지

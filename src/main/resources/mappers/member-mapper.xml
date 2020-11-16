@@ -26,7 +26,7 @@
 		FROM LML_MEM
 		WHERE ID=#{id}
 		AND UPWD=#{upwd}
-		WHERE DEL_FLAG='N'
+		AND DEL_FLAG='N'
 
 	</select>
 	
@@ -139,7 +139,11 @@
 	</select>
 	<!-- 1113은지 -->
 	
+	<update id="deleteMember" parameterType="String">
+		UPDATE LML_MEM SET DEL_FLAG='Y' WHERE ID=#{id}
 	
+	
+	</update>
 	
 </mapper>
 
