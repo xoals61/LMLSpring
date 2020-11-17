@@ -121,6 +121,12 @@ public class MemberServiceImpl implements MemberService {
 		return mDao.nloginMember(id);
 	}
 
+	@Override
+	public int nInsertMember(Member m) {
+
+		return mDao.nInsertMember(m);
+	}
+
 
 	//1113은지
 

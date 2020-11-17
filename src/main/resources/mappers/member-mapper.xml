@@ -114,6 +114,10 @@
 		VALUES(#{from_follow},#{to_follow},#{to_follow},#{from_follow},DEFAULT)
 	</insert>
 
+	<insert id="nInsertMember" parameterType="Member">
+		INSERT INTO LML_MEM
+		VALUES(#{id},#{mail},'',00000000000,0,0,#{gender},#{uname},#{intro},DEFAULT,LML_MEM_SEQ.NEXTVAL,DEFAULT)
+	</insert>
 	
 	<delete id="unfollowBtn" parameterType="Member">
 		DELETE FROM FOLLOW_LIST 

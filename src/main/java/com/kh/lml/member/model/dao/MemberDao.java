@@ -74,6 +74,10 @@ public class MemberDao {
 	public Member nloginMember(String id) {
 		return sqlSession.selectOne("memberMapper.nloginMember",id);
 	}
+	public int nInsertMember(Member m) {
+
+		return sqlSession.insert("memberMapper.nInsertMember",m);
+	}
 	
 	//1113은지
 

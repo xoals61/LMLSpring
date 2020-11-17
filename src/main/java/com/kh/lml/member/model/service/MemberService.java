@@ -46,6 +46,8 @@ public interface MemberService {
 
 	Member nloginMember(String id);
 
+	int nInsertMember(Member m);
+
 
 	//1113은지
 
