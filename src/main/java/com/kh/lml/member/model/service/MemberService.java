@@ -49,7 +49,7 @@ public interface MemberService {
 
 	//1113은지
 
-	
+
 
 
 }

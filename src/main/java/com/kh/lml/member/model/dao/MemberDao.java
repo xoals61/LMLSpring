@@ -74,7 +74,6 @@ public class MemberDao {
 	public Member nloginMember(String id) {
 		return sqlSession.selectOne("memberMapper.nloginMember",id);
 	}
-
 	
 	//1113은지
 

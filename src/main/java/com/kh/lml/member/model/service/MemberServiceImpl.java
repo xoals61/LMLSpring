@@ -115,7 +115,6 @@ public class MemberServiceImpl implements MemberService {
 		
 		return mDao.mDelete(id);
 	}
-
 	@Override
 	public Member nloginMember(String id) {
 
@@ -124,7 +123,6 @@ public class MemberServiceImpl implements MemberService {
 
 
 	//1113은지
-
 
 
 }

@@ -76,6 +76,7 @@
 		FROM FOLLOW_LIST
 		JOIN LML_MEM ON (TO_FOLLOW = USER_NUM)
 		WHERE FROM_FOLLOW = #{uNum}
+		AND F_BLOCK = 'N'
 		
 	</select>
 	
@@ -112,13 +113,7 @@
 		INSERT INTO FOLLOW_LIST
 		VALUES(#{from_follow},#{to_follow},#{to_follow},#{from_follow},DEFAULT)
 	</insert>
-	
-	<select id="fselectUser" resultMap="memberResultSet">
-		SELECT ID, UNAME, PROFILE_IMG
-		FROM LML_MEM
-		WHERE USER_NUM = #{uNum}
-		AND DEL_FLAG='N'
-	</select>
+
 	
 	<delete id="unfollowBtn" parameterType="Member">
 		DELETE FROM FOLLOW_LIST 
