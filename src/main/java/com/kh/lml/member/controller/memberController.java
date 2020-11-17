@@ -385,7 +385,7 @@ public class memberController {
 	}
 
 	@RequestMapping(value="nLogin.do", method=RequestMethod.GET)
-	public String nLogin(HttpServletRequest request,Model model) throws UnsupportedEncodingException {
+	public String nLogin(HttpServletRequest request) throws UnsupportedEncodingException {
 		String clientId = "xdLgSJ5mS0zQ1kf7UqKd";
 		String clientSecret = "Kq4vS0xwTO"; 
 		String code = request.getParameter("code");
@@ -432,10 +432,7 @@ public class memberController {
 			System.out.println(e);
 		}
 
-		String name=null;
-		String id=null;
-		String gender=null;
-		String nickname=null;
+
 		if(access_token != "") { // access_token을 잘 받아왔다면
 
 			String token = access_token;// 네이버 로그인 접근 토큰; 여기에 복사한 토큰값을 넣어줍니다.
@@ -465,10 +462,10 @@ public class memberController {
 				JSONObject jsonObj = (JSONObject)obj;
 				JSONObject resObj = (JSONObject)jsonObj.get("response");
 				
-				name = (String)resObj.get("name");
-				id = (String)resObj.get("id");
-				gender = (String)resObj.get("gender");
-				nickname = (String)resObj.get("nickname");
+				String name = (String)resObj.get("name");
+				String id = (String)resObj.get("id");
+				String gender = (String)resObj.get("gender");
+				String nickname = (String)resObj.get("nickname");
 				
 				
 				
@@ -478,37 +475,14 @@ public class memberController {
 				
 				System.out.println("id : " +id);
 				System.out.println("gender : " +gender);
-				
-				
 			} catch (Exception e) {
 				System.out.println(e);
 
 			}
 		}
 
-		int logincheck = mService.idCheck(id);
-		Member m = new Member();
-		if(logincheck > 0) {
-			Member loginUser = mService.nloginMember(id);
-			System.out.println(loginUser);
-			if(loginUser != null) {
-				model.addAttribute("loginUser", loginUser);
-				return "redirect:Index.do";
 
-			}else {
-				model.addAttribute("msg","로그인 실패!");
-				return "common/errorPage";
-			}
 
-			
-			
-			
-		}else {
-			
-		}
-		
-		
-		
 		return "redirect:Index.do";
 	}
 

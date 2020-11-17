@@ -116,6 +116,12 @@ public class MemberServiceImpl implements MemberService {
 		return mDao.mDelete(id);
 	}
 
+	@Override
+	public Member nloginMember(String id) {
+
+		return mDao.nloginMember(id);
+	}
+
 
 	//1113은지
 

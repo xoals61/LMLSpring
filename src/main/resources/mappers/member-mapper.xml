@@ -30,6 +30,11 @@
 
 	</select>
 	
+	<select id="nloginMember" parameterType="String" resultMap="memberResultSet">
+		SELECT *
+		FROM LML_MEM
+		WHERE ID=#{id}
+	</select>
 	
 	<insert id="insertMember" parameterType="Member">
 	INSERT INTO LML_MEM
