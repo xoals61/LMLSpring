@@ -243,6 +243,36 @@ public class memberController {
 
 		return mv;
 	}
+	
+	@RequestMapping("Settings5_woo.do")
+	public ModelAndView Settings5_woo(ModelAndView mv, int uNum) {
+
+		ArrayList<Member> FollowList = mService.selectFollowList(uNum);
+		ArrayList<Member> FollowerList = mService.selectFollowerList(uNum);
+		ArrayList<Member> BlockList = mService.selectBlockList(uNum);
+
+		mv.addObject("FollowList", FollowList);
+		mv.addObject("FollowerList", FollowerList);
+		mv.addObject("BlockList", BlockList);
+		mv.setViewName("settings/lml_Settings_5_woo");
+
+		return mv;
+	}
+	
+	@RequestMapping("Settings5_block.do")
+	public ModelAndView Settings5_block(ModelAndView mv, int uNum) {
+
+		ArrayList<Member> FollowList = mService.selectFollowList(uNum);
+		ArrayList<Member> FollowerList = mService.selectFollowerList(uNum);
+		ArrayList<Member> BlockList = mService.selectBlockList(uNum);
+
+		mv.addObject("FollowList", FollowList);
+		mv.addObject("FollowerList", FollowerList);
+		mv.addObject("BlockList", BlockList);
+		mv.setViewName("settings/lml_Settings_5_block");
+
+		return mv;
+	}
 
 	// 팔로우 등록
 	@ResponseBody
@@ -262,15 +292,15 @@ public class memberController {
 		}
 	}
 
-	// 팔로우추가 뷰
-	@RequestMapping(value="fSelectUser.do", produces="application/json; charset=UTF-8")
-	public void fSelectUser(HttpServletResponse response, int uNum) throws JsonIOException, IOException {
+	// 팔로우추가 뷰 -> 팔로우 리스트 업데이트
+	@RequestMapping(value="updateFollowList.do", produces="application/json; charset=UTF-8")
+	public void updateFollowList(HttpServletResponse response, int uNum) throws JsonIOException, IOException {
 
-		Member user = mService.fselectUser(uNum);
+		ArrayList<Member> updateList = mService.selectFollowList(uNum);
 		response.setContentType("application/json; charset=utf-8");
 
 		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
-		gson.toJson(user,response.getWriter());
+		gson.toJson(updateList, response.getWriter());
 	}
 
 	// 언팔로우 등록
@@ -355,7 +385,7 @@ public class memberController {
 	}
 
 	@RequestMapping(value="nLogin.do", method=RequestMethod.GET)
-	public String nLogin(HttpServletRequest request) throws UnsupportedEncodingException {
+	public String nLogin(HttpServletRequest request,Model model) throws UnsupportedEncodingException {
 		String clientId = "xdLgSJ5mS0zQ1kf7UqKd";
 		String clientSecret = "Kq4vS0xwTO"; 
 		String code = request.getParameter("code");
@@ -402,7 +432,10 @@ public class memberController {
 			System.out.println(e);
 		}
 
-
+		String name=null;
+		String id=null;
+		String gender=null;
+		String nickname=null;
 		if(access_token != "") { // access_token을 잘 받아왔다면
 
 			String token = access_token;// 네이버 로그인 접근 토큰; 여기에 복사한 토큰값을 넣어줍니다.
@@ -432,10 +465,10 @@ public class memberController {
 				JSONObject jsonObj = (JSONObject)obj;
 				JSONObject resObj = (JSONObject)jsonObj.get("response");
 				
-				String name = (String)resObj.get("name");
-				String id = (String)resObj.get("id");
-				String gender = (String)resObj.get("gender");
-				String nickname = (String)resObj.get("nickname");
+				name = (String)resObj.get("name");
+				id = (String)resObj.get("id");
+				gender = (String)resObj.get("gender");
+				nickname = (String)resObj.get("nickname");
 				
 				
 				
@@ -445,14 +478,37 @@ public class memberController {
 				
 				System.out.println("id : " +id);
 				System.out.println("gender : " +gender);
+				
+				
 			} catch (Exception e) {
 				System.out.println(e);
 
 			}
 		}
 
+		int logincheck = mService.idCheck(id);
+		Member m = new Member();
+		if(logincheck > 0) {
+			Member loginUser = mService.nloginMember(id);
+			System.out.println(loginUser);
+			if(loginUser != null) {
+				model.addAttribute("loginUser", loginUser);
+				return "redirect:Index.do";
 
+			}else {
+				model.addAttribute("msg","로그인 실패!");
+				return "common/errorPage";
+			}
 
+			
+			
+			
+		}else {
+			
+		}
+		
+		
+		
 		return "redirect:Index.do";
 	}
 
