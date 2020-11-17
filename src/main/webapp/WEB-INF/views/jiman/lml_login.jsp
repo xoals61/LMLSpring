@@ -135,7 +135,7 @@ LML 서비스 및 제품(이하 ‘서비스’)을 이용해 주셔서 감사�
 				</div>
 				<div class="Register">
 					<input type="checkbox" id="termsbtn" class="checkbox" disabled>
-					<span><button style="text-decoration: underline;background: none;border: none;" id="agree">Terms and conditions</button></span>
+					<span><button type="button" style="text-decoration: underline;background: none;border: none;" id="agree">Terms and conditions</button></span>
 				</div>
 				<button class="submit" onclick="return validate();">REGISTER</button>
 			</form>
@@ -218,8 +218,8 @@ LML 서비스 및 제품(이하 ‘서비스’)을 이용해 주셔서 감사�
 		/*모달 체크박스 전체선택 */
 		
 		function bye(){
-			$('#termsbtn').attr('checked',false);
-			$('#termsbtn').attr('disabled',true);
+			$('#termsbtn').prop('checked',false);
+			$('#termsbtn').prop('disabled',true);
 			$('.chk').prop('checked',false);
 			modal.style.display = "none";
 			detail.style.display = "none";
