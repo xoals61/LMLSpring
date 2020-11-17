@@ -61,48 +61,28 @@
                                 <li><a id="add_block" href="${blockList }">차단</a></li>
                             </ul>
                         </div>
-                    <div class="address" id="address">
-                    	<!-- 팔로워친구 -->
-                    	<c:if test="${ !empty FollowerList }">
-							<c:forEach var="fwer" items="${ FollowerList }">
-	                       		<table class="add_table" id="add_table_wer">
+                   
+                <div id="address_block" class="address">
+                    <!-- 차단친구 -->
+                    	<c:if test="${ !empty BlockList }">
+							<c:forEach var="bl" items="${ BlockList }">
+	                       		<table class="add_table">
 		                            <tr>
-		                                <td class="imgtd" rowspan="2" style="width: 10%;"><img class="userimg" src="resources/images/jmImg/${fwer.profile_img}" alt="#"></td>
-		                                <td class="idtd" style="width: 30%;">${fwer.id } </td>
-		                                <td class="btntd" rowspan="2" style="width: 30%;">
-		                                	<c:forEach var="check" items="${ FollowList }">
-			                                	<c:if test="${fwer.id eq check.id}">
-													<c:set var="followBtn" value="following"/>
-													<c:if test="${check.f_block eq 'Y'.charAt(0) }">
-														<c:set var="followBtn" value="block"/>
-													</c:if>
-												</c:if>
-											</c:forEach>
-											<c:choose>
-												<c:when test="${followBtn eq 'following'}">
-													<input class="button1" id="${fwer.from_follower }"  name="button1" type="button" value="팔로잉" onclick="followBtn(this.name, this.id);">
-												</c:when>
-												<c:when test="${followBtn eq 'block'}">
-													<input class="button3" id="${fwer.from_follower }" name="button3" type="button" value="차단" onclick="followBtn(this.name, this.id);">
-												</c:when>
-												<c:when test="${followBtn ne 'following'}">
-													<input class="button2" id="${fwer.from_follower }" name="button2"type="button" value="팔로우" onclick="followBtn(this.name, this.id);">
-												</c:when>
-											</c:choose>
-											<c:remove var="followBtn" />
-										</td>
+		                                <td class="imgtd" rowspan="2" style="width: 10%;"><img class="userimg" src="resources/images/jmImg/${bl.profile_img }" alt="#"></td>
+		                                <td class="idtd" style="width: 30%;">${bl.id }</td>
+		                                <td class="btntd" rowspan="2" style="width: 30%;"><input class="button3" type="button" value="차단"></td>
 		                            </tr>
 		                            <tr>
-		                                <td>${fwer.uname }</td>
+		                                <td>${bl.uname }</td>
 		                            </tr>
 		                        </table>
 	                       </c:forEach>
 						</c:if>
-						<c:if test="${ empty FollowerList }">
+						<c:if test="${ empty BlockList }">
 							<table class="add_table">
 			                    <tr>
 			                        <td class="imgtd" rowspan="2" style="width: 10%;"></td>
-			                        <td class="idtd" style="width: 30%;">팔로워 없음</td>
+			                        <td class="idtd" style="width: 30%;">차단한 사람 없음</td>
 			                        <td class="btntd" rowspan="2" style="width: 30%;"></td>
 			                    </tr>
 			                    <tr>
@@ -110,7 +90,7 @@
 			                    </tr>
 		                	</table>
 						</c:if>
-                    </div>
+            	</div>
                </div>
                 </div>
             </div>
@@ -130,8 +110,6 @@
 	<script>
 		function followBtn(name, id){
 			
-			console.log("1. name : " + name + " / id : " + id);
-			
 			if(name == 'button1'){	// 언팔로우
 				
 				var followQ = confirm('언팔로우 하시겠습니까?');
@@ -150,6 +128,7 @@
 								$('#'+id).prop('class','button2');
 								$('#'+id).prop('name','button2');
 								$('#'+id).prop('value','팔로우');
+								getFollowList();
 							}else{
 								alert("실패");
 							}
@@ -168,9 +147,7 @@
 				if(followQ){
 					
 					var toFollow = id;	// 팔로우 할 상대
-					var fromFollow = '<c:out value="${loginUser.user_num}"/>';	// 본인
-					
-					console.log("2. to : " + toFollow + " / from : " + fromFollow);
+					var fromFollow = '<c:out value="${fromFollow}"/>';	// 본인
 					
 					$.ajax({
 						url:"followBtn.do",
@@ -181,6 +158,7 @@
 								$('#'+id).prop('class','button1');
 								$('#'+id).prop('name','button1');
 								$('#'+id).prop('value','팔로잉');
+								getFollowList();
 							}else{
 								alert("실패");
 							}
@@ -193,9 +171,32 @@
 				
 			}else if(name == 'button3'){
 				console.log('차단' + name);
-			} 
+			}
 		}
 		
+		
+		function getFollowList(){	// 팔로우테이블 새로고침
+			
+			var fromFollow = '<c:out value="${fromFollow}"/>';
+			
+			$.ajax({
+				url:"updateFollowList.do",
+				data:{uNum:fromFollow},
+				dataType:"json",
+				success:function(data){
+					if(data.length > 0){
+						console.log(data);
+						
+						
+					}else{
+						
+					}
+				},
+				error:function(jqxhr, textStatus,errorThrown){
+					console.log("ajax 처리 실패");
+				}
+			});
+        }
      
       
 	      // button2 팔로우 버튼 눌렀을 때

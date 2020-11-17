@@ -235,6 +235,36 @@ public class memberController {
 
 		return mv;
 	}
+	
+	@RequestMapping("Settings5_woo.do")
+	public ModelAndView Settings5_woo(ModelAndView mv, int uNum) {
+
+		ArrayList<Member> FollowList = mService.selectFollowList(uNum);
+		ArrayList<Member> FollowerList = mService.selectFollowerList(uNum);
+		ArrayList<Member> BlockList = mService.selectBlockList(uNum);
+
+		mv.addObject("FollowList", FollowList);
+		mv.addObject("FollowerList", FollowerList);
+		mv.addObject("BlockList", BlockList);
+		mv.setViewName("settings/lml_Settings_5_woo");
+
+		return mv;
+	}
+	
+	@RequestMapping("Settings5_block.do")
+	public ModelAndView Settings5_block(ModelAndView mv, int uNum) {
+
+		ArrayList<Member> FollowList = mService.selectFollowList(uNum);
+		ArrayList<Member> FollowerList = mService.selectFollowerList(uNum);
+		ArrayList<Member> BlockList = mService.selectBlockList(uNum);
+
+		mv.addObject("FollowList", FollowList);
+		mv.addObject("FollowerList", FollowerList);
+		mv.addObject("BlockList", BlockList);
+		mv.setViewName("settings/lml_Settings_5_block");
+
+		return mv;
+	}
 
 	// 팔로우 등록
 	@ResponseBody
@@ -254,15 +284,15 @@ public class memberController {
 		}
 	}
 
-	// 팔로우추가 뷰
-	@RequestMapping(value="fSelectUser.do", produces="application/json; charset=UTF-8")
-	public void fSelectUser(HttpServletResponse response, int uNum) throws JsonIOException, IOException {
+	// 팔로우추가 뷰 -> 팔로우 리스트 업데이트
+	@RequestMapping(value="updateFollowList.do", produces="application/json; charset=UTF-8")
+	public void updateFollowList(HttpServletResponse response, int uNum) throws JsonIOException, IOException {
 
-		Member user = mService.fselectUser(uNum);
+		ArrayList<Member> updateList = mService.selectFollowList(uNum);
 		response.setContentType("application/json; charset=utf-8");
 
 		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
-		gson.toJson(user,response.getWriter());
+		gson.toJson(updateList, response.getWriter());
 	}
 
 	// 언팔로우 등록

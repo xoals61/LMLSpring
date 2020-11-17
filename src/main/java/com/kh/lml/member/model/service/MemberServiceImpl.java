@@ -116,9 +116,7 @@ public class MemberServiceImpl implements MemberService {
 		return mDao.mDelete(id);
 	}
 
-
 	//1113은지
-
 
 
 }

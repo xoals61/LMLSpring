@@ -71,7 +71,6 @@ public class MemberDao {
 	public int mDelete(String id) {
 		return sqlSession.update("memberMapper.deleteMember",id);
 	}
-
 	
 	//1113은지
 

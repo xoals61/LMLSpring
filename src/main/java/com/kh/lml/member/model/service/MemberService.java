@@ -44,9 +44,10 @@ public interface MemberService {
 
 	int mDelete(String id);
 
+
 	//1113은지
 
-	
+
 
 
 }
