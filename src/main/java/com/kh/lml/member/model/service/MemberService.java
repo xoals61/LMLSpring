@@ -48,6 +48,8 @@ public interface MemberService {
 
 	int nInsertMember(Member m);
 
+	int finduNum(String id);
+
 
 	//1113은지
 

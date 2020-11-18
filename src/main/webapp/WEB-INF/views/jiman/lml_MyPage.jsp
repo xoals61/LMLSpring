@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
+<%@ page import="com.kh.lml.member.model.vo.Member" %>
+<%@ page import="java.util.ArrayList" %>
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -26,6 +27,7 @@
 	<div class="myModal" id="myModal" style="display: none;">
 		<div class="board-detail" id="board-detail" style="display: none;">
 			<div class="mo_fallower">
+			
 			
 			</div>
 		</div>
@@ -190,6 +192,40 @@
               $('#myfalwer').click(function(){
                   $('.myModal').css('display','block');
                   $('.board-detail').css('display','block');
+              
+                  	var id = ${loginUser.id};
+                  $.ajax({
+  					url : "werlist.do",
+  					data : {
+  						id : id
+  					},
+  					type : "post",
+  					success : function(data) {
+  						
+  						if (data != null) {
+  							console.log(data);
+  							var a = Object.keys(data).length;
+  							
+  							 for(var i = 0; i<a;i++){
+  								console.log(data[i].id);
+  							$('.mo_fallowoo').append("<div style='width:80px; height:80px; color=yello; '>"+data[i].id+"</div>");
+  							
+  							
+  							}
+  							
+  						} else {
+  							console.log("멍청이");
+  						}
+  					},
+  					error : function() {
+  						console.log("바보");
+  						//에러 로그
+
+  					}
+  				});
+                  
+                  
+                  
                   
               });
               $('#myfalowoo').click(function(){

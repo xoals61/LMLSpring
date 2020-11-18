@@ -150,6 +150,10 @@
 	
 	</update>
 	
+	<select id="finduNum" parameterType="String" resultType="_int">
+		SELECT USER_NUM FROM LML_MEM
+		WHERE ID=#{id}
+	</select>
 </mapper>
 
 

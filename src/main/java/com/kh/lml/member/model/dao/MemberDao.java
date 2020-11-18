@@ -78,7 +78,10 @@ public class MemberDao {
 
 		return sqlSession.insert("memberMapper.nInsertMember",m);
 	}
-	
+	public int finduNum(String id) {
+		System.out.println("?");
+		return sqlSession.selectOne("memberMapper.finduNum",id);
+	}
 	//1113은지
 
 }

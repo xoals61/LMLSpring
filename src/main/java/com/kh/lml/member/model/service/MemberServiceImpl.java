@@ -127,6 +127,11 @@ public class MemberServiceImpl implements MemberService {
 		return mDao.nInsertMember(m);
 	}
 
+	@Override
+	public int finduNum(String id) {
+		return mDao.finduNum(id);
+	}
+
 
 	//1113은지
 
