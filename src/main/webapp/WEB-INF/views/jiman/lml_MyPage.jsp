@@ -26,6 +26,7 @@
 	<!-- 팔로워 모달 -->
 	<div class="myModal" id="myModal" style="display: none;">
 		<div class="board-detail" id="board-detail" style="display: none;">
+		<h4 style="margin: 13px 0px 0 206px;">팔로워</h4>
 			<div class="mo_fallower">
 			
 			
@@ -180,17 +181,24 @@
 						var a = Object.keys(data).length;
 						/* $('.mo_fallower').append("<table class='add_table'>"); */
 						
-						var img = '<img src=../image/3.JPG>';
+					
 						
 						for(var i = 0; i<a;i++){
 							console.log(data[i].id);
 							console.log(data[i].rename_profile_img);
+							
+							var img = "<table class='add_table'><tr><td class='imgtd' rowspan='2' style='width: 10%;'><img style='width:75px; height:69px;' class='userimg' src='resources/images/profileImg/"+ data[i].rename_profile_img+"'></td>"+
+							"<td class='idtd' style='width: 30%;'>"+data[i].id+"</td><td class='btntd' rowspan='2' style='width: 30%;'>"+ "<input class='button2'  name='button2' type='button' value='팔로우' onclick='followBtn(this.name, this.id);'>"
+									+"</td></tr><tr><td class='nametd'>"+data[i].uname+"</td></tr></table>";
+							
 						/* $('.mo_fallower').append("<tr><td class='imgtd' rowspan='2' style='width:10%'><img class='userimg' src='resources/images/profileImg/"+data[i].rename_profile_img+"></tr></td>"); */
-						$('.mo_fallower').append("<table class='add_table'><tr><td class='imgtd' rowspan='2' style='width: 10%;'><img style='width:80px; height:80px;' class='userimg' src='resources/images/profileImg/"+ data[i].rename_profile_img+"'><td>");
+						/* $('.mo_fallower').append("<table class='add_table'><tr><td class='imgtd' rowspan='2' style='width: 10%;'><img style='width:80px; height:80px;' class='userimg' src='resources/images/profileImg/"+ data[i].rename_profile_img+"'><td>");
 						$('.mo_fallower').append("<td class='idtd' style='width: 30%;'>"+data[i].id+"</td><td class='btntd' rowspan='2' style='width: 30%;'>");
-						
+						$('.mo_fallower').append("<input class='button2'  name='button2' type='button' value='팔로우' onclick='followBtn(this.name, this.id);'>");
+						$('.mo_fallower').append("</td></tr><tr><td>"+data[i].uname+"</td> </tr> </table>"); */
+							$('.mo_fallower').append(img);
 						}
-						/*  $('.mo_fallower').append("</table>"); */
+						/*  $('.mo_fallower').append("</table>"); */ 
 					} else {
 						console.log("지만아 사랑해><");
 					}
