@@ -15,7 +15,12 @@
 </head>
 <body>
 
+
  <jsp:include page="../common/header.jsp"/>
+ 	<div id="fallow_pop">dfddddfd
+		<div>dfdfdfdfddfdfdfdfdf</div>
+	
+	</div>
     <section>
         <div class="myPage">
             <div class="my_top" >
@@ -25,13 +30,13 @@
                 </div>
                 <div class="my_info">
                     <div class="info">
-                          <h2>${loginUser.id}  <button class="info_btn" onclick="location.href='Settings.do'" ><img src="resources/images/jmImg/설정.png" class="btn_img">
+                          <h2>${loginUser.id}  <button class="info_btn" onclick="location.href='Settings.do'" ><img src="resources/images/jmImg/settings.png" class="btn_img">
                         </button> </h2>
                     </div>
                     <div class="info" >
                         <div class="iftext_1"><span>게시글</span></div>
-                        <div class="iftext"><span>팔로워&nbsp; ${Follower} </span></div>
-                        <div class="iftext"><span>팔로우&nbsp; ${Follow}</span></div>
+                        <div class="iftext"><span><a style="color: black" href="Settings5.do">팔로워</a>&nbsp; ${Follower} </span></div>
+                        <div class="iftext"><span><a>팔로우&nbsp; ${Follow}</a></span></div>
                     </div>
                     <div class="info">
                         <div class="name">${loginUser.uname} </div>
@@ -57,15 +62,15 @@
                 <tr>
                     <td>
                         <div class="content">
-                            <div class=img><img src="resources/images/jmImg/블루 (1).jpg" class="cImg"></div>
+                            <div class=img><img src="resources/images/jmImg/blue1.jpg" class="cImg"></div>
                     </td>
                     <td>
                         <div class="content">
-                            <div class=img><img src="resources/images/jmImg/블루 (3).jpg" class="cImg"></div>
+                            <div class=img><img src="resources/images/jmImg/blue3.jpg" class="cImg"></div>
                     </td>
                     <td>
                         <div class="content">
-                            <div class=img><img src="resources/images/jmImg/무지갱.ico" class="cImg"></div>
+                            <div class=img><img src="resources/images/jmImg/rainbow.ico" class="cImg"></div>
                     </td>
                 </tr>
             </table>
@@ -76,29 +81,29 @@
                 <tr>
                     <td>
                         <div class="content">
-                            <div class=img><img src="resources/images/jmImg/블루 (1).jpg" class="cImg"></div>
+                            <div class=img><img src="resources/images/jmImg/blue1.jpg" class="cImg"></div>
                     </td>
                     <td>
                         <div class="content">
-                            <div class=img><img src="resources/images/jmImg/블루 (3).jpg" class="cImg"></div>
+                            <div class=img><img src="resources/images/jmImg/blue3.jpg" class="cImg"></div>
                     </td>
                     <td>
                         <div class="content">
-                            <div class=img><img src="resources/images/jmImg/무지갱.ico" class="cImg"></div>
+                            <div class=img><img src="resources/images/jmImg/rainbow.ico" class="cImg"></div>
                     </td>
                 </tr>
                 <tr>
                     <td>
                         <div class="content">
-                            <div class=img><img src="resources/images/jmImg블루 (1).jpg" class="cImg"></div>
+                            <div class=img><img src="resources/images/jmImg/blue1.jpg" class="cImg"></div>
                     </td>
                     <td>
                         <div class="content">
-                            <div class=img><img src="resources/images/jmImg/블루 (3).jpg" class="cImg"></div>
+                            <div class=img><img src="resources/images/jmImg/blue3.jpg" class="cImg"></div>
                     </td>
                     <td>
                         <div class="content">
-                            <div class=img><img src="resources/images/jmImg/무지갱.ico" class="cImg"></div>
+                            <div class=img><img src="resources/images/jmImg/rainbow.ico" class="cImg"></div>
                     </td>
                 </tr>
             </table>

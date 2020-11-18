@@ -144,6 +144,15 @@
     </script>
 
 <script>
+	$(function(){
+		$('#Sbtn').click(function(){
+			alert('변경되었습니다.');
+		});
+	});
+
+
+
+
     $(function(){
         $('li').click(function(){
             $('li').removeClass()
