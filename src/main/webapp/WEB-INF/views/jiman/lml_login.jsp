@@ -247,7 +247,7 @@ LML 서비스 및 제품(이하 ‘서비스’)을 이용해 주셔서 감사�
 			$('#termsbtn').prop('disabled',false);
 			modal.style.display = "none";
 			detail.style.display = "none";
-			console.log('와 아 악');
+	
 			
 			
 		}
@@ -260,7 +260,7 @@ LML 서비스 및 제품(이하 ‘서비스’)을 이용해 주셔서 감사�
 
 			$('.chk').prop('checked',false);
 			
-			console.log('와 아 악');
+	
 			
 			
 		}
@@ -349,7 +349,7 @@ LML 서비스 및 제품(이하 ‘서비스’)을 이용해 주셔서 감사�
 				return true;
 
 			} else {
-				console.log(' ㅠㅠ');
+				
 				alert('이용약관에 동의해주세요');
 				return false;
 			}
@@ -358,7 +358,7 @@ LML 서비스 및 제품(이하 ‘서비스’)을 이용해 주셔서 감사�
 
 		$(function() {
 			$("#userId").on("keyup", function() {
-				console.log("아이디 여까지2");
+				
 				var userId = $(this).val();
 
 				if (userId.length < 2) {
@@ -386,7 +386,7 @@ LML 서비스 및 제품(이하 ‘서비스’)을 이용해 주셔서 감사�
 						}
 					},
 					error : function(jqxhr, textStatus, errorThrown) {
-						console.log("ajax 처리 실패");
+						
 						//에러 로그
 
 					}
@@ -397,7 +397,7 @@ LML 서비스 및 제품(이하 ‘서비스’)을 이용해 주셔서 감사�
 		//닉네임 중복 체크 여부
 		$(function() {
 			$("#inputname").on("keyup", function() {
-				console.log("이름 여까지2");
+				
 				var userName = $("#inputname").val();
 
 				if (userName.length < 2) {
