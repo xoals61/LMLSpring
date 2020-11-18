@@ -19,6 +19,7 @@
 		<result property="from_follower" column="FROM_FOLLOWER"/>
 		<result property="f_block" column="F_BLOCK"/>
 		<result property="del_flag" column="DEL_FLAG"/>
+		<result property="rename_profile_img" column="RENAME_PROFILE_IMG"/>
 	</resultMap>
 	<select id="loginMember" parameterType="Member" resultMap="memberResultSet">
 		 
@@ -38,7 +39,7 @@
 	
 	<insert id="insertMember" parameterType="Member">
 	INSERT INTO LML_MEM
-		VALUES(#{id},#{mail},#{upwd},#{m_phone},#{height},#{weight},#{gender},#{uname},#{intro},DEFAULT,LML_MEM_SEQ.NEXTVAL,DEFAULT)
+		VALUES(#{id},#{mail},#{upwd},#{m_phone},#{height},#{weight},#{gender},#{uname},#{intro},DEFAULT,LML_MEM_SEQ.NEXTVAL,DEFAULT,DEFAULT)
 	
 	</insert>
 	<select id="idCheck" parameterType="string" resultType="_int">
@@ -56,7 +57,7 @@
 	</select>
 	
 	<update id="memberUpdate" parameterType="Member" >
-		UPDATE LML_MEM SET MAIL=#{mail} ,UNAME=#{uname},M_PHONE=#{m_phone},HEIGHT=#{height},WEIGHT=#{weight},GENDER=#{gender},INTRO=#{intro}
+		UPDATE LML_MEM SET MAIL=#{mail} ,UNAME=#{uname},M_PHONE=#{m_phone},HEIGHT=#{height},WEIGHT=#{weight},GENDER=#{gender},INTRO=#{intro}, PROFILE_IMG=#{profile_img}, RENAME_PROFILE_IMG=#{rename_profile_img}
 		WHERE ID=#{id}
 		
 	</update>
