@@ -46,7 +46,7 @@
 			<div class="my_top">
 				<div class="top">
 					<div class="my_photo">
-						<img src="resources/images/jmImg/${loginUser.profile_img}">
+						<img src="resources/images/profileImg/${loginUser.rename_profile_img}">
 					</div>
 					<div class="my_info">
 						<div class="info">
@@ -203,9 +203,10 @@
                   if (event.target == modal) {
                       modal.style.display = "none";
                       detail.style.display = "none";
-                      modalwoo.style.display = "none";
-                      detailwoo.style.display = "none";
-                     
+                  }
+                  if (event.target == modalwoo) {
+                	  modalwoo.style.display = "none";
+                	  detailwoo.style.display = "none";
                   }
               }
         
