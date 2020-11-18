@@ -720,7 +720,7 @@
                   }
               });
 
-      /* 모달팝업 디테일 */
+    /*  
       var modal = document.getElementById('myModal');
       var detail = document.getElementById('board-detail');
       var content = document.getElementById('conte');
@@ -736,7 +736,7 @@
               detail.style.display = "none";
           }
       }
-      
+      */ 
     </script>
 
 
