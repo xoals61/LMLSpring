@@ -312,4 +312,11 @@ ul.join_box {
 	color: #8080ff;
 	font-size:large; 
 }
+#searchinfo{
+	cursor:pointer;
+	
+}
+#searchinfo:hover{
+	color:blue;
+}
 

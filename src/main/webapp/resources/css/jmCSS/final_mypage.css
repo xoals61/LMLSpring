@@ -2,6 +2,7 @@
 .myPage{
     width: 1920px;
     height: 100%;
+ 
 }
 .my_top{
     width: 100%;
@@ -131,3 +132,78 @@ table{
     word-break: break-all;
     width: 70%;
 }
+
+
+
+.myModal {
+	/* display: none; Hidden by default */
+	position: fixed; /* Stay in place */
+	z-index: 15; /*Sit on top*/
+	left: 0;
+	top: 0;
+	width: 100%; /* Full width */
+	height: 100%; /* Full height */
+	overflow: auto; /* Enable scroll if needed */
+	/*  background-color: rgba(0, 0, 0, 0.781); Fallback color */
+}
+.board-detail {
+    width: 500px;
+    height: 535px;
+    /* margin: 0 auto; */
+    background-color: #8000ff;
+    position: RELATIVE;
+    left: 704px;
+    overflow: auto;
+    top: 70px;
+}
+	
+
+#myfalwer{
+	clolr:black;
+	cursor: pointer;
+}
+
+.mo_fallower{
+      position: relative;
+    width: 85%;
+    height: 90%;
+    background-color: red;
+    margin: 24px auto;
+}
+
+.myModal1 {
+	/* display: none; Hidden by default */
+	position: fixed; /* Stay in place */
+	z-index: 15; /*Sit on top*/
+	left: 0;
+	top: 0;
+	width: 100%; /* Full width */
+	height: 100%; /* Full height */
+	overflow: auto; /* Enable scroll if needed */
+	/*  background-color: rgba(0, 0, 0, 0.781); Fallback color */
+}
+.board-detail1 {
+    width: 500px;
+    height: 535px;
+    /* margin: 0 auto; */
+    background-color: #ff0080;
+    position: RELATIVE;
+    left: 1000px;
+    overflow: auto;
+    top: 70px;
+}
+	
+.mo_fallowoo{
+      position: relative;
+    width: 85%;
+    height: 90%;
+    background-color: #ffffff;
+    margin: 24px auto;
+}
+
+
+
+
+
+
+
