@@ -30,8 +30,6 @@ public class JM_memberController {
 			System.out.println(a);
 			
 		}
-		
-		
 			return FollowerList;
 		
 		

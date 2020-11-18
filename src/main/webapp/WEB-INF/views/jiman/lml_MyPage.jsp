@@ -178,15 +178,21 @@
 					if (data != null) {
 						console.log(data);
 						var a = Object.keys(data).length;
+						/* $('.mo_fallower').append("<table class='add_table'>"); */
 						
-						 for(var i = 0; i<a;i++){
+						var img = '<img src=../image/3.JPG>';
+						
+						for(var i = 0; i<a;i++){
 							console.log(data[i].id);
-						$('.mo_fallower').append("<div style='width:80px; height:80px; color:yellow; '>"+data[i].id+"</div>");
+							console.log(data[i].rename_profile_img);
+						/* $('.mo_fallower').append("<tr><td class='imgtd' rowspan='2' style='width:10%'><img class='userimg' src='resources/images/profileImg/"+data[i].rename_profile_img+"></tr></td>"); */
+						$('.mo_fallower').append("<table class='add_table'><tr><td class='imgtd' rowspan='2' style='width: 10%;'><img style='width:80px; height:80px;' class='userimg' src='resources/images/profileImg/"+ data[i].rename_profile_img+"'><td>");
+						$('.mo_fallower').append("<td class='idtd' style='width: 30%;'>"+data[i].id+"</td><td class='btntd' rowspan='2' style='width: 30%;'>");
 						
 						}
-						
+						/*  $('.mo_fallower').append("</table>"); */
 					} else {
-						console.log("멍청이");
+						console.log("지만아 사랑해><");
 					}
 				},
 				error : function() {
