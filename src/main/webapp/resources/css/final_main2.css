@@ -32,11 +32,89 @@
             height: 65px;
             border-radius: 50%;
             background: white;
+            cursor: pointer;
         }
 
         .postBtn img{
             width: 70px;
             height: 70px;
+        }
+
+        /* 글쓰기 선택 모달 부분 */
+        .modal2 {
+            position: fixed;
+            z-index: 15;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.781);
+        }
+
+        .md_content{
+            position: fixed;
+            width: 383px;
+            height: 237px;
+            top: 42%;
+            left: 40%;
+            background-color: white;
+            position: absolute;
+            border-radius: 10px;
+            z-index: 16;
+        }
+
+        .md_content #text{
+            position: relative;
+            margin-left: 17px;
+            top: 7px;
+            font-size: 17px;
+        }
+
+        .xbutton{
+            position: absolute;
+            top: 3%;
+            left: 91%;
+            border: none;
+        }
+
+        .post-style-div{
+            float: left;
+            width: 165px;
+            height: 68%;
+            margin-left: 26px;
+        }
+
+        .post-style-btn{
+            width: 120px;
+            height: 120px;
+            margin: 4px 22px 0px;
+            border-radius: 22px;
+            background-color: rgb(238, 238, 238);
+            cursor: pointer;
+        }
+
+        .post-style-p{
+            margin: 10px 57px 0px;
+        }
+
+        .post-qna-div{
+            float: left;
+            width: 165px;
+            height: 68%;
+        }
+
+        .post-qna-btn{
+            width: 120px;
+            height: 120px;
+            margin: 4px 22px 0px;
+            border-radius: 22px;
+            background-color: rgb(238, 238, 238);
+            cursor: pointer;
+        }
+
+        .post-qna-p{
+            margin: 10px 68px 0px;
         }
 
         /* 체형별 선택 */

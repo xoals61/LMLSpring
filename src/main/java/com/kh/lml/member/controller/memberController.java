@@ -134,9 +134,14 @@ public class memberController {
 	}
 
 	// 글쓰기
-	@RequestMapping("Post.do")
-	public String Post() {
-		return "post/lml_post";
+	@RequestMapping("PostStyle.do")
+	public String PostStyle() {
+		return "post/lml_post_style";
+	}
+	
+	@RequestMapping("PostQna.do")
+	public String PostQna() {
+		return "post/lml_post_qna";
 	}
 
 	@RequestMapping("mInsert.do")

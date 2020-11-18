@@ -188,11 +188,9 @@
 			<div class="upBtn">
 				<img src="resources/images/icon/main/arrow.png">
 			</div>
-			<a href="./lml_Post.html">
-				<div class="postBtn">
-					<img src="resources/images/icon/main/plus.png">
-				</div>
-			</a>
+			<div class="postBtn">
+				<img src="resources/images/icon/main/plus.png">
+			</div>
 			<div class="choice">
 				<p class="pchoice">체형별 보기</p>
 				<div class="choice1">
@@ -569,6 +567,22 @@
 				</table>
 			</div>
 		</div>
+		<div class="modal2" id="modal2" style="display: none;"></div>
+        <div class="md_content" id="md_content" style="display: none;">
+            <span id="text">업로드</span>
+            <button class="xbutton">X</button>
+            <hr style="border: solid 0.5px rgb(211, 211, 211);">
+
+            <div class="post-style-div" onclick="postStyle();">
+                <div class="post-style-btn"></div>
+                <div class="post-style-p">스타일</div>
+            </div>
+
+            <div class="post-qna-div" onclick="postQna();">
+                <div class="post-qna-btn"></div>
+                <div class="post-qna-p">QnA</div>
+            </div>
+        </div>
 	</section>
 
 	<jsp:include page="WEB-INF/views/common/footer.jsp" />
@@ -730,11 +744,36 @@
           $('.board-detail').css('display','block');
       });
  
+      var modal2 = document.getElementById('modal2');
+      var md_content = document.getElementById('md_content'); 
+      
+      $('.postBtn').click(function(){
+          $('.modal2').css('display','block');
+          $('.md_content').css('display','block');
+      });
+
       window.onclick = function(event) {
           if (event.target == modal) {
               modal.style.display = "none";
               detail.style.display = "none";
           }
+          if (event.target == modal2) {
+              modal2.style.display = "none";
+              md_content.style.display = "none";
+          }
+      }
+
+      $('.xbutton').click(function(){
+          modal2.style.display = "none";
+          md_content.style.display = "none";
+      });
+
+      function postStyle(){
+          location.href="PostStyle.do";
+      }
+
+      function postQna(){
+          location.href="PostQna.do";
       }
       
     </script>
