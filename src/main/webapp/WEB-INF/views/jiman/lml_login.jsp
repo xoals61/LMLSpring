@@ -99,10 +99,12 @@ LML 서비스 및 제품(이하 ‘서비스’)을 이용해 주셔서 감사�
 				<input id="inID" name="id" type="text" class="input-field"	placeholder="User id" required> 
 					<input  name="upwd"	type="password" class="input-field" placeholder="Enter Password" required> <input id="inCH" type="checkbox" class="checkbox"><span>Remember ID</span>
 				<button class="submit">Login</button>
-<div class="social-icons">
+				<div class="social-icons">
 				<a href="<%=apiURL%>"><img height="50"
 				src="http://static.nid.naver.com/oauth/small_g_in.PNG" /></a>
+				<a href="#" id="searchinfo">아이디/비밀번호찾기</a>	
 			</div>
+			
 			</form>
 			
 			<form id="register" action="mInsert.do" class="input-group">
