@@ -166,6 +166,35 @@
 
 	<script>
         $(document).ready(function() {
+          	var id = ${loginUser.id};
+            $.ajax({
+				url : "werlist.do",
+				data : {
+					id : id
+				},
+				type : "post",
+				success : function(data) {
+					
+					if (data != null) {
+						console.log(data);
+						var a = Object.keys(data).length;
+						
+						 for(var i = 0; i<a;i++){
+							console.log(data[i].id);
+						$('.mo_fallower').append("<div style='width:80px; height:80px; color:yellow; '>"+data[i].id+"</div>");
+						
+						}
+						
+					} else {
+						console.log("멍청이");
+					}
+				},
+				error : function() {
+					console.log("바보");
+					//에러 로그
+
+				}
+			});
         $('mytable').show(); //페이지를 로드할 때 표시할 요소
         $('.tagtable').hide(); //페이.지를 로드할 때 숨길 요소
         $('#tag').click(function(){
@@ -192,40 +221,7 @@
               $('#myfalwer').click(function(){
                   $('.myModal').css('display','block');
                   $('.board-detail').css('display','block');
-              
-                  	var id = ${loginUser.id};
-                  $.ajax({
-  					url : "werlist.do",
-  					data : {
-  						id : id
-  					},
-  					type : "post",
-  					success : function(data) {
-  						
-  						if (data != null) {
-  							console.log(data);
-  							var a = Object.keys(data).length;
-  							
-  							 for(var i = 0; i<a;i++){
-  								console.log(data[i].id);
-  							$('.mo_fallowoo').append("<div style='width:80px; height:80px; color=yello; '>"+data[i].id+"</div>");
-  							
-  							
-  							}
-  							
-  						} else {
-  							console.log("멍청이");
-  						}
-  					},
-  					error : function() {
-  						console.log("바보");
-  						//에러 로그
-
-  					}
-  				});
-                  
-                  
-                  
+                
                   
               });
               $('#myfalowoo').click(function(){
