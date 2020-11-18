@@ -34,14 +34,14 @@
                 </div>
                
                 <div class="rContent">
-                    <form class="MyInfo" method="POST" action="mUpdate.do">
+                    <form class="MyInfo" method="POST" action="mUpdate.do" enctype="multipart/form-data">
                         <div class="profile">
                             <div class="photo">
-                            	<input name="profile_img" value="${loginUser.profile_img }" hidden="true">
-                                <img src="resources/images/mainImg/${loginUser.profile_img}" id="Myimg">
+                           
+                                <img src="resources/images/profileImg/${loginUser.rename_profile_img}" id="Myimg">
                             </div>
                             <div class="ChangeBtn">
-                                 <input type="file" id="file" name="file" onchange="changeValue(this)"  accept="image/*" />
+                                 <input type="file" id="file" name="profileimg" onchange="changeValue(this)" />
                                  <button type="button" id="btn-upload">프로필 사진 바꾸기</button></div>
                         </div>
                         <div class="ModifyInfo">
