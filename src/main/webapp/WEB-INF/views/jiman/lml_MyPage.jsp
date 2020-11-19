@@ -169,6 +169,7 @@
 	<script>
         $(document).ready(function() {
           	var id = ${loginUser.id};
+          //팔로워 목록 불러오는 ajax
             $.ajax({
 				url : "werlist.do",
 				data : {
@@ -210,6 +211,49 @@
 
 				}
 			});
+            //팔로우 목록 불러오는 ajax
+            $.ajax({
+				url : "woolist.do",
+				data : {
+					id : id
+				},
+				type : "post",
+				success : function(data) {
+					
+					if (data != null) {
+						console.log(data);
+						var a = Object.keys(data).length;
+						/* $('.mo_fallower').append("<table class='add_table'>"); */
+						
+					
+						
+						for(var i = 0; i<a;i++){
+							console.log(data[i].id);
+							console.log(data[i].rename_profile_img);
+							
+							var img = "<table class='add_table'><tr><td class='imgtd' rowspan='2' style='width: 10%;'><img style='width:75px; height:69px;' class='userimg' src='resources/images/profileImg/"+ data[i].rename_profile_img+"'></td>"+
+							"<td class='idtd' style='width: 30%;'>"+data[i].id+"</td><td class='btntd' rowspan='2' style='width: 30%;'>"+ "<input class='button2'  name='button2' type='button' value='팔로우' onclick='followBtn(this.name, this.id);'>"
+									+"</td></tr><tr><td class='nametd'>"+data[i].uname+"</td></tr></table>";
+							
+						/* $('.mo_fallower').append("<tr><td class='imgtd' rowspan='2' style='width:10%'><img class='userimg' src='resources/images/profileImg/"+data[i].rename_profile_img+"></tr></td>"); */
+						/* $('.mo_fallower').append("<table class='add_table'><tr><td class='imgtd' rowspan='2' style='width: 10%;'><img style='width:80px; height:80px;' class='userimg' src='resources/images/profileImg/"+ data[i].rename_profile_img+"'><td>");
+						$('.mo_fallower').append("<td class='idtd' style='width: 30%;'>"+data[i].id+"</td><td class='btntd' rowspan='2' style='width: 30%;'>");
+						$('.mo_fallower').append("<input class='button2'  name='button2' type='button' value='팔로우' onclick='followBtn(this.name, this.id);'>");
+						$('.mo_fallower').append("</td></tr><tr><td>"+data[i].uname+"</td> </tr> </table>"); */
+							$('.mo_fallower').append(img);
+						}
+						/*  $('.mo_fallower').append("</table>"); */ 
+					} else {
+				
+					}
+				},
+				error : function() {
+					console.log("바보");
+					//에러 로그
+
+				}
+			});
+            
         $('mytable').show(); //페이지를 로드할 때 표시할 요소
         $('.tagtable').hide(); //페이.지를 로드할 때 숨길 요소
         $('#tag').click(function(){
