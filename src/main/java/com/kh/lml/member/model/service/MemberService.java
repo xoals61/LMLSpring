@@ -50,6 +50,8 @@ public interface MemberService {
 
 	int finduNum(String id);
 
+	Member userPage(String id);
+
 
 	//1113은지
 

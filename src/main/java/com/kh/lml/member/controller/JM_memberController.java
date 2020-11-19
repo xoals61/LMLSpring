@@ -30,16 +30,44 @@ public class JM_memberController {
 			System.out.println(a);
 			
 		}
-		
-		
 			return FollowerList;
 		
 		
+	}
+	@ResponseBody
+	@RequestMapping("woolist.do")
+	private ArrayList<Member> woolist(String id) {
+		int uNum = mService.finduNum(id);
+		System.out.println("woolist" +uNum);
 		
 		
-		
-		
+		ArrayList<Member> FollowooList = mService.selectFollowList(uNum);
+		for(Member a : FollowooList) {
+			System.out.println(a);
+			
+		}
+			return FollowooList;
 	}
 	
 	
+	@RequestMapping("userPage.do")
+	private String userPage(String id, Model model) {
+		Member m = mService.userPage(id);
+		System.out.println(m+"여기 유저 찾는곳?");
+		int uNum = mService.finduNum(id);
+		int Follow = mService.countFollowList(uNum);
+		int Follower = mService.countFollowerList(uNum);
+		
+		if(m != null) {
+			model.addAttribute("User", m);
+			model.addAttribute("Follow", Follow);
+			model.addAttribute("Follower", Follower);
+			return "jiman/lml_UserPage";
+		}else {
+			model.addAttribute("msg", "바보야 유저 없다");
+			return "common/errorPage";
+		}
+		
+	}
 }
+
