@@ -128,7 +128,7 @@
 	
 	<!-- 1113은지 -->
 	<select id="searchUserList1" parameterType="string" resultMap="memberResultSet">
-		SELECT USER_NUM, ID, UNAME, PROFILE_IMG
+		SELECT USER_NUM, ID, UNAME, PROFILE_IMG,RENAME_PROFILE_IMG
 		FROM LML_MEM
 		WHERE ID LIKE LOWER('%' ||  #{keyword} || '%')
 		OR UNAME LIKE LOWER('%' ||  #{keyword} || '%')
@@ -153,6 +153,12 @@
 	<select id="finduNum" parameterType="String" resultType="_int">
 		SELECT USER_NUM FROM LML_MEM
 		WHERE ID=#{id}
+	</select>
+	
+	
+	<select id="finduserPage" parameterType="String" resultMap="memberResultSet">
+	SELECT * FROM LML_MEM
+	WHERE ID=#{id} AND DEL_FLAG='N'
 	</select>
 </mapper>
 

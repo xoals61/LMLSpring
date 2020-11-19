@@ -50,13 +50,14 @@
 			<div class="my_top">
 				<div class="top">
 					<div class="my_photo">
-						<img class="frofile" src="resources/images/profileImg/${loginUser.rename_profile_img}">
+						<img class="frofile" src="resources/images/profileImg/${User.rename_profile_img}">
 					</div>
 					<div class="my_info">
 						<div class="info">
-							<h2>${loginUser.id}
-								<button class="info_btn" onclick="location.href='Settings.do'">
-									<img src="resources/images/jmImg/settings.png" class="btn_img">
+							<h2>${User.id}
+							<button class="messegebtn" >메세지
+								</button>
+								<button class="blockbtn">차단
 								</button>
 							</h2>
 						</div>
@@ -73,12 +74,12 @@
 							</div>
 						</div>
 						<div class="info">
-							<div class="name">${loginUser.uname}</div>
-							<c:if test="${empty loginUser.intro}">
+							<div class="name">${User.uname}</div>
+							<c:if test="${empty User.intro}">
 								<div class="iftext_2">자기소개를 등록해주세요.</div>
 							</c:if>
-							<c:if test="${!empty loginUser.intro}">
-								<div class="iftext_2">${loginUser.intro}</div>
+							<c:if test="${!empty User.intro}">
+								<div class="iftext_2">${User.intro}</div>
 							</c:if>
 
 						</div>
@@ -168,7 +169,7 @@
 
 	<script>
         $(document).ready(function() {
-          	var id = "${loginUser.id}";
+          	var id = "${User.id}";
           //팔로워 목록 불러오는 ajax
             $.ajax({
 				url : "werlist.do",

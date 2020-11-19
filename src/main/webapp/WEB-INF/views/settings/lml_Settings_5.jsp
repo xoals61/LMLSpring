@@ -67,7 +67,7 @@
 							<c:forEach var="fwer" items="${ FollowerList }">
 	                       		<table class="add_table" id="add_table_wer">
 		                            <tr>
-		                                <td class="imgtd" rowspan="2" style="width: 10%;"><img class="userimg" src="resources/images/jmImg/${fwer.profile_img}" alt="#"></td>
+		                                <td class="imgtd" rowspan="2" style="width: 10%;"><img class="userimg" src="resources/images/profileImg/${fwer.rename_profile_img}" alt="#"></td>
 		                                <td class="idtd" style="width: 30%;">${fwer.id } </td>
 		                                <td class="btntd" rowspan="2" style="width: 30%;">
 		                                	<c:forEach var="check" items="${ FollowList }">

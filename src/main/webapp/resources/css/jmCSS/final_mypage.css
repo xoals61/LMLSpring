@@ -129,8 +129,9 @@
     padding: 32px 392px;
 }
 table{
-    word-break: break-all;
+ 	word-break: break-all; 
     width: 70%;
+    border-spacing: 0px;
 }
 
 
@@ -222,12 +223,13 @@ position: relative;
 
 /*팔로워 테이블 */
 .add_table{
-    width: 100%;
-     border-collapse: separate;
-  border-spacing: 0 10px;
+      width: 100%;
+    border-collapse: collapse;
+    border-spacing:  0px;
 }
 .userimg{
   border-radius: 70%;
+  
 } 
 .imgtd{
      padding: 6px 1px 7px 17px;
@@ -255,8 +257,54 @@ position: relative;
     font-weight: bold;
 }
 .nametd{
-	
+	font-weight: bolder;
 }
+.frofile{
+	width:256px;
+	height:256px;
+}
+.blockbtn{
+    margin-left: 27px;
+      border-radius: 25px;
+    border: 0.8ps;
+    background-color: #ffffff!important;
+    outline: none;
+    /* border: solid 1px gray; */
+    font-size: 19px;
+    border: solid 1px #e3e3e3;
+    color: black;
+    width: 85px;
+    height: 33px;
+    font-weight: bolder;
+ 
+}
+.blockbtn:focus{
+    outline: 0;
+    border: solid 1px ; 
+}
+.blockbtn:hover{
+    color: #f90303;
+    border: solid 1px #f10101;
+}
+.messegebtn{
+    border-radius: 25px;
+    border: 0.8ps;
+    background-color: #ffffff!important;
+    outline: none;
+    border: solid 1px #e3e3e3;
+    font-size: 20px;
+    font-weight: bolder;
+    width: 91px;
+    height: 37px;
+    margin: 0 -24px 0 27px;
+
+   
+}
+.messegebtn:focus{
+    outline: 0;
+    border: solid 1px ; 
+}
+
 
 
 

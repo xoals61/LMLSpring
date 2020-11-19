@@ -128,10 +128,10 @@
 		                				<td>
 		                					<c:set var="uNum" value="${searchUser[i].user_num }"/>
 						                    <div class="infoDiv" >
-						                        <div class="uImg" onclick="infoPage();">
-						                            <img src="resources/images/mainImg/${searchUser[i].profile_img}">
+						                        <div class="uImg" onclick="infoPage('${searchUser[i].id}');">
+						                            <img src="resources/images/profileImg/${searchUser[i].rename_profile_img}">
 						                        </div>
-						                        <div class="uName" onclick="infoPage();">
+						                        <div class="uName" onclick="infoPage('${searchUser[i].id}');">
 						                            <div class="uid">${searchUser[i].id}</div>
 						                            <div class="uname">${searchUser[i].uname}</div>
 						                        </div>
@@ -177,20 +177,31 @@
             });
         });
         
-        function infoPage(){
-        	var uNum = ${uNum};
+        function infoPage(id){
+        	
+        	console.log('id:'+ id);
         	//console.log("MyPage.do?uNum="+uNum);
-        	location.href="MyPage.do?uNum="+uNum;
+        	location.href="userPage.do?id="+id;
+        	
+        	
+        	
+        	
         }
         
         $(document).ready(function(){
-        	var uNum = ${loginUser.user_num};
-			var searchUser = new Array();
+        	
+        	var uNum = 0${loginUser.user_num};
+        	
+        	
+        		console.log(uNum);
+     
+        	
+			/* var searchUser = new Array();
 			var searchUserCount = ${fn:length(searchUser)};
 			
-			<c:forEach items="${searchUser}" var="su">
+	 <c:forEach items="${searchUser}" var="su">
 				searchUser.push({num:"${su.user_num}"});
-			</c:forEach>
+			</c:forEach> 		
 			
         	$.ajax({
 				url:"searchFollowList.do",
@@ -212,7 +223,7 @@
 				error:function(jqxhr, textStatus,errorThrown){
 					console.log("ajax 처리 실패");
 				}
-			});
+			}); */
         });
         
         $(".follow").click(function(e){
@@ -221,7 +232,8 @@
         	
         	if(followQ){
 	            var to_follow = $(this).attr('id');
-	            var from_follow = ${loginUser.user_num};
+	    
+	            var from_follow = 0${loginUser.user_num};
 	            console.log(to_follow);
 	            console.log(from_follow);
 	            
