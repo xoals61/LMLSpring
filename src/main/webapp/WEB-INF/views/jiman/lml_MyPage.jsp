@@ -37,6 +37,7 @@
 	<!-- 팔로우 모달 -->
 	<div class="myModal1" id="myModal1" style="display: none;">
 		<div class="board-detail1" id="board-detail1" style="display: none;">
+		<h4 style="margin: 13px 0px 0 206px;">팔로우</h4>
 			<div class="mo_fallowoo">
 			
 			</div>
