@@ -201,7 +201,7 @@
 						}
 						/*  $('.mo_fallower').append("</table>"); */ 
 					} else {
-						console.log("지만아 사랑해><");
+				
 					}
 				},
 				error : function() {
