@@ -15,17 +15,19 @@
 	<jsp:include page="../common/header.jsp"/>
 	<section>
         <div class="AContent">
-            <button type="submit" class="uploadBtn">업로드</button>
-            <div class="Atable">
-                <div class="Abox">
-                    <form>
+        	<form action="stylePostUpload.do" method="post" enctype="multipart/form-data">
+	            <button type="submit" class="uploadBtn">업로드</button>
+	            <div class="Atable">
+	                <div class="Abox">
                         <div class="post-div">
+                        	<input type="hidden" name="b_user_num" value="${loginUser.user_num}"/>
                             <div class="div-img">
                                 <div class="post-img">스타일 이미지</div>
 
                                 <div class="post-img-div">
                                     <div class="img-upload1" >
-                                        <input type="file" id="uploadImg" name="uploadImg" onchange="changeValue(this,$('#img-preview'))"  accept="image/*" />
+                                        <input type="file" multiple="multiple" id="uploadImg" name="bUploadImg" onchange="changeValue(this,$('#img-preview'))"  accept="image/*" />
+                                        <input type="file" multiple="multiple" id="uploadImg1" name="bUploadImg" onchange="changeValue(this,$('#img-preview'))"  accept="image/*" />
                                         <img class="img-upload-icon" id="img-upload" src="resources/images/post/imgPlusIcon.png" />
                                     </div>
                                     <div class="img-preview" id="img-preview"></div>
@@ -36,7 +38,7 @@
                                 <div class="post-cont">설명</div>
                                 <div class="post-cont-div">
                                     <div class="cont-write">
-                                        <textarea placeholder="내용을 입력해주세요"></textarea>
+                                        <textarea name="b_content" placeholder="내용을 입력해주세요"></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -56,7 +58,7 @@
                                         </select>&nbsp;&nbsp;&nbsp;
                                         <input type="text" class="styleTag tagBrand" id="brand" placeholder="직접 입력">
                                         <select name="styleTag" class="styleTag tagBrand" onchange="document.getElementById('brand').value = this.options[this.selectedIndex].value">
-                                            <option value="0">-----</option>
+                                            <option value="선택">-----</option>
                                             <option value="나이키">나이키</option>
                                             <option value="에이블린">에이블린</option>
                                             <option value="에잇세컨즈">에잇세컨즈</option>
@@ -65,16 +67,16 @@
                                         </select>&nbsp;&nbsp;&nbsp;
                                         <button type="button" class="styleTagBtn" onclick="styleTagBtn();">추가</button>
                                         <div class="tagArea">
-                                            
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </form>
-                </div>
-            </div>
+	                </div>
+	            </div>
+            </form>
         </div>
+        
     </section>
 	<script>
         function changeValue(html, $target) {
@@ -105,8 +107,10 @@
             if(brand.length > 0){
                 $('.tagArea').append('<div class="tag" id='+ idnum +'>'+
                                         '<p class="clothes">'+ clothes +'</p>'+
-                                        '<p class="brand">'+ brand +'</p>'+
+                                        '<p class="brand">'+ brand +'</pv>'+
                                         '<div class="deleteStyleTag"><img src="resources/images/post/close.png"></div>'+
+                                        '<input type="hidden" name="bStyleTag" value='+ clothes + ' />' +	
+                                        '<input type="hidden" name="bStyleTag" value='+ brand + ' />' +	
                                     '</div>');
                 idnum++;
             }else{

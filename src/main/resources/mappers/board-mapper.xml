@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="boardMapper">
+	<resultMap type="Board" id="boardResultSet">
+		<id property="b_num" column="B_NUM"/>
+		<result property="b_user_num" column="B_USER_NUM"/>
+		<result property="b_content" column="B_CONTENT"/>
+		<result property="b_status" column="B_STATUS"/>
+		<result property="b_date" column="B_DATE"/>
+		<result property="originalFileName" column="ORIGINALFILENAME"/>
+		<result property="renameFileName" column="RENAMEFILENAME"/>
+		
+		<!-- <result property="b_hashtag" column="B_HASHTAG"/>
+		<result property="b_images" column="B_IMAGES"/>
+		<result property="b_top" column="B_TOP"/>
+		<result property="b_bottom" column="B_BOTTOM"/>
+		<result property="b_shoes" column="B_SHOES"/>
+		<result property="b_acc" column="B_ACC"/>
+		<result property="b_etc" column="B_ETC"/>
+		<result property="originalFileName" column="ORIGINALFILENAME"/>
+		<result property="renameFileName" column="RENAMEFILENAME"/> -->
+	</resultMap>
+	
+	<insert id="insertStylePost" parameterType="Board">
+		INSERT INTO LML_BOARD
+		VALUES(BOARD_SEQ.NEXTVAL, #{b_user_num}, #{b_content}, DEFAULT, SYSDATE, #{originalFileName}, #{renameFileName})
+	</insert>
+	
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+

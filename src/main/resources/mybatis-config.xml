@@ -8,6 +8,7 @@
 	<!-- typeAliases -->
 	<typeAliases>
 		<typeAlias type="com.kh.lml.member.model.vo.Member" alias="Member"/>
+		<typeAlias type="com.kh.lml.board.model.vo.Board" alias="Board"/>
 	</typeAliases>
 	
 	<!-- environments 엘리먼트로 dataSource 등의 DB정보들을 작성했었다.
@@ -17,5 +18,6 @@
 	
 	<mappers>
 		<mapper resource="mappers/member-mapper.xml"/>
+		<mapper resource="mappers/board-mapper.xml"/>
 	</mappers>
 </configuration>
