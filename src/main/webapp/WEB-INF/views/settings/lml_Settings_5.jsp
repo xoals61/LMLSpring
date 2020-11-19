@@ -63,8 +63,10 @@
                         </div>
                     <div class="address" id="address">
                     	<!-- 팔로워친구 -->
+                    	<c:set var="fromFollow" value="${loginUser.user_num}"/>
                     	<c:if test="${ !empty FollowerList }">
 							<c:forEach var="fwer" items="${ FollowerList }">
+							
 	                       		<table class="add_table" id="add_table_wer">
 		                            <tr>
 		                                <td class="imgtd" rowspan="2" style="width: 10%;"><img class="userimg" src="resources/images/profileImg/${fwer.rename_profile_img}" alt="#"></td>
@@ -128,73 +130,73 @@
 		</script>
 
 	<script>
-		function followBtn(name, id){
+	function followBtn(name, id){
+		
+		if(name == 'button1'){	// 언팔로우
 			
-			console.log("1. name : " + name + " / id : " + id);
+			var followQ = confirm('언팔로우 하시겠습니까?');
 			
-			if(name == 'button1'){	// 언팔로우
+			if(followQ){
 				
-				var followQ = confirm('언팔로우 하시겠습니까?');
+				console.log('woo 언팔');
 				
-				if(followQ){
-					
-					var toUnFollow = id;	// 팔로우 취소 할 상대
-					var fromFollow = '<c:out value="${fromFollow}"/>';	// 본인
-					
-					$.ajax({
-						url:"unfollowBtn.do",
-						data:{toUnFollow:toUnFollow, fromFollow:fromFollow},
-						type:"post",
-						success:function(data){
-							if(data == "success"){
-								$('#'+id).prop('class','button2');
-								$('#'+id).prop('name','button2');
-								$('#'+id).prop('value','팔로우');
-							}else{
-								alert("실패");
-							}
-						},
-						error:function(jqxhr, textStatus,errorThrown){
-							console.log("ajax 처리 실패");
+				var toUnFollow = id;	// 팔로우 취소 할 상대
+				var fromFollow = '<c:out value="${fromFollow}"/>';	// 본인
+				
+				console.log("Un - to : " + toUnFollow + " / from : " + fromFollow);
+				
+				$.ajax({
+					url:"unfollowBtn.do",
+					data:{toUnFollow:toUnFollow, fromFollow:fromFollow},
+					type:"post",
+					success:function(data){
+						if(data == "success"){
+							$('#'+id).prop('class','button2');
+							$('#'+id).prop('name','button2');
+							$('#'+id).prop('value','팔로우');
+						}else{
+							alert("실패");
 						}
-					});
-					
-				}else{	alert('언팔 불가능');	}
+					},
+					error:function(jqxhr, textStatus,errorThrown){
+						console.log("ajax 처리 실패");
+					}
+				});
 				
-			}else if(name == 'button2'){	// 팔로우
+			}else{	alert('언팔 불가능');	}
+			
+		}else if(name == 'button2'){	// 팔로우
+			
+			var followQ = confirm('팔로우 하시겠습니까?');
+			
+			if(followQ){
 				
-				var followQ = confirm('팔로우 하시겠습니까?');
+				var toFollow = id;	// 팔로우 할 상대
+				var fromFollow = '<c:out value="${fromFollow}"/>';	// 본인
 				
-				if(followQ){
-					
-					var toFollow = id;	// 팔로우 할 상대
-					var fromFollow = '<c:out value="${loginUser.user_num}"/>';	// 본인
-					
-					console.log("2. to : " + toFollow + " / from : " + fromFollow);
-					
-					$.ajax({
-						url:"followBtn.do",
-						data:{toFollow:toFollow, fromFollow:fromFollow},
-						type:"post",
-						success:function(data){
-							if(data == "success"){
-								$('#'+id).prop('class','button1');
-								$('#'+id).prop('name','button1');
-								$('#'+id).prop('value','팔로잉');
-							}else{
-								alert("실패");
-							}
-						},
-						error:function(jqxhr, textStatus,errorThrown){
-							console.log("ajax 처리 실패");
+				$.ajax({
+					url:"followBtn.do",
+					data:{toFollow:toFollow, fromFollow:fromFollow},
+					type:"post",
+					success:function(data){
+						if(data == "success"){
+							$('#'+id).prop('class','button1');
+							$('#'+id).prop('name','button1');
+							$('#'+id).prop('value','팔로잉');
+						}else{
+							alert("실패");
 						}
-					});
-				}else{	alert('팔로우 불가능');	}
-				
-			}else if(name == 'button3'){
-				console.log('차단' + name);
-			} 
+					},
+					error:function(jqxhr, textStatus,errorThrown){
+						console.log("ajax 처리 실패");
+					}
+				});
+			}else{	alert('팔로우 불가능');	}
+			
+		}else if(name == 'button3'){
+			console.log('차단' + name);
 		}
+	}
 		
      
       
