@@ -50,7 +50,7 @@
 								<div class="post-cont">설명</div>
 								<div class="post-cont-div">
 									<div id="cont-write" class="cont-write">
-										<textarea id="b_content" name="b_content" placeholder="내용을 입력해주세요">#태민 #지만  </textarea>
+										<textarea id="b_content" name="b_content" placeholder="내용을 입력해주세요"></textarea>
 									</div>
 									<div id="hihi" style="width: 100px; height: 100px;  margin-left: 600px;background: yellow; ">
 									</div>
@@ -109,6 +109,7 @@
 
 	</section>
 	<script>
+	
 	var content = document.getElementById('b_content').innerHTML;
 	var splitedArray = content.split(' ');
 	var linkedContent = '';
@@ -123,7 +124,6 @@
 	   linkedContent += word+' ';
 	}
 	document.getElementById('hihi').innerHTML = linkedContent; 
-
 		
 	function addhash(){
 		var tag = '<a href=\'Search.do?keyword='+$('#hashtag').val()+'\'>'  +  '#'+$('#hashtag').val()+'</a><br>';
