@@ -62,9 +62,9 @@
 								<div class="post-cont-div1">
 									<form action="#" id="tag" method="post">
 									<!-- 	<input type="hidden" value="" name="tag" id="tag"> -->
-										<input type="text" id="tag" size="7" placeholder="태그입력" />
+										<input type="text" id="hashtag" size="7" placeholder="태그입력" />
 										
-										<button type="button" id="tagbtn">태그 등록</button>
+										<button type="button" id="tagbtn" onclick="addhash()">태그 등록</button>
 									</form>
 								
 									
@@ -115,16 +115,25 @@
 	for(var word in splitedArray)
 	{
 	  word = splitedArray[word];
+ 	  var ab = word.replace("#",""); 
 	   if(word.indexOf('#') == 0){
-		   word = '<a href=\'Search.do?keyword='+word+'\'>'+word+'</a>';
+		   
+		   word = '<a href=\'Search.do?keyword='+ab+'\'>'+word+'</a>';
 	   }
 	   linkedContent += word+' ';
 	}
 	document.getElementById('hihi').innerHTML = linkedContent; 
 
 		
+	function addhash(){
+		var tag = '<a href=\'Search.do?keyword='+$('#hashtag').val()+'\'>'  +  '#'+$('#hashtag').val()+'</a><br>';
 		
+	document.getElementById('hihi').innerHTML+= tag;
+	
+	$('#hashtag').val("");
 		
+	}
+	
 	
 	
 	
