@@ -10,6 +10,19 @@
         <link rel="stylesheet" href="resources/css/final_message.css">
         
     </head>
+    
+    
+    
+    
+    
+      <!-- 여기 채팅 겁난다 -->
+      <script src="http://localhost:82/socket.io/socket.io.js"></script>
+   
+        
+        
+        
+        
+        
     <body>
        <jsp:include page="../common/header.jsp"/>
 
@@ -75,7 +88,14 @@
         <jsp:include page="../common/footer.jsp"/>
         
         <script>
+        var socket;
             $(document).ready(function () {
+            	
+            	
+            	
+            	
+            	
+            	socket = io("http://localhost:82")
                 $('.direct-user').on('click', function () {
                     $(this).addClass('select-bar');
                     $(this).siblings().removeClass('select-bar');
@@ -89,11 +109,14 @@
                 if($('.inputsend').val()!=''){
                 $('.message').append('<div class="yourmessagediv"><img src="resources/images/mainImg/pbuzz.jpg" class="yourmessageimg"><span class="yourmessage">안녕</span></div>');
                 
-                
+               var as = "${loginUser.id}";
                 var mas = '<div class="mymessagediv"><span class="mymessage">' + $('.inputsend').val() + '</span></div>';
                 $('.message').append(mas);
+                socket.emit("send_msg",as,$(".inputsend").val());
+         
                 $('.inputsend').val('');
                 $('.message').scrollTop($('.message').prop('scrollHeight'));
+                
                 }
             };
 
