@@ -94,8 +94,9 @@
             	
             	
             	
-            	
+            	  var as = "${loginUser.id}";
             	socket = io("http://52.79.234.164:3001");
+            	  socket.emit("login",as);
                 $('.direct-user').on('click', function () {
                     $(this).addClass('select-bar');
                     $(this).siblings().removeClass('select-bar');
