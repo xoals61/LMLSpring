@@ -2,18 +2,25 @@ package com.kh.lml.board.controller;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.servlet.ModelAndView;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.JsonIOException;
 import com.kh.lml.board.model.service.BoardService;
 import com.kh.lml.board.model.vo.Board;
 
@@ -30,10 +37,7 @@ public class BoardController {
 			@RequestParam(value="bUploadImg2", required=false) MultipartFile file2,
 			@RequestParam(value="bUploadImg3", required=false) MultipartFile file3,
 			@RequestParam(value="bUploadImg4", required=false) MultipartFile file4,
-			@RequestParam(value="bUploadImg5", required=false) MultipartFile file5) {
-		
-		System.out.println("바지정보 : " + b.getB_bottom());
-		
+			@RequestParam(value="bUploadImg5", required=false) MultipartFile file5) {		
 		
 		MultipartFile[] fileList = {file1,file2,file3,file4,file5};
 		
@@ -146,9 +150,32 @@ public class BoardController {
 	
 	
 	// 인덱스 메인
-		@RequestMapping("Index.do")
-		public String index() {
-			return "../../index";
-		}
+//	@ResponseBody
+//	@RequestMapping(value="Index.do", produces="application/json; charset=UTF-8")
+//	public String index(HttpServletResponse response) throws JsonIOException, JsonProcessingException{
+//		
+//		ArrayList<Board> list = bService.selectList();
+//		
+//		ObjectMapper mapper = new ObjectMapper();
+//		
+//		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+//		mapper.setDateFormat(sdf);
+//		
+//		String jsonStr = mapper.writeValueAsString(list);
+//		
+//		return jsonStr;
+//	}
+	@RequestMapping("Index.do")
+	public ModelAndView index(ModelAndView mv) {
+		
+		ArrayList<Board> list = bService.selectList();
+		
+		mv.addObject("boardList", list);
+		mv.setViewName("../../index");
+		
+		return mv;
+	}
+	
+
 	
 }

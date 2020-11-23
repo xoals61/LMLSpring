@@ -17,6 +17,58 @@
 </head>
 <body>
 	<jsp:include page="WEB-INF/views/common/header.jsp" />
+	<!-- <script>
+		$(function(){
+			$.ajax({
+				url:"Index.do",
+				dataType:"JSON",
+				success:function(data){
+					console.log(data);
+					$('#table').append('<tr><td>'+
+											'<div class="content">'+
+									'<div>'+
+										'<img src="resources/buploadFiles/'+ data[0].image1 +'" class="cImg">'+
+									'</div>'+
+									'<div class="chover">'+
+										'<div class="hover-detail-content"></div>'+
+										'<div class="chContnet">'+
+											'<div class="user">'+
+												'<div class="userImg">'+
+													'<a href="./jiman/MyPage.html"><img src="resources/images/mainImg/pbuzz.jpg"></a>'+
+												'</div>'+
+												'<a href="./jiman/MyPage.html"><div class="userId">'+ data[0].b_user_num +'</div></a>'+
+											'</div>'+
+											'<div class="con">'+
+												'<div class="userCon">'+
+													'<p>'+ data[0].b_content +'d</p>'+
+												'</div>'+
+											'</div>'+
+											'<div class="cBtn">'+
+												'<div class="cHeart">'+
+													'<img src="resources/images/icon/main/heart.png" class="cheart">'+
+												'</div>'+
+												'<div class="cComment">'+
+													'<div class="cbox"></div>'+
+													'<img src="resources/images/icon/main/comment.png">'+
+												'</div>'+
+												'<div class="cEtc">'+
+													'<img src="resources/images/icon/main/etc.png">'+
+												'</div>'+
+											'</div>'+
+										'</div>'+
+									'</div>'+
+								'</div>'+
+							'</td></tr>');
+				},
+				error:function(request,status,error){
+					alert("code : " + request.status + "\n"
+						+ "message : " + request.responseText + "\n"
+						+ "error : " + error);
+				}
+			});
+		});
+	</script> -->
+	
 	<section>
 		<!-- ===================================================== 모달 ======================================================== -->
 		<div class="myModal" id="myModal" style="display: none;">
@@ -630,7 +682,7 @@
 
       });
 
-          //스크롤 바닥 감지
+          /* //스크롤 바닥 감지
           window.onscroll = function (e) {
 
               // 게시물 마우스오버
@@ -644,7 +696,7 @@
                   });
               });
 
-              /* 게시물 좋아요 아이콘 클릭 시 아이콘 변경 */
+              /* 게시물 좋아요 아이콘 클릭 시 아이콘 변경 
               $(".cHeart").click(function(){
             	  
             	 if($('.cheart',this).attr('src') == "resources/images/icon/main/heart.png"){
@@ -655,7 +707,7 @@
                   }
               });
 
-              /* 모달팝업 디테일 */
+              /* 모달팝업 디테일 
               var modal = document.getElementById('myModal');
               var detail = document.getElementById('board-detail');
               var content = document.getElementById('conte');
@@ -705,7 +757,7 @@
                   //article에 추가되는 콘텐츠를 append
                   $('#table').append(addContent);
               }
-          }; 
+          };  */
 
           /* 맨 위로 가는 버튼 */
           $( document ).ready( function() {
