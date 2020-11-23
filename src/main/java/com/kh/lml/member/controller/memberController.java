@@ -44,11 +44,7 @@ public class memberController {
 	private MemberService mService;
 
 
-	// 인덱스 메인
-	@RequestMapping("Index.do")
-	public String index() {
-		return "../../index";
-	}
+	
 	// 로그아웃(임시로 만들어놓음)
 	@RequestMapping("Logout.do")
 	public String Logout() {
