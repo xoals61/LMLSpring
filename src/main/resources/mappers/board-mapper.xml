@@ -7,8 +7,17 @@
 		<result property="b_content" column="B_CONTENT"/>
 		<result property="b_status" column="B_STATUS"/>
 		<result property="b_date" column="B_DATE"/>
-		<result property="originalFileName" column="ORIGINALFILENAME"/>
-		<result property="renameFileName" column="RENAMEFILENAME"/>
+		<result property="image1" column="IMAGE1"/>
+		<result property="image2" column="IMAGE2"/>
+		<result property="image3" column="IMAGE3"/>
+		<result property="image4" column="IMAGE4"/>
+		<result property="image5" column="IMAGE5"/>
+		<result property="b_top" column="B_TOP"/>
+		<result property="b_bottom" column="B_BOTTOM"/>
+		<result property="b_shoes" column="B_SHOES"/>
+		<result property="b_acc" column="B_ACC"/>
+		<result property="b_etc" column="B_ETC"/>
+		
 		
 		<!-- <result property="b_hashtag" column="B_HASHTAG"/>
 		<result property="b_images" column="B_IMAGES"/>
@@ -23,7 +32,12 @@
 	
 	<insert id="insertStylePost" parameterType="Board">
 		INSERT INTO LML_BOARD
-		VALUES(BOARD_SEQ.NEXTVAL, #{b_user_num}, #{b_content}, DEFAULT, SYSDATE, #{originalFileName}, #{renameFileName})
+		VALUES(BOARD_SEQ.NEXTVAL, #{b_user_num}, #{b_content}, DEFAULT, SYSDATE, #{image1}, #{image2}, #{image3}, #{image4}, #{image5}, #{b_top}, #{b_bottom}, #{b_shoes}, #{b_acc}, #{b_etc})
+	</insert>
+	
+	<insert id="testMultipart" parameterType="Board">
+		INSERT INTO LML_BOARD
+		VALUES(BOARD_SEQ.NEXTVAL, 1, '테스트스트', DEFAULT, SYSDATE, #{image1}, #{image2}, #{image3}, #{image4}, #{image5})
 	</insert>
 	
 	

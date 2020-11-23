@@ -16,4 +16,8 @@ public class BoardDao {
 		return sqlSession.insert("boardMapper.insertStylePost", b);
 	}
 
+	public int TestMultipart(Board b) {
+		return sqlSession.insert("boardMapper.testMultipart", b);
+	}
+
 }

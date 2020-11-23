@@ -21,4 +21,9 @@ public class BoardServiceImpl implements BoardService {
 		return bDao.insertStylePost(b);
 	}
 
+	@Override
+	public int TestMultipart(Board b) {
+		return bDao.TestMultipart(b);
+
+	}
 }

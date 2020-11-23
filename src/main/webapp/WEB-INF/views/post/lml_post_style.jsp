@@ -32,19 +32,29 @@
 								<div class="post-img">스타일 이미지</div>
 
 								<div class="post-img-div">
-									<div class="img-upload1">
-										<input type="file" multiple="multiple" id="uploadImg"
-											name="bUploadImg"
-											onchange="changeValue(this,$('#img-preview'))"
-											accept="image/*" /> <input type="file" multiple="multiple"
-											id="uploadImg1" name="bUploadImg"
-											onchange="changeValue(this,$('#img-preview'))"
-											accept="image/*" /> <img class="img-upload-icon"
-											id="img-upload" src="resources/images/post/imgPlusIcon.png" />
+									<div class="img-upload1" id="preview1">
+										<input type="file" id="up1input" name="bUploadImg1" class="uploadImg" onchange="changeValue(this,$('#up1'))"  accept="image/*" />
+                                    	<img class="img-upload-icon" id="up1" src="resources/images/post/imgPlusIcon.png" onclick="uploadBtn(this.id);"/>
+                                    	<!-- multiple="multiple"  -->
 									</div>
-									<div class="img-preview" id="img-preview"></div>
+									<div class="img-upload1" id="preview2">
+										<input type="file" id="up2input" name="bUploadImg2" class="uploadImg" onchange="changeValue(this,$('#up2'))"  accept="image/*" />
+                                    	<img class="img-upload-icon" id="up2" src="resources/images/post/imgPlusIcon.png" onclick="uploadBtn(this.id);"/>
+									</div>
+									<div class="img-upload1" id="preview3">
+										<input type="file" id="up3input" name="bUploadImg3" class="uploadImg" onchange="changeValue(this,$('#up3'))"  accept="image/*" />
+                                    	<img class="img-upload-icon" id="up3" src="resources/images/post/imgPlusIcon.png" onclick="uploadBtn(this.id);"/>
+									</div>
+									<div class="img-upload1" id="preview4">
+										<input type="file" id="up4input" name="bUploadImg4" class="uploadImg" onchange="changeValue(this,$('#up4'))"  accept="image/*" />
+                                    	<img class="img-upload-icon" id="up4" src="resources/images/post/imgPlusIcon.png" onclick="uploadBtn(this.id);"/>
+									</div>
+									<div class="img-upload1" id="preview5">
+										<input type="file" id="up5input" name="bUploadImg5" class="uploadImg" onchange="changeValue(this,$('#up5'))"  accept="image/*" />
+                                    	<img class="img-upload-icon" id="up5" src="resources/images/post/imgPlusIcon.png" onclick="uploadBtn(this.id);"/>
+									</div>
+									
 								</div>
-
 							</div>
 							<div class="div-cont">
 								<div class="post-cont">설명</div>
@@ -79,15 +89,14 @@
 								<div class="post-tag-div">
 									<div class="tag-select">
 										<select name="styleTag" class="styleTag" id="clothes">
-											<option value="상의">상의</option>
-											<option value="하의">하의</option>
-											<option value="신발">신발</option>
+											<option value="top">상의</option>
+											<option value="bottom">하의</option>
+											<option value="shoes">신발</option>
 											<option value="acc">acc</option>
 											<option value="etc">etc</option>
-										</select>&nbsp;&nbsp;&nbsp; <input type="text"
-											class="styleTag tagBrand" id="brand" placeholder="직접 입력">
-										<select name="styleTag" class="styleTag tagBrand"
-											onchange="document.getElementById('brand').value = this.options[this.selectedIndex].value">
+										</select>&nbsp;&nbsp;&nbsp; 
+										<input type="text" class="styleTag tagBrand" id="brand" placeholder="직접 입력">
+										<select name="styleTag" class="styleTag tagBrand" onchange="document.getElementById('brand').value = this.options[this.selectedIndex].value">
 											<option value="선택">-----</option>
 											<option value="나이키">나이키</option>
 											<option value="에이블린">에이블린</option>
@@ -95,8 +104,7 @@
 											<option value="아디다스">아디다스</option>
 											<option value="자라">자라</option>
 										</select>&nbsp;&nbsp;&nbsp;
-										<button type="button" class="styleTagBtn"
-											onclick="styleTagBtn();">추가</button>
+										<button type="button" class="styleTagBtn" onclick="styleTagBtn();">추가</button>
 										<div class="tagArea"></div>
 									</div>
 								</div>
@@ -110,66 +118,80 @@
 	</section>
 	<script>
 	
-	var content = document.getElementById('b_content').innerHTML;
-	var splitedArray = content.split(' ');
-	var linkedContent = '';
-	for(var word in splitedArray)
-	{
-	  word = splitedArray[word];
- 	  var ab = word.replace("#",""); 
-	   if(word.indexOf('#') == 0){
-		   
-		   word = '<a href=\'Search.do?keyword='+ab+'\'>'+word+'</a>';
-	   }
-	   linkedContent += word+' ';
-	}
-	document.getElementById('hihi').innerHTML = linkedContent; 
+		var content = document.getElementById('b_content').innerHTML;
+		var splitedArray = content.split(' ');
+		var linkedContent = '';
+		for(var word in splitedArray)
+		{
+		  word = splitedArray[word];
+	 	  var ab = word.replace("#",""); 
+		   if(word.indexOf('#') == 0){
+			   
+			   word = '<a href=\'Search.do?keyword='+ab+'\'>'+word+'</a>';
+		   }
+		   linkedContent += word+' ';
+		}
+		document.getElementById('hihi').innerHTML = linkedContent; 
+			
+		function addhash(){
+			var tag = '<a href=\'Search.do?keyword='+$('#hashtag').val()+'\'>'  +  '#'+$('#hashtag').val()+'</a><br>';
+			
+		document.getElementById('hihi').innerHTML+= tag;
 		
-	function addhash(){
-		var tag = '<a href=\'Search.do?keyword='+$('#hashtag').val()+'\'>'  +  '#'+$('#hashtag').val()+'</a><br>';
+		$('#hashtag').val("");
+			
+		}
 		
-	document.getElementById('hihi').innerHTML+= tag;
-	
-	$('#hashtag').val("");
-		
-	}
-	
-	
-	
-	
 	
         function changeValue(html, $target) {
-            if (html.files && html.files[0]) {
-                var reader = new FileReader();
+        	console.log(html.files.length);
+        	if (html.files && html.files[0]) {
+            	var reader = new FileReader();
                 reader.onload = function (e) {
-                    $target.css('display', '');
-                    $target.append('<img src="' + e.target.result + '" class="preview"/>');
+                    $target.attr('src',e.target.result);
+                    $target.css({'width':'180px', 'height':'180px', 'margin':'0' });
                 }
                 reader.readAsDataURL(html.files[0]);
             }
         }
 
         /*iput태그 파일*/
-        $(function () {    
-            $('#img-upload').click(function (e) {
-                e.preventDefault();   
-                $('#uploadImg').click();
-            });
-        });
+        function uploadBtn(id){
+            console.log("클릭댐"); 
+            $('#'+id+'input').click();
+        }
 
         var idnum = 77701;
 
         function styleTagBtn(){
             var clothes = document.getElementById('clothes').value;
             var brand = document.getElementById('brand').value;
+            
+            var name ="";
+            
+            if(clothes == "top"){
+            	name = "b_top";
+            }else if(clothes == "bottom"){
+            	name = "b_bottom";
+            }else if(clothes == "shoes"){
+            	name = "b_shoes";
+            }
+            else if(clothes == "shoes"){
+            	name = "b_shoes";
+            }else if(clothes == "acc"){
+            	name = "b_acc";
+            }else if(clothes == "etc"){
+            	name = "b_etc";
+            }
 
             if(brand.length > 0){
+            	
                 $('.tagArea').append('<div class="tag" id='+ idnum +'>'+
                                         '<p class="clothes">'+ clothes +'</p>'+
                                         '<p class="brand">'+ brand +'</pv>'+
                                         '<div class="deleteStyleTag"><img src="resources/images/post/close.png"></div>'+
-                                        '<input type="hidden" name="bStyleTag" value='+ clothes + ' />' +	
-                                        '<input type="hidden" name="bStyleTag" value='+ brand + ' />' +	
+                                        '<input type="hidden" value='+ clothes + ' />' +	
+                                        '<input type="hidden" name='+ name +' value='+ brand + ' />' +	
                                     '</div>');
                 idnum++;
             }else{
@@ -178,7 +200,6 @@
         }
 
         $(document).on("click", ".deleteStyleTag", function (e) {
-            //var index = $(this).attr("id");
             $(this).parent().remove();
         });
     </script>

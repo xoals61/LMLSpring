@@ -6,4 +6,6 @@ public interface BoardService {
 
 	int insertStylePost(Board b);
 
+	int TestMultipart(Board b);
+
 }
