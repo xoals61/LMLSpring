@@ -16,7 +16,7 @@
     
     
       <!-- 여기 채팅 겁난다 -->
-      <script src="http://localhost:82/socket.io/socket.io.js"></script>
+      <script src="http://52.79.234.164:3001/socket.io/socket.io.js"></script>
    
         
         
@@ -95,7 +95,7 @@
             	
             	
             	
-            	socket = io("http://localhost:82")
+            	socket = io("http://52.79.234.164:3001");
                 $('.direct-user').on('click', function () {
                     $(this).addClass('select-bar');
                     $(this).siblings().removeClass('select-bar');
