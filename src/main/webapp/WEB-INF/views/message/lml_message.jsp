@@ -103,12 +103,22 @@
                 });
 
                 $('.message').scrollTop($('.message').prop('scrollHeight'));
+                
+                
+                socket.on('send_msg',function(msg,name){
+    				console.log(msg);
+    				console.log(name);
+    				if(name =="149756660"){
+    				$('.message').append('<div class="yourmessagediv"><img src="resources/images/mainImg/pbuzz.jpg" class="yourmessageimg"><span class="yourmessage">'+ msg +'</span></div>');
+    				}
+    			});
+                
             });
 
             /* 채팅 */
             function send(){
                 if($('.inputsend').val()!=''){
-                $('.message').append('<div class="yourmessagediv"><img src="resources/images/mainImg/pbuzz.jpg" class="yourmessageimg"><span class="yourmessage">안녕</span></div>');
+             //   $('.message').append('<div class="yourmessagediv"><img src="resources/images/mainImg/pbuzz.jpg" class="yourmessageimg"><span class="yourmessage">안녕</span></div>');
                 
                var as = "${loginUser.id}";
                 var mas = '<div class="mymessagediv"><span class="mymessage">' + $('.inputsend').val() + '</span></div>';
@@ -121,7 +131,7 @@
                 }
             };
 
-
+			
 
         </script>
 
