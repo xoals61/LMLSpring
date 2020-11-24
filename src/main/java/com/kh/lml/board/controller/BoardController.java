@@ -149,32 +149,37 @@ public class BoardController {
 	}
 	
 	
-	// 인덱스 메인
-//	@ResponseBody
-//	@RequestMapping(value="Index.do", produces="application/json; charset=UTF-8")
-//	public String index(HttpServletResponse response) throws JsonIOException, JsonProcessingException{
-//		
-//		ArrayList<Board> list = bService.selectList();
-//		
-//		ObjectMapper mapper = new ObjectMapper();
-//		
-//		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-//		mapper.setDateFormat(sdf);
-//		
-//		String jsonStr = mapper.writeValueAsString(list);
-//		
-//		return jsonStr;
-//	}
 	@RequestMapping("Index.do")
-	public ModelAndView index(ModelAndView mv) {
+	public String index() {
+		return "../../index";
+	}
+	
+	// 인덱스 메인
+	@ResponseBody
+	@RequestMapping(value="IndexAjax.do", produces="application/json; charset=UTF-8")
+	public String index1(HttpServletResponse response) throws JsonIOException, JsonProcessingException{
 		
 		ArrayList<Board> list = bService.selectList();
 		
-		mv.addObject("boardList", list);
-		mv.setViewName("../../index");
+		ObjectMapper mapper = new ObjectMapper();
 		
-		return mv;
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		mapper.setDateFormat(sdf);
+		
+		String jsonStr = mapper.writeValueAsString(list);
+		
+		return jsonStr;
 	}
+//	@RequestMapping("Index.do")
+//	public ModelAndView index(ModelAndView mv) {
+//		
+//		ArrayList<Board> list = bService.selectList();
+//		
+//		mv.addObject("boardList", list);
+//		mv.setViewName("../../index");
+//		
+//		return mv;
+//	}
 	
 
 	

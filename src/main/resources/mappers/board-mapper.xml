@@ -17,6 +17,11 @@
 		<result property="b_shoes" column="B_SHOES"/>
 		<result property="b_acc" column="B_ACC"/>
 		<result property="b_etc" column="B_ETC"/>
+		<result property="b_user_height" column="HEIGHT"/>
+		<result property="b_user_weight" column="WEIGHT"/>
+		<result property="b_profile_img" column="RENAME_PROFILE_IMG"/>
+		<result property="b_user_id" column="ID"/>
+		<result property="b_name" column="UNAME"/>
 		
 		
 		<!-- <result property="b_hashtag" column="B_HASHTAG"/>
@@ -41,7 +46,10 @@
 	</insert>
 	
 	<select id="selectList" resultMap="boardResultSet">
-		SELECT * FROM LML_BOARD
+		SELECT *
+		FROM LML_BOARD
+		JOIN LML_MEM ON (B_USER_NUM = USER_NUM)
+		ORDER BY B_NUM DESC
 	</select>
 	
 	

@@ -15,7 +15,13 @@ public class Board {
 	private String b_etc;
 	private String b_status;
 	private Date b_date;
+	private String b_profile_img;
+	private int b_user_height;
+	private int b_user_weight;
+	private String b_user_id;
+	private String b_name;
 	
+
 	private String originalFileName;
 	private String renameFileName;
 	
@@ -213,6 +219,56 @@ public class Board {
 		this.image5 = image5;
 	}
 
+	public String getB_profile_img() {
+		return b_profile_img;
+	}
+
+	public void setB_profile_img(String b_profile_img) {
+		this.b_profile_img = b_profile_img;
+	}
+
+	public int getB_user_height() {
+		return b_user_height;
+	}
+
+	public void setB_user_height(int b_user_height) {
+		this.b_user_height = b_user_height;
+	}
+
+	public int getB_user_weight() {
+		return b_user_weight;
+	}
+
+	public void setB_user_weight(int b_user_weight) {
+		this.b_user_weight = b_user_weight;
+	} 	
+
+	public String getB_user_id() {
+		return b_user_id;
+	}
+
+	public void setB_user_id(String b_user_id) {
+		this.b_user_id = b_user_id;
+	}
+
+	public String getB_name() {
+		return b_name;
+	}
+
+	public void setB_name(String b_name) {
+		this.b_name = b_name;
+	}
+
+	@Override
+	public String toString() {
+		return "Board [b_num=" + b_num + ", b_user_num=" + b_user_num + ", b_content=" + b_content + ", b_top=" + b_top
+				+ ", b_bottom=" + b_bottom + ", b_shoes=" + b_shoes + ", b_acc=" + b_acc + ", b_etc=" + b_etc
+				+ ", b_status=" + b_status + ", b_date=" + b_date + ", b_profile_img=" + b_profile_img
+				+ ", b_user_height=" + b_user_height + ", b_user_weight=" + b_user_weight + ", image1=" + image1
+				+ ", image2=" + image2 + ", image3=" + image3 + ", image4=" + image4 + ", image5=" + image5 + "]";
+	}
+	
+	
 
 	
 	
