@@ -179,13 +179,15 @@ a:hover {
 	height: fit-content;
 	clear: both;
 	max-width: 80%;
-	margin: 20px 0px 0px 40px;
+	margin: 20px 0px 0px 0px;
 }
 
 .yourmessageimg {
 	width: 40px;
 	height: 40px;
 	border-radius: 50%;
+	 float: left;
+    margin-left: 46px;
 }
 
 .yourmessage {
@@ -201,6 +203,7 @@ a:hover {
 	border: 1px solid rgb(216, 213, 213);
 	padding: 10px 20px;
 	margin-left: 10px;
+	margin-bottom: 0px;
 }
 
 .mymessagediv {
@@ -224,6 +227,7 @@ a:hover {
 	border-radius: 40px 40px;
 	padding: 10px 20px;
 	margin-right: 15px;
+	margin-bottom: -5px;
 	background: rgb(240, 240, 240);
 }
 

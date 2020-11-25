@@ -67,10 +67,10 @@
                             <div class="message">
                                 <div class="yourmessagediv">   
                                     <a href="MyPage.do"><img src="resources/images/mainImg/pbuzz.jpg" class="yourmessageimg"></a>
-                                    <span class="yourmessage">안녕</span>
+                                    <a class="yourmessage">우리조</a>
                                 </div>
                                 <div class="mymessagediv">    
-                                    <span class="mymessage">안녕</span>
+                                    <a class="mymessage">파이팅</a>
                                 </div>
                             </div>
                             <div class="send">
