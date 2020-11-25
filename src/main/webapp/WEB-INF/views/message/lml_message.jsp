@@ -106,7 +106,7 @@
                 socket.on('send_msg',function(name,msg){
     				console.log(msg);
     				console.log(name);
-    				if(name =="149756660"){
+    				if(name =="52819352"){
     				$('.message').append('<div class="yourmessagediv"><img src="resources/images/mainImg/pbuzz.jpg" class="yourmessageimg"><div style="width:fit-content;   margin: 0 0 0 82px;"><p class="yourmessage">'+ msg +'</p></div></div>');
     				}
     				 $('.message').scrollTop($('.message').prop('scrollHeight'));
