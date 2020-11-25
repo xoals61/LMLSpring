@@ -91,11 +91,8 @@
         var socket;
             $(document).ready(function () {
             	
-            	
-            	
-            	
             	  var as = "${loginUser.id}";
-            	  var roomname = "room1";
+            	  var roomname = "room2";
             	socket = io("http://52.79.234.164:3001");
             	  socket.emit("login",as,roomname);
                 $('.direct-user').on('click', function () {
@@ -120,9 +117,8 @@
             /* 채팅 */
             function send(){
                 if($('.inputsend').val()!=''){
-             //   $('.message').append('<div class="yourmessagediv"><img src="resources/images/mainImg/pbuzz.jpg" class="yourmessageimg"><span class="yourmessage">안녕</span></div>');
-                
-               var as = "${loginUser.id}";
+              
+                var as = "${loginUser.id}";
                 var mas = '<div class="mymessagediv"><span class="mymessage">' + $('.inputsend').val() + '</span></div>';
                 $('.message').append(mas);
                 socket.emit("send_msg",as,$(".inputsend").val());
