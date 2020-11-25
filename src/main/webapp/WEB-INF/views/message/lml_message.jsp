@@ -117,7 +117,7 @@
             /* 채팅 */
             function send(){
                 if($('.inputsend').val()!=''){
-              
+              //ggd
                 var as = "${loginUser.id}";
                 var mas = '<div class="mymessagediv"><p class="mymessage">' + $('.inputsend').val() + '</p></div>';
                 $('.message').append(mas);
