@@ -95,14 +95,15 @@
             	
             	
             	  var as = "${loginUser.id}";
+            	  var roomname = "room1";
             	socket = io("http://52.79.234.164:3001");
-            	  socket.emit("login",as);
+            	  socket.emit("login",as,roomname);
                 $('.direct-user').on('click', function () {
                     $(this).addClass('select-bar');
                     $(this).siblings().removeClass('select-bar');
                 });
 
-                $('.message').scrollTop($('.message').prop('scrollHeight'));
+               
                 
                 
                 socket.on('send_msg',function(msg,name){
@@ -111,6 +112,7 @@
     				if(name =="149756660"){
     				$('.message').append('<div class="yourmessagediv"><img src="resources/images/mainImg/pbuzz.jpg" class="yourmessageimg"><span class="yourmessage">'+ msg +'</span></div>');
     				}
+    				 $('.message').scrollTop($('.message').prop('scrollHeight'));
     			});
                 
             });
