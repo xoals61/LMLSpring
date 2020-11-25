@@ -52,6 +52,7 @@
 
 									<script>
                                     $('.direct-user').on('click', function () {
+                                    	$(".inputsend").removeAttr("disabled");
                                     	rename_profile_img ="${message.rename_profile_img}";
                                     	touser = "${message.touser}";
                                     	 var as = "${loginUser.id}";
@@ -123,7 +124,7 @@
         				}
         				 $('.message').scrollTop($('.message').prop('scrollHeight'));
         			});
-            	
+            	$(".inputsend").attr("disabled",true);
             });
            
             /* 채팅 */
