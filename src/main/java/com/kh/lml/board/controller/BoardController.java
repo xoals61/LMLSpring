@@ -1,6 +1,7 @@
 package com.kh.lml.board.controller;
 
 import java.io.File;
+import java.lang.ProcessBuilder.Redirect;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -69,10 +71,12 @@ public class BoardController {
 		
 		if(result > 0) {
 			System.out.println("글쓰기 성공");
-			return "../../index";
+			/* return "../../index"; */
+			return "redirect:/index.do";
 		}else {
 			System.out.println("글쓰기 실패");
 			return "../../index";
+			
 		}
 		
 	}
@@ -148,6 +152,12 @@ public class BoardController {
 
 	}
 	
+	
+	@GetMapping(path ="/index")
+	public String index1() {
+		return "redirect:/";
+		
+	}
 	
 	@RequestMapping("Index.do")
 	public String index() {
