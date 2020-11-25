@@ -52,6 +52,8 @@
 
 									<script>
                                     $('.direct-user').on('click', function () {
+                                    	rename_profile_img ="${message.rename_profile_img}";
+                                    	touser = "${message.touser}";
                                     	 var as = "${loginUser.id}";
                                         $(this).addClass('select-bar');
                                         $(this).siblings().removeClass('select-bar');
@@ -61,17 +63,15 @@
                                     	$("#user-img").removeAttr("hidden");
                                     	
                                        socket.emit("leaveRoom",as);
-                                   	  var roomname = "room2";
-                                   	  socket.emit("login",as,${message.chatroomid});
-                                       socket.on('send_msg',function(name,msg){
-                           				console.log(msg);
-                           				console.log(name);
-                           				if(name =="${message.touser}"){
-                           				$('.message').append('<div class="yourmessagediv"><img src="resources/images/profileImg/${message.rename_profile_img}" class="yourmessageimg"><div style="width:fit-content;   margin: 0 0 0 82px;"><p class="yourmessage">'+ msg +'</p></div></div>');
-                           				}
-                           				 $('.message').scrollTop($('.message').prop('scrollHeight'));
-                           			});
+                                       socket.emit("login",as,${message.chatroomid});
+                                       
+                                       
+                                 
+                                    	
+                                       
                                     });
+                                    
+                                    
                                     
                                     </script>
 
@@ -108,15 +108,24 @@
 
 	<script>
         var socket;
+        var rename_profile_img;
+        var touser;
+        
             $(document).ready(function () {
             	
             	 
             	socket = io("http://52.79.234.164:3001");
                 
-				
-                
+            	
+            	 socket.on('send_msg',function(name,msg){
+        				if(name ==touser){
+        				$('.message').append('<div class="yourmessagediv"><img src="resources/images/profileImg/' + rename_profile_img +  '" class="yourmessageimg"><div style="width:fit-content;   margin: 0 0 0 82px;"><p class="yourmessage">'+ msg +'</p></div></div>');
+        				}
+        				 $('.message').scrollTop($('.message').prop('scrollHeight'));
+        			});
+            	
             });
-
+           
             /* 채팅 */
             function send(){
                 if($('.inputsend').val()!=''){
@@ -131,7 +140,7 @@
                 
                 }
             };
-
+			
 			
 
         </script>
