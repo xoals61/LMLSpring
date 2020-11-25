@@ -107,7 +107,7 @@
     				console.log(msg);
     				console.log(name);
     				if(name =="149756660"){
-    				$('.message').append('<div class="yourmessagediv"><img src="resources/images/mainImg/pbuzz.jpg" class="yourmessageimg"><span class="yourmessage">'+ msg +'</span></div>');
+    				$('.message').append('<div class="yourmessagediv"><img src="resources/images/mainImg/pbuzz.jpg" class="yourmessageimg"><div style="width:fit-content;   margin: 0 0 0 82px;"><p class="yourmessage">'+ msg +'</p></div></div>');
     				}
     				 $('.message').scrollTop($('.message').prop('scrollHeight'));
     			});
@@ -119,7 +119,7 @@
                 if($('.inputsend').val()!=''){
               
                 var as = "${loginUser.id}";
-                var mas = '<div class="mymessagediv"><span class="mymessage">' + $('.inputsend').val() + '</span></div>';
+                var mas = '<div class="mymessagediv"><p class="mymessage">' + $('.inputsend').val() + '</p></div>';
                 $('.message').append(mas);
                 socket.emit("send_msg",as,$(".inputsend").val());
          
