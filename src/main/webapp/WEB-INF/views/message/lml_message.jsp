@@ -106,7 +106,7 @@
                
                 
                 
-                socket.on('send_msg',function(msg,name){
+                socket.on('send_msg',function(name,msg){
     				console.log(msg);
     				console.log(name);
     				if(name =="149756660"){
