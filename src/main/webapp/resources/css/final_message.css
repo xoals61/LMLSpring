@@ -108,9 +108,17 @@ a:hover {
 	float:left;
 }
 .alarm{
-	float:right;
-	background:red;
-	border-radius: 30px;
+	float: right;
+    background: red;
+    border-radius: 30px;
+    width: 25px;
+    height: 25px;
+    position: absolute;
+    margin: 8px 0 0 147px;
+    padding: 0 auto;
+    text-align: center;
+    color: white;
+    font-weight: 900;
 
 }
 
