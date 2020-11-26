@@ -52,6 +52,7 @@
 								</div>
 								<script>
                                     $('.${message.touser}').on('click', function () {
+                                    	$(".message").html('');
                                     	$(".inputsend").removeAttr("disabled");
                                     	rename_profile_img ="${message.rename_profile_img}";
                                     	touser = "${message.touser}";
