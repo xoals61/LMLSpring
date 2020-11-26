@@ -1,6 +1,8 @@
 package com.kh.lml.board.model.service;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 import com.kh.lml.board.model.vo.Board;
 
@@ -14,8 +16,10 @@ public interface BoardService {
 
 	ArrayList<Board> selectOne(int bnum);
 
-	int insertStyleHash(Board b);
-
 	int getbnum();
+
+	int insertStyleHash(Board bo);
+
+
 
 }

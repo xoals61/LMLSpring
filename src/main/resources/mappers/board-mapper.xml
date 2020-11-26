@@ -62,7 +62,8 @@
 	</select>
 	
 	<insert id="insertStyleHash" parameterType="Board">
-		INSERT INTO LML_HASH VALUES(#{b_hash}, #{b_num})
+		INSERT INTO LML_HASH
+		VALUES (#{b_hash}, #{b_num})
 	</insert>
 	
 	<select id="getbnum" resultType="_int">

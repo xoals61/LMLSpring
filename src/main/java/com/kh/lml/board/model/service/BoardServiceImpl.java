@@ -1,6 +1,8 @@
 package com.kh.lml.board.model.service;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,15 +45,18 @@ public class BoardServiceImpl implements BoardService {
 		return bDao.selectOne(bnum);
 	}
 
-	
-	 @Override 
-	 public int insertStyleHash(Board b) { 
-		 return bDao.insertStyleHash(b); 
-	 }
-
 	@Override
 	public int getbnum() {
 		return bDao.getbnum();
 	}
+
+	@Override
+	public int insertStyleHash(Board bo) {
+		return bDao.insertStyleHash(bo);
+	}
+
+
+
+
 	 
 }

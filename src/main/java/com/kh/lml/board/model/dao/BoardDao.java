@@ -1,6 +1,8 @@
 package com.kh.lml.board.model.dao;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,12 +35,15 @@ public class BoardDao {
 		return (ArrayList)sqlSession.selectList("boardMapper.selectOne",bnum);
 	}
 
-	public int insertStyleHash(Board b) {
-		return sqlSession.insert("boardMapper.insertStyleHash", b);
-	}
-
 	public int getbnum() {
 		return sqlSession.selectOne("boardMapper.getbnum");
 	}
+
+	public int insertStyleHash(Board bo) {
+		return sqlSession.insert("boardMapper.insertStyleHash", bo);
+	}
+
+
+
 
 }

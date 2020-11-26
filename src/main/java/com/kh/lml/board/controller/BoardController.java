@@ -4,7 +4,9 @@ import java.io.File;
 import java.lang.ProcessBuilder.Redirect;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -70,38 +72,28 @@ public class BoardController {
 		int result = bService.insertStylePost(b);
 		int getbnum = bService.getbnum();
 		
-		ArrayList<String> hashList = new ArrayList<String>();
-		
 		String b_hash =b.getB_hash();
-		System.out.println("b_hash : : : : " + b_hash);
-		
 		String[] slist = b_hash.split(",");
 		
-		System.out.println("getB_hash == " + b.getB_hash());
-		System.out.println("slist[0] " + slist[0]);
+		List<Board> halist = new ArrayList<Board>();
 		
-		if(slist.length>0) {
-			for(int i=0; i<slist.length; i++){
-				hashList.add(getbnum, slist[i].toString());
-			}
+		for(int i=0; i<slist.length; i++){
+			Board bo = new Board();
+			bo.setB_num(getbnum);
+			bo.setB_hash(slist[i].toString());
+			
+			int res = bService.insertStyleHash(bo);
 		}
 		
-//		
-//		System.out.println("해시리스트 : " + hashList);
-		
-		//int result2 = bService.insertStyleHash(b);
-		
-//		if(result > 0) {
-//			System.out.println("글쓰기 성공");
-//			/* return "../../index"; */
-//			return "redirect:/index.do";
-//		}else {
-//			System.out.println("글쓰기 실패");
-//			return "../../index";
-//			
-//		}
-		
-		return null;
+		if(result > 0) {
+			System.out.println("글쓰기 성공");
+			/* return "../../index"; */
+			return "redirect:/index.do";
+		}else {
+			System.out.println("글쓰기 실패");
+			return "../../index";
+			
+		}
 		
 	}
 	

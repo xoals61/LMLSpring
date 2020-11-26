@@ -7,7 +7,6 @@ public class Board {
 	private int b_user_num;
 	private String b_images;
 	private String b_content;
-	private String b_hashtag;
 	private String b_top;
 	private String b_bottom;
 	private String b_shoes;
@@ -21,6 +20,7 @@ public class Board {
 	private String b_user_id;
 	private String b_name;
 	private String b_hash;
+	private String[] b_hashtag;
 	
 
 	private String originalFileName;
@@ -37,7 +37,7 @@ public class Board {
 	}
 
 	
-	public Board(int b_num, int b_user_num, String b_images, String b_content, String b_hashtag, String b_top,
+	public Board(int b_num, int b_user_num, String b_images, String b_content, String b_hashtag[], String b_top,
 			String b_bottom, String b_shoes, String b_acc, String b_etc, String b_status, Date b_date,
 			String originalFileName, String renameFileName) {
 		super();
@@ -69,10 +69,11 @@ public class Board {
 		this.image5 = image5;
 	}
 
-	public Board(int b_num, String b_hash) {
+
+	public Board(int b_num, String[] b_hashtag) {
 		super();
 		this.b_num = b_num;
-		this.b_hash = b_hash;
+		this.b_hashtag = b_hashtag;
 	}
 
 
@@ -108,13 +109,15 @@ public class Board {
 		this.b_content = b_content;
 	}
 
-	public String getB_hashtag() {
+	public String[] getB_hashtag() {
 		return b_hashtag;
 	}
 
-	public void setB_hashtag(String b_hashtag) {
+
+	public void setB_hashtag(String[] b_hashtag) {
 		this.b_hashtag = b_hashtag;
 	}
+
 
 	public String getB_top() {
 		return b_top;
