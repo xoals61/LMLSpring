@@ -33,6 +33,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonIOException;
 import com.kh.lml.member.model.service.MemberService;
+import com.kh.lml.member.model.vo.ChatRoom;
 import com.kh.lml.member.model.vo.Member;
 
 
@@ -91,8 +92,28 @@ public class memberController {
 
 	// 채팅
 	@RequestMapping("Message.do")
-	public String Message() {
-		return "message/lml_message";
+	public String Message(String id,Model model) {
+		System.out.println("message id : " + id);
+		
+		ArrayList<ChatRoom> messageList = mService.messageList(id);
+	
+		
+		System.out.println("messageListsize" + messageList.size());
+		if(messageList.size()>0) {
+			for(ChatRoom a : messageList) {
+				System.out.println("gd : " + a);
+			}
+			model.addAttribute("messageList",messageList);
+			return "message/lml_message";
+		}else {
+			
+			System.out.println("친구 목록없음");
+			
+			return "message/lml_message";
+		}
+		
+		
+		
 	}
 	/**
 	 * 아이디 중복체크

@@ -2,6 +2,7 @@ package com.kh.lml.member.model.service;
 
 import java.util.ArrayList;
 
+import com.kh.lml.member.model.vo.ChatRoom;
 import com.kh.lml.member.model.vo.Member;
 
 public interface MemberService {
@@ -51,6 +52,8 @@ public interface MemberService {
 	int finduNum(String id);
 
 	Member userPage(String id);
+
+	ArrayList<ChatRoom> messageList(String id);
 
 
 	//1113은지

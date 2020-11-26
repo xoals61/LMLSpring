@@ -22,7 +22,7 @@
 		<div class="AContent">
 			<form action="stylePostUpload.do" method="post"
 				enctype="multipart/form-data">
-				<button type="submit" class="uploadBtn">업로드</button>
+				<button type="submit" class="uploadBtn" onclick="insert();">업로드</button>
 				<div class="Atable">
 					<div class="Abox">
 						<div class="post-div">
@@ -74,7 +74,7 @@
 									<!-- 	<input type="hidden" value="" name="tag" id="tag"> -->
 										<input type="text" id="hashtag" size="7" placeholder="태그입력" />
 										
-										<button type="button" id="tagbtn" onclick="addhash()">태그 등록</button>
+										<button type="button" id="tagbtn" onclick="addhash();">태그 등록</button>
 									</form>
 								
 									
@@ -117,6 +117,29 @@
 
 	</section>
 	<script>
+	   /**
+     * 중복서브밋 방지
+     * 
+     * @returns {Boolean}
+     */
+    var doubleSubmitFlag = false;
+    function doubleSubmitCheck(){
+        if(doubleSubmitFlag){
+            return doubleSubmitFlag;
+        }else{
+            doubleSubmitFlag = true;
+            return false;
+        }
+    }
+ 
+    function insert(){
+        if(doubleSubmitCheck()) return;
+ 
+        alert("등록");
+    }
+
+	
+	
 	
 		var content = document.getElementById('b_content').innerHTML;
 		var splitedArray = content.split(' ');

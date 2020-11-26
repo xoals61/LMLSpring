@@ -44,7 +44,7 @@
                             </ul>
                         </div><!--메뉴-->
                         <div class="heart"><img src="./resources/images/icon/menu/iconmonstr-heart-thin-72.png" class="heart heartIcon"></div><!--알림-->
-                        <div><a href="Message.do"><img src="./resources/images/icon/menu/iconmonstr-speech-bubble-thin-72.png"></a></div><!--채팅-->
+                        <div><a href="Message.do?id=${ loginUser.id}"><img src="./resources/images/icon/menu/iconmonstr-speech-bubble-thin-72.png"></a></div><!--채팅-->
                         </c:if>
                         
 						<c:if test="${ empty sessionScope.loginUser }">

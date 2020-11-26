@@ -669,12 +669,12 @@
             <hr style="border: solid 0.5px rgb(211, 211, 211);">
 
             <div class="post-style-div" onclick="postStyle();">
-                <div class="post-style-btn"></div>
+                <div class="post-style-btn"><img class="posticon" src="resources/images/icon/main/sunglasses.png"></div>
                 <div class="post-style-p">스타일</div>
             </div>
 
             <div class="post-qna-div" onclick="postQna();">
-                <div class="post-qna-btn"></div>
+                <div class="post-qna-btn"><img class="posticon" src="resources/images/icon/main/QandA.png"></div>
                 <div class="post-qna-p">QnA</div>
             </div>
         </div>
