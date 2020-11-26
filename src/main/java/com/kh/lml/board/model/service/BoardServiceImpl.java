@@ -36,4 +36,10 @@ public class BoardServiceImpl implements BoardService {
 	public ArrayList<Board> selectList() {
 		return bDao.selectList();
 	}
+
+	// 디테일
+	@Override
+	public ArrayList<Board> selectOne(int bnum) {
+		return bDao.selectOne(bnum);
+	}
 }

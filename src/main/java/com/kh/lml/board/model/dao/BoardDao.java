@@ -29,4 +29,8 @@ public class BoardDao {
 		return (ArrayList)sqlSession.selectList("boardMapper.selectList");
 	}
 
+	public ArrayList<Board> selectOne(int bnum) {
+		return (ArrayList)sqlSession.selectList("boardMapper.selectOne",bnum);
+	}
+
 }

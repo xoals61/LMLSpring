@@ -170,16 +170,23 @@ public class BoardController {
 		
 		return jsonStr;
 	}
-//	@RequestMapping("Index.do")
-//	public ModelAndView index(ModelAndView mv) {
-//		
-//		ArrayList<Board> list = bService.selectList();
-//		
-//		mv.addObject("boardList", list);
-//		mv.setViewName("../../index");
-//		
-//		return mv;
-//	}
+	
+	// 디테일
+	@ResponseBody
+	@RequestMapping(value="BoardDetail.do", produces="application/json; charset=UTF-8")
+	public String boardDetail(HttpServletResponse response, int bnum) throws JsonIOException, JsonProcessingException{
+		
+		ArrayList<Board> list = bService.selectOne(bnum);
+		
+		ObjectMapper mapper = new ObjectMapper();
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		mapper.setDateFormat(sdf);
+		
+		String jsonStr = mapper.writeValueAsString(list);
+		
+		return jsonStr;
+	}
 	
 
 	

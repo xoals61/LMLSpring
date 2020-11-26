@@ -51,12 +51,12 @@
 									if(b < data.length){
 										
 										$('#'+a).append('<td>'+
-																'<div class="content">'+
+													'<div class="content">'+
 														'<div>'+
 															'<img src="resources/buploadFiles/'+ data[b].image1 +'" class="cImg">'+
 														'</div>'+
 														'<div class="chover">'+
-															'<div class="hover-detail-content"></div>'+
+															'<div class="hover-detail-content" onclick="modalDetail('+data[b].b_num+');"></div>'+
 															'<div class="chContnet">'+
 																'<div class="user">'+
 																	'<div class="userImg">'+
@@ -64,7 +64,7 @@
 																	'</div>'+
 																	'<a href="./jiman/MyPage.html"><div class="userId">'+ data[b].b_name +'</div></a>'+
 																'</div>'+
-																'<div class="con">'+
+																'<div class="con" onclick="modalDetail('+data[b].b_num+');">'+
 																	'<div class="userCon">'+
 																		'<p>'+ data[b].b_content +'</p>'+
 																	'</div>'+
@@ -73,7 +73,7 @@
 																	'<div class="cHeart">'+
 																		'<img src="resources/images/icon/main/heart.png" class="cheart">'+
 																	'</div>'+
-																	'<div class="cComment">'+
+																	'<div class="cComment" onclick="modalDetail('+data[b].b_num+');">'+
 																		'<div class="cbox"></div>'+
 																		'<img src="resources/images/icon/main/comment.png">'+
 																	'</div>'+
@@ -96,12 +96,12 @@
 						}
 						
 						boardHover();
-						modalAjax();
+						//modalAjax();
 						
 					}
 					
 					boardHover();
-					modalAjax();
+					//modalAjax();
 				},
 				error:function(request,status,error){
 					alert("code : " + request.status + "\n"
@@ -116,7 +116,7 @@
 		<!-- ===================================================== 모달 ======================================================== -->
 		<div class="myModal" id="myModal" style="display: none;">
 			<div class="board-detail" id="board-detail" style="display: none;">
-				<div class="board-img">
+				<!-- <div class="board-img">
 					<img src="resources/images/detailImg/theman.jpg">
 				</div>
 				<div class="board-right">
@@ -275,7 +275,7 @@
 						</div>
 						<div class="comment-submit">게시</div>
 					</div>
-				</div>
+				</div> -->
 			</div>
 		</div>
 		<!-- ===================================================== 모달 ======================================================== -->
@@ -684,132 +684,215 @@
 
 
 	<script>
-      // 게시물 마우스오버
-      
-      function boardHover(){
-    	  $('.chover').hide();
-          $('.content').mouseover(function(){
-              $('.chover',this).show();
-          });
-          $('.content').mouseout(function(){
-              $('.chover').hide();
-          });
-      }
+		// 게시물 마우스오버
+		function boardHover(){
+		  $('.chover').hide();
+		    $('.content').mouseover(function(){
+		        $('.chover',this).show();
+		    });
+		    $('.content').mouseout(function(){
+		        $('.chover').hide();
+		    });
+		    
+		    /* 게시물 좋아요 아이콘 클릭 시 아이콘 변경 */
+			$(".cHeart").click(function(){
+				if($('.cheart',this).attr('src') == "resources/images/icon/main/heart.png"){
+					$('.cheart',this).attr('src','./resources/images/icon/main/heart2.png');
+				}else{
+			  		$('.cheart',this).attr('src','resources/images/icon/main/heart.png');
+			 	}
+			});
+		}
 
 
-      /* 체형별 */
-      $( document ).ready( function() {
-          $('.choice1').hide();
-          $( '.pchoice' ).click( function() {
-              $( '.choice' ).animate( {
-                  width: '1106px',
-                  height: '50px',
-                  cursor: 'pointer'
-              }, 400 );
-              $('.choice').css('cursor','default');
-              $('.choice1').show();
-              $('.pchoice').hide();
-          } );
-          $( '.close' ).click( function() {
-              $( '.choice' ).animate( {
-                  width: '100px',
-                  height: '30px'
-              }, 400 );
-              $('.choice1').hide();
-              setTimeout(function() {
-                  $('.pchoice').show();
-              }, 400);
-              $('.choice').css('cursor','pointer');
-          } );
-
-
-      });
+		/* 체형별 */
+		$( document ).ready( function() {
+		    $('.choice1').hide();
+		    $( '.pchoice' ).click( function() {
+		        $( '.choice' ).animate( {
+		            width: '1106px',
+		            height: '50px',
+		            cursor: 'pointer'
+		        }, 400 );
+		        $('.choice').css('cursor','default');
+		        $('.choice1').show();
+		        $('.pchoice').hide();
+		    } );
+		    $( '.close' ).click( function() {
+		        $( '.choice' ).animate( {
+		            width: '100px',
+		            height: '30px'
+		        }, 400 );
+		        $('.choice1').hide();
+		        setTimeout(function() {
+		            $('.pchoice').show();
+		        }, 400);
+		        $('.choice').css('cursor','pointer');
+		    } );
+		
+		
+		});
           
 
-          /* 맨 위로 가는 버튼 */
-          $( document ).ready( function() {
-              $('.upBtn').hide();
-              $( window ).scroll( function() {
-                  if ( $( this ).scrollTop() > 200 ) {
-                      $( '.upBtn' ).fadeIn();
-                  } else {
-                      $( '.upBtn' ).fadeOut();
-                  }
-              } );
-              $( '.upBtn' ).click( function() {
-                  $( 'html, body' ).animate( { scrollTop : 0 }, 400 );
-                  return false;
-              } );
-          } );
+		/* 맨 위로 가는 버튼 */
+		$( document ).ready( function() {
+		    $('.upBtn').hide();
+		    $( window ).scroll( function() {
+		        if ( $( this ).scrollTop() > 200 ) {
+		            $( '.upBtn' ).fadeIn();
+		        } else {
+		            $( '.upBtn' ).fadeOut();
+		        }
+		    });
+		    $( '.upBtn' ).click( function() {
+		        $( 'html, body' ).animate( { scrollTop : 0 }, 400 );
+		        return false;
+		    });
+		});
 
-      /* 게시물 좋아요 아이콘 클릭 시 아이콘 변경 */
-       $(".cHeart").click(function(){
-            	  console.log("sadasd");
-            	 if($('.cheart',this).attr('src') == "resources/images/icon/main/heart.png"){
-                  $('.cheart',this).attr('src','./resources/images/icon/main/heart2.png');
-              }
-                  else{
-                	  $('.cheart',this).attr('src','resources/images/icon/main/heart.png');
-                  }
-              });
-
-      /* 모달팝업 디테일 */
-      
-      function modalAjax(){
-    	  var modal = document.getElementById('myModal');
-          var detail = document.getElementById('board-detail');
-          var content = document.getElementById('conte');
-
-          $('.hover-detail-content, .con, .cComment').click(function(){
-              $('.myModal').css('display','block');
-              $('.board-detail').css('display','block');
-          });
-      }
-      var modal = document.getElementById('myModal');
-      var detail = document.getElementById('board-detail');
-      var content = document.getElementById('conte');
-
-      $('.hover-detail-content, .con, .cComment').click(function(){
-          $('.myModal').css('display','block');
-          $('.board-detail').css('display','block');
-      });
+		/* 모달팝업 디테일 */
+		function modalDetail(bnum){
+			
+			var modal = document.getElementById('myModal');
+			var detail = document.getElementById('board-detail');
+			var content = document.getElementById('conte');
+			
+			
+			$('.myModal').css('display','block');
+			$('.board-detail').css('display','block');
+			
+			$.ajax({
+				url:"BoardDetail.do",
+				data:{bnum:bnum},
+				dataType:"JSON",
+				success:function(data){	
+					console.log(data);
+					
+					$('.board-detail').append('<div class="board-img">'+
+							'<img src="resources/buploadFiles/'+ data[0].image1 +'">'+
+							'</div>'+
+							'<div class="board-right">'+
+								'<div class="board-user">'+
+									'<div class="board-userImg">'+
+										'<a href="./jiman/MyPage.html"><img src="resources/images/detailImg/40x40man.jpg"></a>'+
+									'</div>'+
+									'<a href="./jiman/MyPage.html"><div class="board-id">'+
+											'<p>__maybenotyet__</p>'+
+										'</div></a>'+
+									'<div class="board-follow">팔로잉</div>'+
+								'</div>'+
+								'<div class="board-textDiv">'+
+									'<div class="board-text">글 내용</div>'+
+									'<div class="board-hashtag">#가을코디 #맨투맨 #맨투맨코디 #흑청바지 #청바지코디 #캐주얼룩 #캐주얼코디 #남자데일리코디</div>'+
+								'</div>'+
+								'<div class="board-stateicon">'+
+									'<div class="board-heartCount">좋아요 234개</div>'+
+									'<div class="board-heart">'+
+										'<img src="resources/images/icon/menu/iconmonstr-heart-thin-72.png">'+
+									'</div>'+
+									'<div class="board-etc">'+
+										'<img src="resources/images/icon/main/menu1.png">'+
+									'</div>'+
+								'</div>'+
+								'<div class="board-clothesInfo">'+
+									'<div class="clothesInfo-div">'+
+										'<div class="clothes-img">'+
+											'<img src="resources/images/detailImg/top.png">'+
+										'</div>'+
+										'<div class="clothes-p">상의</div>'+
+										'<div class="clothes-info">아디다스</div>'+
+									'</div>'+
+									'<div class="clothesInfo-div">'+
+										'<div class="clothes-img">'+
+											'<img src="resources/images/detailImg/pants.png">'+
+										'</div>'+
+										'<div class="clothes-p">하의</div>'+
+										'<div class="clothes-info">아디다스</div>'+
+									'</div>'+
+									'<div class="clothesInfo-div">'+
+										'<div class="clothes-img">'+
+											'<img src="resources/images/detailImg/shoes.png">'+
+										'</div>'+
+										'<div class="clothes-p">신발</div>'+
+										'<div class="clothes-info">아디다스</div>'+
+									'</div>'+
+									'<div class="clothesInfo-div">'+
+										'<div class="clothes-img">'+
+											'<img src="resources/images/detailImg/watch.png">'+
+										'</div>'+
+										'<div class="clothes-p">Acc</div>'+
+										'<div class="clothes-info">아디다스</div>'+
+									'</div>'+
+									'<div class="clothesInfo-div">'+
+										'<div class="clothes-img">'+
+											'<img src="resources/images/detailImg/bag.png">'+
+										'</div>'+
+										'<div class="clothes-p">Etc</div>'+
+										'<div class="clothes-info">아디다스</div>'+
+									'</div>'+
+								'</div>'+
+							'</div>'+
+							'<div class="board-bottom">'+
+								
+								'<div class="board-commentWrite">'+
+									'<div class="comment-write">'+
+										'<input type="text" placeholder="댓글 달기...">'+
+									'</div>'+
+									'<div class="comment-submit">게시</div>'+
+								'</div>'+
+							'</div>');
+					
+				},
+				error:function(request,status,error){
+					console.log("** error code : " + request.status + "\n"
+						+ "message : " + request.responseText + "\n"
+						+ "error : " + error);
+				}
+			});
+			
+			window.onclick = function(event) {
+			    if (event.target == modal) {
+			        modal.style.display = "none";
+			        detail.style.display = "none";
+			        $('.board-detail').empty();
+			    }
+			}
+		}
+		
  
-      var modal2 = document.getElementById('modal2');
-      var md_content = document.getElementById('md_content'); 
+		var modal2 = document.getElementById('modal2');
+		var md_content = document.getElementById('md_content'); 
       
-      $('.postBtn').click(function(){
-          $('.modal2').css('display','block');
-          $('.md_content').css('display','block');
-      });
+		$('.postBtn').click(function(){
+			$( 'html, body' ).animate( { scrollTop : 0 },0);
+			$('.modal2').css('display','block');
+			$('.md_content').css('display','block');
+		});
 
-      window.onclick = function(event) {
-          if (event.target == modal) {
-              modal.style.display = "none";
-              detail.style.display = "none";
-          }
-          if (event.target == modal2) {
-              modal2.style.display = "none";
-              md_content.style.display = "none";
-          }
-      }
+		window.onclick = function(event) {
+		    if (event.target == modal2) {
+		        modal2.style.display = "none";
+		        md_content.style.display = "none";
+		    }
+		}
 
-      $('.xbutton').click(function(){
-          modal2.style.display = "none";
-          md_content.style.display = "none";
-      });
-
-      function postStyle(){
-          location.href="PostStyle.do";
-      }
-
-      function postQna(){
-          location.href="PostQna.do";
-      }
-      
-      +
-      function infoPage(id){
-      	location.href="userPage.do?id="+id;
-      }
+		$('.xbutton').click(function(){
+		    modal2.style.display = "none";
+		    md_content.style.display = "none";
+		});
+		
+		function postStyle(){
+		    location.href="PostStyle.do";
+		}
+		
+		function postQna(){
+		    location.href="PostQna.do";
+		}
+		
+		
+		function infoPage(id){
+			location.href="userPage.do?id="+id;
+		}
     </script>
 
 

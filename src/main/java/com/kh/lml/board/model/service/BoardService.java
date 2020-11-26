@@ -12,4 +12,6 @@ public interface BoardService {
 
 	ArrayList<Board> selectList();
 
+	ArrayList<Board> selectOne(int bnum);
+
 }
