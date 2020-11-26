@@ -10,6 +10,8 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -20,7 +22,6 @@ import org.json.simple.parser.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -101,7 +102,12 @@ public class memberController {
 		ArrayList<ChatRoom> messageList = mService.messageList(id);
 		
 		for(int i = 0 ; i < messageList.size();i++) {
-			messageList.get(i).setRecentChat(mService.recentChat(messageList.get(i).getChatroomid()));
+			String txt =mService.recentChat(messageList.get(i).getChatroomid());
+			if(txt != null) {
+			messageList.get(i).setRecentChat(textLengthOverCut(txt,5,"..."));
+			}
+		
+		
 		}
 		
 		
@@ -122,6 +128,22 @@ public class memberController {
 		
 		
 	}
+	
+	
+	public String textLengthOverCut(String txt,int len,String lastTxt) {
+        
+        if (lastTxt == "" || lastTxt == null) { // 기본값
+            lastTxt = "...";
+        }
+        if (txt.length() > len) {
+            txt = txt.substring(0, len)+ lastTxt;
+        }
+        return txt;
+    }
+	
+	
+	
+	
 	/**
 	 * 아이디 중복체크
 	 *  @ResponseBody를사용
@@ -622,5 +644,21 @@ public class memberController {
 		return chatlog;
 	}
 	
-	
+	@ResponseBody
+	@RequestMapping("chatAlram.do")
+	public String chatAlram(String roomid,String name) {
+		
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("roomid", (String)roomid);
+		map.put("name", (String)name);
+		System.out.println("roomid : " + map.get("roomid") +"name : " +map.get("name"));
+		int result = mService.chatAlram(map);
+		System.out.println("result : " + result);
+		if(result>0) {
+		return "ok";
+		}
+		else {
+			return "fail";
+		}
+	}
 }

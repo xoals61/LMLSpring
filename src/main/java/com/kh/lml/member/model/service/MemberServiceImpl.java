@@ -174,6 +174,11 @@ public class MemberServiceImpl implements MemberService {
 		return mDao.recentChat(chatroomid);
 	}
 
+	@Override
+	public int chatAlram(Map<String, String> map) {
+		return mDao.chatAlram(map);
+	}
+
 	
 
 

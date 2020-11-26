@@ -96,7 +96,6 @@ public class MemberDao {
 		return (ArrayList)sqlSession.selectList("memberMapper.messageList",id);
 	}
 	public ArrayList<ChatLog> chatLog(String chatid) {
-		System.out.println("chatlog dao");
 		return (ArrayList)sqlSession.selectList("memberMapper.chatLog",chatid);
 	}
 	public int boardCount(int uNum) {
@@ -114,6 +113,9 @@ public class MemberDao {
 	public String recentChat(String chatroomid) {
 	
 		return sqlSession.selectOne("memberMapper.recentChat",chatroomid);
+	}
+	public int chatAlram(Map<String, String> map) {
+		return sqlSession.update("memberMapper.chatAlram",map);
 	}
 
 }

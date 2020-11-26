@@ -68,6 +68,8 @@ public interface MemberService {
 
 	String recentChat(String chatroomid);
 
+	int chatAlram(Map<String, String> map);
+
 
 
 

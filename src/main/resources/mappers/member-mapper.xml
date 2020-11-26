@@ -256,8 +256,8 @@
 	 
 	 <insert id="newRoom" parameterType="String">
 	 	INSERT ALL 
-	 	INTO CHAT_ROOM VALUES(#{newroomid},#{fromid},#{toid})
-	 	INTO CHAT_ROOM VALUES(#{newroomid},#{toid},#{fromid})
+	 	INTO CHAT_ROOM VALUES(#{newroomid},#{fromid},#{toid},DEFAULT)
+	 	INTO CHAT_ROOM VALUES(#{newroomid},#{toid},#{fromid},DEFAULT)
 	 	SELECT * FROM dual
 	 </insert>
 	 <select id="findPwIdEmail" parameterType="String" resultType="_int">
@@ -283,6 +283,13 @@
 
 
 	</select>
+	
+	<update id="chatAlram" parameterType="String">
+		UPDATE CHAT_ROOM SET COUNT=COUNT+1 
+		WHERE CHATROOMID=#{roomid} AND TOUSER= #{name}
+	</update>
+	
+	
 </mapper>
 
 
