@@ -27,14 +27,13 @@
 	
 	
 	<select id="followingpost" resultMap="boardResultSet">
-			
 		SELECT *
-		FROM LML_BOARD
+		FROM LML_BOARD b
+        JOIN LML_MEM m ON B.B_USER_NUM = M.USER_NUM
 		WHERE B_USER_NUM IN(
 		    SELECT TO_FOLLOW
 		    FROM FOLLOW_LIST
 		    WHERE FROM_FOLLOW = #{usernum})
-    
 	</select>
 	
 	

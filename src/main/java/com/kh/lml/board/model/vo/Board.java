@@ -1,6 +1,7 @@
 package com.kh.lml.board.model.vo;
 
 import java.sql.Date;
+import java.util.Arrays;
 
 public class Board {
 	private int b_num;
@@ -279,11 +280,20 @@ public class Board {
 		this.b_hash = b_hash;
 	}
 
+
 	@Override
 	public String toString() {
-		return "Board [b_user_num=" + b_user_num + ", b_hash=" + b_hash + "]";
+		return "Board [b_num=" + b_num + ", b_user_num=" + b_user_num + ", b_images=" + b_images + ", b_content="
+				+ b_content + ", b_top=" + b_top + ", b_bottom=" + b_bottom + ", b_shoes=" + b_shoes + ", b_acc="
+				+ b_acc + ", b_etc=" + b_etc + ", b_status=" + b_status + ", b_date=" + b_date + ", b_profile_img="
+				+ b_profile_img + ", b_user_height=" + b_user_height + ", b_user_weight=" + b_user_weight
+				+ ", b_user_id=" + b_user_id + ", b_name=" + b_name + ", b_hash=" + b_hash + ", b_hashtag="
+				+ Arrays.toString(b_hashtag) + ", originalFileName=" + originalFileName + ", renameFileName="
+				+ renameFileName + ", image1=" + image1 + ", image2=" + image2 + ", image3=" + image3 + ", image4="
+				+ image4 + ", image5=" + image5 + "]";
 	}
 
+	
 	
 
 	

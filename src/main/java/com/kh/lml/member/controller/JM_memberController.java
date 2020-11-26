@@ -78,7 +78,8 @@ public class JM_memberController {
 		System.out.println("키워드는?"+ keyword);
 		// ArrayList<Member> SearchBoard = mService.searchBoardList(keyword);
 		ArrayList<Member> SearchUser = mService.searchUserList1(keyword); 
-		int userCount = mService.searchUserCount(keyword); System.out.println("이름검색 : " +userCount);
+		int userCount = mService.searchUserCount(keyword);
+		System.out.println("이름검색 : " +userCount);
 
 		mv.addObject("searchUser", SearchUser); 
 		mv.addObject("userCount",userCount);
