@@ -99,7 +99,11 @@ public class memberController {
 		System.out.println("message id : " + id);
 		
 		ArrayList<ChatRoom> messageList = mService.messageList(id);
-	
+		
+		for(int i = 0 ; i < messageList.size();i++) {
+			messageList.get(i).setRecentChat(mService.recentChat(messageList.get(i).getChatroomid()));
+		}
+		
 		
 		System.out.println("messageListsize" + messageList.size());
 		if(messageList.size()>0) {

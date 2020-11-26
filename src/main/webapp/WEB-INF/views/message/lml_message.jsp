@@ -46,7 +46,7 @@
 										src="resources/images/profileImg/${message.rename_profile_img}">
 									<div class="user-li">
 										<div class="li-userId">${message.touser}</div>
-										<div class="li-direct">안녕</div>
+										<div class="${message.chatroomid} li-direct">${message.recentChat}</div>
 										<input class="userId" type="hidden" value="${message.touser }">
 									</div>
 								</div>
@@ -139,13 +139,24 @@
             	socket = io("http://52.79.234.164:3001");
                 
             	
-            	 socket.on('send_msg',function(name,msg){
-        				if(name ==touser){
+            	
+            	 
+            	$(".inputsend").attr("disabled",true);
+            	
+            	
+            	 socket.on('hi',function(room,name,msg){
+     				
+     				if(name ==touser){
+        				
         				$('.message').append('<div class="yourmessagediv"><img src="resources/images/profileImg/' + rename_profile_img +  '" class="yourmessageimg"><div style="width:fit-content;   margin: 0 0 0 82px;"><p class="yourmessage">'+ msg +'</p></div></div>');
         				}
-        				 $('.message').scrollTop($('.message').prop('scrollHeight'));
-        			});
-            	$(".inputsend").attr("disabled",true);
+        		    $('.message').scrollTop($('.message').prop('scrollHeight'));
+        		    $('.' +room).html(msg);
+            		 
+     			});
+         	 
+            	
+            	
             });
            
             /* 채팅 */
@@ -156,7 +167,7 @@
                 var mas = '<div class="mymessagediv"><p class="mymessage">' + $('.inputsend').val() + '</p></div>';
                 $('.message').append(mas);
                 socket.emit("send_msg",as,$(".inputsend").val());
-         
+         		
                 $('.inputsend').val('');
                 $('.message').scrollTop($('.message').prop('scrollHeight'));
                 

@@ -66,6 +66,9 @@ public interface MemberService {
 	int newRoom(Map<String, String> map);
 
 
+	String recentChat(String chatroomid);
+
+
 
 
 

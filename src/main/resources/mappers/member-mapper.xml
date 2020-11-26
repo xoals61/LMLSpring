@@ -246,7 +246,6 @@
 		SELECT COUNT(*)
 		FROM LML_BOARD
 		WHERE B_USER_NUM=#{uNum}
-	
 	</select>
 	 
 	 <select id="findRoom" parameterType="String" resultType="String">
@@ -261,6 +260,29 @@
 	 	INTO CHAT_ROOM VALUES(#{newroomid},#{toid},#{fromid})
 	 	SELECT * FROM dual
 	 </insert>
+	 <select id="findPwIdEmail" parameterType="String" resultType="_int">
+		SELECT count(*) FROM LML_MEM
+		WHERE ID=#{id}
+	        AND MAIL=#{email}
+	        AND DEL_FLAG='N'
+	</select>
+	<update id="changPwIdEmail" parameterType="String">
+		UPDATE LML_MEM SET
+        UPWD=#{pw}
+        WHERE ID=#{id}
+        AND MAIL=#{email}
+	</update>
+	
+	<select id="recentChat" parameterType="String"
+		resultType="String">
+		SELECT CHATLOG FROM
+		(SELECT * FROM CHAT_RECORD
+		WHERE CHATROOMID=#{chatroomid}
+		ORDER by CHATDATE DESC)
+		WHERE ROWNUM=1
+
+
+	</select>
 </mapper>
 
 

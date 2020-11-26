@@ -56,9 +56,9 @@
         </div>
         <div class="hMenu">
             <div class="hMenu1">
-                <div class="hMenu2 on"><span>인기순</span></div>
+                <div class="hMenu2 on"><a href="likepost.do"><span>인기순</span></a></div>
                 <div class="hMenu2"><span>최신순</span></div>
-                <div class="hMenu2"><span>팔로잉</span></div>
+                <div class="hMenu2"><a href="followingpost.do?usernum=${loginUser.user_num}"><span>팔로잉</span></a></div>
                 <div class="hMenu2"><span>QnA</span></div>
                 <span></span>
             </div>
