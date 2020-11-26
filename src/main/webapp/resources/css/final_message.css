@@ -97,11 +97,21 @@ a:hover {
 .li-userId {
 	font-size: 15px;
 	font-weight: 400;
+	width:80%;
+	float:left;
 }
 
 .li-direct {
 	font-size: 16px;
 	font-weight: 300;
+	width:80%;
+	float:left;
+}
+.alarm{
+	float:right;
+	background:red;
+	border-radius: 30px;
+
 }
 
 .lContent ::-webkit-scrollbar {

@@ -47,7 +47,7 @@
 									<div class="user-li">
 										<div class="li-userId">${message.touser}</div>
 										<div class="${message.chatroomid} li-direct">${message.recentChat}</div>
-										<input class="userId" type="hidden" value="${message.touser }">
+										<div class="alarm">1</div>
 									</div>
 								</div>
 								<script>
