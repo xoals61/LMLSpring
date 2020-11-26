@@ -64,7 +64,7 @@
                                     	$("#user-img").removeAttr("hidden");
                                     	
                                        socket.emit("leaveRoom",as);
-                                       socket.emit("login",as,${message.chatroomid});
+                                       socket.emit("login",as,"${message.chatroomid}");
                                        
                                        
                                  
