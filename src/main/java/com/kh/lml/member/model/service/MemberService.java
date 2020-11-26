@@ -2,6 +2,7 @@ package com.kh.lml.member.model.service;
 
 import java.util.ArrayList;
 
+import com.kh.lml.member.model.vo.ChatLog;
 import com.kh.lml.member.model.vo.ChatRoom;
 import com.kh.lml.member.model.vo.Member;
 
@@ -54,6 +55,8 @@ public interface MemberService {
 	Member userPage(String id);
 
 	ArrayList<ChatRoom> messageList(String id);
+
+	ArrayList<ChatLog> chatLog(String chatid);
 
 
 	//1113은지

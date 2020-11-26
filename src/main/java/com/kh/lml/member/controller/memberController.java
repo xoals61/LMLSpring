@@ -20,6 +20,7 @@ import org.json.simple.parser.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -33,6 +34,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonIOException;
 import com.kh.lml.member.model.service.MemberService;
+import com.kh.lml.member.model.vo.ChatLog;
 import com.kh.lml.member.model.vo.ChatRoom;
 import com.kh.lml.member.model.vo.Member;
 
@@ -612,4 +614,14 @@ public class memberController {
 	
 	}
 
+	@ResponseBody
+	@RequestMapping("chatLog.do")
+	public ArrayList<ChatLog> chatLog(String chatid){
+		System.out.println(chatid);
+		
+		ArrayList<ChatLog> chatlog = mService.chatLog(chatid);
+		return chatlog;
+	}
+	
+	
 }

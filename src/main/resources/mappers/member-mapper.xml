@@ -32,6 +32,14 @@
 
 	</resultMap>
 
+	<resultMap type="ChatLog" id="chatLogResultSet">
+		<result property="chatroomid" column="CHATROOMID" />
+		<result property="chatlog" column="CHATLOG" />
+		<result property="chatdate" column="CHATDATE" />
+		<result property="user_name" column="USER_NAME" />
+	</resultMap>
+
+
 	<select id="loginMember" parameterType="Member"
 		resultMap="memberResultSet">
 
@@ -39,7 +47,8 @@
 		FROM LML_MEM
 		WHERE ID=#{id}
 		AND UPWD=#{upwd}
-		AND DEL_FLAG='N'
+		AND
+		DEL_FLAG='N'
 
 	</select>
 
@@ -73,21 +82,24 @@
 
 	<update id="memberUpdate" parameterType="Member">
 		UPDATE LML_MEM
-		SET MAIL=#{mail}
+		SET
+		MAIL=#{mail}
 		,UNAME=#{uname},M_PHONE=#{m_phone},HEIGHT=#{height},WEIGHT=#{weight},GENDER=#{gender},INTRO=#{intro},
 		PROFILE_IMG=#{profile_img}, RENAME_PROFILE_IMG=#{rename_profile_img}
 		WHERE ID=#{id}
 
 	</update>
 	<select id="pwdCheck" parameterType="Member" resultType="_int">
-		SELECT COUNT(*)
+		SELECT
+		COUNT(*)
 		FROM LML_MEM
 		WHERE UPWD=#{upwd} AND ID=#{id}
 		AND DEL_FLAG='N'
 	</select>
 
 	<update id="pwdChange" parameterType="Member">
-		UPDATE LML_MEM SET UPWD=#{upwd} WHERE ID=#{id}
+		UPDATE LML_MEM SET
+		UPWD=#{upwd} WHERE ID=#{id}
 	</update>
 
 	<select id="selectFollowList" resultMap="memberResultSet">
@@ -200,21 +212,33 @@
 		resultMap="chatRoomResultSet">
 		SELECT
 		CHAT_ROOM.TOUSER,chat_room.chatroomid,lml_mem.RENAME_PROFILE_IMG
-		FROM CHAT_ROOM
+		FROM
+		CHAT_ROOM
 		JOIN LML_MEM ON CHAT_ROOM.TOUSER = LML_MEM.ID
-		WHERE FROMUSER=#{id}
+		WHERE
+		FROMUSER=#{id}
 	</select>
-	<select id="findNamePhone" parameterType="String" resultType="String">
+	<select id="findNamePhone" parameterType="String"
+		resultType="String">
 		SELECT ID FROM LML_MEM
 		WHERE UNAME=#{findname}
-	        AND M_PHONE=#{findphone}
-	        AND DEL_FLAG='N'
+		AND
+		M_PHONE=#{findphone}
+		AND DEL_FLAG='N'
 	</select>
-	<select id="findNameEmail" parameterType="String" resultType="String">
+	<select id="findNameEmail" parameterType="String"
+		resultType="String">
 		SELECT ID FROM LML_MEM
 		WHERE UNAME=#{findname}
-	        AND MAIL=#{findEmail}
-	        AND DEL_FLAG='N'
+		AND
+		MAIL=#{findEmail}
+		AND DEL_FLAG='N'
+	</select>
+	
+	<select id="chatLog" parameterType="String" resultMap="chatLogResultSet">
+		SELECT * FROM CHAT_RECORD
+		WHERE CHATROOMID=#{chatid}
+		ORDER by CHATDATE
 	</select>
 </mapper>
 

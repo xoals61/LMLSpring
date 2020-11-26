@@ -68,7 +68,27 @@
                                        socket.emit("login",as,"${message.chatroomid}");
                                        
                                        
-                                 
+                                       $.ajax({
+                       					url : "chatLog.do",
+                       					data : {chatid : "${message.chatroomid}"},
+                       					type : "post",
+                       					success : function(data) {
+                       						$.each(data,function(index,value){
+                       						if(value.user_name == "${message.touser}"){
+                       							$('.message').append('<div class="yourmessagediv"><img src="resources/images/profileImg/${message.rename_profile_img}" class="yourmessageimg"><div style="width:fit-content;   margin: 0 0 0 82px;"><p class="yourmessage">'+ value.chatlog +'</p></div></div>');
+                       							
+                            				}else{
+                            					$('.message').append('<div class="mymessagediv"><p class="mymessage">' + value.chatlog + '</p></div>');
+                            				}
+                       						$('.message').scrollTop($('.message').prop('scrollHeight'));
+                       						
+                       						});	
+                       					},
+                       					error : function(jqxhr, textStatus, errorThrown) {
+                       						console.log("ajax 오류");
+
+                       					}
+                       					});
                                     	
                                        
                                     });

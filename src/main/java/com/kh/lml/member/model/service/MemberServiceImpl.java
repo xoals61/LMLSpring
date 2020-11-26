@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.kh.lml.member.model.vo.ChatLog;
 import com.kh.lml.member.model.vo.ChatRoom;
 import com.kh.lml.member.model.vo.Member;
 import com.kh.lml.member.model.dao.MemberDao;
@@ -142,6 +143,12 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public ArrayList<ChatRoom> messageList(String id) {
 		return mDao.messageList(id);
+	}
+
+	@Override
+	public ArrayList<ChatLog> chatLog(String chatid) {
+
+		return mDao.chatLog(chatid);
 	}
 
 

@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.kh.lml.member.model.vo.ChatLog;
 import com.kh.lml.member.model.vo.ChatRoom;
 import com.kh.lml.member.model.vo.Member;
 
@@ -92,6 +93,10 @@ public class MemberDao {
 	public ArrayList<ChatRoom> messageList(String id) {
 		
 		return (ArrayList)sqlSession.selectList("memberMapper.messageList",id);
+	}
+	public ArrayList<ChatLog> chatLog(String chatid) {
+		System.out.println("chatlog dao");
+		return (ArrayList)sqlSession.selectList("memberMapper.chatLog",chatid);
 	}
 
 }

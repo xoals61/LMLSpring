@@ -10,6 +10,7 @@
 		<typeAlias type="com.kh.lml.member.model.vo.Member" alias="Member"/>
 		<typeAlias type="com.kh.lml.board.model.vo.Board" alias="Board"/>
 		<typeAlias type="com.kh.lml.member.model.vo.ChatRoom" alias="ChatRoom"/>
+		<typeAlias type="com.kh.lml.member.model.vo.ChatLog" alias="Chatlog"/>
 		
 	</typeAliases>
 	
