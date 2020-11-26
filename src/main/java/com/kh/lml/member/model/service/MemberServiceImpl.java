@@ -1,6 +1,7 @@
 package com.kh.lml.member.model.service;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -156,6 +157,19 @@ public class MemberServiceImpl implements MemberService {
 		
 		return mDao.boardCount(uNum);
 	}
+
+	@Override
+	public String findRoom(Map<String, String> map) {
+		
+		return mDao.findRoom(map);
+	}
+
+	@Override
+	public int newRoom(Map<String, String> map) {
+		return mDao.newRoom(map);
+	}
+
+
 
 
 	//1113은지

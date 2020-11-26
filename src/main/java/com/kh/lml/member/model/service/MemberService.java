@@ -1,6 +1,7 @@
 package com.kh.lml.member.model.service;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 import com.kh.lml.member.model.vo.ChatLog;
 import com.kh.lml.member.model.vo.ChatRoom;
@@ -59,6 +60,13 @@ public interface MemberService {
 	ArrayList<ChatLog> chatLog(String chatid);
 
 	int boardCount(int uNum);
+
+	String findRoom(Map<String, String> map);
+
+	int newRoom(Map<String, String> map);
+
+
+
 
 
 	//1113은지

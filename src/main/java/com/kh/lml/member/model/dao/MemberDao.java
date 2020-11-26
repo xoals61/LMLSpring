@@ -1,6 +1,7 @@
 package com.kh.lml.member.model.dao;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -101,6 +102,13 @@ public class MemberDao {
 	public int boardCount(int uNum) {
 		
 		return sqlSession.selectOne("memberMapper.boardCount", uNum);
+	}
+	public String findRoom(Map<String, String> map) {
+	 return sqlSession.selectOne("memberMapper.findRoom", map);
+	}
+	public int newRoom(Map<String, String> map) {
+		
+		return sqlSession.insert("memberMapper.newRoom",map);
 	}
 
 }

@@ -55,7 +55,7 @@
 					<div class="my_info">
 						<div class="info">
 							<h2>${User.id}
-							<button class="messegebtn" >메세지
+							<button class="messegebtn" onclick="location.href='toMessage.do?toid=${User.id}&fromid=${loginUser.id}'">메세지
 								</button>
 								<button class="blockbtn">차단
 								</button>

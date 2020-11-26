@@ -249,6 +249,18 @@
 	
 	</select>
 	 
+	 <select id="findRoom" parameterType="String" resultType="String">
+	 	SELECT CHATROOMID 
+	 	FROM CHAT_ROOM
+	 	WHERE FROMUSER=#{fromid} AND TOUSER=#{toid}
+	 </select>
+	 
+	 <insert id="newRoom" parameterType="String">
+	 	INSERT ALL 
+	 	INTO CHAT_ROOM VALUES(#{newroomid},#{fromid},#{toid})
+	 	INTO CHAT_ROOM VALUES(#{newroomid},#{toid},#{fromid})
+	 	SELECT * FROM dual
+	 </insert>
 </mapper>
 
 

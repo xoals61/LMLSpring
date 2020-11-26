@@ -1,6 +1,8 @@
 package com.kh.lml.member.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -53,10 +55,10 @@ public class JM_memberController {
 		int uNum = mService.finduNum(id);
 		int Follow = mService.countFollowList(uNum);
 		int Follower = mService.countFollowerList(uNum);
-	
+
 		int boardCount =mService.boardCount(uNum);
-		
-		
+
+
 		if (m != null) {
 			model.addAttribute("User", m);
 			model.addAttribute("Follow", Follow);
@@ -71,7 +73,8 @@ public class JM_memberController {
 	}
 
 
-	@RequestMapping("SearchUser.do") public ModelAndView Search(ModelAndView mv,String keyword) {
+	@RequestMapping("SearchUser.do") 
+	public ModelAndView Search(ModelAndView mv,String keyword) {
 		System.out.println("키워드는?"+ keyword);
 		// ArrayList<Member> SearchBoard = mService.searchBoardList(keyword);
 		ArrayList<Member> SearchUser = mService.searchUserList1(keyword); 
@@ -82,8 +85,38 @@ public class JM_memberController {
 
 		mv.setViewName("search/lml_search_user");
 
-		return mv; }
+		return mv; 
 
+	}
+
+
+	@RequestMapping("toMessage.do")
+	public String toMessage(String toid, String fromid,Model model) {
+		System.out.println("toid?: "+toid +", from?: "+fromid);
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("toid",toid);
+		map.put("fromid",fromid);
+		map.put("newroomid",toid+fromid);
+		String chatRoom =mService.findRoom(map);
+		System.out.println("챗룸"+chatRoom);
+		
+		if(chatRoom != null) {
+			return "redirect:Message.do?id=" + fromid;
+		}else {
+			int result = mService.newRoom(map);
+			if(result > 1) {
+				
+				return "redirect:Message.do?id=" + fromid;
+			}
+			else {
+			model.addAttribute("msg","잘못");
+			
+			return "common/errorPage";
+			}
+		}
+		
+		
+	}
 
 
 
