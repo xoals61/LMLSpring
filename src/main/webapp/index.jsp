@@ -276,10 +276,12 @@
 		<div class="scContent">
 			<div class="upBtn">
 				<img src="resources/images/icon/main/arrow.png">
-			</div>
+			</div> 
+			<c:if test="${loginUser ne null}">
 			<div class="postBtn">
 				<img src="resources/images/icon/main/plus.png">
 			</div>
+			</c:if>
 			<div class="choice">
 				<p class="pchoice">체형별 보기</p>
 				<div class="choice1">

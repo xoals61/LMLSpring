@@ -55,10 +55,12 @@
 					<div class="my_info">
 						<div class="info">
 							<h2>${User.id}
+							<c:if test="${loginUser ne null}">
 							<button class="messegebtn" onclick="location.href='toMessage.do?toid=${User.id}&fromid=${loginUser.id}'">메세지
 								</button>
 								<button class="blockbtn">차단
 								</button>
+								</c:if>
 							</h2>
 						</div>
 						<div class="info">
