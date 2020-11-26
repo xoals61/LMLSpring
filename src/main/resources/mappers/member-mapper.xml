@@ -204,6 +204,18 @@
 		JOIN LML_MEM ON CHAT_ROOM.TOUSER = LML_MEM.ID
 		WHERE FROMUSER=#{id}
 	</select>
+	<select id="findNamePhone" parameterType="String" resultType="String">
+		SELECT ID FROM LML_MEM
+		WHERE UNAME=#{findname}
+	        AND M_PHONE=#{findphone}
+	        AND DEL_FLAG='N'
+	</select>
+	<select id="findNameEmail" parameterType="String" resultType="String">
+		SELECT ID FROM LML_MEM
+		WHERE UNAME=#{findname}
+	        AND MAIL=#{findEmail}
+	        AND DEL_FLAG='N'
+	</select>
 </mapper>
 
 
