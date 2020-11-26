@@ -62,7 +62,8 @@
 						</div>
 						<div class="info">
 							<div class="iftext_1">
-								<span>게시글</span>
+								<span><a id="myboard" style="color: black">게시글</a>&nbsp;
+									${boardCount} </span>
 							</div>
 							<div class="iftext">
 								<span><a id="myfalwer" style="color: black">팔로워</a>&nbsp;

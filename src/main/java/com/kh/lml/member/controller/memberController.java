@@ -64,9 +64,10 @@ public class memberController {
 
 		int Follow = mService.countFollowList(uNum);
 		int Follower = mService.countFollowerList(uNum);
-
+		int myboardCount = mService.boardCount(uNum);
 		mv.addObject("Follow", Follow);
 		mv.addObject("Follower", Follower);
+		mv.addObject("boardCount", myboardCount);
 		mv.setViewName("jiman/lml_MyPage");
 
 		return mv;

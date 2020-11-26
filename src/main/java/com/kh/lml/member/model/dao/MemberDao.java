@@ -98,5 +98,9 @@ public class MemberDao {
 		System.out.println("chatlog dao");
 		return (ArrayList)sqlSession.selectList("memberMapper.chatLog",chatid);
 	}
+	public int boardCount(int uNum) {
+		
+		return sqlSession.selectOne("memberMapper.boardCount", uNum);
+	}
 
 }

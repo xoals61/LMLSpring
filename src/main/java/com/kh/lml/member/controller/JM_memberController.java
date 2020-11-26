@@ -53,11 +53,15 @@ public class JM_memberController {
 		int uNum = mService.finduNum(id);
 		int Follow = mService.countFollowList(uNum);
 		int Follower = mService.countFollowerList(uNum);
-
+	
+		int boardCount =mService.boardCount(uNum);
+		
+		
 		if (m != null) {
 			model.addAttribute("User", m);
 			model.addAttribute("Follow", Follow);
 			model.addAttribute("Follower", Follower);
+			model.addAttribute("boardCount", boardCount);
 			return "jiman/lml_UserPage";
 		} else {
 			model.addAttribute("msg", "바보야 유저 없다");

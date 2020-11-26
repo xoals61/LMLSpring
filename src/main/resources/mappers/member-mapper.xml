@@ -240,6 +240,15 @@
 		WHERE CHATROOMID=#{chatid}
 		ORDER by CHATDATE
 	</select>
+	
+	
+	<select id="boardCount" parameterType="_int" resultType="_int">
+		SELECT COUNT(*)
+		FROM LML_BOARD
+		WHERE B_USER_NUM=#{uNum}
+	
+	</select>
+	 
 </mapper>
 
 

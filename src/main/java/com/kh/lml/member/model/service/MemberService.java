@@ -58,6 +58,8 @@ public interface MemberService {
 
 	ArrayList<ChatLog> chatLog(String chatid);
 
+	int boardCount(int uNum);
+
 
 	//1113은지
 

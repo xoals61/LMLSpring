@@ -151,6 +151,12 @@ public class MemberServiceImpl implements MemberService {
 		return mDao.chatLog(chatid);
 	}
 
+	@Override
+	public int boardCount(int uNum) {
+		
+		return mDao.boardCount(uNum);
+	}
+
 
 	//1113은지
 
