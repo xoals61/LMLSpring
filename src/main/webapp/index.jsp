@@ -40,7 +40,7 @@
 		        	}
 					
 					function addTable(){
-						
+						boardHover();
 						for(var i=0; i<7; i++){	// 행
 							if(a<row){
 								
@@ -94,14 +94,8 @@
 								a++;
 							}
 						}
-						
 						boardHover();
-						//modalAjax();
-						
 					}
-					
-					boardHover();
-					//modalAjax();
 				},
 				error:function(request,status,error){
 					alert("code : " + request.status + "\n"
@@ -774,15 +768,15 @@
 							'<div class="board-right">'+
 								'<div class="board-user">'+
 									'<div class="board-userImg">'+
-										'<a href="./jiman/MyPage.html"><img src="resources/images/detailImg/40x40man.jpg"></a>'+
+										'<a href="./jiman/MyPage.html"><img src="resources/images/profileImg/'+ data[0].image1 +'"></a>'+
 									'</div>'+
 									'<a href="./jiman/MyPage.html"><div class="board-id">'+
-											'<p>__maybenotyet__</p>'+
+											'<p>'+ data[0].b_name +'</p>'+
 										'</div></a>'+
 									'<div class="board-follow">팔로잉</div>'+
 								'</div>'+
 								'<div class="board-textDiv">'+
-									'<div class="board-text">글 내용</div>'+
+									'<div class="board-text">'+ data[0].b_content +'</div>'+
 									'<div class="board-hashtag">#가을코디 #맨투맨 #맨투맨코디 #흑청바지 #청바지코디 #캐주얼룩 #캐주얼코디 #남자데일리코디</div>'+
 								'</div>'+
 								'<div class="board-stateicon">'+
@@ -795,45 +789,25 @@
 									'</div>'+
 								'</div>'+
 								'<div class="board-clothesInfo">'+
-									'<div class="clothesInfo-div">'+
-										'<div class="clothes-img">'+
-											'<img src="resources/images/detailImg/top.png">'+
-										'</div>'+
-										'<div class="clothes-p">상의</div>'+
-										'<div class="clothes-info">아디다스</div>'+
-									'</div>'+
-									'<div class="clothesInfo-div">'+
-										'<div class="clothes-img">'+
-											'<img src="resources/images/detailImg/pants.png">'+
-										'</div>'+
-										'<div class="clothes-p">하의</div>'+
-										'<div class="clothes-info">아디다스</div>'+
-									'</div>'+
-									'<div class="clothesInfo-div">'+
-										'<div class="clothes-img">'+
-											'<img src="resources/images/detailImg/shoes.png">'+
-										'</div>'+
-										'<div class="clothes-p">신발</div>'+
-										'<div class="clothes-info">아디다스</div>'+
-									'</div>'+
-									'<div class="clothesInfo-div">'+
-										'<div class="clothes-img">'+
-											'<img src="resources/images/detailImg/watch.png">'+
-										'</div>'+
-										'<div class="clothes-p">Acc</div>'+
-										'<div class="clothes-info">아디다스</div>'+
-									'</div>'+
-									'<div class="clothesInfo-div">'+
-										'<div class="clothes-img">'+
-											'<img src="resources/images/detailImg/bag.png">'+
-										'</div>'+
-										'<div class="clothes-p">Etc</div>'+
-										'<div class="clothes-info">아디다스</div>'+
-									'</div>'+
+									
 								'</div>'+
 							'</div>'+
 							'<div class="board-bottom">'+
-								
+								'<div class="commentCount">'+
+									'<p>댓글 (8)</p>'+
+								'</div>'+
+								'<div class="board-commentDiv">'+
+									'<div class="board-comment">'+
+										'<div class="comment-img">'+
+											'<a href="./jiman/MyPage.html"><img src="resources/images/mainImg/andy.jpg"></a>'+
+										'</div>'+
+										'<div class="comment-content">'+
+											'<p class="comment-user">iamandy</p>'+
+											'<p class="comment-comment">댓글1</p>'+
+										'</div>'+
+									'</div>'+
+									
+								'</div>'+
 								'<div class="board-commentWrite">'+
 									'<div class="comment-write">'+
 										'<input type="text" placeholder="댓글 달기...">'+
@@ -841,6 +815,61 @@
 									'<div class="comment-submit">게시</div>'+
 								'</div>'+
 							'</div>');
+					
+					if(data[0].b_top !=null){
+						$('.board-clothesInfo').append('<div class="clothesInfo-div">'+
+								'<div class="clothes-img">'+
+								'<img src="resources/images/detailImg/top.png">'+
+							'</div>'+
+							'<div class="clothes-p">상의</div>'+
+							'<div class="clothes-info">'+ data[0].b_top +'</div>'+
+						'</div>');
+					}
+					if(data[0].b_bottom !=null){
+						$('.board-clothesInfo').append('<div class="clothesInfo-div">'+
+								'<div class="clothes-img">'+
+								'<img src="resources/images/detailImg/pants.png">'+
+							'</div>'+
+							'<div class="clothes-p">상의</div>'+
+							'<div class="clothes-info">'+ data[0].b_bottom +'</div>'+
+						'</div>');
+					}
+					if(data[0].b_shoes !=null){
+						$('.board-clothesInfo').append('<div class="clothesInfo-div">'+
+								'<div class="clothes-img">'+
+								'<img src="resources/images/detailImg/pants.png">'+
+							'</div>'+
+							'<div class="clothes-p">상의</div>'+
+							'<div class="clothes-info">'+ data[0].b_shoes +'</div>'+
+						'</div>');
+					}
+					if(data[0].b_acc !=null){
+						$('.board-clothesInfo').append('<div class="clothesInfo-div">'+
+								'<div class="clothes-img">'+
+								'<img src="resources/images/detailImg/pants.png">'+
+							'</div>'+
+							'<div class="clothes-p">상의</div>'+
+							'<div class="clothes-info">'+ data[0].b_acc +'</div>'+
+						'</div>');
+					}
+					if(data[0].b_acc !=null){
+						$('.board-clothesInfo').append('<div class="clothesInfo-div">'+
+								'<div class="clothes-img">'+
+								'<img src="resources/images/detailImg/pants.png">'+
+							'</div>'+
+							'<div class="clothes-p">상의</div>'+
+							'<div class="clothes-info">'+ data[0].b_acc +'</div>'+
+						'</div>');
+					}
+					if(data[0].b_etc !=null){
+						$('.board-clothesInfo').append('<div class="clothesInfo-div">'+
+								'<div class="clothes-img">'+
+								'<img src="resources/images/detailImg/pants.png">'+
+							'</div>'+
+							'<div class="clothes-p">상의</div>'+
+							'<div class="clothes-info">'+ data[0].b_etc +'</div>'+
+						'</div>');
+					}
 					
 				},
 				error:function(request,status,error){

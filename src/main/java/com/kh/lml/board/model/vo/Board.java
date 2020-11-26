@@ -20,6 +20,7 @@ public class Board {
 	private int b_user_weight;
 	private String b_user_id;
 	private String b_name;
+	private String b_hash;
 	
 
 	private String originalFileName;
@@ -35,6 +36,7 @@ public class Board {
 		super();
 	}
 
+	
 	public Board(int b_num, int b_user_num, String b_images, String b_content, String b_hashtag, String b_top,
 			String b_bottom, String b_shoes, String b_acc, String b_etc, String b_status, Date b_date,
 			String originalFileName, String renameFileName) {
@@ -66,6 +68,13 @@ public class Board {
 		this.image4 = image4;
 		this.image5 = image5;
 	}
+
+	public Board(int b_num, String b_hash) {
+		super();
+		this.b_num = b_num;
+		this.b_hash = b_hash;
+	}
+
 
 	public int getB_num() {
 		return b_num;
@@ -259,14 +268,24 @@ public class Board {
 		this.b_name = b_name;
 	}
 
+	public String getB_hash() {
+		return b_hash;
+	}
+
+	public void setB_hash(String b_hash) {
+		this.b_hash = b_hash;
+	}
+
 	@Override
 	public String toString() {
-		return "Board [b_num=" + b_num + ", b_user_num=" + b_user_num + ", b_content=" + b_content + ", b_top=" + b_top
-				+ ", b_bottom=" + b_bottom + ", b_shoes=" + b_shoes + ", b_acc=" + b_acc + ", b_etc=" + b_etc
-				+ ", b_status=" + b_status + ", b_date=" + b_date + ", b_profile_img=" + b_profile_img
-				+ ", b_user_height=" + b_user_height + ", b_user_weight=" + b_user_weight + ", image1=" + image1
-				+ ", image2=" + image2 + ", image3=" + image3 + ", image4=" + image4 + ", image5=" + image5 + "]";
+		return "Board [b_user_num=" + b_user_num + ", b_hash=" + b_hash + "]";
 	}
+
+	
+
+	
+
+	
 	
 	
 

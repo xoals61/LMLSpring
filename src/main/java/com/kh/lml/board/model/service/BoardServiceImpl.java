@@ -42,4 +42,16 @@ public class BoardServiceImpl implements BoardService {
 	public ArrayList<Board> selectOne(int bnum) {
 		return bDao.selectOne(bnum);
 	}
+
+	
+	 @Override 
+	 public int insertStyleHash(Board b) { 
+		 return bDao.insertStyleHash(b); 
+	 }
+
+	@Override
+	public int getbnum() {
+		return bDao.getbnum();
+	}
+	 
 }

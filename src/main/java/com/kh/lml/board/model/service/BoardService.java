@@ -14,4 +14,8 @@ public interface BoardService {
 
 	ArrayList<Board> selectOne(int bnum);
 
+	int insertStyleHash(Board b);
+
+	int getbnum();
+
 }

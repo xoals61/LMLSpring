@@ -62,7 +62,7 @@
 									<div id="cont-write" class="cont-write">
 										<textarea id="b_content" name="b_content" placeholder="내용을 입력해주세요"></textarea>
 									</div>
-									<div id="hihi" style="width: 100px; height: 100px;  margin-left: 600px;background: yellow; ">
+									<div id="hihi" style="width: 100px; height: 100px;  margin-left: 600px;background: yellow;">
 									</div>
 								</div>
 
@@ -70,12 +70,11 @@
 							<div class="div-cont1">
 								<div id="post-cont"><h5>태그</h5></div>
 								<div class="post-cont-div1">
-									<form action="#" id="tag" method="post">
-									<!-- 	<input type="hidden" value="" name="tag" id="tag"> -->
+									<!-- <form action="#" id="tag" method="post"> -->
 										<input type="text" id="hashtag" size="7" placeholder="태그입력" />
-										
+										<input type="hidden" id="hashArr" name="b_hash" value=""/>
 										<button type="button" id="tagbtn" onclick="addhash();">태그 등록</button>
-									</form>
+									<!-- </form> -->
 								
 									
 								</div>
@@ -144,28 +143,39 @@
 		var content = document.getElementById('b_content').innerHTML;
 		var splitedArray = content.split(' ');
 		var linkedContent = '';
-		for(var word in splitedArray)
-		{
-		  word = splitedArray[word];
-	 	  var ab = word.replace("#",""); 
-		   if(word.indexOf('#') == 0){
-			   
+		
+		for(var word in splitedArray) {
+			word = splitedArray[word];
+	 	  	var ab = word.replace("#",""); 
+		   	if(word.indexOf('#') == 0){
 			   word = '<a href=\'Search.do?keyword='+ab+'\'>'+word+'</a>';
-		   }
-		   linkedContent += word+' ';
+		   	}
+		   	
+		   	linkedContent += word+' ';
 		}
+		
+		
+		
 		document.getElementById('hihi').innerHTML = linkedContent; 
 			
+		var hasharr="";
+		
 		function addhash(){
 			var tag = '<a href=\'Search.do?keyword='+$('#hashtag').val()+'\'>'  +  '#'+$('#hashtag').val()+'</a><br>';
 			
-		document.getElementById('hihi').innerHTML+= tag;
-		
-		$('#hashtag').val("");
+			document.getElementById('hihi').innerHTML+= tag;
 			
+			hasharr += '#'+$('#hashtag').val()+',';
+			console.log("제이쿼리는들어가? " + hasharr);
+			
+			$('#hashArr').val(hasharr);
+		
+			$('#hashtag').val("");
 		}
 		
-	
+		
+		
+		
         function changeValue(html, $target) {
         	console.log(html.files.length);
         	if (html.files && html.files[0]) {
@@ -180,7 +190,6 @@
 
         /*iput태그 파일*/
         function uploadBtn(id){
-            console.log("클릭댐"); 
             $('#'+id+'input').click();
         }
 

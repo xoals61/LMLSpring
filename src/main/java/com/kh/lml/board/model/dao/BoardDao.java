@@ -33,4 +33,12 @@ public class BoardDao {
 		return (ArrayList)sqlSession.selectList("boardMapper.selectOne",bnum);
 	}
 
+	public int insertStyleHash(Board b) {
+		return sqlSession.insert("boardMapper.insertStyleHash", b);
+	}
+
+	public int getbnum() {
+		return sqlSession.selectOne("boardMapper.getbnum");
+	}
+
 }

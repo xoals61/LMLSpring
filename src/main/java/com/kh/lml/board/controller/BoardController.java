@@ -39,7 +39,7 @@ public class BoardController {
 			@RequestParam(value="bUploadImg2", required=false) MultipartFile file2,
 			@RequestParam(value="bUploadImg3", required=false) MultipartFile file3,
 			@RequestParam(value="bUploadImg4", required=false) MultipartFile file4,
-			@RequestParam(value="bUploadImg5", required=false) MultipartFile file5) {		
+			@RequestParam(value="bUploadImg5", required=false) MultipartFile file5) {	
 		
 		MultipartFile[] fileList = {file1,file2,file3,file4,file5};
 		
@@ -68,16 +68,40 @@ public class BoardController {
 		b.setImage5(renameFileList[4]);
 		
 		int result = bService.insertStylePost(b);
+		int getbnum = bService.getbnum();
 		
-		if(result > 0) {
-			System.out.println("글쓰기 성공");
-			/* return "../../index"; */
-			return "redirect:/index.do";
-		}else {
-			System.out.println("글쓰기 실패");
-			return "../../index";
-			
+		ArrayList<String> hashList = new ArrayList<String>();
+		
+		String b_hash =b.getB_hash();
+		System.out.println("b_hash : : : : " + b_hash);
+		
+		String[] slist = b_hash.split(",");
+		
+		System.out.println("getB_hash == " + b.getB_hash());
+		System.out.println("slist[0] " + slist[0]);
+		
+		if(slist.length>0) {
+			for(int i=0; i<slist.length; i++){
+				hashList.add(getbnum, slist[i].toString());
+			}
 		}
+		
+//		
+//		System.out.println("해시리스트 : " + hashList);
+		
+		//int result2 = bService.insertStyleHash(b);
+		
+//		if(result > 0) {
+//			System.out.println("글쓰기 성공");
+//			/* return "../../index"; */
+//			return "redirect:/index.do";
+//		}else {
+//			System.out.println("글쓰기 실패");
+//			return "../../index";
+//			
+//		}
+		
+		return null;
 		
 	}
 	
@@ -115,6 +139,9 @@ public class BoardController {
 
 	@RequestMapping("styleQnaUpload.do")
 	public String TestMultipart(Board b, MultipartHttpServletRequest request) {
+		
+		
+		
 		List<MultipartFile> fileList = request.getFiles("file");
 		
 		String[] renameFileList = new String[5];

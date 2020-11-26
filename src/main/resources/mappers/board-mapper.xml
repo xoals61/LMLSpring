@@ -36,8 +36,10 @@
 	</resultMap>
 	
 	<insert id="insertStylePost" parameterType="Board">
-		INSERT INTO LML_BOARD
+		INSERT
+		INTO LML_BOARD
 		VALUES(BOARD_SEQ.NEXTVAL, #{b_user_num}, #{b_content}, DEFAULT, SYSDATE, #{image1}, #{image2}, #{image3}, #{image4}, #{image5}, #{b_top}, #{b_bottom}, #{b_shoes}, #{b_acc}, #{b_etc})
+
 	</insert>
 	
 	<insert id="testMultipart" parameterType="Board">
@@ -59,7 +61,13 @@
 		WHERE B_NUM = #{bnum}
 	</select>
 	
+	<insert id="insertStyleHash" parameterType="Board">
+		INSERT INTO LML_HASH VALUES(#{b_hash}, #{b_num})
+	</insert>
 	
+	<select id="getbnum" resultType="_int">
+		SELECT BOARD_SEQ.CURRVAL AS B_NUM FROM DUAL
+	</select>
 </mapper>
 
 
