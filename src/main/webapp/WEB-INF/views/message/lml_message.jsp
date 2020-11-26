@@ -38,10 +38,10 @@
 					<div class="lContent">
 						<div class="direct-div">Direct</div>
 						<div class="direct-user-div">
-							<div class="direct-user">
 
-								<c:forEach var="message" items="${messageList}">
 
+							<c:forEach var="message" items="${messageList}">
+								<div class="direct-user ${message.touser}">
 									<img
 										src="resources/images/profileImg/${message.rename_profile_img}">
 									<div class="user-li">
@@ -49,9 +49,9 @@
 										<div class="li-direct">안녕</div>
 										<input class="userId" type="hidden" value="${message.touser }">
 									</div>
-
-									<script>
-                                    $('.direct-user').on('click', function () {
+								</div>
+								<script>
+                                    $('.${message.touser}').on('click', function () {
                                     	$(".inputsend").removeAttr("disabled");
                                     	rename_profile_img ="${message.rename_profile_img}";
                                     	touser = "${message.touser}";
@@ -76,10 +76,10 @@
                                     
                                     </script>
 
-								</c:forEach>
+							</c:forEach>
 
 
-							</div>
+
 
 						</div>
 					</div>
