@@ -190,9 +190,11 @@
 							console.log(data[i].id);
 							console.log(data[i].rename_profile_img);
 							
-							var img = "<table class='add_table'><tr><td class='imgtd' rowspan='2' style='width: 10%;'><img style='width:75px; height:69px;' class='userimg' src='resources/images/profileImg/"+ data[i].rename_profile_img+"'></td>"+
-							"<td class='idtd' style='width: 30%;'>"+data[i].id+"</td><td class='btntd' rowspan='2' style='width: 30%;'>"+ "<input class='button2'  name='button2' type='button' value='팔로우' onclick='followBtn(this.name, this.id);'>"
-									+"</td></tr><tr><td class='nametd'>"+data[i].uname+"</td></tr></table>";
+							
+							var img = "<table class='add_table'><tr><td class='imgtd' rowspan='2' style='width: 10%;'><a class='taga' href='userPage.do?id="+data[i].id+"'><img style='width:75px; height:69px;' class='userimg' src='resources/images/profileImg/"+ data[i].rename_profile_img+"'></a></td>"+
+							"<td class='idtd' style='width: 30%;'><a class='taga' href='userPage.do?id="+data[i].id+"'>"+data[i].id+"</a></td><td class='btntd' rowspan='2' style='width: 30%;'>"+ "<input class='button2'  name='button2' type='button' value='팔로우' onclick='followBtn(this.name, this.id);'>"
+									+"</td></tr><tr><td  class='nametd'><a class='taga' href='userPage.do?id="+data[i].id+"'>"+data[i].uname+"</a></td></tr></table>";
+							
 							
 						/* $('.mo_fallower').append("<tr><td class='imgtd' rowspan='2' style='width:10%'><img class='userimg' src='resources/images/profileImg/"+data[i].rename_profile_img+"></tr></td>"); */
 						/* $('.mo_fallower').append("<table class='add_table'><tr><td class='imgtd' rowspan='2' style='width: 10%;'><img style='width:80px; height:80px;' class='userimg' src='resources/images/profileImg/"+ data[i].rename_profile_img+"'><td>");
@@ -232,9 +234,9 @@
 							console.log(data[i].id);
 							console.log(data[i].rename_profile_img);
 							
-							var img = "<table class='add_table'><tr><td class='imgtd' rowspan='2' style='width: 10%;'><img style='width:75px; height:69px;' class='userimg' src='resources/images/profileImg/"+ data[i].rename_profile_img+"'></td>"+
-							"<td class='idtd' style='width: 30%;'>"+data[i].id+"</td><td class='btntd' rowspan='2' style='width: 30%;'>"+ "<input class='button2'  name='button2' type='button' value='팔로우' onclick='followBtn(this.name, this.id);'>"
-									+"</td></tr><tr><td class='nametd'>"+data[i].uname+"</td></tr></table>";
+							var img = "<table class='add_table'><tr><td class='imgtd' rowspan='2' style='width: 10%;'><a class='taga' href='userPage.do?id="+data[i].id+"'><img style='width:75px; height:69px;' class='userimg' src='resources/images/profileImg/"+ data[i].rename_profile_img+"'></a></td>"+
+							"<td class='idtd' style='width: 30%;'><a class='taga' href='userPage.do?id="+data[i].id+"'>"+data[i].id+"</a></td><td class='btntd' rowspan='2' style='width: 30%;'>"+ "<input class='button2'  name='button2' type='button' value='팔로우' onclick='followBtn(this.name, this.id);'>"
+									+"</td></tr><tr><td  class='nametd'><a class='taga' href='userPage.do?id="+data[i].id+"'>"+data[i].uname+"</a></td></tr></table>";
 							
 						/* $('.mo_fallower').append("<tr><td class='imgtd' rowspan='2' style='width:10%'><img class='userimg' src='resources/images/profileImg/"+data[i].rename_profile_img+"></tr></td>"); */
 						/* $('.mo_fallower').append("<table class='add_table'><tr><td class='imgtd' rowspan='2' style='width: 10%;'><img style='width:80px; height:80px;' class='userimg' src='resources/images/profileImg/"+ data[i].rename_profile_img+"'><td>");

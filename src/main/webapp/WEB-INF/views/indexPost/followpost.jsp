@@ -64,7 +64,7 @@
 																	'<div class="userImg">'+
 																		'<a href="userPage.do?id='+ data[b].b_user_id +'"><img src="resources/images/profileImg/'+ data[b].b_profile_img +'"></a>'+
 																	'</div>'+
-																	'<a href="./jiman/MyPage.html"><div class="userId">'+ data[b].b_name +'</div></a>'+
+																	'<a href="userPage.do?id='+ data[b].b_user_id +'"><div class="userId">'+ data[b].b_name +'</div></a>'+
 																'</div>'+
 																'<div class="con" onclick="modalDetail('+data[b].b_num+');">'+
 																	'<div class="userCon">'+
@@ -772,9 +772,9 @@
 							'<div class="board-right">'+
 								'<div class="board-user">'+
 									'<div class="board-userImg">'+
-										'<a href="./jiman/MyPage.html"><img src="resources/images/profileImg/'+ data[0].image1 +'"></a>'+
+									'<a href="userPage.do?id='+ data[0].b_user_id +'"><img src="resources/images/profileImg/'+ data[0].b_profile_img +'"></a>'+
 									'</div>'+
-									'<a href="./jiman/MyPage.html"><div class="board-id">'+
+									'<a href="userPage.do?id='+ data[0].b_user_id +'"><div class="board-id">'+
 											'<p>'+ data[0].b_name +'</p>'+
 										'</div></a>'+
 									'<div class="board-follow">팔로잉</div>'+
@@ -803,7 +803,7 @@
 								'<div class="board-commentDiv">'+
 									'<div class="board-comment">'+
 										'<div class="comment-img">'+
-											'<a href="./jiman/MyPage.html"><img src="resources/images/mainImg/andy.jpg"></a>'+
+										'<a href="userPage.do?id='+ data[0].b_user_id +'"><img src="resources/images/mainImg/andy.jpg"></a>'+
 										'</div>'+
 										'<div class="comment-content">'+
 											'<p class="comment-user">iamandy</p>'+
