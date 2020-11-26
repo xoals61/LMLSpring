@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.kh.lml.find_idPw.service.find_idPw_Service;
 import com.kh.lml.find_idPw.vo.Email;
 import com.kh.lml.find_idPw.vo.EmailSender;
-
+import java.lang.Math;
 @Controller
 public class find_idPw_controller {
 
@@ -77,21 +77,30 @@ public class find_idPw_controller {
 		
 		String id=(String) paramMap.get("findID");
     	String e_mail=(String) paramMap.get("findEmail");
-    	String pw = fipService.find_PwIdEmail(id, e_mail);
-
-		if(pw == null || pw.equals("")) {
+    	int result = fipService.find_PwIdEmail(id, e_mail);
+    	System.out.println("result : " + result);
+		if(result == 0) {
 			model.addAttribute("msg","기록에 없는 정보입니다.");
 			model.addAttribute("flag","false");
 		}else {
-			email.setContent("회원님의 비밀번호는 "+pw+"  입니다.");
-    		email.setReciver(e_mail);
-    		email.setSubject(id+"님 비밀번호 찾기 메일입니다.");
-    		emailSender.SendEmail(email);
-    		System.out.println("이메일 보냄");
-			model.addAttribute("msg","이메일로 비밀번호가 전송되었습니다.");
-			model.addAttribute("flag","true");
+			int random_num = (int)(Math.random()*1000000);
+			String pw = random_num + "a!";
+			System.out.println("pw : " + pw);
+			int result2 = fipService.chang_PwIdEmail(pw, id, e_mail);
+			System.out.println("result2 : " + result2);
+			if(result2 == 0) {
+				model.addAttribute("msg","기록에 없는 정보입니다.");
+				model.addAttribute("flag","false");
+			}else {
+				fipService.find_PwIdEmail(id, e_mail);
+				email.setContent("회원님의 비밀번호는 "+pw+"  입니다.\n임시 비밀번호이니 보안강화를 위하여 비밀번호를 바꿔주세요.");
+	    		email.setReciver(e_mail);
+	    		email.setSubject(id+"님 비밀번호 찾기 메일입니다.");
+	    		emailSender.SendEmail(email);
+				model.addAttribute("msg","이메일로 임시 비밀번호가 전송되었습니다. 사용 후 비밀번호를 바꿔주세요.");
+				model.addAttribute("flag","true");
+			}
 		}
-		
 		return "minwoo/redirect";
 	}
 }

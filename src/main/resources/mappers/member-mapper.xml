@@ -260,6 +260,18 @@
 	 	INTO CHAT_ROOM VALUES(#{newroomid},#{toid},#{fromid})
 	 	SELECT * FROM dual
 	 </insert>
+	 <select id="findPwIdEmail" parameterType="String" resultType="_int">
+		SELECT count(*) FROM LML_MEM
+		WHERE ID=#{id}
+	        AND MAIL=#{email}
+	        AND DEL_FLAG='N'
+	</select>
+	<update id="changPwIdEmail" parameterType="String">
+		UPDATE LML_MEM SET
+        UPWD=#{pw}
+        WHERE ID=#{id}
+        AND MAIL=#{email}
+	</update>
 </mapper>
 
 

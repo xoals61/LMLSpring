@@ -5,5 +5,7 @@ public interface find_idPw_Service {
 
 	String find_nameEmail(String findname, String findEmail);
 
-	String find_PwIdEmail(String id, String e_mail);
+	int find_PwIdEmail(String id, String e_mail);
+
+	int chang_PwIdEmail(String pw, String id, String e_mail);
 }

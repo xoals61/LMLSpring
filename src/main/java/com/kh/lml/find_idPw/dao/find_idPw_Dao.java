@@ -28,11 +28,19 @@ public class find_idPw_Dao {
 		return str;
 	}
 
-	public String findPwIdEmail(String id, String e_mail) {
+	public int findPwIdEmail(String id, String e_mail) {
 		Map map = new HashMap();
 		map.put("id", id);
 		map.put("email", e_mail);
-		String str = sqlSession.selectOne("memberMapper.findPwIdEmail",map);
-		return str;
+		int result = sqlSession.selectOne("memberMapper.findPwIdEmail",map);
+		return result;
+	}
+
+	public int chang_PwIdEmail(String pw, String id, String e_mail) {
+		Map map = new HashMap();
+		map.put("pw", pw);
+		map.put("id", id);
+		map.put("email", e_mail);
+		return sqlSession.update("memberMapper.changPwIdEmail",map);
 	}
 }

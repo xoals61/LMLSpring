@@ -21,7 +21,12 @@ public class find_idPw_ServiceImpl implements find_idPw_Service{
 	}
 
 	@Override
-	public String find_PwIdEmail(String id, String e_mail) {
+	public int find_PwIdEmail(String id, String e_mail) {
 		return fipDao.findPwIdEmail(id,e_mail);
+	}
+
+	@Override
+	public int chang_PwIdEmail(String pw, String id, String e_mail) {
+		return fipDao.chang_PwIdEmail(pw,id,e_mail);
 	}
 }
