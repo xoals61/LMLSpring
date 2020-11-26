@@ -416,7 +416,7 @@ public class memberController {
 
 		mv.addObject("searchUser", SearchUser);
 		mv.addObject("userCount",userCount);
-
+		mv.addObject("keyword", keyword);
 		mv.setViewName("search/lml_search");
 
 		return mv;
@@ -439,12 +439,6 @@ public class memberController {
 	public String SearchHash() {
 		return "search/lml_search_hashtag";
 	}
-	// 검색(사용자)
-	@RequestMapping("SearchUser.do")
-	public String SearchUser() {
-		return "search/lml_search_user";
-	}
-	//1113은지
 
 
 

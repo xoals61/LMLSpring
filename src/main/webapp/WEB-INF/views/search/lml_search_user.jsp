@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,251 +23,45 @@
                     사용자
                 </div>
                 <div class="suserMore">
-                    542
+                    ${userCount}
                 </div>
             </div>
             <div class="userTable">
-                <table id="table">
-                    <tr>
-                        <td>
-                            <div class="infoDiv">
-                                <div class="uImg">
-                                    <img src="resources/images/mainImg/buzz.jpg">
-                                </div>
-                                <div class="uName">
-                                    <div class="uid">@daliyiambuzz</div>
-                                    <div class="uname">강버즈</div>
-                                </div>
-                                <div class="follow">
-                                    <div>팔로우</div>
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="infoDiv">
-                                <div class="uImg">
-                                    <img src="resources/images/mainImg/jessie.jpg">
-                                </div>
-                                <div class="uName">
-                                    <div class="uid">@iambuzz</div>
-                                    <div class="uname">daliy강버즈</div>
-                                </div>
-                                <div class="follow">
-                                    <div>팔로우</div>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="infoDiv">
-                                <div class="uImg">
-                                    <img src="resources/images/mainImg/ppotato.jpg">
-                                </div>
-                                <div class="uName">
-                                    <div class="uid">@daliyiambuzz</div>
-                                    <div class="uname">강버즈</div>
-                                </div>
-                                <div class="follow">
-                                    <div>팔로우</div>
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="infoDiv">
-                                <div class="uImg">
-                                    <img src="resources/images/mainImg/prex.jpg">
-                                </div>
-                                <div class="uName">
-                                    <div class="uid">@daliyiambuzz</div>
-                                    <div class="uname">강버즈</div>
-                                </div>
-                                <div class="follow">
-                                    <div>팔로우</div>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="infoDiv">
-                                <div class="uImg">
-                                    <img src="resources/images/mainImg/pandy.jpg">
-                                </div>
-                                <div class="uName">
-                                    <div class="uid">@iambuzz</div>
-                                    <div class="uname">daliy강버즈</div>
-                                </div>
-                                <div class="follow">
-                                    <div>팔로우</div>
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="infoDiv">
-                                <div class="uImg">
-                                    <img src="resources/images/mainImg/palien.png">
-                                </div>
-                                <div class="uName">
-                                    <div class="uid">@iambuzz</div>
-                                    <div class="uname">강버즈</div>
-                                </div>
-                                <div class="follow">
-                                    <div>팔로우</div>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="infoDiv">
-                                <div class="uImg">
-                                    <img src="resources/images/mainImg/pandy.jpg">
-                                </div>
-                                <div class="uName">
-                                    <div class="uid">@iambuzz</div>
-                                    <div class="uname">daliy강버즈</div>
-                                </div>
-                                <div class="follow">
-                                    <div>팔로우</div>
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="infoDiv">
-                                <div class="uImg">
-                                    <img src="resources/images/mainImg/palien.png">
-                                </div>
-                                <div class="uName">
-                                    <div class="uid">@iambuzz</div>
-                                    <div class="uname">강버즈</div>
-                                </div>
-                                <div class="follow">
-                                    <div>팔로우</div>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="infoDiv">
-                                <div class="uImg">
-                                    <img src="resources/images/mainImg/pandy.jpg">
-                                </div>
-                                <div class="uName">
-                                    <div class="uid">@iambuzz</div>
-                                    <div class="uname">daliy강버즈</div>
-                                </div>
-                                <div class="follow">
-                                    <div>팔로우</div>
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="infoDiv">
-                                <div class="uImg">
-                                    <img src="resources/images/mainImg/palien.png">
-                                </div>
-                                <div class="uName">
-                                    <div class="uid">@iambuzz</div>
-                                    <div class="uname">강버즈</div>
-                                </div>
-                                <div class="follow">
-                                    <div>팔로우</div>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="infoDiv">
-                                <div class="uImg">
-                                    <img src="resources/images/mainImg/pandy.jpg">
-                                </div>
-                                <div class="uName">
-                                    <div class="uid">@iambuzz</div>
-                                    <div class="uname">daliy강버즈</div>
-                                </div>
-                                <div class="follow">
-                                    <div>팔로우</div>
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="infoDiv">
-                                <div class="uImg">
-                                    <img src="resources/images/mainImg/palien.png">
-                                </div>
-                                <div class="uName">
-                                    <div class="uid">@iambuzz</div>
-                                    <div class="uname">강버즈</div>
-                                </div>
-                                <div class="follow">
-                                    <div>팔로우</div>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="infoDiv">
-                                <div class="uImg">
-                                    <img src="resources/images/mainImg/pandy.jpg">
-                                </div>
-                                <div class="uName">
-                                    <div class="uid">@iambuzz</div>
-                                    <div class="uname">daliy강버즈</div>
-                                </div>
-                                <div class="follow">
-                                    <div>팔로우</div>
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="infoDiv">
-                                <div class="uImg">
-                                    <img src="resources/images/mainImg/palien.png">
-                                </div>
-                                <div class="uName">
-                                    <div class="uid">@iambuzz</div>
-                                    <div class="uname">강버즈</div>
-                                </div>
-                                <div class="follow">
-                                    <div>팔로우</div>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="infoDiv">
-                                <div class="uImg">
-                                    <img src="resources/images/mainImg/pandy.jpg">
-                                </div>
-                                <div class="uName">
-                                    <div class="uid">@iambuzz</div>
-                                    <div class="uname">daliy강버즈</div>
-                                </div>
-                                <div class="follow">
-                                    <div>팔로우</div>
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="infoDiv">
-                                <div class="uImg">
-                                    <img src="resources/images/mainImg/palien.png">
-                                </div>
-                                <div class="uName">
-                                    <div class="uid">@iambuzz</div>
-                                    <div class="uname">강버즈</div>
-                                </div>
-                                <div class="follow">
-                                    <div>팔로우</div>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
+                  <table>
+                	<c:if test="${ !empty searchUser }">
+                		<c:set var="i" value="0"/>
+                		<c:forEach var="sUser" items="${searchUser}" varStatus="status">
+                			<c:if test="${status.index mod 2 eq 0}">
+                			<tr>
+                			</c:if>
+	                				<c:if test="${ !empty sUser }">
+		                				<td>
+		                					<c:set var="uNum" value="${sUser.user_num }"/>
+						                    <div class="infoDiv" >
+						                        <div class="uImg" onclick="infoPage('${sUser.id}');">
+						                            <img src="resources/images/profileImg/${sUser.rename_profile_img}">
+						                        </div>
+						                        <div class="uName" onclick="infoPage('${sUser.id}');">
+						                            <div class="uid">${sUser.id}</div>
+						                            <div class="uname">${sUser.uname}</div>
+						                        </div>
+						                        <c:if test="${ !empty loginUser.id && loginUser.user_num != sUser.user_num}">
+							                        <div class="follow" id="${sUser.user_num }">
+							                            <div>팔로우</div>
+							                        </div>
+							                    </c:if>
+						                    </div>
+						                </td>
+		                			
+	                				</c:if>
+								<c:if test="${status.index mod 2 eq 1}">
+                				</tr>
+                				</c:if>
+                		</c:forEach>
+					</c:if>
+					<c:if test="${ empty searchUser }">
+						<br>&nbsp;&nbsp;&nbsp;&nbsp;검색 결과가 없습니다
+					</c:if>
                 </table>
             </div>
         </div>
@@ -274,6 +70,21 @@
     <jsp:include page="../common/footer.jsp"/>
     
     <script>
+    
+    
+    function infoPage(id){
+    	
+    	console.log('id:'+ id);
+    	//console.log("MyPage.do?uNum="+uNum);
+    	location.href="userPage.do?id="+id;
+    	
+    	
+    	
+    	
+    }
+    
+    
+    
         /* 맨 위로 가는 버튼 */
         $( document ).ready( function() {
             $('.upBtn').hide();

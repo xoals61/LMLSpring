@@ -109,7 +109,7 @@
                 <div class="suser">
                     사용자
                 </div>
-                <a href="SearchUser.do">
+                <a href="SearchUser.do?keyword=${keyword}">
                     <div class="suserMore">
                     	<c:if test="${userCount > 6}">
                         	${userCount} 명의 사용자 더보기
