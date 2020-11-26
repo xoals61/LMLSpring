@@ -5,7 +5,7 @@ public class ChatRoom {
 	private String fromuser;
 	private String touser;
 	private String rename_profile_img;
-	
+	private String recentChat;
 
 	public ChatRoom(String chatroomid, String touser, String rename_profile_img) {
 		super();
@@ -19,6 +19,16 @@ public class ChatRoom {
 		this.fromuser = fromuser;
 		this.touser = touser;
 		this.rename_profile_img = rename_profile_img;
+	}
+	
+	
+	public ChatRoom(String chatroomid, String fromuser, String touser, String rename_profile_img, String recentChat) {
+		super();
+		this.chatroomid = chatroomid;
+		this.fromuser = fromuser;
+		this.touser = touser;
+		this.rename_profile_img = rename_profile_img;
+		this.recentChat = recentChat;
 	}
 	public String getChatroomid() {
 		return chatroomid;
@@ -47,11 +57,18 @@ public class ChatRoom {
 		this.rename_profile_img = rename_profile_img;
 	}
 
+	public String getRecentChat() {
+		return recentChat;
+	}
+	public void setRecentChat(String recentChat) {
+		this.recentChat = recentChat;
+	}
 	@Override
 	public String toString() {
 		return "ChatRoom [chatroomid=" + chatroomid + ", fromuser=" + fromuser + ", touser=" + touser
-				+ ", rename_profile_img=" + rename_profile_img + "]";
+				+ ", rename_profile_img=" + rename_profile_img + ", recentChat=" + recentChat + "]";
 	}
+
 	
 	
 	

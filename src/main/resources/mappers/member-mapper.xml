@@ -272,6 +272,17 @@
         WHERE ID=#{id}
         AND MAIL=#{email}
 	</update>
+	
+	<select id="recentChat" parameterType="String"
+		resultType="String">
+		SELECT CHATLOG FROM
+		(SELECT * FROM CHAT_RECORD
+		WHERE CHATROOMID=#{chatroomid}
+		ORDER by CHATDATE DESC)
+		WHERE ROWNUM=1
+
+
+	</select>
 </mapper>
 
 

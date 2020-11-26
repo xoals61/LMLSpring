@@ -110,5 +110,10 @@ public class MemberDao {
 		
 		return sqlSession.insert("memberMapper.newRoom",map);
 	}
+	
+	public String recentChat(String chatroomid) {
+	
+		return sqlSession.selectOne("memberMapper.recentChat",chatroomid);
+	}
 
 }

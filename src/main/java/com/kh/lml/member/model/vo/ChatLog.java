@@ -8,6 +8,8 @@ public class ChatLog {
 	private Date chatdate;
 	private String user_name;
 	
+	
+	
 	public ChatLog() {
 		super();
 	}
