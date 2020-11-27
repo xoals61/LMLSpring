@@ -186,6 +186,11 @@ public class MemberServiceImpl implements MemberService {
 		return mDao.myPost(uNum);
 	}
 
+	@Override
+	public int checkChat(Map<String, String> map) {
+		return mDao.checkChat(map);
+	}
+
 	
 
 

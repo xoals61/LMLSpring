@@ -122,5 +122,8 @@ public class MemberDao {
 		
 		return (ArrayList)sqlSession.selectList("jm-board-mapper.myPost",uNum);
 	}
+	public int checkChat(Map<String, String> map) {
+		return sqlSession.update("memberMapper.checkChat",map);
+	}
 
 }

@@ -10,6 +10,8 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -20,6 +22,7 @@ import org.json.simple.parser.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -629,6 +632,43 @@ public class memberController {
 		ArrayList<ChatLog> chatlog = mService.chatLog(chatid);
 		return chatlog;
 	}
+	
+	@ResponseBody
+	@RequestMapping("chatAlram.do")
+	public String chatAlram(String roomid,String name) {
+		
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("roomid", roomid);
+		map.put("name",name);
+		
+		int result = mService.chatAlram(map);
+		
+		if(result>0) {
+			return "ok";
+		}else {
+			return "fail";
+		}
+		
+		
+	}
+	
+	@ResponseBody
+	@RequestMapping("checkChat.do")
+	public String checkChat(String room,String name) {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("roomid", room);
+		map.put("name",name);
+		
+		int result = mService.checkChat(map);
+		
+		if(result>0) {
+			return "ok";
+		}else {
+			return "fail";
+		}
+		
+	}
+	
 	
 	
 }

@@ -73,6 +73,8 @@ public interface MemberService {
 
 	ArrayList<Board> myPost(int uNum);
 
+	int checkChat(Map<String, String> map);
+
 
 
 

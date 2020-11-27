@@ -290,6 +290,10 @@
 		WHERE CHATROOMID=#{roomid} AND TOUSER= #{name}
 	</update>
 	
+	<update id="checkChat" parameterType="String">
+		UPDATE CHAT_ROOM SET COUNT=0
+		WHERE CHATROOMID=#{roomid} AND TOUSER= #{name}
+	</update>
 	
 </mapper>
 
