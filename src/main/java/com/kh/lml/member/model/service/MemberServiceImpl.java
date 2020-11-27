@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.kh.lml.member.model.vo.ChatLog;
 import com.kh.lml.member.model.vo.ChatRoom;
 import com.kh.lml.member.model.vo.Member;
+import com.kh.lml.board.model.vo.Board;
 import com.kh.lml.member.model.dao.MemberDao;
 
 @Service("mService")
@@ -177,6 +178,12 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public int chatAlram(Map<String, String> map) {
 		return mDao.chatAlram(map);
+	}
+
+	@Override
+	public ArrayList<Board> myPost(int uNum) {
+		
+		return mDao.myPost(uNum);
 	}
 
 	

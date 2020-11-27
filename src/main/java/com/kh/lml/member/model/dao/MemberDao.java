@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.kh.lml.board.model.vo.Board;
 import com.kh.lml.member.model.vo.ChatLog;
 import com.kh.lml.member.model.vo.ChatRoom;
 import com.kh.lml.member.model.vo.Member;
@@ -116,6 +117,10 @@ public class MemberDao {
 	}
 	public int chatAlram(Map<String, String> map) {
 		return sqlSession.update("memberMapper.chatAlram",map);
+	}
+	public ArrayList<Board> myPost(int uNum) {
+		
+		return (ArrayList)sqlSession.selectList("jm-board-mapper.myPost",uNum);
 	}
 
 }

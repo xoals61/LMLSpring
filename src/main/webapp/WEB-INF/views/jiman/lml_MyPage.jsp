@@ -95,74 +95,25 @@
 			</div>
 			<div class="mytable">
 				<table>
+				<c:forEach var="myBoard" items="${Myboardlist }" varStatus="status" >
+					<c:if test="${status.index mod 3 eq 0}">
 					<tr>
+					</c:if>
 						<td>
 							<div class="content">
 								<div class=img>
-									<img src="resources/images/jmImg/blue1.jpg" class="cImg">
+									<img src="resources/buploadFiles/${myBoard.image1}" class="cImg">
 								</div>
 						</td>
-						<td>
-							<div class="content">
-								<div class=img>
-									<img src="resources/images/jmImg/blue3.jpg" class="cImg">
-								</div>
-						</td>
-						<td>
-							<div class="content">
-								<div class=img>
-									<img src="resources/images/jmImg/rainbow.ico" class="cImg">
-								</div>
-						</td>
+						
+					<c:if test="${status.index mod 3 eq 2}">
 					</tr>
+					</c:if>
+					</c:forEach>
 				</table>
 
 			</div>
-			<div class="tagtable">
-				<table>
-					<tr>
-						<td>
-							<div class="content">
-								<div class=img>
-									<img src="resources/images/jmImg/blue1.jpg" class="cImg">
-								</div>
-						</td>
-						<td>
-							<div class="content">
-								<div class=img>
-									<img src="resources/images/jmImg/blue3.jpg" class="cImg">
-								</div>
-						</td>
-						<td>
-							<div class="content">
-								<div class=img>
-									<img src="resources/images/jmImg/rainbow.ico" class="cImg">
-								</div>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<div class="content">
-								<div class=img>
-									<img src="resources/images/jmImg/blue1.jpg" class="cImg">
-								</div>
-						</td>
-						<td>
-							<div class="content">
-								<div class=img>
-									<img src="resources/images/jmImg/blue3.jpg" class="cImg">
-								</div>
-						</td>
-						<td>
-							<div class="content">
-								<div class=img>
-									<img src="resources/images/jmImg/rainbow.ico" class="cImg">
-								</div>
-						</td>
-					</tr>
-				</table>
-
-			</div>
+		
 		</div>
 
 	</section>
@@ -301,6 +252,11 @@
                   }
               }
         
+              
+        
+              
+              
+              
     </script>
 
 </body>

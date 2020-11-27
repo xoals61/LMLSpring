@@ -47,7 +47,10 @@
 									<div class="user-li">
 										<div class="li-userId">${message.touser}</div>
 										<div class="${message.chatroomid} li-direct">${message.recentChat}</div>
-										<div class="alarm">1</div>
+										
+										<c:if test="${message.count ne 0 }">
+										<div class="alarm" >${message.count}</div>
+										</c:if>
 									</div>
 								</div>
 								<script>
@@ -66,7 +69,7 @@
                                     	
                                        socket.emit("leaveRoom",as);
                                        socket.emit("login",as,"${message.chatroomid}");
-                                       
+                                       $(".useridatag").attr("href","userPage.do?id=${message.touser}");
                                        
                                        $.ajax({
                        					url : "chatLog.do",
@@ -110,7 +113,7 @@
 							<div class="user-img">
 								<a href="MyPage.do"><img id="user-img" src="" hidden="true"></a>
 							</div>
-							<a href="#"><div class="user-id" id="user-id"></div></a>
+							<a class="useridatag" href="#"><div class="user-id" id="user-id"></div></a>
 						</div>
 						<div class="message"></div>
 						<div class="send">
@@ -139,8 +142,6 @@
             	socket = io("http://52.79.234.164:3001");
                 
             	
-            	
-            	 
             	$(".inputsend").attr("disabled",true);
             	
             	

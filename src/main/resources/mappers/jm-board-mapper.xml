@@ -36,6 +36,14 @@
 		    WHERE FROM_FOLLOW = #{usernum})
 	</select>
 	
+	<select id="myPost" parameterType="_int" resultMap="boardResultSet">
+		SELECT * 
+		FROM LML_BOARD 
+		WHERE B_USER_NUM = #{uNum}
+		ORDER BY B_DATE DESC
+	
+	</select>
+	
 	
 	
 	

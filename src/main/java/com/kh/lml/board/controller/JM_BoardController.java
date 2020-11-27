@@ -48,26 +48,18 @@ public class JM_BoardController {
 	@ResponseBody
 	@RequestMapping(value="followingpostAjax.do", produces="application/json; charset=UTF-8")
 		public String followingpost(HttpServletRequest request, @RequestParam(value="usernum", required=false) int usernum) throws JsonIOException, JsonProcessingException{
-	
-	
-
-		 
 		ArrayList<Board> list = jService.followingpost(usernum);
-			
-		
 			for(Board b : list) {
 				System.out.println("되어라되어라: "+ b);	
 			}
-			
-			
 			ObjectMapper mapper = new ObjectMapper();
-			
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 			mapper.setDateFormat(sdf);
-			
 			String jsonStr = mapper.writeValueAsString(list);
-			
 			return jsonStr;
 		}
+	
+
+	
 	
 }

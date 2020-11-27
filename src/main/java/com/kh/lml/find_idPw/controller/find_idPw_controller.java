@@ -77,6 +77,10 @@ public class find_idPw_controller {
 		
 		String id=(String) paramMap.get("findID");
     	String e_mail=(String) paramMap.get("findEmail");
+    	System.out.println(id);
+    	System.out.println(e_mail);
+    	
+    	
     	int result = fipService.find_PwIdEmail(id, e_mail);
     	System.out.println("result : " + result);
 		if(result == 0) {

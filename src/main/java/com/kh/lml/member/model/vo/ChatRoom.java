@@ -6,7 +6,13 @@ public class ChatRoom {
 	private String touser;
 	private String rename_profile_img;
 	private String recentChat;
-
+	private int count;
+	
+	
+	
+	public ChatRoom() {
+		super();
+	}
 	public ChatRoom(String chatroomid, String touser, String rename_profile_img) {
 		super();
 		this.chatroomid = chatroomid;
@@ -22,13 +28,24 @@ public class ChatRoom {
 	}
 	
 	
-	public ChatRoom(String chatroomid, String fromuser, String touser, String rename_profile_img, String recentChat) {
+
+	public ChatRoom(String chatroomid, String fromuser, String touser, String rename_profile_img, int count) {
+		super();
+		this.chatroomid = chatroomid;
+		this.fromuser = fromuser;
+		this.touser = touser;
+		this.rename_profile_img = rename_profile_img;
+		this.count = count;
+	}
+	public ChatRoom(String chatroomid, String fromuser, String touser, String rename_profile_img, String recentChat,
+			int count) {
 		super();
 		this.chatroomid = chatroomid;
 		this.fromuser = fromuser;
 		this.touser = touser;
 		this.rename_profile_img = rename_profile_img;
 		this.recentChat = recentChat;
+		this.count = count;
 	}
 	public String getChatroomid() {
 		return chatroomid;
@@ -63,12 +80,20 @@ public class ChatRoom {
 	public void setRecentChat(String recentChat) {
 		this.recentChat = recentChat;
 	}
+	
+	
+	public int getCount() {
+		return count;
+	}
+	public void setCount(int count) {
+		this.count = count;
+	}
 	@Override
 	public String toString() {
 		return "ChatRoom [chatroomid=" + chatroomid + ", fromuser=" + fromuser + ", touser=" + touser
-				+ ", rename_profile_img=" + rename_profile_img + ", recentChat=" + recentChat + "]";
+				+ ", rename_profile_img=" + rename_profile_img + ", recentChat=" + recentChat + ", count=" + count
+				+ "]";
 	}
-
 	
 	
 	
