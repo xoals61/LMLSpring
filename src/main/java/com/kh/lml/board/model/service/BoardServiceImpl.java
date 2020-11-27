@@ -55,6 +55,11 @@ public class BoardServiceImpl implements BoardService {
 		return bDao.insertStyleHash(bo);
 	}
 
+	@Override
+	public ArrayList<String> selectHash(int bnum) {
+		return bDao.selectHash(bnum);
+	}
+
 
 
 

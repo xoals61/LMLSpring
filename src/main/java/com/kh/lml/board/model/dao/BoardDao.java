@@ -43,6 +43,10 @@ public class BoardDao {
 		return sqlSession.insert("boardMapper.insertStyleHash", bo);
 	}
 
+	public ArrayList<String> selectHash(int bnum) {
+		return (ArrayList)sqlSession.selectList("boardMapper.selectHash",bnum);
+	}
+
 
 
 

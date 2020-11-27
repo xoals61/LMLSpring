@@ -20,6 +20,8 @@ public interface BoardService {
 
 	int insertStyleHash(Board bo);
 
+	ArrayList<String> selectHash(int bnum);
+
 
 
 }

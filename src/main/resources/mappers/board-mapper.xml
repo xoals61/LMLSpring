@@ -22,7 +22,7 @@
 		<result property="b_profile_img" column="RENAME_PROFILE_IMG"/>
 		<result property="b_user_id" column="ID"/>
 		<result property="b_name" column="UNAME"/>
-		
+		<result property="b_hash" column="HASHTAG"/>
 		
 		<!-- <result property="b_hashtag" column="B_HASHTAG"/>
 		<result property="b_images" column="B_IMAGES"/>
@@ -68,6 +68,13 @@
 	
 	<select id="getbnum" resultType="_int">
 		SELECT BOARD_SEQ.CURRVAL AS B_NUM FROM DUAL
+	</select>
+	
+	<select id="selectHash" resultType="string">
+		SELECT HASHTAG 
+		FROM LML_HASH 
+		WHERE H_BNUM = #{bnum}
+		ORDER BY HASHTAG DESC
 	</select>
 </mapper>
 

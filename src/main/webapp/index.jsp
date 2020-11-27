@@ -753,7 +753,6 @@
 			var detail = document.getElementById('board-detail');
 			var content = document.getElementById('conte');
 			
-			
 			$('.myModal').css('display','block');
 			$('.board-detail').css('display','block');
 			
@@ -762,7 +761,8 @@
 				data:{bnum:bnum},
 				dataType:"JSON",
 				success:function(data){	
-					console.log(data);
+					hashAjax();
+					getReplyList();
 					
 					$('.board-detail').append('<div class="board-img">'+
 							'<img src="resources/buploadFiles/'+ data[0].image1 +'">'+
@@ -779,7 +779,7 @@
 								'</div>'+
 								'<div class="board-textDiv">'+
 									'<div class="board-text">'+ data[0].b_content +'</div>'+
-									'<div class="board-hashtag">#가을코디 #맨투맨 #맨투맨코디 #흑청바지 #청바지코디 #캐주얼룩 #캐주얼코디 #남자데일리코디</div>'+
+									'<div class="board-hashtag"></div>'+
 								'</div>'+
 								'<div class="board-stateicon">'+
 									'<div class="board-heartCount">좋아요 234개</div>'+
@@ -887,6 +887,24 @@
 			        detail.style.display = "none";
 			        $('.board-detail').empty();
 			    }
+			}
+			
+			function hashAjax(){
+				$.ajax({
+					url:"BoardDetailHash.do",
+					data:{bnum:bnum},
+					dataType:"JSON",
+					success:function(data){	
+						for(var i=0; i<data.length; i++){
+							$('.board-hashtag').append('<a href=\'Search.do?keyword='+data[i].substring(1)+'\'>' + data[i] + ' </a>');
+						}
+					},
+					error:function(request,status,error){
+						console.log("** error code : " + request.status + "\n"
+							+ "message : " + request.responseText + "\n"
+							+ "error : " + error);
+					}
+				});
 			}
 		}
 		

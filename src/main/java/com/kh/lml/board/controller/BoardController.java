@@ -217,6 +217,23 @@ public class BoardController {
 		return jsonStr;
 	}
 	
+	// 디테일
+	@ResponseBody
+	@RequestMapping(value="BoardDetailHash.do", produces="application/json; charset=UTF-8")
+	public String BoardDetailHash(HttpServletResponse response, int bnum) throws JsonIOException, JsonProcessingException{
+		
+		ArrayList<String> list = bService.selectHash(bnum);
+		
+		ObjectMapper mapper = new ObjectMapper();
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		mapper.setDateFormat(sdf);
+		
+		String jsonStr = mapper.writeValueAsString(list);
+		
+		return jsonStr;
+	}
+	
 
 	
 }
