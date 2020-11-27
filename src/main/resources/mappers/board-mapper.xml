@@ -35,6 +35,17 @@
 		<result property="renameFileName" column="RENAMEFILENAME"/> -->
 	</resultMap>
 	
+	<resultMap type="Comment" id="CommentResultSet">
+		<id property="c_no" column="C_NO"/>
+		<result property="c_bno" column="C_BNO"/>
+		<result property="c_content" column="C_CONTENT"/>
+		<result property="c_unum" column="C_UNUM"/>
+		<result property="c_recno" column="C_RECNO"/>
+		<result property="c_level" column="R_CREATE_DATE"/>
+		<result property="c_utag" column="R_MODIFY_DATE"/>
+		<result property="c_date" column="R_STATUS"/>
+	</resultMap>
+	
 	<insert id="insertStylePost" parameterType="Board">
 		INSERT
 		INTO LML_BOARD
@@ -75,6 +86,12 @@
 		FROM LML_HASH 
 		WHERE H_BNUM = #{bnum}
 		ORDER BY HASHTAG DESC
+	</select>
+	
+	<select id="selectComment" resultMap="CommentResultSet">
+		SELECT *
+		FROM LML_COMMENT
+		WHERE C_BNO = #{bnum}
 	</select>
 </mapper>
 

@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.kh.lml.board.model.vo.Board;
+import com.kh.lml.board.model.vo.Comment;
 
 @Repository("bDao")
 public class BoardDao {
@@ -45,6 +46,10 @@ public class BoardDao {
 
 	public ArrayList<String> selectHash(int bnum) {
 		return (ArrayList)sqlSession.selectList("boardMapper.selectHash",bnum);
+	}
+
+	public ArrayList<Comment> selectComment(int bnum) {
+		return (ArrayList)sqlSession.selectList("boardMapper.selectComment",bnum);
 	}
 
 

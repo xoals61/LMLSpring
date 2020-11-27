@@ -799,15 +799,7 @@
 									'<p>댓글 (8)</p>'+
 								'</div>'+
 								'<div class="board-commentDiv">'+
-									'<div class="board-comment">'+
-										'<div class="comment-img">'+
-											'<a href="./jiman/MyPage.html"><img src="resources/images/mainImg/andy.jpg"></a>'+
-										'</div>'+
-										'<div class="comment-content">'+
-											'<p class="comment-user">iamandy</p>'+
-											'<p class="comment-comment">댓글1</p>'+
-										'</div>'+
-									'</div>'+
+									
 									
 								'</div>'+
 								'<div class="board-commentWrite">'+
@@ -897,6 +889,34 @@
 					success:function(data){	
 						for(var i=0; i<data.length; i++){
 							$('.board-hashtag').append('<a href=\'Search.do?keyword='+data[i].substring(1)+'\'>' + data[i] + ' </a>');
+						}
+					},
+					error:function(request,status,error){
+						console.log("** error code : " + request.status + "\n"
+							+ "message : " + request.responseText + "\n"
+							+ "error : " + error);
+					}
+				});
+			}
+			
+			function getReplyList(){
+				$.ajax({
+					url:"BoardDetailComm.do",
+					data:{bnum:bnum},
+					dataType:"JSON",
+					success:function(data){	
+						console.log(data);
+						if(data.length > 0){
+							console.log('하하');
+						}else{
+							$('.board-commentDiv').append(''+
+								'<div class="board-comment">'+
+									//'<div class="comment-img"></div>'+
+									'<div class="comment-content">'+
+										'<p class="comment-user">등록된 댓글이 없습니다.</p>'+
+										'<p class="comment-comment"></p>'+
+									'</div>'+
+								'</div>');
 						}
 					},
 					error:function(request,status,error){
