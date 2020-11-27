@@ -10,8 +10,6 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -34,6 +32,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonIOException;
+import com.kh.lml.board.model.vo.Board;
 import com.kh.lml.member.model.service.MemberService;
 import com.kh.lml.member.model.vo.ChatLog;
 import com.kh.lml.member.model.vo.ChatRoom;
@@ -62,14 +61,22 @@ public class memberController {
 	// 마이페이지
 	@RequestMapping("MyPage.do")
 	public ModelAndView myPage(ModelAndView mv, int uNum) {
-
+		
+		ArrayList<Board> list = mService.myPost(uNum);
+		
+		
+		
+		
 		int Follow = mService.countFollowList(uNum);
 		int Follower = mService.countFollowerList(uNum);
 		int myboardCount = mService.boardCount(uNum);
 		mv.addObject("Follow", Follow);
 		mv.addObject("Follower", Follower);
 		mv.addObject("boardCount", myboardCount);
+		mv.addObject("Myboardlist", list);
+		System.out.println("나여기컨트롤러 리스트 : "+list);
 		mv.setViewName("jiman/lml_MyPage");
+		
 
 		return mv;
 	}
@@ -102,12 +109,7 @@ public class memberController {
 		ArrayList<ChatRoom> messageList = mService.messageList(id);
 		
 		for(int i = 0 ; i < messageList.size();i++) {
-			String txt =mService.recentChat(messageList.get(i).getChatroomid());
-			if(txt != null) {
-			messageList.get(i).setRecentChat(textLengthOverCut(txt,5,"..."));
-			}
-		
-		
+			messageList.get(i).setRecentChat(mService.recentChat(messageList.get(i).getChatroomid()));
 		}
 		
 		
@@ -128,22 +130,6 @@ public class memberController {
 		
 		
 	}
-	
-	
-	public String textLengthOverCut(String txt,int len,String lastTxt) {
-        
-        if (lastTxt == "" || lastTxt == null) { // 기본값
-            lastTxt = "...";
-        }
-        if (txt.length() > len) {
-            txt = txt.substring(0, len)+ lastTxt;
-        }
-        return txt;
-    }
-	
-	
-	
-	
 	/**
 	 * 아이디 중복체크
 	 *  @ResponseBody를사용
@@ -644,21 +630,5 @@ public class memberController {
 		return chatlog;
 	}
 	
-	@ResponseBody
-	@RequestMapping("chatAlram.do")
-	public String chatAlram(String roomid,String name) {
-		
-		Map<String, String> map = new HashMap<String, String>();
-		map.put("roomid", (String)roomid);
-		map.put("name", (String)name);
-		System.out.println("roomid : " + map.get("roomid") +"name : " +map.get("name"));
-		int result = mService.chatAlram(map);
-		System.out.println("result : " + result);
-		if(result>0) {
-		return "ok";
-		}
-		else {
-			return "fail";
-		}
-	}
+	
 }

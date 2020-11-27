@@ -19,7 +19,7 @@
             <div class="nav1">
                 <div class="hTitle1"><a href='Index.do'><img src="resources/images/logo/logo_medium.png" class="titleImg"/></a></div>
                 <div class="hTitle1">
-                    <form action="Search.do" autocomplete="off">
+                    <form action="Search.do?" autocomplete="off">
                         <fieldset class="sUrl">
                             <input class="searchInput" type="text" name="keyword" required placeholder=" 검색" >
                             <!-- onKeyPress="if( event.keyCode==13 ){search();}" -->
@@ -58,7 +58,9 @@
             <div class="hMenu1">
                 <div class="hMenu2 on"><a href="likepost.do"><span>인기순</span></a></div>
                 <div class="hMenu2"><span>최신순</span></div>
+               <c:if test="${ !empty sessionScope.loginUser }">
                 <div class="hMenu2"><a href="followingpost.do"><span>팔로잉</span></a></div>
+                </c:if>
                 <div class="hMenu2"><span>QnA</span></div>
                 <span></span>
             </div>

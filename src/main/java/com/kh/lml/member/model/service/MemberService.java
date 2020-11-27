@@ -3,6 +3,7 @@ package com.kh.lml.member.model.service;
 import java.util.ArrayList;
 import java.util.Map;
 
+import com.kh.lml.board.model.vo.Board;
 import com.kh.lml.member.model.vo.ChatLog;
 import com.kh.lml.member.model.vo.ChatRoom;
 import com.kh.lml.member.model.vo.Member;
@@ -69,6 +70,8 @@ public interface MemberService {
 	String recentChat(String chatroomid);
 
 	int chatAlram(Map<String, String> map);
+
+	ArrayList<Board> myPost(int uNum);
 
 
 
