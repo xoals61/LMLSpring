@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.kh.lml.board.model.vo.Board;
+import com.kh.lml.board.model.vo.Comment;
 
 public interface BoardService {
 
@@ -19,6 +20,10 @@ public interface BoardService {
 	int getbnum();
 
 	int insertStyleHash(Board bo);
+
+	ArrayList<String> selectHash(int bnum);
+
+	ArrayList<Comment> selectComment(int bnum);
 
 
 

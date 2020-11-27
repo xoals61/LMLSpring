@@ -22,7 +22,7 @@
 		<result property="b_profile_img" column="RENAME_PROFILE_IMG"/>
 		<result property="b_user_id" column="ID"/>
 		<result property="b_name" column="UNAME"/>
-		
+		<result property="b_hash" column="HASHTAG"/>
 		
 		<!-- <result property="b_hashtag" column="B_HASHTAG"/>
 		<result property="b_images" column="B_IMAGES"/>
@@ -33,6 +33,17 @@
 		<result property="b_etc" column="B_ETC"/>
 		<result property="originalFileName" column="ORIGINALFILENAME"/>
 		<result property="renameFileName" column="RENAMEFILENAME"/> -->
+	</resultMap>
+	
+	<resultMap type="Comment" id="CommentResultSet">
+		<id property="c_no" column="C_NO"/>
+		<result property="c_bno" column="C_BNO"/>
+		<result property="c_content" column="C_CONTENT"/>
+		<result property="c_unum" column="C_UNUM"/>
+		<result property="c_recno" column="C_RECNO"/>
+		<result property="c_level" column="R_CREATE_DATE"/>
+		<result property="c_utag" column="R_MODIFY_DATE"/>
+		<result property="c_date" column="R_STATUS"/>
 	</resultMap>
 	
 	<insert id="insertStylePost" parameterType="Board">
@@ -68,6 +79,19 @@
 	
 	<select id="getbnum" resultType="_int">
 		SELECT BOARD_SEQ.CURRVAL AS B_NUM FROM DUAL
+	</select>
+	
+	<select id="selectHash" resultType="string">
+		SELECT HASHTAG 
+		FROM LML_HASH 
+		WHERE H_BNUM = #{bnum}
+		ORDER BY HASHTAG DESC
+	</select>
+	
+	<select id="selectComment" resultMap="CommentResultSet">
+		SELECT *
+		FROM LML_COMMENT
+		WHERE C_BNO = #{bnum}
 	</select>
 </mapper>
 

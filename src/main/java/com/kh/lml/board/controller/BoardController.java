@@ -27,6 +27,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.JsonIOException;
 import com.kh.lml.board.model.service.BoardService;
 import com.kh.lml.board.model.vo.Board;
+import com.kh.lml.board.model.vo.Comment;
 
 @SessionAttributes("loginUser")
 @Controller
@@ -216,6 +217,40 @@ public class BoardController {
 		
 		return jsonStr;
 	}
+	
+	// 디테일 해쉬태그 불러오기
+	@ResponseBody
+	@RequestMapping(value="BoardDetailHash.do", produces="application/json; charset=UTF-8")
+	public String BoardDetailHash(HttpServletResponse response, int bnum) throws JsonIOException, JsonProcessingException{
+		
+		ArrayList<String> list = bService.selectHash(bnum);
+		
+		ObjectMapper mapper = new ObjectMapper();
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		mapper.setDateFormat(sdf);
+		
+		String jsonStr = mapper.writeValueAsString(list);
+		
+		return jsonStr;
+	}
+	
+	// 디테일 댓글 불러오기
+		@ResponseBody
+		@RequestMapping(value="BoardDetailComm.do", produces="application/json; charset=UTF-8")
+		public String BoardDetailComm(HttpServletResponse response, int bnum) throws JsonIOException, JsonProcessingException{
+			
+			ArrayList<Comment> list = bService.selectComment(bnum);
+			
+			ObjectMapper mapper = new ObjectMapper();
+			
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			mapper.setDateFormat(sdf);
+			
+			String jsonStr = mapper.writeValueAsString(list);
+			
+			return jsonStr;
+		}
 	
 
 	

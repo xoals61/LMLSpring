@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.kh.lml.board.model.dao.BoardDao;
 import com.kh.lml.board.model.vo.Board;
+import com.kh.lml.board.model.vo.Comment;
 
 @Service("bService")
 public class BoardServiceImpl implements BoardService {
@@ -53,6 +54,16 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public int insertStyleHash(Board bo) {
 		return bDao.insertStyleHash(bo);
+	}
+
+	@Override
+	public ArrayList<String> selectHash(int bnum) {
+		return bDao.selectHash(bnum);
+	}
+
+	@Override
+	public ArrayList<Comment> selectComment(int bnum) {
+		return bDao.selectComment(bnum);
 	}
 
 
