@@ -29,7 +29,8 @@
 		<result property="touser" column="TOUSER" />
 		<result property="rename_profile_img"
 			column="RENAME_PROFILE_IMG" />
-
+		<result property="count" column="COUNT"/>
+		
 	</resultMap>
 
 	<resultMap type="ChatLog" id="chatLogResultSet">
@@ -211,7 +212,7 @@
 	<select id="messageList" parameterType="String"
 		resultMap="chatRoomResultSet">
 		SELECT
-		CHAT_ROOM.TOUSER,chat_room.chatroomid,lml_mem.RENAME_PROFILE_IMG
+		chat_room.chatroomid,CHAT_ROOM.TOUSER,lml_mem.RENAME_PROFILE_IMG,CHAT_ROOM.COUNT
 		FROM
 		CHAT_ROOM
 		JOIN LML_MEM ON CHAT_ROOM.TOUSER = LML_MEM.ID

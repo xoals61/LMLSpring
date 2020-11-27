@@ -66,7 +66,7 @@
                                     	
                                        socket.emit("leaveRoom",as);
                                        socket.emit("login",as,"${message.chatroomid}");
-                                       
+                                       $(".useridatag").attr("href","userPage.do?id=${message.touser}");
                                        
                                        $.ajax({
                        					url : "chatLog.do",
@@ -110,7 +110,7 @@
 							<div class="user-img">
 								<a href="MyPage.do"><img id="user-img" src="" hidden="true"></a>
 							</div>
-							<a href="#"><div class="user-id" id="user-id"></div></a>
+							<a class="useridatag" href="#"><div class="user-id" id="user-id"></div></a>
 						</div>
 						<div class="message"></div>
 						<div class="send">
