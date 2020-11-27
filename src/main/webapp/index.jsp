@@ -756,13 +756,16 @@
 			$('.myModal').css('display','block');
 			$('.board-detail').css('display','block');
 			
+			getReplyList(bnum);
+			
 			$.ajax({
 				url:"BoardDetail.do",
 				data:{bnum:bnum},
 				dataType:"JSON",
 				success:function(data){	
 					hashAjax();
-					getReplyList();
+					//getReplyList();
+					//commentScript();
 					
 					$('.board-detail').append('<div class="board-img">'+
 							'<img src="resources/buploadFiles/'+ data[0].image1 +'">'+
@@ -811,10 +814,12 @@
 									
 								'</div>'+
 								'<div class="board-commentWrite">'+
+									
 									'<div class="comment-write">'+
-										'<input type="text" placeholder="댓글 달기...">'+
+										'<input type="text" class="c-content" placeholder="댓글 달기...">'+
 									'</div>'+
 									'<div class="comment-submit" onclick="cSubmit();">게시</div>'+
+									
 								'</div>'+
 							'</div>');
 					
@@ -913,7 +918,7 @@
 					data:{bnum:bnum},
 					dataType:"JSON",
 					success:function(data){	
-						console.log(data);
+						//console.log(data);
 						if(data.length > 0){
 							console.log('하하');
 						}else{
@@ -934,11 +939,15 @@
 					}
 				});
 			}
-			
-			function cSubmit(){
-				
-			}
 		}
+		
+		function cSubmit(){
+			var comment = $('.c-content').val();
+			
+			
+		}
+		
+
 		
  
 		var modal2 = document.getElementById('modal2');
