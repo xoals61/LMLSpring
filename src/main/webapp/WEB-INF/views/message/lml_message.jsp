@@ -119,7 +119,7 @@
                           					data : {room : "${message.chatroomid}",name : "${message.touser}"},
                           					type : "post",
                           					success : function(data) {
-
+											
                           						console.log(data);
                           						$('.alarm${message.chatroomid}').html('0');
                            						$('.alarm${message.chatroomid}').attr("hidden","hidden");
@@ -189,11 +189,12 @@
         		    $('.message').scrollTop($('.message').prop('scrollHeight'));
         		    $('.' +room).html(textLengthOverCut(msg,5,'...'));
             		
-        		    if(name != "${loginUser.id}"){
+        		    if(name != "${loginUser.id}" && touser != name){
    						$('.alarm'+room).html(Number($('.alarm'+room).html())+Number(1));
    						$('.alarm'+room).removeAttr("hidden");
         		    }
-        		    if("${loginUser.id}" == name){
+        		    if("${loginUser.id}" == name && touser != name){
+        		    	
         		    $.ajax({
        					url : "chatAlram.do",
        					data : {roomid : room,name:name},
