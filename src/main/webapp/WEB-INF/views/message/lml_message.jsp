@@ -47,7 +47,10 @@
 									<div class="user-li">
 										<div class="li-userId">${message.touser}</div>
 										<div class="${message.chatroomid} li-direct">${message.recentChat}</div>
-										<div class="alarm">1</div>
+										
+										<c:if test="${message.count ne 0 }">
+										<div class="alarm" >${message.count}</div>
+										</c:if>
 									</div>
 								</div>
 								<script>
@@ -139,8 +142,6 @@
             	socket = io("http://52.79.234.164:3001");
                 
             	
-            	
-            	 
             	$(".inputsend").attr("disabled",true);
             	
             	
