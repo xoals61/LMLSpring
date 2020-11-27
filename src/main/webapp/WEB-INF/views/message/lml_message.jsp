@@ -82,7 +82,7 @@
                                     	
                                         $(this).addClass('select-bar');
                                         $(this).siblings().removeClass('select-bar');
-                                         RoomId =  '${message.chatroomid}';
+                                         RoomID =  '${message.chatroomid}';
                                         $("#user-id").html('${message.touser}');
                                     	$("#user-img").attr("src","resources/images/profileImg/${message.rename_profile_img}");
                                     	$("#user-img").removeAttr("hidden");
@@ -182,7 +182,7 @@
             	
             	
             	 socket.on('hi',function(room,name,msg){
-     				console.log("hi");
+
      				if(name ==touser){
         				$('.message').append('<div class="yourmessagediv"><img src="resources/images/profileImg/' + rename_profile_img +  '" class="yourmessageimg"><div style="width:fit-content;   margin: 0 0 0 82px;"><p class="yourmessage">'+ msg +'</p></div></div>');
      				}
@@ -193,8 +193,11 @@
    						$('.alarm'+room).html(Number($('.alarm'+room).html())+Number(1));
    						$('.alarm'+room).removeAttr("hidden");
         		    }
-        		    if("${loginUser.id}" == name && touser != name && RoomID != room){
+        		    if('${loginUser.id}' != name && RoomID != room){
+        		    	console.log("name : "+ name );
+        		    	console.log("RoomId : "+ RoomID );
         		    	
+        		    	console.log("여기 왜들어와짐?");
         		    $.ajax({
        					url : "chatAlram.do",
        					data : {roomid : room,name:name},
