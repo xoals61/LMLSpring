@@ -17,6 +17,9 @@ import com.kh.lml.member.model.dao.MemberDao;
 public class MemberServiceImpl implements MemberService {
 	@Autowired
 	private MemberDao mDao;
+	
+	
+	
 
 	@Autowired
 	SqlSessionTemplate sqlSession; // 트랜잭션 처리용
@@ -189,6 +192,17 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public int checkChat(Map<String, String> map) {
 		return mDao.checkChat(map);
+	}
+
+	@Override
+	public ArrayList<Member> tagList1(String keyword) {
+		return mDao.tagList(keyword);
+	}
+
+	@Override
+	public int searchtagCount(String keyword) {
+		
+		return mDao.tagcount(keyword);
 	}
 
 	

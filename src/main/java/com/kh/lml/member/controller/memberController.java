@@ -418,26 +418,23 @@ public class memberController {
 
 	//1113은지
 	// 검색페이지
-	@RequestMapping("Search.do")
-	public ModelAndView Search(ModelAndView mv, String keyword) {
-
-		// ArrayList<Member> SearchBoard = mService.searchBoardList(keyword);
-		ArrayList<Member> SearchUser = mService.searchUserList1(keyword);
-		int userCount = mService.searchUserCount(keyword);
-		// 6명만 나옴. 
-		// 회원번호, 사진, 아이디, 이름, 팔로우 여부(팔로우 했으면 X, 팔로우 아니면 팔로우 버튼 나오게) -팔로우 버튼 눌렀을 시 팔로우.do
-		// 팔로우 여부는 ajax로 하자..
-
-		System.out.println("검색 : " + userCount);
-
-		mv.addObject("searchUser", SearchUser);
-		mv.addObject("userCount",userCount);
-		mv.addObject("keyword", keyword);
-		mv.setViewName("search/lml_search");
-
-		return mv;
-	}
-
+	/*
+	 * @RequestMapping("Search.do") public ModelAndView Search(ModelAndView mv,
+	 * String keyword) {
+	 * 
+	 * // ArrayList<Member> SearchBoard = mService.searchBoardList(keyword);
+	 * ArrayList<Member> SearchUser = mService.searchUserList1(keyword); int
+	 * userCount = mService.searchUserCount(keyword); // 6명만 나옴. // 회원번호, 사진, 아이디,
+	 * 이름, 팔로우 여부(팔로우 했으면 X, 팔로우 아니면 팔로우 버튼 나오게) -팔로우 버튼 눌렀을 시 팔로우.do // 팔로우 여부는
+	 * ajax로 하자..
+	 * 
+	 * System.out.println("검색 : " + userCount);
+	 * 
+	 * mv.addObject("searchUser", SearchUser); mv.addObject("userCount",userCount);
+	 * mv.addObject("keyword", keyword); mv.setViewName("search/lml_search");
+	 * 
+	 * return mv; }
+	 */
 	// 검색페이지 팔로우 리스트용   
 	@RequestMapping(value="searchFollowList.do", produces="application/json; charset=UTF-8")
 	public void searchFollowList(HttpServletResponse response, int uNum) throws JsonIOException, IOException {

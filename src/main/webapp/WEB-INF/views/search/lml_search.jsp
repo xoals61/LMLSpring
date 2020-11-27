@@ -17,92 +17,47 @@
         <div class="hashtagSection">
             <div class="hashInfo">
                 <div class="hashtag">
-                    #daily
+                   Tag 😜 ; ${keyword}
                 </div>
                 <a href="SearchHash.do">
                     <div class="hashMore">
-                        132,542 개의 게시물 더보기
+                     <c:if test="${tagCount > 1}">
+                        	${tagCount} 개의 게시글 더보기
+                        </c:if>
                     </div>
                 </a>
             </div>
             <div class="hashTable">
+               <c:if test="${ !empty tagpost}">
                 <table id="table">
-                    <tr>
-                        <td>
-                            <div class="content">
-                                <div><img src="resources/images/mainImg/buzz.jpg" class="cImg"></div>
-                                <div class="chover">
-                                    <div class="chContnet">
-                                        <div class="user">
-                                            <div class="userImg">
-                                                <img src="resources/images/mainImg/pbuzz.jpg">
-                                            </div>
-                                            <div class="userId">iambuzz</div>
-                                        </div>
-                                        <div class="con">
-                                            <div class="userCon"><p>To Infinity and Beyond</p></div>
-                                        </div>
-                                        <div class="cBtn">
-                                            <div class="cHeart"><img src="resources/images/icon/main/heart.png" class="cheart"></div>
-                                            <div class="cComment"><div class="cbox"></div><img src="resources/images/icon/main/comment.png"></div>
-                                            <div class="cEtc"><img src="resources/images/icon/main/etc.png"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="content">
-                                <div><img src="resources/images/mainImg/alien.jpg" class="cImg"></div>
-                                <div class="chover">
-                                    <div class="chContnet">
-                                        <div class="user">
-                                            <div class="userImg">
-                                                <img src="resources/images/mainImg/palien.png">
-                                            </div>
-                                            <div class="userId">_alien88_</div>
-                                        </div>
-                                        <div class="con">
-                                            <div class="userCon"><p>To To To Infinity Infinity Infinity and and and Beyond Beyond Beyond</p></div>
-                                        </div>
-                                        <div class="cBtn">
-                                            <div class="cHeart"><img src="resources/images/icon/main/heart.png" class="cheart"></div>
-                                            <div class="cComment"><div class="cbox"></div><img src="resources/images/icon/main/comment.png"></div>
-                                            <div class="cEtc"><img src="resources/images/icon/main/etc.png"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="content">
-                                <div><img src="resources/images/mainImg/andy.jpg" class="cImg"></div>
-                                <div class="chover">
-                                    <div class="chContnet">
-                                        <div class="user">
-                                            <div class="userImg">
-                                                <img src="resources/images/mainImg/pandy.jpg">
-                                            </div>
-                                            <div class="userId">chilly_b_f</div>
-                                        </div>
-                                        <div class="con">
-                                            <div class="userCon"><p>시작부터 다 예상밖에 놀라운 스따일 작은 스탭들로 뿜어내 빅바입</p></div>
-                                        </div>
-                                        <div class="cBtn">
-                                            <div class="cHeart"><img src="resources/images/icon/main/heart.png"  class="cheart"></div>
-                                            <div class="cComment"><div class="cbox"></div><img src="resources/images/icon/main/comment.png"></div>
-                                            <div class="cEtc"><img src="resources/images/icon/main/etc.png"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
+                  		<c:forEach var="tagBoard" items="${tagpost }" varStatus="status" >
+					<c:if test="${status.index mod 3 eq 0}">
+					<tr>
+					</c:if>
+						<td>
+							<div class="content">
+								<div class=img>
+									<img src="resources/buploadFiles/${tagBoard.image1}" class="cImg">
+								</div>
+						</td>
+						
+					<c:if test="${status.index mod 3 eq 2}">
+					</tr>
+					</c:if>
+				
+					</c:forEach>
+					
                 </table>
+                </c:if>
+                	<c:if test="${ empty tagpost}">
+					<br>검색 결과가 없습니다
+					</c:if>
             </div>
         </div>
     </section>
-
+    <div class="divhr">
+	<hr class="hr">
+	</div>
     <section>
         <div class="userSection">
             <div class="userInfo">

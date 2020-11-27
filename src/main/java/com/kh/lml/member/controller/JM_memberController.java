@@ -118,6 +118,32 @@ public class JM_memberController {
 		
 		
 	}
+	
+	
+	
+	@RequestMapping("Search.do")
+	public ModelAndView Search1(ModelAndView mv, String keyword) {
+
+		// ArrayList<Member> SearchBoard = mService.searchBoardList(keyword);
+		ArrayList<Member> SearchUser = mService.searchUserList1(keyword);
+		ArrayList<Member> tagPost = mService.tagList1(keyword);
+		int userCount = mService.searchUserCount(keyword);
+		int tagCount = mService.searchtagCount(keyword);
+		// 6명만 나옴. 
+		// 회원번호, 사진, 아이디, 이름, 팔로우 여부(팔로우 했으면 X, 팔로우 아니면 팔로우 버튼 나오게) -팔로우 버튼 눌렀을 시 팔로우.do
+		// 팔로우 여부는 ajax로 하자..
+
+		System.out.println("검색 : " + userCount);
+
+		mv.addObject("searchUser", SearchUser);
+		mv.addObject("userCount",userCount);
+		mv.addObject("keyword", keyword);
+		mv.addObject("tagpost", tagPost);
+		mv.addObject("tagCount", tagCount);
+		mv.setViewName("search/lml_search");
+
+		return mv;
+	}
 
 
 

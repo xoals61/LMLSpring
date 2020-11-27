@@ -34,6 +34,7 @@
 		    SELECT TO_FOLLOW
 		    FROM FOLLOW_LIST
 		    WHERE FROM_FOLLOW = #{usernum})
+		 ORDER BY B_DATE DESC
 	</select>
 	
 	<select id="myPost" parameterType="_int" resultMap="boardResultSet">
@@ -43,6 +44,27 @@
 		ORDER BY B_DATE DESC
 	
 	</select>
+	
+ 	<select id="tagPost" parameterType="String" resultMap="boardResultSet">
+ 	    SELECT * 
+ 		FROM LML_MEM m
+        JOIN LML_BOARD b ON  m.USER_NUM = B.B_USER_NUM
+        JOIN LML_HASH h ON h.H_BNUM = b.B_NUM
+        WHERE HASHTAG ='#'||#{keyword}
+        ORDER BY B_DATE DESC
+        
+	</select>
+	
+	<select id="postCount" parameterType="String" resultType="_int">
+	
+		SELECT COUNT(*) 
+ 		FROM LML_MEM m
+        JOIN LML_BOARD b ON  m.USER_NUM = B.B_USER_NUM
+        JOIN LML_HASH h ON h.H_BNUM = b.B_NUM
+        WHERE HASHTAG ='#'||#{keyword}
+	
+	</select>
+	
 	
 	
 	

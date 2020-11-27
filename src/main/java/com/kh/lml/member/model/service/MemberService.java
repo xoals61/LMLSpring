@@ -75,6 +75,10 @@ public interface MemberService {
 
 	int checkChat(Map<String, String> map);
 
+	ArrayList<Member> tagList1(String keyword);
+
+	int searchtagCount(String keyword);
+
 
 
 

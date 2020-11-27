@@ -125,5 +125,13 @@ public class MemberDao {
 	public int checkChat(Map<String, String> map) {
 		return sqlSession.update("memberMapper.checkChat",map);
 	}
+	public ArrayList<Member> tagList(String keyword) {
+		
+		return (ArrayList)sqlSession.selectList("jm-board-mapper.tagPost",keyword);
+	}
+	public int tagcount(String keyword) {
+		return sqlSession.selectOne("jm-board-mapper.postCount",keyword);
+		
+	}
 
 }
