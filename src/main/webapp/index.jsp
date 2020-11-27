@@ -799,14 +799,22 @@
 									'<p>댓글 (8)</p>'+
 								'</div>'+
 								'<div class="board-commentDiv">'+
-									
+									'<div class="board-comment">'+
+										'<div class="comment-img">'+
+											'<a href="./jiman/MyPage.html"><img src="resources/images/mainImg/andy.jpg"></a>'+
+										'</div>'+
+										'<div class="comment-content">'+
+											'<p class="comment-user">iamandy</p>'+
+											'<p class="comment-comment">댓글1</p>'+
+										'</div>'+
+									'</div>'+
 									
 								'</div>'+
 								'<div class="board-commentWrite">'+
 									'<div class="comment-write">'+
 										'<input type="text" placeholder="댓글 달기...">'+
 									'</div>'+
-									'<div class="comment-submit">게시</div>'+
+									'<div class="comment-submit" onclick="cSubmit();">게시</div>'+
 								'</div>'+
 							'</div>');
 					
@@ -925,6 +933,10 @@
 							+ "error : " + error);
 					}
 				});
+			}
+			
+			function cSubmit(){
+				
 			}
 		}
 		
