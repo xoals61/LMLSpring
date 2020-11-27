@@ -30,7 +30,15 @@
 
 <body>
 	<jsp:include page="../common/header.jsp" />
-
+	<script>
+	  var socket;
+      var rename_profile_img;
+      var touser;
+      var RoomID;
+ $(document).ready(function () {
+				socket = io("http://52.79.234.164:3001");
+});
+ </script>
 	<section>
 		<div class="sContent">
 			<div class="aTable">
@@ -58,21 +66,29 @@
 									</div>
 								</div>
 								<script>
+								  $(document).ready(function () {
+									  var as = "${loginUser.id}";
+									  socket.emit("login",as,"${message.chatroomid}");
+								  });
+								
                                     $('.${message.touser}').on('click', function () {
                                     	$(".message").html('');
                                     	$(".inputsend").removeAttr("disabled");
                                     	rename_profile_img ="${message.rename_profile_img}";
                                     	touser = "${message.touser}";
-                                    	 var as = "${loginUser.id}";
+                                    	 
+                                    	var as = "${loginUser.id}";
+  									  socket.emit("login",as,"${message.chatroomid}");
+                                    	
                                         $(this).addClass('select-bar');
                                         $(this).siblings().removeClass('select-bar');
-                                          
+                                         RoomId =  '${message.chatroomid}';
                                         $("#user-id").html('${message.touser}');
                                     	$("#user-img").attr("src","resources/images/profileImg/${message.rename_profile_img}");
                                     	$("#user-img").removeAttr("hidden");
                                     	
-                                       socket.emit("leaveRoom",as);
-                                       socket.emit("login",as,"${message.chatroomid}");
+
+                                       
                                        $(".useridatag").attr("href","userPage.do?id=${message.touser}");
                                        
                                        $.ajax({
@@ -156,14 +172,10 @@
 	<jsp:include page="../common/footer.jsp" />
 
 	<script>
-        var socket;
-        var rename_profile_img;
-        var touser;
-        
+      
             $(document).ready(function () {
             	
-            	 
-            	socket = io("http://52.79.234.164:3001");
+           
                 
             	
             	$(".inputsend").attr("disabled",true);
@@ -172,22 +184,24 @@
             	 socket.on('hi',function(room,name,msg){
      				console.log("hi");
      				if(name ==touser){
-        				
         				$('.message').append('<div class="yourmessagediv"><img src="resources/images/profileImg/' + rename_profile_img +  '" class="yourmessageimg"><div style="width:fit-content;   margin: 0 0 0 82px;"><p class="yourmessage">'+ msg +'</p></div></div>');
-        				
-     				
      				}
         		    $('.message').scrollTop($('.message').prop('scrollHeight'));
-        		    $('.' +room +' .li-direct').html(textLengthOverCut(msg,5,'...'));
-            		 
+        		    $('.' +room).html(textLengthOverCut(msg,5,'...'));
+            		
+        		    if(name != "${loginUser.id}"){
+   						$('.alarm'+room).html(Number($('.alarm'+room).html())+Number(1));
+   						$('.alarm'+room).removeAttr("hidden");
+        		    }
+        		    if("${loginUser.id}" == name){
         		    $.ajax({
        					url : "chatAlram.do",
        					data : {roomid : room,name:name},
        					type : "post",
        					success : function(data) {
-       						$('.alarm'+room).html(Number($('.alarm'+room).html()+1));
-       						$('.alarm'+room).removeAttr("hidden");
+       						
        						console.log(data);
+       						
        					},
        					error : function(jqxhr, textStatus, errorThrown) {
        						console.log("ajax 오류");
@@ -195,7 +209,7 @@
        					}
        					});
         		    
-        		    
+        		    }
         		    
      			});
          	 
@@ -214,6 +228,7 @@
          		
                 $('.inputsend').val('');
                 $('.message').scrollTop($('.message').prop('scrollHeight'));
+                
                 
                 }
             };
