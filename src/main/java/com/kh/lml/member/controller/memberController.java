@@ -641,6 +641,9 @@ public class memberController {
 		map.put("roomid", roomid);
 		map.put("name",name);
 		
+		System.out.println("roomid : " + roomid);
+		System.out.println("name : " + name);
+		
 		int result = mService.chatAlram(map);
 		
 		if(result>0) {

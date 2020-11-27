@@ -49,11 +49,11 @@
 										<div class="${message.chatroomid} li-direct">${message.recentChat}</div>
 										
 										<c:if test="${message.count ne 0 }">
-										<div class="alarm ${message.touser}" >${message.count}</div>
+										<div class="alarm alarm${message.chatroomid}">${message.count}</div>
 										</c:if>
 										
 										<c:if test="${message.count eq 0 }">
-										<div class="alarm ${message.touser}" hidden="hidden">0</div>
+										<div class="alarm alarm${message.chatroomid}" hidden="hidden">0</div>
 										</c:if>
 									</div>
 								</div>
@@ -105,6 +105,8 @@
                           					success : function(data) {
 
                           						console.log(data);
+                          						$('.alarm${message.chatroomid}').html('0');
+                           						$('.alarm${message.chatroomid}').attr("hidden","hidden");
                           						
                           					},
                           					error : function(jqxhr, textStatus, errorThrown) {
@@ -168,7 +170,7 @@
             	
             	
             	 socket.on('hi',function(room,name,msg){
-     				
+     				console.log("hi");
      				if(name ==touser){
         				
         				$('.message').append('<div class="yourmessagediv"><img src="resources/images/profileImg/' + rename_profile_img +  '" class="yourmessageimg"><div style="width:fit-content;   margin: 0 0 0 82px;"><p class="yourmessage">'+ msg +'</p></div></div>');
@@ -183,9 +185,9 @@
        					data : {roomid : room,name:name},
        					type : "post",
        					success : function(data) {
-       						$('.alarm .'+room).html(Number($('.alarm .'+room).html()+1));
-       						$('.alarm .'+room).removeAttr("hidden");
-       						
+       						$('.alarm'+room).html(Number($('.alarm'+room).html()+1));
+       						$('.alarm'+room).removeAttr("hidden");
+       						console.log(data);
        					},
        					error : function(jqxhr, textStatus, errorThrown) {
        						console.log("ajax 오류");
