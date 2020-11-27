@@ -193,7 +193,7 @@
    						$('.alarm'+room).html(Number($('.alarm'+room).html())+Number(1));
    						$('.alarm'+room).removeAttr("hidden");
         		    }
-        		    if("${loginUser.id}" == name && touser != name){
+        		    if("${loginUser.id}" == name && touser != name && touser != "${loginUser.id}"){
         		    	
         		    $.ajax({
        					url : "chatAlram.do",
