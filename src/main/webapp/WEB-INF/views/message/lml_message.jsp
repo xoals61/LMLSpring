@@ -193,7 +193,7 @@
    						$('.alarm'+room).html(Number($('.alarm'+room).html())+Number(1));
    						$('.alarm'+room).removeAttr("hidden");
         		    }
-        		    if('${loginUser.id}' != name && RoomID != room){
+        		    if('${loginUser.id}' == name){
         		    	console.log("name : "+ name );
         		    	console.log("RoomId : "+ RoomID );
         		    	
@@ -212,6 +212,28 @@
 
        					}
        					});
+        	
+        		    
+        		    $.ajax({
+      					url : "checkChat.do",
+      					data : {room : room,name : touser},
+      					type : "post",
+      					success : function(data) {
+						
+      						console.log(data);
+      						$('.alarm${message.chatroomid}').html('0');
+       						$('.alarm${message.chatroomid}').attr("hidden","hidden");
+      						
+      					},
+      					error : function(jqxhr, textStatus, errorThrown) {
+      						console.log("ajax 오류");
+
+      					}
+      					});
+        		    
+        		    
+        		    
+        		    
         		    
         		    }
         		    
