@@ -12,6 +12,7 @@ body {
 
 section {
 	background-color: rgb(248, 248, 248);
+
 }
 
 /* 해쉬태그 검색 구역 */
@@ -42,10 +43,9 @@ section {
 
 /* 검색 게시물 테이블 */
 .hashTable {
-    padding: 12px 386px;
+ padding: 12px 386px;
     float: left;
     font-size: xx-large;
-    position: absolute;
     margin-top: 26px;
 }
 
@@ -191,9 +191,9 @@ section {
 
 /* 사용자 검색 구역 */
 .userSection {
-	width: 1920px;
-	min-width: 1400px;
-	height: 500px;
+    width: 1920px;
+    min-width: 1400px;
+    height: 688px;
 }
 
 .userInfo {
@@ -288,10 +288,12 @@ section {
 	font-weight: 400;
 }
 .divhr{
-    width: 80%;
-    height: 1px;
-    margin: 0 auto;
-   	background-color: rgb(248, 248, 248);
+      width: 80%;
+    float: left;
+    margin-left: 10%;
+    /* margin: 0 auto; */
+    margin: 6px 0 4px 10%;
+    background-color: rgb(248, 248, 248);
 }
 .hr {
 	padding: 0px;

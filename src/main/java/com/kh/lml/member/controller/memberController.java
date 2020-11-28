@@ -454,12 +454,10 @@ public class memberController {
 	public ModelAndView Search1(ModelAndView mv, String keyword) {
 
 		// ArrayList<Member> SearchBoard = mService.searchBoardList(keyword);
-		ArrayList<Member> SearchUser = mService.searchUserList1(keyword);
 		ArrayList<Member> tagPost = mService.tagList1(keyword);
 		int tagCount = mService.searchtagCount(keyword);
 
 
-		mv.addObject("searchUser", SearchUser);
 		mv.addObject("keyword", keyword);
 		mv.addObject("tagpost", tagPost);
 		mv.addObject("tagCount", tagCount);

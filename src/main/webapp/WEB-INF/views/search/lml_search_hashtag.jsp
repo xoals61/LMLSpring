@@ -1,69 +1,107 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+	pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-    <title>검색 더보기(해쉬태그)</title>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="resources/css/final_search.css">
+<title>검색 더보기(해쉬태그)</title>
+<link
+	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500&display=swap"
+	rel="stylesheet">
+ <link rel="stylesheet" href="resources/css/final_search_hashtag.css">
+<link rel="stylesheet" href="resources/css/final_search.css">
 <link rel="stylesheet" href="resources/css/final_detail.css">
+<link rel="stylesheet" href="resources/css/final_main2.css">
 
 </head>
 <body>
-	<jsp:include page="../common/header.jsp"/>
-   <section>
-	<div class="myModal" id="myModal" style="display: none;">
+	<jsp:include page="../common/header.jsp" />
+
+	<section>
+		<div class="myModal" id="myModal" style="display: none;">
 			<div class="board-detail" id="board-detail" style="display: none;">
-			
+
 			</div>
+		</div>
+
+		<div class="hashtagSection1">
+			<div class="hashInfo">
+				<div class="hashtag">Tag 😜 ; ${keyword}</div>
+					<div class="hashMore">
+                        	${tagCount} 개의 게시글
+					</div>
 			</div>
-	
-        <div class="hashtagSection">
-            <div class="hashInfo">
-                <div class="hashtag">
-                   Tag 😜 ; ${keyword}
-                </div>
-                    <div class="hashMore">
-                        	${tagCount} 개의 게시글 
-                    </div>
-            </div>
-            <div class="hashTable">
-               <c:if test="${ !empty tagpost}">
-                <table id="table">
-                  		<c:forEach var="tagBoard" items="${tagpost }" varStatus="status" >
-					<c:if test="${status.index mod 3 eq 0}">
-					<tr>
-					</c:if>
-						<td>
-							<div class="content" onclick="modalDetail('${tagBoard.b_num}')">
-								<div class=img>
-									<img src="resources/buploadFiles/${tagBoard.image1}" class="cImg">
-								</div>
-							</div>
-						</td>
-						
-					<c:if test="${status.index mod 3 eq 2}">
-					</tr>
-					</c:if>
-				
-					</c:forEach>
-					
-                </table>
-                </c:if>
-                	<c:if test="${ empty tagpost}">
+			<div class="hashTable">
+				<c:if test="${ !empty tagpost}">
+					<table id="table">
+						<c:forEach var="tagBoard" items="${tagpost}" varStatus="status">
+						<c:set var="i" value="${status.index}" />
+							<c:if test="${status.index mod 3 eq 0}">
+								<tr>
+							</c:if>
+							<td>
+								<div class="content" onclick="modalDetail('${tagBoard.b_num}')">
+									<div class=img>
+										<img src="resources/buploadFiles/${tagBoard.image1}"
+											class="cImg">
+									</div>
+									<div class="chover">
+										<div class="hover-detail-content"
+											onclick="modalDetail('${tagBoard.b_num}');"></div>
+										<div class="chContnet">
+											<div class="user">
+												<div class="userImg">
+													<a href="userPage.do?id=${ tagBoard.b_user_id }"><img
+														src="resources/images/profileImg/${ tagBoard.b_profile_img}"></a>
+												</div>
+												<a href="userPage.do?id=${ tagBoard.b_user_id }">
+												<div class="userId">${ tagBoard.b_name}</div></a>
+											</div>
+											<div class="con" onclick="modalDetail('${tagBoard.b_num}');">
+												<div class="userCon">
+													<p>${ tagBoard.b_content}</p>
+												</div>
+											</div>
+											<div class="cBtn">
+												<div class="cHeart">
+												<img src="resources/images/icon/main/heart.png"
+														class="cheart">
+												</div>
+												<div class="cComment"
+													onclick="modalDetail('${tagBoard.b_num}');">
+													<div class="cbox"></div>
+													<img src="resources/images/icon/main/comment.png">
+												</div>
+												<div class="cEtc">
+													<img src="resources/images/icon/main/etc.png">
+												</div>
+											</div>
+										</div>
+									</div>
+									</div>
+							</td>
+
+							<c:if test="${status.index mod 3 eq 2}">
+								</tr>
+							</c:if>
+
+						</c:forEach>
+					</table>
+				</c:if>
+				<c:if test="${ empty tagpost}">
 					<br>검색 결과가 없습니다
 					</c:if>
-            </div>
-        </div>
-    </section>
-    
-    <jsp:include page="../common/footer.jsp"/>
+			</div>
+		</div>
+	</section>
+
+	<jsp:include page="../common/footer.jsp" />
 
 
-    <script>
+	<script>
         /* 맨 위로 가는 버튼 */
         $( document ).ready( function() {
             $('.upBtn').hide();
@@ -80,73 +118,35 @@
             } );
         } );
 
-        // 게시물 마우스오버
-        $(document).ready(function(){
-            $('.chover').hide();
-            $('.content').mouseover(function(){
-                $('.chover',this).show();
-            });
-            $('.content').mouseout(function(){
-                $('.chover').hide();
-            });
-        });
+    	// 게시물 마우스오버
+    	 function boardHover(){
+    	 $('.chover').hide();
+    	    $('.content').mouseover(function(){
+    	        $('.chover',this).show();
+    	    });
+    	    $('.content').mouseout(function(){
+    	        $('.chover').hide();
+    	    });
+    	    
+    	    /* 게시물 좋아요 아이콘 클릭 시 아이콘 변경 */
+    		$(".cHeart").click(function(){
+    			if($('.cheart',this).attr('src') == "resources/images/icon/main/heart.png"){
+    				$('.cheart',this).attr('src','./resources/images/icon/main/heart2.png');
+    			}else{
+    		  		$('.cheart',this).attr('src','resources/images/icon/main/heart.png');
+    		 	}
+    		});
+    	}
 
-        //스크롤 바닥 감지
-        window.onscroll = function (e) {
-            // 게시물 마우스오버
-            $(document).ready(function(){
-                $('.chover').hide();
-                $('.content').mouseover(function(){
-                    $('.chover',this).show();
-                });
-                $('.content').mouseout(function(){
-                     $('.chover').hide();
-                });
-            });
 
-            // 게시물 좋아요 아이콘 클릭 시 아이콘 변경
-            $(".cHeart").click(function(){
-                $('.cheart',this).attr('src','resources/images/icon/main/heart2.png');
-            });
-
-            var td = '<td>' +
-                        '<div class="content">' +
-                            '<div><img src="resources/images/mainImg/andy.jpg" class="cImg"></div>' +
-                            '<div class="chover">' +
-                                '<div class="chContnet">' +
-                                    '<div class="user">' +
-                                        '<div class="userImg">' +
-                                            '<img src="resources/images/mainImg/pandy.jpg">' +
-                                        '</div>' +
-                                        '<div class="userId">chilly_b_f</div>' +
-                                    '</div>' +
-                                    '<div class="con">' +
-                                        '<div class="userCon"><p>시작부터 다 예상밖에 놀라운 스따일 작은 스탭들로 뿜어내 빅바입</p></div>' +
-                                    '</div>' +
-                                    '<div class="cBtn">' +
-                                        '<div class="cHeart"><img src="resources/images/icon/main/heart.png"  class="cheart"></div>' +
-                                        '<div class="cComment"><div class="cbox"></div><img src="resources/images/icon/main/comment.png"></div>' +
-                                        '<div class="cEtc"><img src="resources/images/icon/main/etc.png"></div>' +
-                                    '</div>' +
-                                '</div>' +
-                            '</div>' +
-                        '</div>' +
-                    '</td>';
-
-            //추가되는 콘텐츠
-            //window height + window scrollY 값이 document height보다 클 경우,
-            if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
-            //실행할 로직 (콘텐츠 추가)
-
-            var addContent = '<tr>' + td + td + td + '</tr>' + '<tr>' + td + td + td + '</tr>' + '<tr>' + td + td + td + '</tr>' + '<tr>' + td + td + td + '</tr>';
-
-                //article에 추가되는 콘텐츠를 append
-                $('#table').append(addContent);
-            }
-        };
         
         
-        <script>
+        
+        
+        
+        
+        
+        
         
     	function modalDetail(bnum){
     		
@@ -289,7 +289,24 @@
     		        $('.board-detail').empty();
     		    }
     		}
-    		
+    		function hashAjax(){
+    			$.ajax({
+    				url:"BoardDetailHash.do",
+    				data:{bnum:bnum},
+    				dataType:"JSON",
+    				success:function(data){	
+    					for(var i=0; i<data.length; i++){
+    						$('.board-hashtag').append('<a href=\'Search.do?keyword='+data[i].substring(1)+'\'>' + data[i] + ' </a>');
+    					}
+    				},
+    				error:function(request,status,error){
+    					console.log("** error code : " + request.status + "\n"
+    						+ "message : " + request.responseText + "\n"
+    						+ "error : " + error);
+    				}
+    			});
+    		}
+    	    
     		function getReplyList(){
     			$.ajax({
     				url:"BoardDetailComm.do",
@@ -321,27 +338,113 @@
     	}
         
         
-    function infoPage(id){
-        	
-        	console.log('id:'+ id);
-        	//console.log("MyPage.do?uNum="+uNum);
-        	location.href="userPage.do?id="+id;
-        	
-        	
-        	
-        	
-        }
-    
-    $(document).ready(function(){
     	
-    	var uNum = 0${loginUser.user_num};
-    	
-    	
-    		console.log(uNum);
- 
-    
-    });
-    	
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+            // 게시물 마우스오버
+            $(document).ready(function(){
+                $('.chover').hide();
+                $('.content').mouseover(function(){
+                    $('.chover',this).show();
+                });
+                $('.content').mouseout(function(){
+                    $('.chover').hide();
+                });
+                
+                
+            });
+            
+            function infoPage(id){
+            	
+            	console.log('id:'+ id);
+            	//console.log("MyPage.do?uNum="+uNum);
+            	location.href="userPage.do?id="+id;
+            	
+            	
+            	
+            	
+            }
+            
+            $(document).ready(function(){
+            	
+            	var uNum = 0${loginUser.user_num};
+            	
+            	
+            		console.log(uNum);
+         
+            	
+    			/* var searchUser = new Array();
+    			var searchUserCount = ${fn:length(searchUser)};
+    			
+    	 <c:forEach items="${searchUser}" var="su">
+    				searchUser.push({num:"${su.user_num}"});
+    			</c:forEach> 		
+    			
+            	$.ajax({
+    				url:"searchFollowList.do",
+    				data:{uNum:uNum},
+    				dataType:"json",
+    				success:function(data){
+    					if(data.length > 0){
+    						for(var i=0; i<searchUser.length; i++){
+    							for(var j=0; j<data.length; j++){
+    								if(searchUser[i].num == data[j].to_follow){
+    									$("#"+data[j].to_follow).hide();
+    								}
+    							}
+    						}
+    					}else{
+    						alert("실패");
+    					}
+    				},
+    				error:function(jqxhr, textStatus,errorThrown){
+    					console.log("ajax 처리 실패");
+    				}
+    			}); */
+            });
+            
+            $(".follow").click(function(e){
+            	
+            	var followQ = confirm('팔로우 하시겠습니까?');
+            	
+            	if(followQ){
+    	            var to_follow = $(this).attr('id');
+    	    
+    	            var from_follow = Number(${loginUser.user_num});
+    	            console.log(to_follow);
+    	            console.log(from_follow);
+    	            
+    	            $.ajax({
+    					url:"followBtn.do",
+    					data:{toFollow:to_follow, fromFollow:from_follow},
+    					type:"post",
+    					success:function(data){
+    						if(data == "success"){
+    							$("#"+to_follow).hide();
+    						}else{
+    							alert("실패");
+    						}
+    					},
+    					error:function(jqxhr, textStatus,errorThrown){
+    						console.log("ajax 처리 실패");
+    					}
+    				});
+            	}else{
+            		
+            	}
+            });
+          	
     	
     </script>
 </body>
