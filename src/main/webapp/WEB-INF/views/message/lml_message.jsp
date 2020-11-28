@@ -231,10 +231,27 @@
       					}
       					});
         		    
+        		    }
         		    
-        		    
-        		    
-        		    
+        		    if(name==touser&&room==RoomID){
+        		    	
+        		    	 $.ajax({
+           					url : "checkChat.do",
+           					data : {room : room,name : name},
+           					type : "post",
+           					success : function(data) {
+     						
+           						console.log("여기");
+           						
+           					},
+           					error : function(jqxhr, textStatus, errorThrown) {
+           						console.log("ajax 오류");
+
+           					}
+           					});
+        		    	
+        		    	
+        		    	
         		    }
         		    
      			});
