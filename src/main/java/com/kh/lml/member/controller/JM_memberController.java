@@ -136,6 +136,7 @@ public class JM_memberController {
 		System.out.println("검색 : " + userCount);
 
 		mv.addObject("searchUser", SearchUser);
+		System.out.println(SearchUser);
 		mv.addObject("userCount",userCount);
 		mv.addObject("keyword", keyword);
 		mv.addObject("tagpost", tagPost);

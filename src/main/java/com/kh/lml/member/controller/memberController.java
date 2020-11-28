@@ -447,12 +447,37 @@ public class memberController {
 	}
 
 
-	// 검색(해쉬태그)
+
+	
+	
 	@RequestMapping("SearchHash.do")
-	public String SearchHash() {
-		return "search/lml_search_hashtag";
+	public ModelAndView Search1(ModelAndView mv, String keyword) {
+
+		// ArrayList<Member> SearchBoard = mService.searchBoardList(keyword);
+		ArrayList<Member> SearchUser = mService.searchUserList1(keyword);
+		ArrayList<Member> tagPost = mService.tagList1(keyword);
+		int tagCount = mService.searchtagCount(keyword);
+
+
+		mv.addObject("searchUser", SearchUser);
+		mv.addObject("keyword", keyword);
+		mv.addObject("tagpost", tagPost);
+		mv.addObject("tagCount", tagCount);
+		mv.setViewName("search/lml_search_hashtag");
+
+		return mv;
 	}
 
+
+
+	
+	
+	
+	
+	
+	
+	
+	
 
 
 	@RequestMapping("mDelete.do")

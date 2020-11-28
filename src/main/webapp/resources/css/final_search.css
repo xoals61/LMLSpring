@@ -42,10 +42,11 @@ section {
 
 /* 검색 게시물 테이블 */
 .hashTable {
-	padding: 12px 386px;
-	float: left;
-	font-size: xx-large;
-	position: relative;
+    padding: 12px 386px;
+    float: left;
+    font-size: xx-large;
+    position: absolute;
+    margin-top: 26px;
 }
 
 .content {
@@ -276,12 +277,15 @@ section {
 }
 
 .follow {
-	float: left;
-	width: 50px;
-	color: rgb(50, 158, 230);
+    float: left;
+    width: 50px;
+    font-size: large;
+    color: rgb(50, 158, 230);
+    margin: 32px 20px 32px 0px;
+    cursor: pointer;
+}
+.foll{
 	font-weight: 400;
-	margin: 32px 20px 32px 0px;
-	cursor: pointer;
 }
 .divhr{
     width: 80%;

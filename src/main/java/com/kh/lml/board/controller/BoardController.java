@@ -214,7 +214,7 @@ public class BoardController {
 		mapper.setDateFormat(sdf);
 		
 		String jsonStr = mapper.writeValueAsString(list);
-		
+		System.out.println("나 여기 보드 디테일쩜 두 다 ::"+"list");
 		return jsonStr;
 	}
 	
