@@ -11,13 +11,15 @@ public class Comment {
 	private int c_level;
 	private String c_utag;
 	private Date c_date;
+	private String uname;
+	private String profile;
 	
 	public Comment() {
 		super();
 	}
 
 	public Comment(int c_no, int c_bno, String c_content, int c_unum, int c_recno, int c_level, String c_utag,
-			Date c_date) {
+			Date c_date, String uname, String profile) {
 		super();
 		this.c_no = c_no;
 		this.c_bno = c_bno;
@@ -27,6 +29,18 @@ public class Comment {
 		this.c_level = c_level;
 		this.c_utag = c_utag;
 		this.c_date = c_date;
+		this.uname = uname;
+		this.profile = profile;
+	}
+
+
+
+	// 댓글 등록용
+	public Comment(int c_bno, String c_content, int c_unum) {
+		super();
+		this.c_bno = c_bno;
+		this.c_content = c_content;
+		this.c_unum = c_unum;
 	}
 
 	public int getC_no() {
@@ -91,6 +105,22 @@ public class Comment {
 
 	public void setC_date(Date c_date) {
 		this.c_date = c_date;
+	}
+
+	public String getUname() {
+		return uname;
+	}
+
+	public void setUname(String uname) {
+		this.uname = uname;
+	}
+
+	public String getProfile() {
+		return profile;
+	}
+
+	public void setProfile(String profile) {
+		this.profile = profile;
 	}
 
 	

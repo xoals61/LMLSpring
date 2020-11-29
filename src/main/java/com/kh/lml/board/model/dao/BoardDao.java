@@ -52,6 +52,23 @@ public class BoardDao {
 		return (ArrayList)sqlSession.selectList("boardMapper.selectComment",bnum);
 	}
 
+	// 댓글등록
+	public int addComment(Comment cm) {
+		return sqlSession.insert("boardMapper.addComment", cm);
+	}
+
+	public int addHeart(Board b) {
+		return sqlSession.insert("boardMapper.addHeart", b);
+	}
+
+	public ArrayList<Comment> boardHeartList(int unum) {
+		return (ArrayList)sqlSession.selectList("boardMapper.boardHeartList",unum);
+	}
+
+	public int deleteHeart(Board b) {
+		return sqlSession.insert("boardMapper.deleteHeart", b);
+	}
+
 
 
 

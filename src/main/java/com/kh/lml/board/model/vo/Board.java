@@ -33,20 +33,23 @@ public class Board {
 	private String image4;
 	private String image5;
 	
+	private int h_bnum;
+	private int h_unum;
+	
 	public Board() {
 		super();
 	}
 
-	
-	public Board(int b_num, int b_user_num, String b_images, String b_content, String b_hashtag[], String b_top,
-			String b_bottom, String b_shoes, String b_acc, String b_etc, String b_status, Date b_date,
-			String originalFileName, String renameFileName) {
+	public Board(int b_num, int b_user_num, String b_images, String b_content, String b_top, String b_bottom,
+			String b_shoes, String b_acc, String b_etc, String b_status, Date b_date, String b_profile_img,
+			int b_user_height, int b_user_weight, String b_user_id, String b_name, String b_hash, String[] b_hashtag,
+			String originalFileName, String renameFileName, String image1, String image2, String image3, String image4,
+			String image5, int h_bnum, int h_unum) {
 		super();
 		this.b_num = b_num;
 		this.b_user_num = b_user_num;
 		this.b_images = b_images;
 		this.b_content = b_content;
-		this.b_hashtag = b_hashtag;
 		this.b_top = b_top;
 		this.b_bottom = b_bottom;
 		this.b_shoes = b_shoes;
@@ -54,9 +57,24 @@ public class Board {
 		this.b_etc = b_etc;
 		this.b_status = b_status;
 		this.b_date = b_date;
+		this.b_profile_img = b_profile_img;
+		this.b_user_height = b_user_height;
+		this.b_user_weight = b_user_weight;
+		this.b_user_id = b_user_id;
+		this.b_name = b_name;
+		this.b_hash = b_hash;
+		this.b_hashtag = b_hashtag;
 		this.originalFileName = originalFileName;
 		this.renameFileName = renameFileName;
+		this.image1 = image1;
+		this.image2 = image2;
+		this.image3 = image3;
+		this.image4 = image4;
+		this.image5 = image5;
+		this.h_bnum = h_bnum;
+		this.h_unum = h_unum;
 	}
+
 
 	public Board(int b_user_num, String b_content, String image1, String image2, String image3, String image4,
 			String image5) {
@@ -76,6 +94,15 @@ public class Board {
 		this.b_num = b_num;
 		this.b_hashtag = b_hashtag;
 	}
+	
+	// 좋아요
+	public Board(int h_bnum, int h_unum) {
+		super();
+		this.h_bnum = h_bnum;
+		this.h_unum = h_unum;
+	}
+
+
 
 
 	public int getB_num() {
@@ -278,6 +305,25 @@ public class Board {
 
 	public void setB_hash(String b_hash) {
 		this.b_hash = b_hash;
+	}
+
+	public int getH_bnum() {
+		return h_bnum;
+	}
+
+
+	public void setH_bnum(int h_bnum) {
+		this.h_bnum = h_bnum;
+	}
+
+
+	public int getH_unum() {
+		return h_unum;
+	}
+
+
+	public void setH_unum(int h_unum) {
+		this.h_unum = h_unum;
 	}
 
 

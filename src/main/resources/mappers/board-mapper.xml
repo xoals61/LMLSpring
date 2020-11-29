@@ -23,6 +23,8 @@
 		<result property="b_user_id" column="ID"/>
 		<result property="b_name" column="UNAME"/>
 		<result property="b_hash" column="HASHTAG"/>
+		<result property="h_bnum" column="H_BNUM"/>
+		<result property="h_unum" column="H_UNUM"/>
 		
 		<!-- <result property="b_hashtag" column="B_HASHTAG"/>
 		<result property="b_images" column="B_IMAGES"/>
@@ -41,9 +43,11 @@
 		<result property="c_content" column="C_CONTENT"/>
 		<result property="c_unum" column="C_UNUM"/>
 		<result property="c_recno" column="C_RECNO"/>
-		<result property="c_level" column="R_CREATE_DATE"/>
-		<result property="c_utag" column="R_MODIFY_DATE"/>
-		<result property="c_date" column="R_STATUS"/>
+		<result property="c_level" column="C_LEVEL"/>
+		<result property="c_utag" column="C_UTAG"/>
+		<result property="c_date" column="C_DATE"/>
+		<result property="uname" column="UNAME"/>
+		<result property="profile" column="RENAME_PROFILE_IMG"/>
 	</resultMap>
 	
 	<insert id="insertStylePost" parameterType="Board">
@@ -89,10 +93,35 @@
 	</select>
 	
 	<select id="selectComment" resultMap="CommentResultSet">
-		SELECT *
+		SELECT C_NO, C_BNO, C_CONTENT, C_UNUM, C_RECNO, C_LEVEL, C_DATE, UNAME, RENAME_PROFILE_IMG
 		FROM LML_COMMENT
+		JOIN LML_MEM ON (C_UNUM = USER_NUM)
 		WHERE C_BNO = #{bnum}
+		ORDER BY C_NO
 	</select>
+	
+	<insert id="addComment" parameterType="Comment">
+		INSERT INTO LML_COMMENT 
+		VALUES (LML_COMM_SEQ.NEXTVAL, #{c_bno}, #{c_content}, #{c_unum}, NULL, DEFAULT, NULL, SYSDATE)
+	</insert>
+	
+	<insert id="addHeart" parameterType="Board">
+		INSERT INTO LML_HEART 
+		VALUES (#{h_bnum}, #{h_unum})
+	</insert>
+	
+	<select id="boardHeartList" resultType="_int">
+		SELECT * 
+		FROM LML_HEART 
+		WHERE H_UNUM = #{unum}
+	</select>
+	
+	<insert id="deleteHeart" parameterType="Board">
+		DELETE FROM LML_HEART
+		WHERE H_BNUM = #{h_bnum}
+		AND H_UNUM = #{h_unum}
+	</insert>
+	
 </mapper>
 
 

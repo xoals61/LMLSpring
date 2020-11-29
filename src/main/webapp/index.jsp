@@ -41,6 +41,7 @@
 					
 					function addTable(){
 						boardHover();
+						//heartIcon();
 						for(var i=0; i<7; i++){	// 행
 							if(a<row){
 								
@@ -70,7 +71,7 @@
 																	'</div>'+
 																'</div>'+
 																'<div class="cBtn">'+
-																	'<div class="cHeart">'+
+																	'<div class="cHeart" id="'+ data[b].b_num +'" onclick="heartheart(id);">'+
 																		'<img src="resources/images/icon/main/heart.png" class="cheart">'+
 																	'</div>'+
 																	'<div class="cComment" onclick="modalDetail('+data[b].b_num+');">'+
@@ -315,346 +316,7 @@
 			</div>
 			<div class="ctable">
 				<table id="table">
-					<!-- <tr>
-						<td>
-							<div class="content">
-								<div>
-									<img src="resources/images/mainImg/buzz.jpg" class="cImg">
-								</div>
-								<div class="chover">
-									<div class="hover-detail-content"></div>
-									<div class="chContnet">
-										<div class="user">
-											<div class="userImg">
-												<a href="./jiman/MyPage.html"><img
-													src="resources/images/mainImg/pbuzz.jpg"></a>
-											</div>
-											<a href="./jiman/MyPage.html"><div class="userId">iambuzz</div></a>
-										</div>
-										<div class="con">
-											<div class="userCon">
-												<p>To Infinity and Beyond</p>
-											</div>
-										</div>
-										<div class="cBtn">
-											<div class="cHeart">
-												<img src="resources/images/icon/main/heart.png"
-													class="cheart">
-											</div>
-											<div class="cComment">
-												<div class="cbox"></div>
-												<img src="resources/images/icon/main/comment.png">
-											</div>
-											<div class="cEtc">
-												<img src="resources/images/icon/main/etc.png">
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</td>
-						<td>
-							<div class="content">
-								<div>
-									<img src="resources/images/mainImg/alien.jpg" class="cImg">
-								</div>
-								<div class="chover">
-									<div class="hover-detail-content"></div>
-									<div class="chContnet">
-										<div class="user">
-											<div class="userImg">
-												<a href="./jiman/MyPage.html"><img
-													src="resources/images/mainImg/palien.png"></a>
-											</div>
-											<a href="./jiman/MyPage.html"><div class="userId">_alien88_</div></a>
-										</div>
-										<div class="con">
-											<div class="userCon">
-												<p>To To To Infinity Infinity Infinity and and and
-													Beyond Beyond Beyond</p>
-											</div>
-										</div>
-										<div class="cBtn">
-											<div class="cHeart">
-												<img src="resources/images/icon/main/heart.png"
-													class="cheart">
-											</div>
-											<div class="cComment">
-												<div class="cbox"></div>
-												<img src="resources/images/icon/main/comment.png">
-											</div>
-											<div class="cEtc">
-												<img src="resources/images/icon/main/etc.png">
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</td>
-						<td>
-							<div class="content">
-								<div>
-									<img src="resources/images/mainImg/andy.jpg" class="cImg">
-								</div>
-								<div class="chover">
-									<div class="hover-detail-content"></div>
-									<div class="chContnet">
-										<div class="user">
-											<div class="userImg">
-												<a href="./jiman/MyPage.html"><img
-													src="resources/images/mainImg/pandy.jpg"></a>
-											</div>
-											<a href="./jiman/MyPage.html"><div class="userId">chilly_b_f</div></a>
-										</div>
-										<div class="con">
-											<div class="userCon">
-												<p>시작부터 다 예상밖에 놀라운 스따일 작은 스탭들로 뿜어내 빅바입</p>
-											</div>
-										</div>
-										<div class="cBtn">
-											<div class="cHeart">
-												<img src="resources/images/icon/main/heart.png"
-													class="cheart">
-											</div>
-											<div class="cComment">
-												<div class="cbox"></div>
-												<img src="resources/images/icon/main/comment.png">
-											</div>
-											<div class="cEtc">
-												<img src="resources/images/icon/main/etc.png">
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<div class="content">
-								<div>
-									<img src="resources/images/mainImg/jessie.jpg" class="cImg">
-								</div>
-								<div class="chover">
-									<div class="hover-detail-content"></div>
-									<div class="chContnet">
-										<div class="user">
-											<div class="userImg">
-												<a href="./jiman/MyPage.html"><img
-													src="resources/images/mainImg/pjessie.jpg"></a>
-											</div>
-											<a href="./jiman/MyPage.html"><div class="userId">xjexxiex</div></a>
-										</div>
-										<div class="con">
-											<div class="userCon">
-												<p>To Infinity and Beyond</p>
-											</div>
-										</div>
-										<div class="cBtn">
-											<div class="cHeart">
-												<img src="resources/images/icon/main/heart.png"
-													class="cheart">
-											</div>
-											<div class="cComment">
-												<div class="cbox"></div>
-												<img src="resources/images/icon/main/comment.png">
-											</div>
-											<div class="cEtc">
-												<img src="resources/images/icon/main/etc.png">
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</td>
-						<td>
-							<div class="content">
-								<div>
-									<img src="resources/images/mainImg/woody.jpg" class="cImg">
-								</div>
-								<div class="chover">
-									<div class="hover-detail-content"></div>
-									<div class="chContnet">
-										<div class="user">
-											<div class="userImg">
-												<a href="./jiman/MyPage.html"><img
-													src="resources/images/mainImg/pwoody.jpg"></a>
-											</div>
-											<a href="./jiman/MyPage.html"><div class="userId">woody79</div></a>
-										</div>
-										<div class="con">
-											<div class="userCon">
-												<p>To Infinity and Beyond</p>
-											</div>
-										</div>
-										<div class="cBtn">
-											<div class="cHeart">
-												<img src="resources/images/icon/main/heart.png"
-													class="cheart">
-											</div>
-											<div class="cComment">
-												<div class="cbox"></div>
-												<img src="resources/images/icon/main/comment.png">
-											</div>
-											<div class="cEtc">
-												<img src="resources/images/icon/main/etc.png">
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</td>
-						<td>
-							<div class="content">
-								<div>
-									<img src="resources/images/mainImg/rex.jpg" class="cImg">
-								</div>
-								<div class="chover">
-									<div class="hover-detail-content"></div>
-									<div class="chContnet">
-										<div class="user">
-											<div class="userImg">
-												<a href="./jiman/MyPage.html"><img
-													src="resources/images/mainImg/prex.jpg"></a>
-											</div>
-											<a href="./jiman/MyPage.html"><div class="userId">nice_rex</div></a>
-										</div>
-										<div class="con">
-											<div class="userCon">
-												<p>To Infinity and Beyond</p>
-											</div>
-										</div>
-										<div class="cBtn">
-											<div class="cHeart">
-												<img src="resources/images/icon/main/heart.png"
-													class="cheart">
-											</div>
-											<div class="cComment">
-												<div class="cbox"></div>
-												<img src="resources/images/icon/main/comment.png">
-											</div>
-											<div class="cEtc">
-												<img src="resources/images/icon/main/etc.png">
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</td>
-					</tr>
-					<tr>
-						<td id="conte">
-							<div class="content">
-								<div>
-									<img src="resources/images/mainImg/potato.jpg" class="cImg">
-								</div>
-								<div class="chover">
-									<div class="hover-detail-content"></div>
-									<div class="chContnet">
-										<div class="user">
-											<div class="userImg">
-												<a href="./jiman/MyPage.html"><img
-													src="resources/images/mainImg/ppotato.jpg"></a>
-											</div>
-											<a href="./jiman/MyPage.html"><div class="userId">potato_man</div></a>
-										</div>
-										<div class="con">
-											<div class="userCon">
-												<p>To Infinity and Beyond</p>
-											</div>
-										</div>
-										<div class="cBtn">
-											<div class="cHeart">
-												<img src="resources/images/icon/main/heart.png"
-													class="cheart">
-											</div>
-											<div class="cComment">
-												<div class="cbox"></div>
-												<img src="resources/images/icon/main/comment.png">
-											</div>
-											<div class="cEtc">
-												<img src="resources/images/icon/main/etc.png">
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</td>
-						<td>
-							<div class="content">
-								<div>
-									<img src="resources/images/mainImg/potato.jpg" class="cImg">
-								</div>
-								<div class="chover">
-									<div class="hover-detail-content"></div>
-									<div class="chContnet">
-										<div class="user">
-											<div class="userImg">
-												<a href="./jiman/MyPage.html"><img
-													src="resources/images/mainImg/ppotato.jpg"></a>
-											</div>
-											<a href="./jiman/MyPage.html"><div class="userId">potato_man</div></a>
-										</div>
-										<div class="con">
-											<div class="userCon">
-												<p>To Infinity and Beyond</p>
-											</div>
-										</div>
-										<div class="cBtn">
-											<div class="cHeart">
-												<img src="resources/images/icon/main/heart.png"
-													class="cheart">
-											</div>
-											<div class="cComment">
-												<div class="cbox"></div>
-												<img src="resources/images/icon/main/comment.png">
-											</div>
-											<div class="cEtc">
-												<img src="resources/images/icon/main/etc.png">
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</td>
-						<td>
-							<div class="content">
-								<div>
-									<img src="resources/images/mainImg/potato.jpg" class="cImg">
-								</div>
-								<div class="chover">
-									<div class="hover-detail-content"></div>
-									<div class="chContnet">
-										<div class="user">
-											<div class="userImg">
-												<a href="./jiman/MyPage.html"><img
-													src="resources/images/mainImg/ppotato.jpg"></a>
-											</div>
-											<a href="./jiman/MyPage.html"><div class="userId">potato_man</div></a>
-										</div>
-										<div class="con">
-											<div class="userCon">
-												<p>To Infinity and Beyond</p>
-											</div>
-										</div>
-										<div class="cBtn">
-											<div class="cHeart">
-												<img src="resources/images/icon/main/heart.png"
-													class="cheart">
-											</div>
-											<div class="cComment">
-												<div class="cbox"></div>
-												<img src="resources/images/icon/main/comment.png">
-											</div>
-											<div class="cEtc">
-												<img src="resources/images/icon/main/etc.png">
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</td>
-					</tr> -->
+					
 				</table>
 			</div>
 		</div>
@@ -680,6 +342,33 @@
 
 
 	<script>
+	
+		// 하트
+		/* function heartIcon(){
+			var unum = '<c:out value="${loginUser.user_num}"/>';
+			
+			if(unum.length > 0){
+				$.ajax({
+					url:"BoardHeart.do",
+					data:{unum:unum},
+					success:function(data){	
+						if(data.length > 0){
+							for(var i=0; i<data.length; i++){
+								$('#'+data[i]).attr('src','resources/images/icon/main/heart2.png');
+							}
+						}else{
+							alert('좋아요 목록 불러오기 실패');
+						}
+					},
+					error:function(request,status,error){
+						console.log("** error code : " + request.status + "\n"
+							+ "message : " + request.responseText + "\n"
+							+ "error : " + error);
+					}
+				});
+			}
+		} */
+		
 		// 게시물 마우스오버
 		function boardHover(){
 		  $('.chover').hide();
@@ -690,14 +379,125 @@
 		        $('.chover').hide();
 		    });
 		    
+		    /* $(".cHeart").click(function(){
+		    	console.log('좋아요 클릭');
+		    } */
+		    
 		    /* 게시물 좋아요 아이콘 클릭 시 아이콘 변경 */
-			$(".cHeart").click(function(){
-				if($('.cheart',this).attr('src') == "resources/images/icon/main/heart.png"){
-					$('.cheart',this).attr('src','./resources/images/icon/main/heart2.png');
+			//$(".cHeart").click(function(){
+				
+				
+					/* //빈하트일때 좋아요 등록
+					if($('.cHeart',this).attr('src') == "resources/images/icon/main/heart.png"){
+						var bnum = $('.cHeart',this).attr("id");
+						var unum = '<c:out value="${loginUser.user_num}"/>';
+						
+						$('.cHeart',this).attr('src','resources/images/icon/main/heart2.png');
+						
+						if(unum.length > 0){
+							$.ajax({
+								url:"BoardAddHeart.do",
+								data:{bnum:bnum, unum:unum},
+								success:function(data){	
+									if(data == "success"){
+										$('#'+bnum).attr('src','resources/images/icon/main/heart2.png');
+									}else{
+										alert('좋아요 실패');
+									}
+								},
+								error:function(request,status,error){
+									console.log("** error code : " + request.status + "\n"
+										+ "message : " + request.responseText + "\n"
+										+ "error : " + error);
+								}
+							});
+						}else{
+							alert('로그인 후 이용 가능합니다.');
+						}
+						
+					//꽉찬하트일때 좋아요 취소
+					
+					}else if($('.cHeart',this).attr('src') == "resources/images/icon/main/heart2.png"){
+						$.ajax({
+							url:"BoardDelHeart.do",
+							data:{bnum:bnum, unum:unum},
+							success:function(data){	
+								if(data == "success"){
+									$('#'+bnum).attr('src','resources/images/icon/main/heart.png');
+								}else{
+									alert('좋아요 취소 실패');
+								}
+							},
+							error:function(request,status,error){
+								console.log("** error code : " + request.status + "\n"
+									+ "message : " + request.responseText + "\n"
+									+ "error : " + error);
+							}
+						});
+				  		
+				 	} */
+				
+				
+			//}
+		}
+		
+		function heartheart(id){
+			//빈하트일때 좋아요 등록
+			if($('.cHeart',this).children('.cheart').attr('src') == "resources/images/icon/main/heart.png"){
+				var bnum = id;
+				var unum = '<c:out value="${loginUser.user_num}"/>';
+				
+				console.log('비넘 : ' + bnum);
+				
+				/* if(unum.length > 0){ 
+					$.ajax({
+						url:"BoardAddHeart.do",
+						data:{bnum:bnum, unum:unum},
+						success:function(data){	
+							if(data == "success"){
+								$('#'+bnum+' img').attr('src','resources/images/icon/main/heart2.png');
+							}else{
+								alert('좋아요 실패');
+							}
+						},
+						error:function(request,status,error){
+							console.log("** error code : " + request.status + "\n"
+								+ "message : " + request.responseText + "\n"
+								+ "error : " + error);
+						}
+					});
 				}else{
-			  		$('.cheart',this).attr('src','resources/images/icon/main/heart.png');
-			 	}
-			});
+					alert('로그인 후 이용 가능합니다.');
+				} */
+				
+			//꽉찬하트일때 좋아요 취소
+			
+			}else if($('.cheart',this).attr('src') == "resources/images/icon/main/heart2.png"){
+				var bnum = id
+				var unum = '<c:out value="${loginUser.user_num}"/>';
+				
+				if(unum.length > 0){
+					$.ajax({
+						url:"BoardDelHeart.do",
+						data:{bnum:bnum, unum:unum},
+						success:function(data){	
+							if(data == "success"){
+								$('#'+bnum+' img').attr('src','resources/images/icon/main/heart.png');
+							}else{
+								alert('좋아요 취소 실패');
+							}
+						},
+						error:function(request,status,error){
+							console.log("** error code : " + request.status + "\n"
+								+ "message : " + request.responseText + "\n"
+								+ "error : " + error);
+						}
+					});
+				}else{
+					alert('로그인 후 이용 가능합니다.');
+				}
+		  		
+		 	}
 		}
 
 
@@ -749,6 +549,8 @@
 		/* 모달팝업 디테일 */
 		function modalDetail(bnum){
 			
+			console.log('### 글넘 : ' + bnum);
+			
 			var modal = document.getElementById('myModal');
 			var detail = document.getElementById('board-detail');
 			var content = document.getElementById('conte');
@@ -799,27 +601,17 @@
 							'</div>'+
 							'<div class="board-bottom">'+
 								'<div class="commentCount">'+
-									'<p>댓글 (8)</p>'+
+									
 								'</div>'+
 								'<div class="board-commentDiv">'+
-									'<div class="board-comment">'+
-										'<div class="comment-img">'+
-											'<a href="./jiman/MyPage.html"><img src="resources/images/mainImg/andy.jpg"></a>'+
-										'</div>'+
-										'<div class="comment-content">'+
-											'<p class="comment-user">iamandy</p>'+
-											'<p class="comment-comment">댓글1</p>'+
-										'</div>'+
-									'</div>'+
 									
 								'</div>'+
 								'<div class="board-commentWrite">'+
-									
 									'<div class="comment-write">'+
-										'<input type="text" class="c-content" placeholder="댓글 달기...">'+
+										'<input type="text" id="'+bnum+'" class="c-content" placeholder="댓글 달기...">'+
 									'</div>'+
 									'<div class="comment-submit" onclick="cSubmit();">게시</div>'+
-									
+									//onclick="cSubmit(bnum);"
 								'</div>'+
 							'</div>');
 					
@@ -912,24 +704,24 @@
 				});
 			}
 			
-			function getReplyList(){
+		}
+		
+		// 댓글등록 ajax
+		function cSubmit(){
+			var comment = $('.c-content').val();
+			var unum = '<c:out value="${loginUser.user_num}"/>';
+			var bnum = $('.c-content').attr("id");
+			
+			if(comment.length > 0){
 				$.ajax({
-					url:"BoardDetailComm.do",
-					data:{bnum:bnum},
-					dataType:"JSON",
+					url:"BoardComment.do",
+					data:{comment:comment, unum:unum, bnum:bnum},
 					success:function(data){	
-						//console.log(data);
-						if(data.length > 0){
-							console.log('하하');
+						if(data == "success"){
+							getReplyList(bnum);
+							$('.c-content').val('');
 						}else{
-							$('.board-commentDiv').append(''+
-								'<div class="board-comment">'+
-									//'<div class="comment-img"></div>'+
-									'<div class="comment-content">'+
-										'<p class="comment-user">등록된 댓글이 없습니다.</p>'+
-										'<p class="comment-comment"></p>'+
-									'</div>'+
-								'</div>');
+							alert('댓글 등록 실패');
 						}
 					},
 					error:function(request,status,error){
@@ -938,15 +730,61 @@
 							+ "error : " + error);
 					}
 				});
+			}else{
+				alert('댓글을 입력해주세요.');
 			}
-		}
-		
-		function cSubmit(){
-			var comment = $('.c-content').val();
-			
 			
 		}
 		
+		// 댓글 리스트 ajax
+		function getReplyList(bnum){
+			console.log('댓글 리스트 ajax 실행');
+			console.log('해당 댓글 글넘 : ' + bnum);
+			$.ajax({
+				url:"BoardDetailComm.do",
+				data:{bnum:bnum},
+				dataType:"JSON",
+				success:function(data){	
+					if(data.length > 0){
+						console.log(data);
+						$('.commentCount').empty();
+						$('.commentCount').append('<p>댓글 ('+data.length+')</p>');
+						$('.board-commentDiv').empty();
+						for(var i=0; i<data.length; i++){
+							$('.board-commentDiv').append(''+
+									'<div class="board-comment">'+
+									'<div class="comment-img">'+
+										'<a href="./jiman/MyPage.html"><img src="resources/images/profileImg/'+ data[i].profile +'"></a>'+
+									'</div>'+
+									'<div class="comment-content">'+
+										'<p class="comment-user">'+ data[i].uname +'</p>'+
+										'<p class="comment-comment">'+ data[i].c_content +'</p>'+
+									'</div>'+
+								'</div>');
+						}
+						
+					}else{
+						console.log(data.length);
+						//$('.commentCount').empty();
+						$('.commentCount').append('<p>댓글 ('+data.length+')</p>');
+						//$('.board-commentDiv').empty();
+						$('.board-commentDiv').append(''+
+							'<div class="board-comment">'+
+								//'<div class="comment-img"></div>'+
+								'<div class="comment-content">'+
+									'<p class="comment-user">등록된 댓글이 없습니다.</p>'+
+									'<p class="comment-comment"></p>'+
+								'</div>'+
+							'</div>');
+					}
+				},
+				error:function(request,status,error){
+					console.log("** error code : " + request.status + "\n"
+						+ "message : " + request.responseText + "\n"
+						+ "error : " + error);
+				}
+			});
+		}
 
 		
  

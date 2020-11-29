@@ -25,6 +25,14 @@ public interface BoardService {
 
 	ArrayList<Comment> selectComment(int bnum);
 
+	int addComment(Comment cm);
+
+	int addHeart(Board b);
+
+	ArrayList<Comment> boardHeartList(int unum);
+
+	int deleteHeart(Board b);
+
 
 
 }

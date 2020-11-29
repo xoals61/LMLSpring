@@ -76,15 +76,17 @@ public class BoardController {
 		String b_hash =b.getB_hash();
 		String[] slist = b_hash.split(",");
 		
-		List<Board> halist = new ArrayList<Board>();
-		
-		for(int i=0; i<slist.length; i++){
-			Board bo = new Board();
-			bo.setB_num(getbnum);
-			bo.setB_hash(slist[i].toString());
+		if(b_hash.length() > 0) {
+			for(int i=0; i<slist.length; i++){
+				Board bo = new Board();
+				bo.setB_num(getbnum);
+				bo.setB_hash(slist[i].toString());
+				
+				int res = bService.insertStyleHash(bo);
+			}
 			
-			int res = bService.insertStyleHash(bo);
 		}
+		
 		
 		if(result > 0) {
 			System.out.println("글쓰기 성공");
@@ -236,22 +238,88 @@ public class BoardController {
 	}
 	
 	// 디테일 댓글 불러오기
-		@ResponseBody
-		@RequestMapping(value="BoardDetailComm.do", produces="application/json; charset=UTF-8")
-		public String BoardDetailComm(HttpServletResponse response, int bnum) throws JsonIOException, JsonProcessingException{
-			
-			ArrayList<Comment> list = bService.selectComment(bnum);
-			
-			ObjectMapper mapper = new ObjectMapper();
-			
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-			mapper.setDateFormat(sdf);
-			
-			String jsonStr = mapper.writeValueAsString(list);
-			
-			return jsonStr;
-		}
+	@ResponseBody
+	@RequestMapping(value="BoardDetailComm.do", produces="application/json; charset=UTF-8")
+	public String BoardDetailComm(HttpServletResponse response, int bnum) throws JsonIOException, JsonProcessingException{
+		
+		ArrayList<Comment> list = bService.selectComment(bnum);
+		
+		ObjectMapper mapper = new ObjectMapper();
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		mapper.setDateFormat(sdf);
+		
+		String jsonStr = mapper.writeValueAsString(list);
+		
+		return jsonStr;
+	}
 	
+	// 댓글 등록
+	@ResponseBody
+	@RequestMapping(value="BoardComment.do")
+	public String BoardComment(String comment, int unum, int bnum) {
+	
+		Comment cm = new Comment(bnum, comment, unum);
+	
+		int result = bService.addComment(cm);
+	
+		//int result = mService.followBtn(f);
+	
+		if(result > 0) {
+			return "success";
+		}else {
+			return "fail";
+		}
+	}
+	
+	// 좋아요 등록
+	@ResponseBody
+	@RequestMapping(value="BoardAddHeart.do")
+	public String BoardAddHeart(int bnum, int unum) {
+	
+		Board b = new Board(bnum, unum);
+	
+		int result = bService.addHeart(b);
+	
+		if(result > 0) {
+			return "success";
+		}else {
+			return "fail";
+		}
+	}
+	
+	// 좋아요 취소
+		@ResponseBody
+		@RequestMapping(value="BoardDelHeart.do")
+		public String BoardDelHeart(int bnum, int unum) {
+		
+			Board b = new Board(bnum, unum);
+		
+			int result = bService.deleteHeart(b);
+		
+			if(result > 0) {
+				return "success";
+			}else {
+				return "fail";
+			}
+		}
+		
 
+	// 좋아요 불러오기
+	@ResponseBody
+	@RequestMapping(value="BoardHeart.do", produces="application/json; charset=UTF-8")
+	public String BoardHeart(HttpServletResponse response, int unum) throws JsonIOException, JsonProcessingException{
+		
+		ArrayList<Comment> list = bService.boardHeartList(unum);
+		
+		ObjectMapper mapper = new ObjectMapper();
+		
+//		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+//		mapper.setDateFormat(sdf);
+		
+		String jsonStr = mapper.writeValueAsString(list);
+		
+		return jsonStr;
+	}
 	
 }

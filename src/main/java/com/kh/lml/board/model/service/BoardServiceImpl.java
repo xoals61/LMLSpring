@@ -66,6 +66,26 @@ public class BoardServiceImpl implements BoardService {
 		return bDao.selectComment(bnum);
 	}
 
+	@Override
+	public int addComment(Comment cm) {
+		return bDao.addComment(cm);
+	}
+
+	@Override
+	public int addHeart(Board b) {
+		return bDao.addHeart(b);
+	}
+
+	@Override
+	public ArrayList<Comment> boardHeartList(int unum) {
+		return bDao.boardHeartList(unum);
+	}
+
+	@Override
+	public int deleteHeart(Board b) {
+		return bDao.deleteHeart(b);
+	}
+
 
 
 
