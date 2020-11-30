@@ -382,7 +382,7 @@
 		    /* 게시물 좋아요 아이콘 클릭 시 아이콘 변경 */
 			$(".cHeart").click(function(){
 				
-				var bnum = $('.cheart',this).attr("id");
+				var bnum = $('.cheart',this).attr("id").substring(2);
 				var unum = '<c:out value="${loginUser.user_num}"/>';
 				
 				if(unum.length > 0){
@@ -409,7 +409,8 @@
 						
 					//꽉찬하트일때 좋아요 취소
 					}else if($('.cheart',this).attr('src') == "resources/images/icon/main/heart2.png"){
-						$.ajax({
+						
+						 $.ajax({
 							url:"BoardDelHeart.do",
 							data:{bnum:bnum, unum:unum},
 							success:function(data){	
