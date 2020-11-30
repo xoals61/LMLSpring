@@ -29,6 +29,24 @@ a:hover {
 .aBox>div {
 	float: left;
 }
+.delbtn{
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    /* float: right; */
+    margin: 10px 0px 19px 35px;
+    font-weight: bold;
+    text-align: center;
+    border: none;
+    opacity: 1px;
+    color: #787878;
+    cursor: pointer;
+    background: white;
+}
+.delbtn:focus{
+	outline: none;
+}
+
 
 .lContent {
 	height: 100%;
@@ -108,13 +126,13 @@ a:hover {
 	float:left;
 }
 .alarm{
-	float: right;
+	    float: right;
     background: red;
     border-radius: 30px;
     width: 25px;
     height: 25px;
     position: absolute;
-    margin: 8px 0 0 147px;
+    margin: 8px 0 0 141px;
     padding: 0 auto;
     text-align: center;
     color: white;
