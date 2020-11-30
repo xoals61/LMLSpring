@@ -56,6 +56,7 @@
 										<div class="li-userId">${message.touser}</div>
 										<div class="${message.chatroomid} li-direct">${message.recentChat}</div>
 										
+										<button class="delbtn">X</button>
 										<c:if test="${message.count ne 0 }">
 										<div class="alarm alarm${message.chatroomid}">${message.count}</div>
 										</c:if>
