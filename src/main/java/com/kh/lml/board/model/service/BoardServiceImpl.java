@@ -86,6 +86,11 @@ public class BoardServiceImpl implements BoardService {
 		return bDao.deleteHeart(b);
 	}
 
+	@Override
+	public ArrayList<Board> getDetailHeart(int bnum) {
+		return bDao.getDetailHeart(bnum);
+	}
+
 
 
 

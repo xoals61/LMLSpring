@@ -122,6 +122,13 @@
 		AND H_UNUM = #{h_unum}
 	</insert>
 	
+	<select id="getDetailHeart" resultMap="boardResultSet">
+		SELECT H_BNUM, H_UNUM, UNAME, RENAME_PROFILE_IMG
+		FROM LML_HEART
+		JOIN LML_MEM ON(H_UNUM = USER_NUM)
+		WHERE H_BNUM = #{bnum}
+	</select>
+	
 </mapper>
 
 

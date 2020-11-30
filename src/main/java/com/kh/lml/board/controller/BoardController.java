@@ -289,20 +289,20 @@ public class BoardController {
 	}
 	
 	// 좋아요 취소
-		@ResponseBody
-		@RequestMapping(value="BoardDelHeart.do")
-		public String BoardDelHeart(int bnum, int unum) {
-		
-			Board b = new Board(bnum, unum);
-		
-			int result = bService.deleteHeart(b);
-		
-			if(result > 0) {
-				return "success";
-			}else {
-				return "fail";
-			}
+	@ResponseBody
+	@RequestMapping(value="BoardDelHeart.do")
+	public String BoardDelHeart(int bnum, int unum) {
+	
+		Board b = new Board(bnum, unum);
+	
+		int result = bService.deleteHeart(b);
+	
+		if(result > 0) {
+			return "success";
+		}else {
+			return "fail";
 		}
+	}
 		
 
 	// 좋아요 불러오기
@@ -314,12 +314,25 @@ public class BoardController {
 		
 		ObjectMapper mapper = new ObjectMapper();
 		
-//		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-//		mapper.setDateFormat(sdf);
+		String jsonStr = mapper.writeValueAsString(list);
+		
+		return jsonStr;
+	}
+	
+	// 좋아요 불러오기
+	@ResponseBody
+	@RequestMapping(value="BoardDetailHeart.do", produces="application/json; charset=UTF-8")
+	public String BoardDetailHeart(HttpServletResponse response, int bnum) throws JsonIOException, JsonProcessingException{
+		
+		ArrayList<Board> list = bService.getDetailHeart(bnum);
+		
+		ObjectMapper mapper = new ObjectMapper();
 		
 		String jsonStr = mapper.writeValueAsString(list);
 		
 		return jsonStr;
 	}
+	
+
 	
 }

@@ -69,6 +69,10 @@ public class BoardDao {
 		return sqlSession.insert("boardMapper.deleteHeart", b);
 	}
 
+	public ArrayList<Board> getDetailHeart(int bnum) {
+		return (ArrayList)sqlSession.selectList("boardMapper.getDetailHeart",bnum);
+	}
+
 
 
 

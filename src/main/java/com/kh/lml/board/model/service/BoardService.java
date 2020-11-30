@@ -33,6 +33,8 @@ public interface BoardService {
 
 	int deleteHeart(Board b);
 
+	ArrayList<Board> getDetailHeart(int bnum);
+
 
 
 }

@@ -145,6 +145,7 @@ a:hover{
 .board-heart img{
     width: 25px;
     height: 25px;
+    cursor: pointer;
 }
 
 .board-etc{

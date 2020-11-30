@@ -41,7 +41,7 @@
 					
 					function addTable(){
 						boardHover();
-						//heartIcon();
+						heartIcon();
 						for(var i=0; i<7; i++){	// 행
 							if(a<row){
 								
@@ -71,8 +71,8 @@
 																	'</div>'+
 																'</div>'+
 																'<div class="cBtn">'+
-																	'<div class="cHeart" id="'+ data[b].b_num +'" onclick="heartheart(id);">'+
-																		'<img src="resources/images/icon/main/heart.png" class="cheart">'+
+																	'<div class="cHeart">'+
+																		'<img src="resources/images/icon/main/heart.png"  id="th'+ data[b].b_num +'" class="cheart">'+
 																	'</div>'+
 																	'<div class="cComment" onclick="modalDetail('+data[b].b_num+');">'+
 																		'<div class="cbox"></div>'+
@@ -96,6 +96,7 @@
 							}
 						}
 						boardHover();
+						heartIcon();
 					}
 				},
 				error:function(request,status,error){
@@ -343,8 +344,9 @@
 
 	<script>
 	
-		// 하트
-		/* function heartIcon(){
+		// 하트 리스트
+		function heartIcon(){
+			
 			var unum = '<c:out value="${loginUser.user_num}"/>';
 			
 			if(unum.length > 0){
@@ -354,10 +356,8 @@
 					success:function(data){	
 						if(data.length > 0){
 							for(var i=0; i<data.length; i++){
-								$('#'+data[i]).attr('src','resources/images/icon/main/heart2.png');
+								$('#th'+data[i]).attr('src','resources/images/icon/main/heart2.png');
 							}
-						}else{
-							alert('좋아요 목록 불러오기 실패');
 						}
 					},
 					error:function(request,status,error){
@@ -367,11 +367,11 @@
 					}
 				});
 			}
-		} */
+		}
 		
 		// 게시물 마우스오버
 		function boardHover(){
-		  $('.chover').hide();
+		  	$('.chover').hide();
 		    $('.content').mouseover(function(){
 		        $('.chover',this).show();
 		    });
@@ -379,51 +379,42 @@
 		        $('.chover').hide();
 		    });
 		    
-		    /* $(".cHeart").click(function(){
-		    	console.log('좋아요 클릭');
-		    } */
-		    
 		    /* 게시물 좋아요 아이콘 클릭 시 아이콘 변경 */
-			//$(".cHeart").click(function(){
+			$(".cHeart").click(function(){
 				
+				var bnum = $('.cheart',this).attr("id");
+				var unum = '<c:out value="${loginUser.user_num}"/>';
 				
-					/* //빈하트일때 좋아요 등록
-					if($('.cHeart',this).attr('src') == "resources/images/icon/main/heart.png"){
-						var bnum = $('.cHeart',this).attr("id");
-						var unum = '<c:out value="${loginUser.user_num}"/>';
+				if(unum.length > 0){
+					
+					//빈하트일때 좋아요 등록
+					if($('.cheart',this).attr('src') == "resources/images/icon/main/heart.png"){
 						
-						$('.cHeart',this).attr('src','resources/images/icon/main/heart2.png');
-						
-						if(unum.length > 0){
-							$.ajax({
-								url:"BoardAddHeart.do",
-								data:{bnum:bnum, unum:unum},
-								success:function(data){	
-									if(data == "success"){
-										$('#'+bnum).attr('src','resources/images/icon/main/heart2.png');
-									}else{
-										alert('좋아요 실패');
-									}
-								},
-								error:function(request,status,error){
-									console.log("** error code : " + request.status + "\n"
-										+ "message : " + request.responseText + "\n"
-										+ "error : " + error);
+						$.ajax({
+							url:"BoardAddHeart.do",
+							data:{bnum:bnum, unum:unum},
+							success:function(data){	
+								if(data == "success"){
+									$('#th'+bnum).attr('src','resources/images/icon/main/heart2.png');
+								}else{
+									alert('좋아요 실패');
 								}
-							});
-						}else{
-							alert('로그인 후 이용 가능합니다.');
-						}
+							},
+							error:function(request,status,error){
+								console.log("** error code : " + request.status + "\n"
+									+ "message : " + request.responseText + "\n"
+									+ "error : " + error);
+							}
+						});
 						
 					//꽉찬하트일때 좋아요 취소
-					
-					}else if($('.cHeart',this).attr('src') == "resources/images/icon/main/heart2.png"){
+					}else if($('.cheart',this).attr('src') == "resources/images/icon/main/heart2.png"){
 						$.ajax({
 							url:"BoardDelHeart.do",
 							data:{bnum:bnum, unum:unum},
 							success:function(data){	
 								if(data == "success"){
-									$('#'+bnum).attr('src','resources/images/icon/main/heart.png');
+									$('#th'+bnum).attr('src','resources/images/icon/main/heart.png');
 								}else{
 									alert('좋아요 취소 실패');
 								}
@@ -434,70 +425,11 @@
 									+ "error : " + error);
 							}
 						});
-				  		
-				 	} */
-				
-				
-			//}
-		}
-		
-		function heartheart(id){
-			//빈하트일때 좋아요 등록
-			if($('.cHeart',this).children('.cheart').attr('src') == "resources/images/icon/main/heart.png"){
-				var bnum = id;
-				var unum = '<c:out value="${loginUser.user_num}"/>';
-				
-				console.log('비넘 : ' + bnum);
-				
-				/* if(unum.length > 0){ 
-					$.ajax({
-						url:"BoardAddHeart.do",
-						data:{bnum:bnum, unum:unum},
-						success:function(data){	
-							if(data == "success"){
-								$('#'+bnum+' img').attr('src','resources/images/icon/main/heart2.png');
-							}else{
-								alert('좋아요 실패');
-							}
-						},
-						error:function(request,status,error){
-							console.log("** error code : " + request.status + "\n"
-								+ "message : " + request.responseText + "\n"
-								+ "error : " + error);
-						}
-					});
-				}else{
-					alert('로그인 후 이용 가능합니다.');
-				} */
-				
-			//꽉찬하트일때 좋아요 취소
-			
-			}else if($('.cheart',this).attr('src') == "resources/images/icon/main/heart2.png"){
-				var bnum = id
-				var unum = '<c:out value="${loginUser.user_num}"/>';
-				
-				if(unum.length > 0){
-					$.ajax({
-						url:"BoardDelHeart.do",
-						data:{bnum:bnum, unum:unum},
-						success:function(data){	
-							if(data == "success"){
-								$('#'+bnum+' img').attr('src','resources/images/icon/main/heart.png');
-							}else{
-								alert('좋아요 취소 실패');
-							}
-						},
-						error:function(request,status,error){
-							console.log("** error code : " + request.status + "\n"
-								+ "message : " + request.responseText + "\n"
-								+ "error : " + error);
-						}
-					});
+				 	} 
 				}else{
 					alert('로그인 후 이용 가능합니다.');
 				}
-		  		
-		 	}
+			});
 		}
 
 
@@ -525,8 +457,7 @@
 		        }, 400);
 		        $('.choice').css('cursor','pointer');
 		    } );
-		
-		
+
 		});
           
 
@@ -558,16 +489,13 @@
 			$('.myModal').css('display','block');
 			$('.board-detail').css('display','block');
 			
-			getReplyList(bnum);
-			
 			$.ajax({
 				url:"BoardDetail.do",
 				data:{bnum:bnum},
 				dataType:"JSON",
 				success:function(data){	
-					hashAjax();
-					//getReplyList();
-					//commentScript();
+					hashHeartAjax();
+					replyList();
 					
 					$('.board-detail').append('<div class="board-img">'+
 							'<img src="resources/buploadFiles/'+ data[0].image1 +'">'+
@@ -587,9 +515,9 @@
 									'<div class="board-hashtag"></div>'+
 								'</div>'+
 								'<div class="board-stateicon">'+
-									'<div class="board-heartCount">좋아요 234개</div>'+
+									'<div class="board-heartCount"></div>'+
 									'<div class="board-heart">'+
-										'<img src="resources/images/icon/menu/iconmonstr-heart-thin-72.png">'+
+										'<img src="resources/images/icon/menu/iconmonstr-heart-thin-72.png" id="h'+bnum+'" onclick="addHeart('+bnum+');">'+
 									'</div>'+
 									'<div class="board-etc">'+
 										'<img src="resources/images/icon/main/menu1.png">'+
@@ -611,7 +539,6 @@
 										'<input type="text" id="'+bnum+'" class="c-content" placeholder="댓글 달기...">'+
 									'</div>'+
 									'<div class="comment-submit" onclick="cSubmit();">게시</div>'+
-									//onclick="cSubmit(bnum);"
 								'</div>'+
 							'</div>');
 					
@@ -686,7 +613,8 @@
 			    }
 			}
 			
-			function hashAjax(){
+			function hashHeartAjax(){
+				// 해쉬태그 불러오기
 				$.ajax({
 					url:"BoardDetailHash.do",
 					data:{bnum:bnum},
@@ -702,26 +630,21 @@
 							+ "error : " + error);
 					}
 				});
-			}
-			
-		}
-		
-		// 댓글등록 ajax
-		function cSubmit(){
-			var comment = $('.c-content').val();
-			var unum = '<c:out value="${loginUser.user_num}"/>';
-			var bnum = $('.c-content').attr("id");
-			
-			if(comment.length > 0){
+				
+				// 디테일 좋아요 리스트 & 내가 좋아요 눌렀음 빨간하트로.
 				$.ajax({
-					url:"BoardComment.do",
-					data:{comment:comment, unum:unum, bnum:bnum},
-					success:function(data){	
-						if(data == "success"){
-							getReplyList(bnum);
-							$('.c-content').val('');
-						}else{
-							alert('댓글 등록 실패');
+					url:"BoardDetailHeart.do",
+					data:{bnum:bnum},
+					dataType:"JSON",
+					success:function(data){
+						$('.board-heartCount').html('좋아요 '+ data.length +'개');
+						if(data.length > 0){
+							var unum = '<c:out value="${loginUser.user_num}"/>';
+							for(var i=0; i<data.length; i++){
+								if(data[i].h_unum == unum){
+									$('#h'+bnum).attr('src','resources/images/icon/menu/detailHeart.png');
+								}
+							}
 						}
 					},
 					error:function(request,status,error){
@@ -730,9 +653,140 @@
 							+ "error : " + error);
 					}
 				});
-			}else{
-				alert('댓글을 입력해주세요.');
 			}
+			
+			// 디테일 댓글 리스트
+			function replyList(){
+				$.ajax({
+					url:"BoardDetailComm.do",
+					data:{bnum:bnum},
+					dataType:"JSON",
+					success:function(data){	
+						if(data.length > 0){
+							console.log(data);
+							$('.commentCount').empty();
+							$('.commentCount').append('<p>댓글 ('+data.length+')</p>');
+							$('.board-commentDiv').empty();
+							for(var i=0; i<data.length; i++){
+								$('.board-commentDiv').append(''+
+										'<div class="board-comment">'+
+										'<div class="comment-img">'+
+											'<a href="./jiman/MyPage.html"><img src="resources/images/profileImg/'+ data[i].profile +'"></a>'+
+										'</div>'+
+										'<div class="comment-content">'+
+											'<p class="comment-user">'+ data[i].uname +'</p>'+
+											'<p class="comment-comment">'+ data[i].c_content +'</p>'+
+										'</div>'+
+									'</div>');
+							}
+							
+						}else{
+							console.log(data.length);
+							//$('.commentCount').empty();
+							$('.commentCount').append('<p>댓글 ('+data.length+')</p>');
+							//$('.board-commentDiv').empty();
+							$('.board-commentDiv').append(''+
+								'<div class="board-comment">'+
+									//'<div class="comment-img"></div>'+
+									'<div class="comment-content">'+
+										'<p class="comment-user">등록된 댓글이 없습니다.</p>'+
+										'<p class="comment-comment"></p>'+
+									'</div>'+
+								'</div>');
+						}
+					},
+					error:function(request,status,error){
+						console.log("** error code : " + request.status + "\n"
+							+ "message : " + request.responseText + "\n"
+							+ "error : " + error);
+					}
+				});
+			}
+			
+		}
+		
+		function addHeart(bnum){
+			var bnum = bnum;
+			var unum = '<c:out value="${loginUser.user_num}"/>';
+			
+			if(unum.length > 0){
+				//빈하트일때 좋아요 등록
+				if($('#h'+bnum).attr('src') == "resources/images/icon/menu/iconmonstr-heart-thin-72.png"){
+					$.ajax({
+						url:"BoardAddHeart.do",
+						data:{bnum:bnum, unum:unum},
+						success:function(data){	
+							if(data == "success"){
+								$('#h'+bnum).attr('src','resources/images/icon/menu/detailHeart.png');
+								$('#th'+bnum).attr('src','resources/images/icon/main/heart2.png');
+							}else{
+								alert('좋아요 실패');
+							}
+						},
+						error:function(request,status,error){
+							console.log("** error code : " + request.status + "\n"
+								+ "message : " + request.responseText + "\n"
+								+ "error : " + error);
+						}
+					});
+					
+				//꽉찬하트일때 좋아요 취소
+				}else if($('#h'+bnum).attr('src') == 'resources/images/icon/menu/detailHeart.png'){
+					$.ajax({
+						url:"BoardDelHeart.do",
+						data:{bnum:bnum, unum:unum},
+						success:function(data){	
+							if(data == "success"){
+								$('#h'+bnum).attr("resources/images/icon/menu/iconmonstr-heart-thin-72.png");
+								heartIcon()
+							}else{
+								alert('좋아요 취소 실패');
+							}
+						},
+						error:function(request,status,error){
+							console.log("** error code : " + request.status + "\n"
+								+ "message : " + request.responseText + "\n"
+								+ "error : " + error);
+						}
+					});
+			 	} 
+			}else{
+				alert('로그인 후 이용 가능합니다.');
+			}
+		}
+		
+		
+		// 댓글등록 ajax
+		function cSubmit(){
+			var comment = $('.c-content').val();
+			var unum = '<c:out value="${loginUser.user_num}"/>';
+			var bnum = $('.c-content').attr("id");
+			if(unum.length>0){
+				if(comment.length > 0){
+					$.ajax({
+						url:"BoardComment.do",
+						data:{comment:comment, unum:unum, bnum:bnum},
+						success:function(data){	
+							if(data == "success"){
+								getReplyList(bnum);
+								$('.c-content').val('');
+							}else{
+								alert('댓글 등록 실패');
+							}
+						},
+						error:function(request,status,error){
+							console.log("** error code : " + request.status + "\n"
+								+ "message : " + request.responseText + "\n"
+								+ "error : " + error);
+						}
+					});
+				}else{
+					alert('댓글을 입력해주세요.');
+				}
+			}else{
+				alert('로그인 후 이용 가능합니다.');
+			}
+			
 			
 		}
 		
