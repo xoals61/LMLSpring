@@ -39,10 +39,16 @@ a:hover {
     text-align: center;
     border: none;
     opacity: 1px;
-    color: #787878;
+    color: #e4e4e4;
     cursor: pointer;
     background: white;
 }
+
+.delbtn:hover{
+color: #787878;
+
+}
+
 .delbtn:focus{
 	outline: none;
 }
