@@ -35,6 +35,8 @@ public interface BoardService {
 
 	ArrayList<Board> getDetailHeart(int bnum);
 
+	int deleteComment(int cno);
+
 
 
 }

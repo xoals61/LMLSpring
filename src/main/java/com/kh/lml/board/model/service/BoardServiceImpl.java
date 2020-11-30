@@ -91,6 +91,11 @@ public class BoardServiceImpl implements BoardService {
 		return bDao.getDetailHeart(bnum);
 	}
 
+	@Override
+	public int deleteComment(int cno) {
+		return bDao.deleteComment(cno);
+	}
+
 
 
 

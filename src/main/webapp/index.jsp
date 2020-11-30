@@ -665,6 +665,7 @@
 					success:function(data){	
 						if(data.length > 0){
 							console.log(data);
+							var unum1 = '<c:out value="${loginUser.user_num}"/>';
 							$('.commentCount').empty();
 							$('.commentCount').append('<p>댓글 ('+data.length+')</p>');
 							$('.board-commentDiv').empty();
@@ -675,11 +676,16 @@
 											'<a href="./jiman/MyPage.html"><img src="resources/images/profileImg/'+ data[i].profile +'"></a>'+
 										'</div>'+
 										'<div class="comment-content">'+
-											'<p class="comment-user">'+ data[i].uname +'</p>'+
+											'<p class="comment-user" id="tag'+data[i].c_unum+'" onclick="tagComment(id);">'+ data[i].uname +'</p>'+
 											'<p class="comment-comment">'+ data[i].c_content +'</p>'+
+											'<div class="comment-delete del'+data[i].c_no+'"></div>'+
 										'</div>'+
 									'</div>');
+								if(data[i].c_unum == unum1){	// 댓글 단 사람이랑 로그인유저랑 같으면
+									$('.del'+data[i].c_no).append('<img src="resources/images/icon/menu/commentDelete.png" id="'+data[i].c_no+'" onclick="commentDelete(id,'+bnum+');">');
+								}
 							}
+							
 							
 						}else{
 							console.log(data.length);
@@ -762,6 +768,7 @@
 			var comment = $('.c-content').val();
 			var unum = '<c:out value="${loginUser.user_num}"/>';
 			var bnum = $('.c-content').attr("id");
+			
 			if(unum.length>0){
 				if(comment.length > 0){
 					$.ajax({
@@ -787,8 +794,14 @@
 			}else{
 				alert('로그인 후 이용 가능합니다.');
 			}
+		}
+		
+		// 태그 댓글등록 ajax
+		function tagComment(id){
+			var tagunum = id.substring(3);
+			var tagname = $('#'+id).html();
 			
-			
+			$('.c-content').val('@'+tagname+' ');
 		}
 		
 		// 댓글 리스트 ajax
@@ -801,6 +814,7 @@
 				dataType:"JSON",
 				success:function(data){	
 					if(data.length > 0){
+						var unum1 = '<c:out value="${loginUser.user_num}"/>';
 						console.log(data);
 						$('.commentCount').empty();
 						$('.commentCount').append('<p>댓글 ('+data.length+')</p>');
@@ -812,10 +826,14 @@
 										'<a href="./jiman/MyPage.html"><img src="resources/images/profileImg/'+ data[i].profile +'"></a>'+
 									'</div>'+
 									'<div class="comment-content">'+
-										'<p class="comment-user">'+ data[i].uname +'</p>'+
+										'<p class="comment-user" id="tag'+data[i].c_unum+'" onclick="tagComment(id);">'+ data[i].uname +'</p>'+
 										'<p class="comment-comment">'+ data[i].c_content +'</p>'+
+										'<div class="comment-delete del'+data[i].c_no+'"></div>'+	//id="del'+data[i].c_unum+'"
 									'</div>'+
 								'</div>');
+							if(data[i].c_unum == unum1){
+								$('.del'+data[i].c_no).append('<img src="resources/images/icon/menu/commentDelete.png" id="'+data[i].c_no+'" onclick="commentDelete(id,'+bnum+');">');
+							}
 						}
 						
 					}else{
@@ -839,6 +857,30 @@
 						+ "error : " + error);
 				}
 			});
+		}
+		
+		// 댓글 삭제
+		function commentDelete(id,bnum){
+			console.log('삭제 아뒤, 비넘 : ' + id + ', ' + bnum);
+			var del = confirm('댓글을 삭제하시겠습니까?');
+			if(del == true){
+				$.ajax({
+					url:"CommentDelete.do",
+					data:{cno:id},
+					success:function(data){	
+						if(data == "success"){
+							getReplyList(bnum);
+						}else{
+							alert('댓글 삭제 실패');
+						}
+					},
+					error:function(request,status,error){
+						console.log("** error code : " + request.status + "\n"
+							+ "message : " + request.responseText + "\n"
+							+ "error : " + error);
+					}
+				});
+			}else{}
 		}
 
 		

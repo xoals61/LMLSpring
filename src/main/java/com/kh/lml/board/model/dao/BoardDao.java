@@ -73,6 +73,10 @@ public class BoardDao {
 		return (ArrayList)sqlSession.selectList("boardMapper.getDetailHeart",bnum);
 	}
 
+	public int deleteComment(int cno) {
+		return sqlSession.update("boardMapper.deleteComment",cno);
+	}
+
 
 
 

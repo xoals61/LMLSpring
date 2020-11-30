@@ -129,6 +129,11 @@
 		WHERE H_BNUM = #{bnum}
 	</select>
 	
+	<update id="deleteComment" parameterType="_int"> 
+		DELETE FROM LML_COMMENT
+		WHERE C_NO = #{cno}
+	</update>
+	
 </mapper>
 
 

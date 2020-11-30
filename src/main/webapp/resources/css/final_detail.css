@@ -284,10 +284,24 @@ a:hover{
 }
 
 .board-commentWrite{
-    width: 600px;
+    width: 650px;
     height: 60px;
 }
 
+
+.comment-delete{
+	float: left;
+    width: 25px;
+    height: 25px;
+    margin-top: 11px;
+}
+
+.comment-delete img{
+	float: left;
+    width: 15px;
+    height: 15px;
+    cursor:pointer;
+}
 
 
 .comment-write{

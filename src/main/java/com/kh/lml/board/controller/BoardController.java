@@ -272,6 +272,20 @@ public class BoardController {
 		}
 	}
 	
+	// 댓글 삭제
+	@ResponseBody
+	@RequestMapping(value="CommentDelete.do")
+	public String CommentDelete(int cno) {
+	
+		int result = bService.deleteComment(cno);
+	
+		if(result > 0) {
+			return "success";
+		}else {
+			return "fail";
+		}
+	}
+	
 	// 좋아요 등록
 	@ResponseBody
 	@RequestMapping(value="BoardAddHeart.do")
@@ -332,6 +346,8 @@ public class BoardController {
 		
 		return jsonStr;
 	}
+	
+	
 	
 
 	
