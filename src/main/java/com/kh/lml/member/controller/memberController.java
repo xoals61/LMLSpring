@@ -112,7 +112,7 @@ public class memberController {
 		ArrayList<ChatRoom> messageList = mService.messageList(id);
 		
 		for(int i = 0 ; i < messageList.size();i++) {
-			messageList.get(i).setRecentChat(mService.recentChat(messageList.get(i).getChatroomid()));
+			messageList.get(i).setRecentChat(textLengthOverCut(mService.recentChat(messageList.get(i).getChatroomid()), 5, "..."));
 		}
 		
 		
@@ -133,6 +133,25 @@ public class memberController {
 		
 		
 	}
+	
+	
+	
+	private String textLengthOverCut(String txt,int len,String lastTxt) {
+		if(txt!=null) {
+        if (txt.length()> len) {
+            txt = txt.substring(0,len) + lastTxt;
+        }
+		}
+        return txt;
+    }
+
+	
+	
+	
+	
+	
+	
+	
 	/**
 	 * 아이디 중복체크
 	 *  @ResponseBody를사용
