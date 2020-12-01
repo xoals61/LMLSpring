@@ -548,6 +548,7 @@
 											'<div class="comment-delete del'+data[i].c_no+'"></div>'+
 										'</div>'+
 									'</div>');
+								$('.board-commentDiv').scrollTop($('.board-commentDiv').prop('scrollHeight'));
 								if(data[i].c_unum == unum1){	// 댓글 단 사람이랑 로그인유저랑 같으면
 									$('.del'+data[i].c_no).append('<img src="resources/images/icon/menu/commentDelete.png" id="'+data[i].c_no+'" onclick="commentDelete(id,'+bnum+');">');
 								}
@@ -692,6 +693,7 @@
 							if(data == "success"){
 								getReplyList(bnum);
 								$('.c-content').val('');
+								$('.board-commentDiv').scrollTop($('.board-commentDiv').prop('scrollHeight'));
 							}else{
 								alert('댓글 등록 실패');
 							}
@@ -751,7 +753,8 @@
 								$('.del'+data[i].c_no).append('<img src="resources/images/icon/menu/commentDelete.png" id="'+data[i].c_no+'" onclick="commentDelete(id,'+bnum+');">');
 							}
 						}
-						
+						console.log("scrollHeight : " + $('.board-commentDiv').prop('scrollHeight'));
+						$('.board-commentDiv').scrollTop($('.board-commentDiv').prop('scrollHeight'));
 					}else{
 						console.log(data.length);
 						//$('.commentCount').empty();
