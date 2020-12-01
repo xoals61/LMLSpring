@@ -81,6 +81,10 @@ public interface MemberService {
 
 	ArrayList<Integer> coupleFind(int uNum);
 
+	int deleteChat(String roomid);
+
+	int deleteChatLog(String roomid);
+
 
 
 

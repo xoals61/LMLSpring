@@ -134,8 +134,13 @@ public class MemberDao {
 		
 	}
 	public ArrayList<Integer> coupleFine(int uNum) {
-		// TODO Auto-generated method stub
 		return (ArrayList)sqlSession.selectList("memberMapper.coupleFind", uNum);
+	}
+	public int deleteChat(String roomid) {
+		return sqlSession.delete("memberMapper.deleteChat", roomid);
+	}
+	public int deleteChatLog(String roomid) {
+		return sqlSession.delete("memberMapper.deleteChatLog",roomid);
 	}
 
 }

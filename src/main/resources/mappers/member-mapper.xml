@@ -315,6 +315,15 @@ WHERE FROM_FOLLOW IN (SELECT TO_FOLLOW
 	
 	
 	</select>
+	<delete id="deleteChat" parameterType="String">
+	DELETE FROM CHAT_ROOM
+	WHERE CHATROOMID = #{roomid}
+	</delete>
+	
+	<delete id="deleteChatLog" parameterType="String">
+	DELETE FROM CHAT_RECORD
+	WHERE CHATROOMID = #{roomid}
+	</delete> 
 	
 </mapper>
 

@@ -22,7 +22,6 @@ import org.json.simple.parser.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -712,6 +711,19 @@ public class memberController {
 		
 	}
 	
-	
+	@RequestMapping("deleteChat.do")
+	public String deleteChat(String roomid,Model model) {
+		System.out.println("여기온다고? : " + roomid);
+		
+		int result = mService.deleteChat(roomid);
+		int result2 = mService.deleteChatLog(roomid);
+		if(result >0 || result2>0) {
+		String id = ((Member)model.getAttribute("loginUser")).getId();
+		return "redirect:Message.do?id=" + id;
+		}else {
+			model.addAttribute("msg","메세지 삭제 실패");
+			return "common/errorPage";
+		}
+	}
 	
 }

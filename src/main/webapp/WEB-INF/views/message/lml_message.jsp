@@ -55,8 +55,7 @@
 									<div class="user-li">
 										<div class="li-userId">${message.touser}</div>
 										<div class="${message.chatroomid} li-direct">${message.recentChat}</div>
-										
-										<button class="delbtn" onclick="location.href=">X</button>
+										<button class="delbtn" onclick="location.href='deleteChat.do?roomid=${message.chatroomid}'">X</button>
 										<c:if test="${message.count ne 0 }">
 										<div class="alarm alarm${message.chatroomid}">${message.count}</div>
 										</c:if>
@@ -206,7 +205,12 @@
        					success : function(data) {
        						
        						console.log(data);
-       						
+       						if(data == "fail"){
+       							alert("상대방이 대화방을 나가셨습니다..");
+       							location.href="Message.do?id='${loginUser.id}'";
+       							
+       							
+       						}
        					},
        					error : function(jqxhr, textStatus, errorThrown) {
        						console.log("ajax 오류");

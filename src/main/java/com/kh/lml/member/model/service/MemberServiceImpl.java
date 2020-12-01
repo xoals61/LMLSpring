@@ -210,6 +210,16 @@ public class MemberServiceImpl implements MemberService {
 		return mDao.coupleFine(uNum);
 	}
 
+	@Override
+	public int deleteChat(String roomid) {
+		return mDao.deleteChat(roomid);
+	}
+
+	@Override
+	public int deleteChatLog(String roomid) {
+		return mDao.deleteChatLog(roomid);
+	}
+
 	
 
 
