@@ -62,26 +62,32 @@
 									<div id="cont-write" class="cont-write">
 										<textarea id="b_content" name="b_content" placeholder="내용을 입력해주세요"></textarea>
 									</div>
-									<div id="hihi" style="width: 250px; height: 100px;  margin-left: 600px;background: yellow;">
-									</div>
-									<div id="hih2" style="width: 250px; height: 100px; margin-left :300px; background: red;">
-									</div>
 								</div>
 							</div>
 							<div class="div-cont1">
-								<div id="post-cont"><h5>태그</h5></div>
-								<div class="post-cont-div1">
-									<!-- <form action="#" id="tag" method="post"> -->
-										<input type="text" id="hashtag" size="7" placeholder="태그입력" />
-										<input type="hidden" id="hashArr" name="b_hash" value=""/>
-										<button type="button" id="tagbtn" onclick="addhash();">게시글 태그 등록</button>
-									<!-- </form> -->
-									<div class="post-cont-div2">
-								<input type="text" id="hashtag" size="7" placeholder="태그입력" />
-										<input type="hidden" id="hashArr" name="b_hash" value=""/>
-										<button type="button" id="tagbtn" onclick="addhash();">사용자 태그 등록</button>
+								<div id="post-cont" style="display: flex;"><h5 style=" padding-left: 10px;">게시글 태그</h5> <h5 style="  padding-left: 507px;">사용자 태그</h5></div>
+								<div style="display: -webkit-inline-box;">
+									<div id="hihi" style="width: 250px; height: 100px;border: solid 1px gainsboro; overflow-y: scroll; ">
 									</div>
+									
+									<div class="post-cont-div1" style= "padding-top: 25px; padding-left: 20px;">
+									<!-- <form action="#" id="tag" method="post"> -->
+										<input type="text"  class="tagtag" autocomplete=”off” id="hashtag" size="7" placeholder="게시글 태그입력" />
+										<input type="hidden" id="hashArr" name="b_hash" value=""/>
+										<button type="button" class="tagbtn" id="tagbtn" onclick="addhash();">태그 등록</button>
 								</div>
+									
+									<div id="hih2" style="width: 250px; height: 100px; margin-left: 332px;  border: solid 1px gainsboro;
+																	 overflow-y: scroll;">
+									</div>
+									
+									<div class="post-cont-div2">
+								<input type="text" id="hashtag" autocomplete=”off”  class="tagtag" size="7" placeholder="사용자 태그입력" />
+										<input type="hidden"  id="hashArr" name="b_hash" value=""/>
+										<button type="button"  class="tagbtn"  id="tagbtn" onclick="addhash();"> 태그 등록</button>
+									</div>
+									</div>
+								
 							</div>
 
 							<div class="div-tag">
@@ -152,7 +158,7 @@
 			word = splitedArray[word];
 	 	  	var ab = word.replace("#",""); 
 		   	if(word.indexOf('#') == 0){
-			   word = '<a href=\'Search.do?keyword='+ab+'\'>'+word+'</a>';
+			   word = '<a style=" margin-right: 9px;" href=\'Search.do?keyword='+ab+'\'>'+word+'</a>';
 		   	}
 		   	
 		   	linkedContent += word+' ';
@@ -171,7 +177,7 @@
 			
 			hasharr += '#'+$('#hashtag').val()+',';
 			console.log("제이쿼리는들어가? " + hasharr);
-			
+			$('#hihi').scrollTop($('#hihi').prop('scrollHeight'));
 			$('#hashArr').val(hasharr);
 		
 			$('#hashtag').val("");

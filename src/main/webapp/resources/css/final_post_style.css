@@ -4,7 +4,7 @@ section {
 
 /*---------------------------------전체 하단 div---------------------------------*/
 .AContent {
-	height: 900px;
+	height: 100%;
 	background-color: rgb(248, 248, 248);
 }
 
@@ -44,6 +44,7 @@ section {
 .div-img, .div-cont, .div-tag {
 	width: 1350px;
 	height: 250px;
+	
 }
 
 .post-img {
@@ -78,15 +79,14 @@ section {
 	width: 60px;
 	height: 60px;
 	margin: 60px;
-	float:left;
+	float: left;
 }
 
 .uploadImg {
 	display: none;
 	position: absolute;
-	float:left;
+	float: left;
 }
-
 
 .img-preview {
 	width: 1155px;
@@ -165,6 +165,9 @@ textarea:focus, select:focus, input:focus, button:focus {
 	font-weight: 400;
 	color: black;
 }
+.styleTagBtn:focus{
+	outline: none;
+}
 
 .tagArea {
 	width: 1328px;
@@ -242,14 +245,44 @@ ul li.tag-item {
 
 }
 .post-cont-div1 {
-	width: 1350px;
-	height: 199px;
-	position: absolute;
-	margin-top: 50px;
-	background: red;
+padding-top: 25px;
+    padding-left: 20px;
 }
 
-.div-cont1 {
-    position: relative;
-    margin: 0px 0 1px 12px;
+
+.post-cont-div2 {
+ padding-top: 25px;
+    padding-left: 20px;
+}
+.tagbtn{
+	    position: absolute;
+    margin: 0 0px 0px 149px;
+    padding-bottom: 2px;
+    width: 85px;
+    height: 45px;
+    border: 0px;
+    cursor: pointer;
+    background: rgb(236, 236, 236);
+    border-radius: 10px;
+    font-weight: 400;
+    color: black;
+}
+.tagbtn:hover{
+	border:1px solid #c0c0c0;
+	background: none;
+}
+.tagbtn:focus{
+	outline: none;
+}
+
+
+.tagtag{
+       height: 35px;
+    width: 136px;
+    position: absolute;
+    border: 0;
+    margin-right: 2px;
+    border-bottom: 1px solid #554f4f;
+    margin-bottom: 13px;
+
 }
