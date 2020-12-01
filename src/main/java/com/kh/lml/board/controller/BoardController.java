@@ -28,6 +28,7 @@ import com.google.gson.JsonIOException;
 import com.kh.lml.board.model.service.BoardService;
 import com.kh.lml.board.model.vo.Board;
 import com.kh.lml.board.model.vo.Comment;
+import com.kh.lml.member.model.vo.Member;
 
 @SessionAttributes("loginUser")
 @Controller
@@ -305,6 +306,18 @@ public class BoardController {
 		String jsonStr = mapper.writeValueAsString(list);
 		
 		return jsonStr;
+	}
+	
+	// 팔로우 했는지 불러오기
+	@ResponseBody
+	@RequestMapping(value="BoardDetailFollowList.do", produces="application/json; charset=UTF-8")
+	public int BoardDetailFollowList(int unum, int bunum) throws JsonIOException, JsonProcessingException{
+		
+		Member m = new Member(unum, bunum);
+		
+		int res = bService.getFollowList(m);
+		
+		return res;
 	}
 	
 	

@@ -6,6 +6,7 @@ import java.util.Map;
 
 import com.kh.lml.board.model.vo.Board;
 import com.kh.lml.board.model.vo.Comment;
+import com.kh.lml.member.model.vo.Member;
 
 public interface BoardService {
 
@@ -36,6 +37,8 @@ public interface BoardService {
 	ArrayList<Board> getDetailHeart(int bnum);
 
 	int deleteComment(int cno);
+
+	int getFollowList(Member m);
 
 
 

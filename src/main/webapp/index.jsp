@@ -109,172 +109,12 @@
 	</script>
 	
 	<section>
-		<!-- ===================================================== 모달 ======================================================== -->
 		<div class="myModal" id="myModal" style="display: none;">
 			<div class="board-detail" id="board-detail" style="display: none;">
-				<!-- <div class="board-img">
-					<img src="resources/images/detailImg/theman.jpg">
-				</div>
-				<div class="board-right">
-					<div class="board-user">
-						<div class="board-userImg">
-							<a href="./jiman/MyPage.html"><img
-								src="resources/images/detailImg/40x40man.jpg"></a>
-						</div>
-						<a href="./jiman/MyPage.html"><div class="board-id">
-								<p>__maybenotyet__</p>
-							</div></a>
-						<div class="board-follow">팔로잉</div>
-					</div>
-					<div class="board-textDiv">
-						<div class="board-text">글 내용</div>
-						<div class="board-hashtag">#가을코디 #맨투맨 #맨투맨코디 #흑청바지 #청바지코디
-							#캐주얼룩 #캐주얼코디 #남자데일리코디</div>
-					</div>
-					<div class="board-stateicon">
-						<div class="board-heartCount">좋아요 234개</div>
-						<div class="board-heart">
-							<img
-								src="resources/images/icon/menu/iconmonstr-heart-thin-72.png">
-						</div>
-						<div class="board-etc">
-							<img src="resources/images/icon/main/menu1.png">
-						</div>
-					</div>
-					<div class="board-clothesInfo">
-						<div class="clothesInfo-div">
-							<div class="clothes-img">
-								<img src="resources/images/detailImg/top.png">
-							</div>
-							<div class="clothes-p">상의</div>
-							<div class="clothes-info">아디다스</div>
-						</div>
-						<div class="clothesInfo-div">
-							<div class="clothes-img">
-								<img src="resources/images/detailImg/pants.png">
-							</div>
-							<div class="clothes-p">하의</div>
-							<div class="clothes-info">아디다스</div>
-						</div>
-						<div class="clothesInfo-div">
-							<div class="clothes-img">
-								<img src="resources/images/detailImg/shoes.png">
-							</div>
-							<div class="clothes-p">신발</div>
-							<div class="clothes-info">아디다스</div>
-						</div>
-						<div class="clothesInfo-div">
-							<div class="clothes-img">
-								<img src="resources/images/detailImg/watch.png">
-							</div>
-							<div class="clothes-p">Acc</div>
-							<div class="clothes-info">아디다스</div>
-						</div>
-						<div class="clothesInfo-div">
-							<div class="clothes-img">
-								<img src="resources/images/detailImg/bag.png">
-							</div>
-							<div class="clothes-p">Etc</div>
-							<div class="clothes-info">아디다스</div>
-						</div>
-					</div>
-				</div>
-				<div class="board-bottom">
-					<div class="commentCount">
-						<p>댓글 (8)</p>
-					</div>
-					<div class="board-commentDiv">
-						<div class="board-comment">
-							<div class="comment-img">
-								<a href="./jiman/MyPage.html"><img
-									src="resources/images/mainImg/andy.jpg"></a>
-							</div>
-							<div class="comment-content">
-								<p class="comment-user">iamandy</p>
-								<p class="comment-comment">댓글1</p>
-							</div>
-						</div>
-						<div class="board-comment">
-							<div class="comment-img">
-								<a href="./jiman/MyPage.html"><img
-									src="resources/images/mainImg/andy.jpg"></a>
-							</div>
-							<div class="comment-content">
-								<p class="comment-user">iamandy</p>
-								<p class="comment-comment">댓글1</p>
-							</div>
-						</div>
-						<div class="board-comment">
-							<div class="comment-img">
-								<a href="./jiman/MyPage.html"><img
-									src="resources/images/mainImg/andy.jpg"></a>
-							</div>
-							<div class="comment-content">
-								<p class="comment-user">iamandy</p>
-								<p class="comment-comment">댓글1</p>
-							</div>
-						</div>
-						<div class="board-comment">
-							<div class="comment-img">
-								<a href="./jiman/MyPage.html"><img
-									src="resources/images/mainImg/andy.jpg"></a>
-							</div>
-							<div class="comment-content">
-								<p class="comment-user">iamandy</p>
-								<p class="comment-comment">댓글1</p>
-							</div>
-						</div>
-						<div class="board-comment">
-							<div class="comment-img">
-								<a href="./jiman/MyPage.html"><img
-									src="resources/images/mainImg/andy.jpg"></a>
-							</div>
-							<div class="comment-content">
-								<p class="comment-user">iamandy</p>
-								<p class="comment-comment">댓글1</p>
-							</div>
-						</div>
-						<div class="board-comment">
-							<div class="comment-img">
-								<a href="./jiman/MyPage.html"><img
-									src="resources/images/mainImg/andy.jpg"></a>
-							</div>
-							<div class="comment-content">
-								<p class="comment-user">iamandy</p>
-								<p class="comment-comment">댓글1</p>
-							</div>
-						</div>
-						<div class="board-comment">
-							<div class="comment-img">
-								<a href="./jiman/MyPage.html"><img
-									src="resources/images/mainImg/andy.jpg"></a>
-							</div>
-							<div class="comment-content">
-								<p class="comment-user">iamandy</p>
-								<p class="comment-comment">댓글1</p>
-							</div>
-						</div>
-						<div class="board-comment">
-							<div class="comment-img">
-								<a href="./jiman/MyPage.html"><img
-									src="resources/images/mainImg/andy.jpg"></a>
-							</div>
-							<div class="comment-content">
-								<p class="comment-user">iamandy</p>
-								<p class="comment-comment">댓글1</p>
-							</div>
-						</div>
-					</div>
-					<div class="board-commentWrite">
-						<div class="comment-write">
-							<input type="text" placeholder="댓글 달기...">
-						</div>
-						<div class="comment-submit">게시</div>
-					</div>
-				</div> -->
+				
 			</div>
 		</div>
-		<!-- ===================================================== 모달 ======================================================== -->
+		
 		<div class="scContent">
 			<div class="upBtn">
 				<img src="resources/images/icon/main/arrow.png">
@@ -509,7 +349,7 @@
 									'<a href="userPage.do?id='+data[0].b_user_id+'"><div class="board-id">'+
 											'<p>'+ data[0].b_name +'</p>'+
 										'</div></a>'+
-									'<div class="board-follow">팔로잉</div>'+
+									'<div class="board-follow" id="fo'+data[0].b_user_num+'" onclick="addFollow(id);"></div>'+
 								'</div>'+
 								'<div class="board-textDiv">'+
 									'<div class="board-text">'+ data[0].b_content +'</div>'+
@@ -542,6 +382,8 @@
 									'<div class="comment-submit" onclick="cSubmit();">게시</div>'+
 								'</div>'+
 							'</div>');
+					
+					followList(data[0].b_user_num);
 					
 					if(data[0].b_top !=null){
 						$('.board-clothesInfo').append('<div class="clothesInfo-div">'+
@@ -656,6 +498,32 @@
 				});
 			}
 			
+			function followList(bunum){
+				// 디테일 팔로우리스트 가져오기
+				var unum = '<c:out value="${loginUser.user_num}"/>';
+				var bunum = bunum;
+				if(unum.length>0){
+					if(unum != bunum){
+						$.ajax({
+							url:"BoardDetailFollowList.do",
+							data:{unum:unum,bunum:bunum},
+							success:function(data){
+								if(data == 0){
+									$('.board-follow').html('팔로우');
+								}else if(data == 1){
+									console.log('팔로우 했음 1 : ' + data);
+								}
+							},
+							error:function(request,status,error){
+								console.log("** error code : " + request.status + "\n"
+									+ "message : " + request.responseText + "\n"
+									+ "error : " + error);
+							}
+						});
+					}
+				}
+			}
+			
 			// 디테일 댓글 리스트
 			function replyList(){
 				$.ajax({
@@ -664,7 +532,6 @@
 					dataType:"JSON",
 					success:function(data){	
 						if(data.length > 0){
-							console.log(data);
 							var unum1 = '<c:out value="${loginUser.user_num}"/>';
 							$('.commentCount').empty();
 							$('.commentCount').append('<p>댓글 ('+data.length+')</p>');
@@ -688,7 +555,6 @@
 							
 							
 						}else{
-							console.log(data.length);
 							//$('.commentCount').empty();
 							$('.commentCount').append('<p>댓글 ('+data.length+')</p>');
 							//$('.board-commentDiv').empty();
@@ -710,6 +576,35 @@
 				});
 			}
 			
+			
+		}
+		
+		function addFollow(bunum){
+			var fromFollow = '<c:out value="${loginUser.user_num}"/>';
+			var toFollow = bunum.substring(2);
+			
+			if(fromFollow.length>0){
+				var qfollow = confirm('팔로우 하시겠습니까?');
+				if(qfollow == true){
+					$.ajax({
+						url:"followBtn.do",
+						data:{toFollow:toFollow, fromFollow:fromFollow},
+						type:"post",
+						success:function(data){
+							if(data == "success"){
+								$('#'+bunum).html('');
+							}else{
+								alert("실패");
+							}
+						},
+						error:function(jqxhr, textStatus,errorThrown){
+							console.log("ajax 처리 실패");
+						}
+					});
+				}
+			}else{
+				alert('로그인 후 이용 가능합니다.');
+			}
 		}
 		
 		function addHeart(bnum){
@@ -824,7 +719,6 @@
 		
 		// 댓글 리스트 ajax
 		function getReplyList(bnum){
-			console.log('댓글 리스트 ajax 실행');
 			console.log('해당 댓글 글넘 : ' + bnum);
 			$.ajax({
 				url:"BoardDetailComm.do",
@@ -833,7 +727,6 @@
 				success:function(data){	
 					if(data.length > 0){
 						var unum1 = '<c:out value="${loginUser.user_num}"/>';
-						console.log(data);
 						$('.commentCount').empty();
 						$('.commentCount').append('<p>댓글 ('+data.length+')</p>');
 						$('.board-commentDiv').empty();

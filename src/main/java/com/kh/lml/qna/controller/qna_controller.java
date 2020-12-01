@@ -39,24 +39,27 @@ public class qna_controller {
 			@RequestParam(value="qUploadImg5", required=false) MultipartFile file5) {	
 
 		MultipartFile[] fileList = {file1,file2,file3,file4,file5};
-
 		String[] renameFileList = new String[5];
+		if(fileList[0].getOriginalFilename().equals("")) {
+				renameFileList[0] = "ClipartKey_317802201201150215.png";
+		}else {
+			for(int i = 0; i < fileList.length; i++) {
+				if(!fileList[i].getOriginalFilename().equals("")) {
+					String renameFileName = saveFile(fileList[i],request);
 
-		for(int i = 0; i < fileList.length; i++) {
-			if(!fileList[i].getOriginalFilename().equals("")) {
-				String renameFileName = saveFile(fileList[i],request);
+					if(renameFileName != null) { 
+						q.setOriginalFileName(fileList[i].getOriginalFilename());
+						q.setRenameFileName(renameFileName);
 
-				if(renameFileName != null) { 
-					q.setOriginalFileName(fileList[i].getOriginalFilename());
-					q.setRenameFileName(renameFileName);
+						renameFileList[i] = renameFileName;
 
-					renameFileList[i] = renameFileName;
-
-				}else {
-					renameFileList[i] = null;
+					}else {
+						renameFileList[i] = null;
+					}
 				}
 			}
 		}
+
 
 
 		q.setImage1(renameFileList[0]);
@@ -140,7 +143,7 @@ public class qna_controller {
 
 		return jsonStr;
 	}
-	
+
 	@RequestMapping("qnaPage.do")
 	public String qnaPage() {
 		System.out.println("qnaPage로 이동");

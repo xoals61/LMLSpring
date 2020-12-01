@@ -296,6 +296,14 @@
 		WHERE CHATROOMID=#{roomid} AND TOUSER= #{name}
 	</update>
 	
+	<select id="getFollowList" parameterType="Board" resultType="_int">
+		SELECT COUNT(*)
+		FROM FOLLOW_LIST
+		WHERE FROM_FOLLOW = #{from_follow}
+		AND TO_FOLLOW = #{to_follow}
+	</select>
+	
+	
 </mapper>
 
 
