@@ -63,14 +63,14 @@
 						<div class="info">
 							<div class="iftext_1">
 								<span><a id="myboard" style="color: black">게시글</a>&nbsp;
-									${boardCount} </span>
+									<span id="boardCount">${boardCount}</span></span>
 							</div>
 							<div class="iftext">
 								<span><a id="myfalwer" style="color: black">팔로워</a>&nbsp;
-									${Follower} </span>
+									<span id="follwerCount">${Follower}</span> </span>
 							</div>
 							<div class="iftext">
-								<span><a id="myfalowoo" style="color: black">팔로우</a>&nbsp; ${Follow}</span>
+							<span><a id="myfalowoo" style="color: black">팔로우</a>&nbsp;<span id="followCount"> ${Follow} </span></span>
 							</div>
 						</div>
 						<div class="info">
@@ -141,7 +141,7 @@
 							console.log(data[i].id);
 							console.log(data[i].rename_profile_img);
 							var img = "<table class='add_table'><tr><td class='imgtd' rowspan='2' style='width: 10%;'><a class='taga' href='userPage.do?id="+data[i].id+"'><img style='width:75px; height:69px;' class='userimg' src='resources/images/profileImg/"+ data[i].rename_profile_img+"'></a></td>"+
-							"<td class='idtd' style='width: 30%;'><a class='taga' href='userPage.do?id="+data[i].id+"'>"+data[i].id+"</a></td><td class='btntd' rowspan='2' style='width: 30%;'>"+ "<input class='button2'  name='button2' type='button' value='팔로우' onclick='followBtn(this.name, this.id);'>"
+							"<td class='idtd' style='width: 30%;'><a class='taga' href='userPage.do?id="+data[i].id+"'>"+data[i].id+"</a></td><td class='btntd' rowspan='2' style='width: 30%;'>"+ "<input class='button2' id='"+ data[i].from_follower +"'  name='button2' type='button' value='팔로우' onclick='followBtn(this.name, this.id);'>"
 									+"</td></tr><tr><td  class='nametd'><a class='taga' href='userPage.do?id="+data[i].id+"'>"+data[i].uname+"</a></td></tr></table>";
 							
 						/* $('.mo_fallower').append("<tr><td class='imgtd' rowspan='2' style='width:10%'><img class='userimg' src='resources/images/profileImg/"+data[i].rename_profile_img+"></tr></td>"); */
@@ -287,8 +287,11 @@
       						type:"post",
       						success:function(data){
       							if(data == "success"){
-      								$('#'+id).parent().parent().parent().parent().remove();
-      								
+      								$('.board-detail1').find('#'+id).parent().parent().parent().parent().remove();
+      								$('#followCount').html(Number($('#followCount').html())-1);
+      								$('.mo_fallower').find('#'+id).prop("name",'button2');
+      								$('.mo_fallower').find('#'+id).prop("class",'button2');
+      								$('.mo_fallower').find('#'+id).prop("value",'팔로우');
       							}else{
       								alert("실패");
       							}
@@ -307,7 +310,7 @@
       				if(followQ){
       					
       					var toFollow = id;	// 팔로우 할 상대
-      					var fromFollow = '<c:out value="${fromFollow}"/>';	// 본인
+      					var fromFollow = '${loginUser.user_num}';	// 본인
       					
       					$.ajax({
       						url:"followBtn.do",
@@ -315,9 +318,13 @@
       						type:"post",
       						success:function(data){
       							if(data == "success"){
-      								$('#'+id).prop('class','button1');
-      								$('#'+id).prop('name','button1');
-      								$('#'+id).prop('value','팔로잉');
+      								console.log("followBtn");
+      								$('.mo_fallower').find('#'+id).prop("class",'button1');
+      								$('.mo_fallower').find('#'+id).prop("value",'팔로잉');
+      								$('.mo_fallower').find('#'+id).prop("name",'button1');
+      								$('#followCount').html(Number($('#followCount').html())+1);
+      								var btn = $('.mo_fallower').find('#'+id).parent().parent().parent().parent().clone();
+      								$('.mo_fallowoo').append(btn);
       							}else{
       								alert("실패");
       							}
