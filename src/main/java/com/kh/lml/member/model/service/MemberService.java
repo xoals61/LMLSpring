@@ -79,6 +79,8 @@ public interface MemberService {
 
 	int searchtagCount(String keyword);
 
+	ArrayList<Integer> coupleFind(int uNum);
+
 
 
 

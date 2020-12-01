@@ -205,6 +205,11 @@ public class MemberServiceImpl implements MemberService {
 		return mDao.tagcount(keyword);
 	}
 
+	@Override
+	public ArrayList<Integer> coupleFind(int uNum) {
+		return mDao.coupleFine(uNum);
+	}
+
 	
 
 

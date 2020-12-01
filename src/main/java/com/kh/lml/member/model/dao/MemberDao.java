@@ -133,5 +133,9 @@ public class MemberDao {
 		return sqlSession.selectOne("jm-board-mapper.postCount",keyword);
 		
 	}
+	public ArrayList<Integer> coupleFine(int uNum) {
+		// TODO Auto-generated method stub
+		return (ArrayList)sqlSession.selectList("memberMapper.coupleFind", uNum);
+	}
 
 }

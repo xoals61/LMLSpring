@@ -70,7 +70,7 @@
 									<span id="follwerCount">${Follower}</span> </span>
 							</div>
 							<div class="iftext">
-							<span><a id="myfalowoo" style="color: black">팔로우</a>&nbsp;<span id="followCount"> ${Follow} </span></span>
+							<span><a id="myfalowoo" style="color: black">팔로우</a>&nbsp;<span id="followCount">${Follow}</span></span>
 							</div>
 						</div>
 						<div class="info">
@@ -140,8 +140,17 @@
 						for(var i = 0; i<a;i++){
 							console.log(data[i].id);
 							console.log(data[i].rename_profile_img);
+							var value;
+							if(data[i].btn=="button1"){
+								value = '팔로잉';
+							}else{
+								value = '팔로우';
+							}
+							
+							
+							
 							var img = "<table class='add_table'><tr><td class='imgtd' rowspan='2' style='width: 10%;'><a class='taga' href='userPage.do?id="+data[i].id+"'><img style='width:75px; height:69px;' class='userimg' src='resources/images/profileImg/"+ data[i].rename_profile_img+"'></a></td>"+
-							"<td class='idtd' style='width: 30%;'><a class='taga' href='userPage.do?id="+data[i].id+"'>"+data[i].id+"</a></td><td class='btntd' rowspan='2' style='width: 30%;'>"+ "<input class='button2' id='"+ data[i].from_follower +"'  name='button2' type='button' value='팔로우' onclick='followBtn(this.name, this.id);'>"
+							"<td class='idtd' style='width: 30%;'><a class='taga' href='userPage.do?id="+data[i].id+"'>"+data[i].id+"</a></td><td class='btntd' rowspan='2' style='width: 30%;'>"+ "<input class='"+data[i].btn+"' id='"+ data[i].from_follower +"'  name='"+data[i].btn+"' type='button' value='"+value+"' onclick='followBtn(this.name, this.id);'>"
 									+"</td></tr><tr><td  class='nametd'><a class='taga' href='userPage.do?id="+data[i].id+"'>"+data[i].uname+"</a></td></tr></table>";
 							
 						/* $('.mo_fallower').append("<tr><td class='imgtd' rowspan='2' style='width:10%'><img class='userimg' src='resources/images/profileImg/"+data[i].rename_profile_img+"></tr></td>"); */
@@ -181,8 +190,16 @@
 						for(var i = 0; i<a;i++){
 							console.log(data[i].id);
 							console.log(data[i].rename_profile_img);
+							var value;
+							if(data[i].btn=="button1"){
+								value = '팔로잉';
+							}else{
+								value = '팔로우';
+							}
+							
+							
 							var img = "<table class='add_table'><tr><td class='imgtd' rowspan='2' style='width: 10%;'><a class='taga' href='userPage.do?id="+data[i].id+"'><img style='width:75px; height:69px;' class='userimg' src='resources/images/profileImg/"+ data[i].rename_profile_img+"'></a></td>"+
-							"<td class='idtd' style='width: 30%;'><a class='taga' href='userPage.do?id="+data[i].id+"'>"+data[i].id+"</a></td><td class='btntd' rowspan='2' style='width: 30%;'>"+ "<input class='button1' id='"+data[i].to_follow+"' name='button1' type='button' value='팔로잉' onclick='followBtn(this.name, this.id);'>"
+							"<td class='idtd' style='width: 30%;'><a class='taga' href='userPage.do?id="+data[i].id+"'>"+data[i].id+"</a></td><td class='btntd' rowspan='2' style='width: 30%;'>"+ "<input class='"+data[i].btn+"' id='"+ data[i].to_follow +"'  name='"+data[i].btn+"' type='button' value='"+value+"' onclick='followBtn(this.name, this.id);'>"
 									+"</td></tr><tr><td  class='nametd'><a class='taga' href='userPage.do?id="+data[i].id+"'>"+data[i].uname+"</a></td></tr></table>";
 							
 						/* $('.mo_fallower').append("<tr><td class='imgtd' rowspan='2' style='width:10%'><img class='userimg' src='resources/images/profileImg/"+data[i].rename_profile_img+"></tr></td>"); */

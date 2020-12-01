@@ -303,6 +303,18 @@
 		AND TO_FOLLOW = #{to_follow}
 	</select>
 	
+	<select id="coupleFind" parameterType="int" resultType="_int">
+		SELECT FROM_FOLLOW AS MAT_FOLL
+FROM FOLLOW_LIST
+WHERE FROM_FOLLOW IN (SELECT TO_FOLLOW
+      FROM
+      FOLLOW_LIST
+      JOIN LML_MEM ON (TO_FOLLOW = USER_NUM)
+      WHERE FROM_FOLLOW =#{uNum}
+      AND F_BLOCK = 'N' AND LML_MEM.DEL_FLAG='N')
+	
+	
+	</select>
 	
 </mapper>
 

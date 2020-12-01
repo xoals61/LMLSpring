@@ -26,6 +26,23 @@ public class JM_memberController {
 		System.out.println("werlist" + uNum);
 
 		ArrayList<Member> FollowerList = mService.selectFollowerList(uNum);
+		ArrayList<Integer> couple = mService.coupleFind(uNum);
+		System.out.println(couple);
+		
+		for(Member a : FollowerList) {
+			a.setBtn("button2");
+			for(int b : couple) {
+				if(a.getFrom_follower()== b) {
+					a.setBtn("button1");
+				}
+				
+				
+			}
+
+		}
+		
+		
+		
 		for (Member a : FollowerList) {
 			System.out.println("여기 팔로워 리스트"+a);
 
@@ -41,6 +58,26 @@ public class JM_memberController {
 		System.out.println("woolist" + uNum);
 
 		ArrayList<Member> FollowooList = mService.selectFollowList(uNum);
+		
+		ArrayList<Integer> couple = mService.coupleFind(uNum);
+		System.out.println(couple);
+		
+		for(Member a : FollowooList) {
+			a.setBtn("button2");
+			for(int b : couple) {
+				if(a.getTo_follow() == b) {
+					a.setBtn("button1");
+				}
+				
+				
+			}
+
+		}
+		
+		
+		
+		
+		
 		for (Member a : FollowooList) {
 			System.out.println(a);
 
