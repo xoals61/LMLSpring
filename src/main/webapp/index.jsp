@@ -679,6 +679,7 @@
 		// 댓글등록 ajax
 		function cSubmit(){
 			var comment = $('.c-content').val();
+			comment.split("@");
 			var unum = '<c:out value="${loginUser.user_num}"/>';
 			var bnum = $('.c-content').attr("id");
 			
@@ -709,12 +710,16 @@
 			}
 		}
 		
+		var tagname ="";
 		// 태그 댓글등록 ajax
 		function tagComment(id){
 			var tagunum = id.substring(3);
-			var tagname = $('#'+id).html();
+			tagname = tagname+"@"+ $('#'+id).html();
 			
-			$('.c-content').val('@'+tagname+' ');
+			
+			$('.c-content').val(tagname+' ');
+			
+			
 		}
 		
 		// 댓글 리스트 ajax

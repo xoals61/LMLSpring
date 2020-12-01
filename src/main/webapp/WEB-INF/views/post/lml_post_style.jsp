@@ -62,10 +62,11 @@
 									<div id="cont-write" class="cont-write">
 										<textarea id="b_content" name="b_content" placeholder="내용을 입력해주세요"></textarea>
 									</div>
-									<div id="hihi" style="width: 100px; height: 100px;  margin-left: 600px;background: yellow;">
+									<div id="hihi" style="width: 250px; height: 100px;  margin-left: 600px;background: yellow;">
+									</div>
+									<div id="hih2" style="width: 250px; height: 100px; margin-left :300px; background: red;">
 									</div>
 								</div>
-
 							</div>
 							<div class="div-cont1">
 								<div id="post-cont"><h5>태그</h5></div>
@@ -73,10 +74,13 @@
 									<!-- <form action="#" id="tag" method="post"> -->
 										<input type="text" id="hashtag" size="7" placeholder="태그입력" />
 										<input type="hidden" id="hashArr" name="b_hash" value=""/>
-										<button type="button" id="tagbtn" onclick="addhash();">태그 등록</button>
+										<button type="button" id="tagbtn" onclick="addhash();">게시글 태그 등록</button>
 									<!-- </form> -->
-								
-									
+									<div class="post-cont-div2">
+								<input type="text" id="hashtag" size="7" placeholder="태그입력" />
+										<input type="hidden" id="hashArr" name="b_hash" value=""/>
+										<button type="button" id="tagbtn" onclick="addhash();">사용자 태그 등록</button>
+									</div>
 								</div>
 							</div>
 
