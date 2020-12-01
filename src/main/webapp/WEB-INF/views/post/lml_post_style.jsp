@@ -82,9 +82,9 @@
 									</div>
 									
 									<div class="post-cont-div2">
-								<input type="text" id="hashtag" autocomplete=”off”  class="tagtag" size="7" placeholder="사용자 태그입력" />
-										<input type="hidden"  id="hashArr" name="b_hash" value=""/>
-										<button type="button"  class="tagbtn"  id="tagbtn" onclick="addhash();"> 태그 등록</button>
+								<input type="text" id="hashtag2" autocomplete=”off”  class="tagtag" size="7" placeholder="사용자 태그입력" />
+										<input type="hidden"  id="hashArr2" name="b_hash" value=""/>
+										<button type="button"  class="tagbtn"  id="tagbtn2" onclick="addhash2();"> 태그 등록</button>
 									</div>
 									</div>
 								
@@ -148,7 +148,7 @@
     }
 
 	
-	
+	//게시글 태그 입력
 	
 		var content = document.getElementById('b_content').innerHTML;
 		var splitedArray = content.split(' ');
@@ -182,6 +182,62 @@
 		
 			$('#hashtag').val("");
 		}
+		
+		
+		
+		//사용자 태그 인풋
+		
+		var content = document.getElementById('b_content').innerHTML;
+		var splitedArray = content.split(' ');
+		var linkedContent = '';
+		
+		for(var word in splitedArray) {
+			word = splitedArray[word];
+	 	  	var ab = word.replace("@",""); 
+		   	if(word.indexOf('@') == 0){
+			   word = '<a style=" margin-right: 9px;" href=\'Search.do?keyword='+ab+'\'>'+word+'</a>';
+		   	}
+		   	
+		   	linkedContent += word+' ';
+		}
+		
+		
+		document.getElementById('hih2').innerHTML = linkedContent; 
+			
+		var hashar="";
+		
+		function addhash2(){
+			var tag = '<a style="color:red;" href=\'Search.do?keyword='+$('#hashtag2').val()+'\'>'  +  '@'+$('#hashtag2').val()+'</a><br>';
+			
+			document.getElementById('hih2').innerHTML+= tag;
+			
+			hasharr += '@'+$('#hashtag2').val()+',';
+			$('#hih2').scrollTop($('#hih2').prop('scrollHeight'));
+			$('#hashArr2').val(hasharr);
+		
+			$('#hashtag2').val("");
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		
 		
 		
