@@ -132,47 +132,7 @@ public class BoardController {
 	}
 	
 
-	@RequestMapping("styleQnaUpload.do")
-	public String TestMultipart(Board b, MultipartHttpServletRequest request) {
-		
-		
-		
-		List<MultipartFile> fileList = request.getFiles("file");
-		
-		String[] renameFileList = new String[5];
-		
-		for(int i = 0; i < fileList.size(); i++) {
-			
-			// 서버에 업로드 해야한다.
-			String renameFileName = saveFile(fileList.get(i),request);
-				
-			if(renameFileName != null) { // 파일이 잘 저장된 경우
-				b.setOriginalFileName(fileList.get(i).getOriginalFilename()); // 파일명만 DB에저장
-				b.setRenameFileName(renameFileName);
-				
-				renameFileList[i] = renameFileName;
-				
-			}
-		}
-		
-		b.setImage1(renameFileList[0]);
-		b.setImage2(renameFileList[1]);
-		b.setImage3(renameFileList[2]);
-		b.setImage4(renameFileList[3]);
-		b.setImage5(renameFileList[4]);
-		
-		int result = bService.TestMultipart(b);
-		
-		if(result > 0) {
-			System.out.println("글쓰기 성공");
-			return null;
-		}else {
-			System.out.println("글쓰기 실패");
-			return null;
-		}
-
-
-	}
+	
 	
 	
 	@GetMapping(path ="/index")

@@ -61,7 +61,7 @@
                <c:if test="${ !empty sessionScope.loginUser }">
                 <div class="hMenu2"><a href="followingpost.do"><span>팔로잉</span></a></div>
                 </c:if>
-                <div class="hMenu2"><span>QnA</span></div>
+                <div class="hMenu2"><a href="qnaPage.do"><span>QnA</span></a></div>
                 <span></span>
             </div>
         </div>

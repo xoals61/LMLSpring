@@ -12,6 +12,7 @@
 		<typeAlias type="com.kh.lml.member.model.vo.ChatRoom" alias="ChatRoom"/>
 		<typeAlias type="com.kh.lml.member.model.vo.ChatLog" alias="Chatlog"/>
 		<typeAlias type="com.kh.lml.board.model.vo.Comment" alias="Comment"/>
+		<typeAlias type="com.kh.lml.qna.vo.qnaBoard" alias="qnaBoard"/>
 		
 	</typeAliases>
 	
@@ -24,5 +25,6 @@
 		<mapper resource="mappers/member-mapper.xml"/>
 		<mapper resource="mappers/board-mapper.xml"/>
 		<mapper resource="mappers/jm-board-mapper.xml"/>
+		<mapper resource="mappers/qnaBoardMapper.xml"/>
 	</mappers>
 </configuration>
