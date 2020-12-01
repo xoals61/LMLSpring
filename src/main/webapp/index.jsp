@@ -717,7 +717,7 @@
 			var unum = '<c:out value="${loginUser.user_num}"/>';
 			
 			if(unum.length > 0){
-				//빈하트일때 좋아요 등록
+				// 디테일 빈하트일때 좋아요 등록
 				if($('#h'+bnum).attr('src') == "resources/images/icon/menu/iconmonstr-heart-thin-72.png"){
 					$.ajax({
 						url:"BoardAddHeart.do",
@@ -726,6 +726,7 @@
 							if(data == "success"){
 								$('#h'+bnum).attr('src','resources/images/icon/menu/detailHeart.png');
 								$('#th'+bnum).attr('src','resources/images/icon/main/heart2.png');
+								detailHeartCount();
 							}else{
 								alert('좋아요 실패');
 							}
@@ -737,15 +738,16 @@
 						}
 					});
 					
-				//꽉찬하트일때 좋아요 취소
+				//디테일 꽉찬하트일때 좋아요 취소
 				}else if($('#h'+bnum).attr('src') == 'resources/images/icon/menu/detailHeart.png'){
 					$.ajax({
 						url:"BoardDelHeart.do",
 						data:{bnum:bnum, unum:unum},
 						success:function(data){	
 							if(data == "success"){
-								$('#h'+bnum).attr("resources/images/icon/menu/iconmonstr-heart-thin-72.png");
-								heartIcon()
+								$('#h'+bnum).attr('src','resources/images/icon/menu/iconmonstr-heart-thin-72.png');
+								$('#th'+bnum).attr('src','resources/images/icon/main/heart.png');
+								detailHeartCount();
 							}else{
 								alert('좋아요 취소 실패');
 							}
@@ -757,6 +759,22 @@
 						}
 					});
 			 	} 
+				
+				function detailHeartCount(){
+					$.ajax({
+						url:"BoardDetailHeart.do",
+						data:{bnum:bnum},
+						dataType:"JSON",
+						success:function(data){
+							$('.board-heartCount').html('좋아요 '+ data.length +'개');
+						},
+						error:function(request,status,error){
+							console.log("** error code : " + request.status + "\n"
+								+ "message : " + request.responseText + "\n"
+								+ "error : " + error);
+						}
+					});
+				}
 			}else{
 				alert('로그인 후 이용 가능합니다.');
 			}
