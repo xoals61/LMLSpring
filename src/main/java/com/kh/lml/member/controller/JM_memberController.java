@@ -27,7 +27,7 @@ public class JM_memberController {
 
 		ArrayList<Member> FollowerList = mService.selectFollowerList(uNum);
 		for (Member a : FollowerList) {
-			System.out.println(a);
+			System.out.println("여기 팔로워 리스트"+a);
 
 		}
 		return FollowerList;

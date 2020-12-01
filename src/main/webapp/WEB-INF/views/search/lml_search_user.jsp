@@ -129,6 +129,48 @@
                 $('#table').append(addContent);
             }
         };
+ $(document).ready(function(){
+        	
+        	var uNum = 0${loginUser.user_num};
+        	
+        
+        });
+        
+        $(".follow").click(function(e){
+        	
+        	var followQ = confirm('팔로우 하시겠습니까?');
+        	
+        	if(followQ){
+	            var to_follow = $(this).attr('id');
+	    
+	            var from_follow = Number(${loginUser.user_num});
+	            console.log(to_follow);
+	            console.log(from_follow);
+	            
+	            $.ajax({
+					url:"followBtn.do",
+					data:{toFollow:to_follow, fromFollow:from_follow},
+					type:"post",
+					success:function(data){
+						if(data == "success"){
+							$("#"+to_follow).hide();
+						}else{
+							alert("실패");
+						}
+					},
+					error:function(jqxhr, textStatus,errorThrown){
+						console.log("ajax 유저 쁠쁠 처리 실패");
+					}
+				});
+        	}else{
+        		
+        	}
+        });
+        
+        
+        
+        
+        
     </script>
 
 
