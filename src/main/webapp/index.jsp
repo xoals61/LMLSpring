@@ -335,7 +335,7 @@
 				data:{bnum:bnum},
 				dataType:"JSON",
 				success:function(data){	
-					hashHeartAjax(data[0].b_user_num);
+					hashHeartAjax();
 					replyList();
 					
 					$('.board-detail').append('<div class="board-img">'+
@@ -349,7 +349,7 @@
 									'<a href="userPage.do?id='+data[0].b_user_id+'"><div class="board-id">'+
 											'<p>'+ data[0].b_name +'</p>'+
 										'</div></a>'+
-									'<div class="board-follow" id="fo'+ data[0].b_user_num +'">팔로우</div>'+
+									'<div class="board-follow" id="fo'+data[0].b_user_num+'" onclick="addFollow(id);"></div>'+
 								'</div>'+
 								'<div class="board-textDiv">'+
 									'<div class="board-text">'+ data[0].b_content +'</div>'+
@@ -382,6 +382,8 @@
 									'<div class="comment-submit" onclick="cSubmit();">게시</div>'+
 								'</div>'+
 							'</div>');
+					
+					followList(data[0].b_user_num);
 					
 					if(data[0].b_top !=null){
 						$('.board-clothesInfo').append('<div class="clothesInfo-div">'+
@@ -454,7 +456,7 @@
 			    }
 			}
 			
-			function hashHeartAjax(bunum){
+			function hashHeartAjax(){
 				// 해쉬태그 불러오기
 				$.ajax({
 					url:"BoardDetailHash.do",
@@ -494,7 +496,9 @@
 							+ "error : " + error);
 					}
 				});
-				
+			}
+			
+			function followList(bunum){
 				// 디테일 팔로우리스트 가져오기
 				var unum = '<c:out value="${loginUser.user_num}"/>';
 				var bunum = bunum;
@@ -504,7 +508,11 @@
 							url:"BoardDetailFollowList.do",
 							data:{unum:unum,bunum:bunum},
 							success:function(data){
-								console.log('팔로우리스트에? :  ' + data);
+								if(data == 0){
+									$('.board-follow').html('팔로우');
+								}else if(data == 1){
+									console.log('팔로우 했음 1 : ' + data);
+								}
 							},
 							error:function(request,status,error){
 								console.log("** error code : " + request.status + "\n"
@@ -569,6 +577,34 @@
 			}
 			
 			
+		}
+		
+		function addFollow(bunum){
+			var fromFollow = '<c:out value="${loginUser.user_num}"/>';
+			var toFollow = bunum.substring(2);
+			
+			if(fromFollow.length>0){
+				var qfollow = confirm('팔로우 하시겠습니까?');
+				if(qfollow == true){
+					$.ajax({
+						url:"followBtn.do",
+						data:{toFollow:toFollow, fromFollow:fromFollow},
+						type:"post",
+						success:function(data){
+							if(data == "success"){
+								$('#'+bunum).html('');
+							}else{
+								alert("실패");
+							}
+						},
+						error:function(jqxhr, textStatus,errorThrown){
+							console.log("ajax 처리 실패");
+						}
+					});
+				}
+			}else{
+				alert('로그인 후 이용 가능합니다.');
+			}
 		}
 		
 		function addHeart(bnum){
