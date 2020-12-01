@@ -213,7 +213,7 @@
 			
 			hasharr += '@'+$('#hashtag2').val()+',';
 			$('#hih2').scrollTop($('#hih2').prop('scrollHeight'));
-			$('#hashArr2').val(hasharr);
+			$('#hashArr2').val(hashar);
 		
 			$('#hashtag2').val("");
 		}

@@ -25,6 +25,8 @@
 		<result property="b_hash" column="HASHTAG"/>
 		<result property="h_bnum" column="H_BNUM"/>
 		<result property="h_unum" column="H_UNUM"/>
+		<result property="u_hash" column="USERTAG"/>
+		
 		
 		<!-- <result property="b_hashtag" column="B_HASHTAG"/>
 		<result property="b_images" column="B_IMAGES"/>
