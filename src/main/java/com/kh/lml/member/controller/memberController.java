@@ -421,7 +421,8 @@ public class memberController {
 	@ResponseBody
 	@RequestMapping(value="unfollowBtn.do") 
 	public String unfollowBtn(int toUnFollow, int fromFollow) {
-
+		System.out.println("toUnFollow:"+toUnFollow);
+		System.out.println("fromFollow" + fromFollow);
 		Member f = new Member(fromFollow, toUnFollow);
 
 		int result = mService.unfollowBtn(f);

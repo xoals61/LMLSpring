@@ -182,7 +182,7 @@
 							console.log(data[i].id);
 							console.log(data[i].rename_profile_img);
 							var img = "<table class='add_table'><tr><td class='imgtd' rowspan='2' style='width: 10%;'><a class='taga' href='userPage.do?id="+data[i].id+"'><img style='width:75px; height:69px;' class='userimg' src='resources/images/profileImg/"+ data[i].rename_profile_img+"'></a></td>"+
-							"<td class='idtd' style='width: 30%;'><a class='taga' href='userPage.do?id="+data[i].id+"'>"+data[i].id+"</a></td><td class='btntd' rowspan='2' style='width: 30%;'>"+ "<input class='button2 follow'  name='button2' type='button' value='팔로우' onclick='followBtn(this.name, this.id);'>"
+							"<td class='idtd' style='width: 30%;'><a class='taga' href='userPage.do?id="+data[i].id+"'>"+data[i].id+"</a></td><td class='btntd' rowspan='2' style='width: 30%;'>"+ "<input class='button1' id='"+data[i].to_follow+"' name='button1' type='button' value='팔로잉' onclick='followBtn(this.name, this.id);'>"
 									+"</td></tr><tr><td  class='nametd'><a class='taga' href='userPage.do?id="+data[i].id+"'>"+data[i].uname+"</a></td></tr></table>";
 							
 						/* $('.mo_fallower').append("<tr><td class='imgtd' rowspan='2' style='width:10%'><img class='userimg' src='resources/images/profileImg/"+data[i].rename_profile_img+"></tr></td>"); */
@@ -267,7 +267,9 @@
               function followBtn(name, id){
       			
       			if(name == 'button1'){	// 언팔로우
-      				
+      				console.log(name);
+      				console.log(id);
+      			
       				var followQ = confirm('언팔로우 하시겠습니까?');
       				
       				if(followQ){
@@ -275,8 +277,8 @@
       					console.log('woo 언팔');
       					
       					var toUnFollow = id;	// 팔로우 취소 할 상대
-      					var fromFollow = '<c:out value="${fromFollow}"/>';	// 본인
-      					
+      					var fromFollow = '${loginUser.user_num}';	// 본인
+      				
       					console.log("Un - to : " + toUnFollow + " / from : " + fromFollow);
       					
       					$.ajax({
@@ -285,9 +287,8 @@
       						type:"post",
       						success:function(data){
       							if(data == "success"){
-      								$('#'+id).prop('class','button2');
-      								$('#'+id).prop('name','button2');
-      								$('#'+id).prop('value','팔로우');
+      								$('#'+id).parent().parent().parent().parent().remove();
+      								
       							}else{
       								alert("실패");
       							}
