@@ -16,7 +16,7 @@
 <c:url var="mypage" value="MyPage.do" />
 </head>
 <body>
-	<jsp:include page="../common/header.jsp"/>
+	<jsp:include page="../common/header.jsp" />
 	<script>
 		$(function(){
 			$.ajax({
@@ -25,9 +25,9 @@
 				success:function(data){					
 					
 					var a = 0;	// tr
-					var b = 0;	// data[q]
+					var b = 0;	// data[b]
 					
-					var row = Math.ceil(data.length/3);
+					var row = Math.ceil(data.length/3);		// 총 tr
 					
 					addTable();
 					
@@ -54,27 +54,27 @@
 										$('#'+a).append('<td>'+
 													'<div class="content">'+
 														'<div>'+
-															'<img src="resources/quploadFiles/'+ data[q].image1 +'" class="cImg">'+
+															'<img src="resources/quploadFiles/'+ data[b].image1 +'" class="cImg">'+
 														'</div>'+
 														'<div class="chover">'+
-															'<div class="hover-detail-content" onclick="modalDetail('+data[q].q_num+');"></div>'+
+															'<div class="hover-detail-content" onclick="modalDetail('+data[b].q_num+');"></div>'+
 															'<div class="chContnet">'+
 																'<div class="user">'+
 																	'<div class="userImg">'+
-																		'<a href="userPage.do?id='+ data[q].q_user_id +'"><img src="resources/images/profileImg/'+ data[q].q_profile_img +'"></a>'+
+																		'<a href="userPage.do?id='+ data[b].q_user_id +'"><img src="resources/images/profileImg/'+ data[b].q_profile_img +'"></a>'+
 																	'</div>'+
-																	'<a href="userPage.do?id='+ data[q].q_user_id +'"><div class="userId">'+ data[q].q_name +'</div></a>'+
+																	'<a href="userPage.do?id='+ data[b].q_user_id +'"><div class="userId">'+ data[b].q_name +'</div></a>'+
 																'</div>'+
-																'<div class="con" onclick="modalDetail('+data[q].q_num+');">'+
+																'<div class="con" onclick="modalDetail('+data[b].q_num+');">'+
 																	'<div class="userCon">'+
-																		'<p>'+ data[q].q_content +'</p>'+
+																		'<p>'+ data[b].q_content +'</p>'+
 																	'</div>'+
 																'</div>'+
 																'<div class="cBtn">'+
 																	'<div class="cHeart">'+
-																		'<img src="resources/images/icon/main/heart.png"  id="th'+ data[q].q_num +'" class="cheart">'+
+																		'<img src="resources/images/icon/main/heart.png"  id="th'+ data[b].q_num +'" class="cheart">'+
 																	'</div>'+
-																	'<div class="cComment" onclick="modalDetail('+data[q].q_num+');">'+
+																	'<div class="cComment" onclick="modalDetail('+data[b].q_num+');">'+
 																		'<div class="cbox"></div>'+
 																		'<img src="resources/images/icon/main/comment.png">'+
 																	'</div>'+
@@ -284,6 +284,37 @@
 				<img src="resources/images/icon/main/plus.png">
 			</div>
 			</c:if>
+			<div class="choice">
+				<p class="pchoice">체형별 보기</p>
+				<div class="choice1">
+					<div class="cSelect">
+						키 : <select name="height">
+							<option value="">---</option>
+							<option value="1">140cm 이하</option>
+							<option value="2">140~150cm</option>
+							<option value="3">150~160cm</option>
+							<option value="4">160~170cm</option>
+							<option value="5">170~180cm</option>
+							<option value="6">180~190cm</option>
+							<option value="7">190cm 이상</option>
+						</select>&nbsp;&nbsp;&nbsp; 몸무게 : <select name="weight">
+							<option value="">---</option>
+							<option value="1">40kg 이하</option>
+							<option value="2">40~50kg</option>
+							<option value="3">50~60kg</option>
+							<option value="4">60~70kg</option>
+							<option value="5">70~80kg</option>
+							<option value="6">80~90kg</option>
+							<option value="7">90~100kg</option>
+							<option value="8">100kg 이상</option>
+						</select>&nbsp;&nbsp;&nbsp;
+						<div class="choiceBtn">체형별 보기</div>
+					</div>
+					<div class="close">
+						<img src="resources/images/icon/main/close.png">
+					</div>
+				</div>
+			</div>
 			<div class="ctable">
 				<table id="table">
 					
@@ -511,62 +542,6 @@
 									'<div class="comment-submit" onclick="cSubmit();">게시</div>'+
 								'</div>'+
 							'</div>');
-					
-					if(data[0].q_top !=null){
-						$('.board-clothesInfo').append('<div class="clothesInfo-div">'+
-								'<div class="clothes-img">'+
-								'<img src="resources/images/detailImg/top.png">'+
-							'</div>'+
-							'<div class="clothes-p">상의</div>'+
-							'<div class="clothes-info">'+ data[0].q_top +'</div>'+
-						'</div>');
-					}
-					if(data[0].q_bottom !=null){
-						$('.board-clothesInfo').append('<div class="clothesInfo-div">'+
-								'<div class="clothes-img">'+
-								'<img src="resources/images/detailImg/pants.png">'+
-							'</div>'+
-							'<div class="clothes-p">상의</div>'+
-							'<div class="clothes-info">'+ data[0].q_bottom +'</div>'+
-						'</div>');
-					}
-					if(data[0].q_shoes !=null){
-						$('.board-clothesInfo').append('<div class="clothesInfo-div">'+
-								'<div class="clothes-img">'+
-								'<img src="resources/images/detailImg/pants.png">'+
-							'</div>'+
-							'<div class="clothes-p">상의</div>'+
-							'<div class="clothes-info">'+ data[0].q_shoes +'</div>'+
-						'</div>');
-					}
-					if(data[0].q_acc !=null){
-						$('.board-clothesInfo').append('<div class="clothesInfo-div">'+
-								'<div class="clothes-img">'+
-								'<img src="resources/images/detailImg/pants.png">'+
-							'</div>'+
-							'<div class="clothes-p">상의</div>'+
-							'<div class="clothes-info">'+ data[0].q_acc +'</div>'+
-						'</div>');
-					}
-					if(data[0].q_acc !=null){
-						$('.board-clothesInfo').append('<div class="clothesInfo-div">'+
-								'<div class="clothes-img">'+
-								'<img src="resources/images/detailImg/pants.png">'+
-							'</div>'+
-							'<div class="clothes-p">상의</div>'+
-							'<div class="clothes-info">'+ data[0].q_acc +'</div>'+
-						'</div>');
-					}
-					if(data[0].q_etc !=null){
-						$('.board-clothesInfo').append('<div class="clothesInfo-div">'+
-								'<div class="clothes-img">'+
-								'<img src="resources/images/detailImg/pants.png">'+
-							'</div>'+
-							'<div class="clothes-p">상의</div>'+
-							'<div class="clothes-info">'+ data[0].q_etc +'</div>'+
-						'</div>');
-					}
-					
 				},
 				error:function(request,status,error){
 					console.log("** error code : " + request.status + "\n"
@@ -589,7 +564,7 @@
 					url:"BoardDetailHash.do",
 					data:{bnum:bnum},
 					dataType:"JSON",
-					success:function(data){	
+					success:function(data){
 						for(var i=0; i<data.length; i++){
 							$('.board-hashtag').append('<a href=\'Search.do?keyword='+data[i].substring(1)+'\'>' + data[i] + ' </a>');
 						}
@@ -686,7 +661,7 @@
 			var unum = '<c:out value="${loginUser.user_num}"/>';
 			
 			if(unum.length > 0){
-				//빈하트일때 좋아요 등록
+				// 디테일 빈하트일때 좋아요 등록
 				if($('#h'+bnum).attr('src') == "resources/images/icon/menu/iconmonstr-heart-thin-72.png"){
 					$.ajax({
 						url:"BoardAddHeart.do",
@@ -695,6 +670,7 @@
 							if(data == "success"){
 								$('#h'+bnum).attr('src','resources/images/icon/menu/detailHeart.png');
 								$('#th'+bnum).attr('src','resources/images/icon/main/heart2.png');
+								detailHeartCount();
 							}else{
 								alert('좋아요 실패');
 							}
@@ -706,15 +682,16 @@
 						}
 					});
 					
-				//꽉찬하트일때 좋아요 취소
+				//디테일 꽉찬하트일때 좋아요 취소
 				}else if($('#h'+bnum).attr('src') == 'resources/images/icon/menu/detailHeart.png'){
 					$.ajax({
 						url:"BoardDelHeart.do",
 						data:{bnum:bnum, unum:unum},
 						success:function(data){	
 							if(data == "success"){
-								$('#h'+bnum).attr("resources/images/icon/menu/iconmonstr-heart-thin-72.png");
-								heartIcon()
+								$('#h'+bnum).attr('src','resources/images/icon/menu/iconmonstr-heart-thin-72.png');
+								$('#th'+bnum).attr('src','resources/images/icon/main/heart.png');
+								detailHeartCount();
 							}else{
 								alert('좋아요 취소 실패');
 							}
@@ -726,6 +703,22 @@
 						}
 					});
 			 	} 
+				
+				function detailHeartCount(){
+					$.ajax({
+						url:"BoardDetailHeart.do",
+						data:{bnum:bnum},
+						dataType:"JSON",
+						success:function(data){
+							$('.board-heartCount').html('좋아요 '+ data.length +'개');
+						},
+						error:function(request,status,error){
+							console.log("** error code : " + request.status + "\n"
+								+ "message : " + request.responseText + "\n"
+								+ "error : " + error);
+						}
+					});
+				}
 			}else{
 				alert('로그인 후 이용 가능합니다.');
 			}
