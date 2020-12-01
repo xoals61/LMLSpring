@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.kh.lml.board.model.vo.Board;
 import com.kh.lml.member.model.service.MemberService;
 import com.kh.lml.member.model.vo.Member;
 
@@ -83,14 +84,18 @@ public class JM_memberController {
 	private String userPage(String id, Model model) {
 		Member m = mService.userPage(id);
 		System.out.println(m + "여기 유저 찾는곳?");
+		
+		
+		
 		int uNum = mService.finduNum(id);
 		int Follow = mService.countFollowList(uNum);
 		int Follower = mService.countFollowerList(uNum);
-
+		ArrayList<Board> list = mService.myPost(uNum);
 		int boardCount =mService.boardCount(uNum);
 
 
 		if (m != null) {
+			model.addAttribute("Userboardlist", list);
 			model.addAttribute("User", m);
 			model.addAttribute("Follow", Follow);
 			model.addAttribute("Follower", Follower);

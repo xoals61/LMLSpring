@@ -9,7 +9,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>마이페이지</title>
+<title>유저페이지</title>
 <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
 <link
 	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500&display=swap"
@@ -79,7 +79,7 @@
 						<div class="info">
 							<div class="name">${User.uname}</div>
 							<c:if test="${empty User.intro}">
-								<div class="iftext_2">자기소개를 등록해주세요.</div>
+								<div class="iftext_2">자기소개가 없습니다.</div>
 							</c:if>
 							<c:if test="${!empty User.intro}">
 								<div class="iftext_2">${User.intro}</div>
@@ -92,77 +92,33 @@
 				<div></div>
 			</div>
 			<div class="tagmenu">
-				<span><button id="my" class="tagbtn" onclick="my()">MY
+				<span><button id="my" class="tagbtn" onclick="my()">사용자의
 						게시물</button>
-					<button id="tag" class="tagbtn" onclick="tag()">태그된 게시물</button></span>
+					<button id="tag" class="tagbtn" onclick="tag()">사용자가 태그된 게시물</button></span>
 			</div>
 			<div class="mytable">
 				<table>
+				<c:forEach var="UserBoard" items="${Userboardlist }" varStatus="status" >
+					<c:if test="${status.index mod 3 eq 0}">
 					<tr>
+					</c:if>
 						<td>
 							<div class="content">
 								<div class=img>
-									<img src="resources/images/jmImg/blue1.jpg" class="cImg">
+									<img src="resources/buploadFiles/${UserBoard.image1}" class="cImg">
 								</div>
 						</td>
-						<td>
-							<div class="content">
-								<div class=img>
-									<img src="resources/images/jmImg/blue3.jpg" class="cImg">
-								</div>
-						</td>
-						<td>
-							<div class="content">
-								<div class=img>
-									<img src="resources/images/jmImg/rainbow.ico" class="cImg">
-								</div>
-						</td>
+						
+					<c:if test="${status.index mod 3 eq 2}">
 					</tr>
+					</c:if>
+					</c:forEach>
 				</table>
 
 			</div>
 			<div class="tagtable">
 				<table>
-					<tr>
-						<td>
-							<div class="content">
-								<div class=img>
-									<img src="resources/images/jmImg/blue1.jpg" class="cImg">
-								</div>
-						</td>
-						<td>
-							<div class="content">
-								<div class=img>
-									<img src="resources/images/jmImg/blue3.jpg" class="cImg">
-								</div>
-						</td>
-						<td>
-							<div class="content">
-								<div class=img>
-									<img src="resources/images/jmImg/rainbow.ico" class="cImg">
-								</div>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<div class="content">
-								<div class=img>
-									<img src="resources/images/jmImg/blue1.jpg" class="cImg">
-								</div>
-						</td>
-						<td>
-							<div class="content">
-								<div class=img>
-									<img src="resources/images/jmImg/blue3.jpg" class="cImg">
-								</div>
-						</td>
-						<td>
-							<div class="content">
-								<div class=img>
-									<img src="resources/images/jmImg/rainbow.ico" class="cImg">
-								</div>
-						</td>
-					</tr>
+				
 				</table>
 
 			</div>
