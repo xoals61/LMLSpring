@@ -63,14 +63,8 @@ public class JM_memberController {
 		System.out.println(couple);
 		
 		for(Member a : FollowooList) {
-			a.setBtn("button2");
-			for(int b : couple) {
-				if(a.getTo_follow() == b) {
-					a.setBtn("button1");
-				}
-				
-				
-			}
+			a.setBtn("button1");
+			
 
 		}
 		
