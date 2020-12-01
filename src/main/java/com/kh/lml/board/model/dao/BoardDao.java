@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.kh.lml.board.model.vo.Board;
 import com.kh.lml.board.model.vo.Comment;
+import com.kh.lml.member.model.vo.Member;
 
 @Repository("bDao")
 public class BoardDao {
@@ -75,6 +76,10 @@ public class BoardDao {
 
 	public int deleteComment(int cno) {
 		return sqlSession.update("boardMapper.deleteComment",cno);
+	}
+
+	public int getFollowList(Member m) {
+		return sqlSession.selectOne("memberMapper.getFollowList",m);
 	}
 
 

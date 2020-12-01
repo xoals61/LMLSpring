@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.kh.lml.board.model.dao.BoardDao;
 import com.kh.lml.board.model.vo.Board;
 import com.kh.lml.board.model.vo.Comment;
+import com.kh.lml.member.model.vo.Member;
 
 @Service("bService")
 public class BoardServiceImpl implements BoardService {
@@ -94,6 +95,11 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public int deleteComment(int cno) {
 		return bDao.deleteComment(cno);
+	}
+
+	@Override
+	public int getFollowList(Member m) {
+		return bDao.getFollowList(m);
 	}
 
 
