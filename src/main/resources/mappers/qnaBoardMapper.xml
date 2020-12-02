@@ -21,6 +21,20 @@
 		<result property="h_bnum" column="H_BNUM"/>
 		<result property="h_unum" column="H_UNUM"/>
 	</resultMap>
+	
+	<resultMap type="qnaComment" id="CommentResultSet">
+		<id property="cq_no" column="C_NO"/>
+		<result property="cq_bno" column="C_BNO"/>
+		<result property="cq_content" column="C_CONTENT"/>
+		<result property="cq_unum" column="C_UNUM"/>
+		<result property="cq_recno" column="C_RECNO"/>
+		<result property="cq_level" column="C_LEVEL"/>
+		<result property="cq_utag" column="C_UTAG"/>
+		<result property="cq_date" column="C_DATE"/>
+		<result property="uname" column="UNAME"/>
+		<result property="profile" column="RENAME_PROFILE_IMG"/>
+	</resultMap>
+	
 	<insert id="insertQnaPost" parameterType="qnaBoard">
 		INSERT
 		INTO LML_QNABOARD
@@ -30,7 +44,7 @@
 		SELECT QNABOARD_SEQ.CURRVAL AS Q_NUM FROM DUAL
 	</select>
 	<insert id="insertStyleHash" parameterType="qnaBoard">
-		INSERT INTO LML_HASH
+		INSERT INTO LML_QNAHASH
 		VALUES (#{q_hash}, #{q_num})
 	</insert>
 	<select id="selectList" resultMap="qnaboardResultSet">
@@ -45,4 +59,45 @@
 		JOIN LML_MEM ON (Q_USER_NUM = USER_NUM)
 		WHERE Q_NUM = #{qnum}
 	</select>
+	<select id="qnaHeartList" resultType="_int">
+		SELECT * 
+		FROM LML_QNAHEART 
+		WHERE H_UNUM = #{unum}
+	</select>
+	<insert id="addHeart" parameterType="qnaBoard">
+		INSERT INTO LML_QNAHEART 
+		VALUES (#{h_bnum}, #{h_unum})
+	</insert>
+	<insert id="deleteHeart" parameterType="qnaBoard">
+		DELETE FROM LML_QNAHEART
+		WHERE H_BNUM = #{h_bnum}
+		AND H_UNUM = #{h_unum}
+	</insert>
+	<select id="selectHash" resultType="string">
+		SELECT HASHTAG 
+		FROM LML_QNAHASH 
+		WHERE H_BNUM = #{qnum}
+		ORDER BY HASHTAG DESC
+	</select>
+	<select id="getDetailHeart" resultMap="qnaboardResultSet">
+		SELECT H_BNUM, H_UNUM, UNAME, RENAME_PROFILE_IMG
+		FROM LML_QNAHEART
+		JOIN LML_MEM ON(H_UNUM = USER_NUM)
+		WHERE H_BNUM = #{qnum}
+	</select>
+	<select id="selectComment" resultMap="CommentResultSet">
+		SELECT C_NO, C_BNO, C_CONTENT, C_UNUM, C_RECNO, C_LEVEL, C_DATE, UNAME, RENAME_PROFILE_IMG
+		FROM LML_QNACOMMENT
+		JOIN LML_MEM ON (C_UNUM = USER_NUM)
+		WHERE C_BNO = #{qnum}
+		ORDER BY C_NO
+	</select>
+	<insert id="addComment" parameterType="qnaComment">
+		INSERT INTO LML_QNACOMMENT 
+		VALUES (LML_QNACOMM_SEQ.NEXTVAL, #{cq_bno}, #{cq_content}, #{cq_unum}, NULL, DEFAULT, NULL, SYSDATE)
+	</insert>
+	<update id="deleteComment" parameterType="_int"> 
+		DELETE FROM LML_QNACOMMENT
+		WHERE C_NO = #{cno}
+	</update>
 </mapper>

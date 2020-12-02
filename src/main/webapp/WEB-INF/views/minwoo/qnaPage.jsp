@@ -19,8 +19,7 @@
 	<jsp:include page="../common/header.jsp" />
 	<script>
 		$(function() {
-			$
-					.ajax({
+			$.ajax({
 						url : "qnaIndexAjax.do",
 						dataType : "JSON",
 						success : function(data) {
@@ -371,9 +370,8 @@
 			var unum = '<c:out value="${loginUser.user_num}"/>';
 
 			if (unum.length > 0) {
-				$
-						.ajax({
-							url : "BoardHeart.do",
+				$.ajax({
+							url : "qnaHeart.do",
 							data : {
 								unum : unum
 							},
@@ -420,9 +418,8 @@
 									//빈하트일때 좋아요 등록
 									if ($('.cheart', this).attr('src') == "resources/images/icon/main/heart.png") {
 
-										$
-												.ajax({
-													url : "BoardAddHeart.do",
+										$.ajax({
+													url : "qnaAddHeart.do",
 													data : {
 														qnum : qnum,
 														unum : unum
@@ -454,9 +451,8 @@
 										//꽉찬하트일때 좋아요 취소
 									} else if ($('.cheart', this).attr('src') == "resources/images/icon/main/heart2.png") {
 
-										$
-												.ajax({
-													url : "BoardDelHeart.do",
+										$.ajax({
+													url : "qnaDelHeart.do",
 													data : {
 														qnum : qnum,
 														unum : unum
@@ -548,8 +544,7 @@
 			$('.myModal').css('display', 'block');
 			$('.board-detail').css('display', 'block');
 
-			$
-					.ajax({
+			$.ajax({
 						url : "qnaDetail.do",
 						data : {
 							qnum : qnum
@@ -639,7 +634,7 @@
 			function hashHeartAjax() {
 				// 해쉬태그 불러오기
 				$.ajax({
-					url : "BoardDetailHash.do",
+					url : "qnaDetailHash.do",
 					data : {
 						qnum : qnum
 					},
@@ -660,9 +655,8 @@
 				});
 
 				// 디테일 좋아요 리스트 & 내가 좋아요 눌렀음 빨간하트로.
-				$
-						.ajax({
-							url : "BoardDetailHeart.do",
+				$.ajax({
+							url : "qnaDetailHeart.do",
 							data : {
 								qnum : qnum
 							},
@@ -692,9 +686,8 @@
 
 			// 디테일 댓글 리스트
 			function replyList() {
-				$
-						.ajax({
-							url : "BoardDetailComm.do",
+				$.ajax({
+							url : "qnaDetailComm.do",
 							data : {
 								qnum : qnum
 							},
@@ -717,21 +710,21 @@
 																+ '</div>'
 																+ '<div class="comment-content">'
 																+ '<p class="comment-user" id="tag'
-																+ data[i].c_unum
+																+ data[i].cq_unum
 																+ '" onclick="tagComment(id);">'
 																+ data[i].uname
 																+ '</p>'
 																+ '<p class="comment-comment">'
-																+ data[i].c_content
+																+ data[i].cq_content
 																+ '</p>'
-																+ '<div class="comment-delete del'+data[i].c_no+'"></div>'
+																+ '<div class="comment-delete del'+data[i].cq_no+'"></div>'
 																+ '</div>'
 																+ '</div>');
-										if (data[i].c_unum == unum1) { // 댓글 단 사람이랑 로그인유저랑 같으면
-											$('.del' + data[i].c_no)
+										if (data[i].cq_unum == unum1) { // 댓글 단 사람이랑 로그인유저랑 같으면
+											$('.del' + data[i].cq_no)
 													.append(
 															'<img src="resources/images/icon/menu/commentDelete.png" id="'
-																	+ data[i].c_no
+																	+ data[i].cq_no
 																	+ '" onclick="commentDelete(id,'
 																	+ qnum
 																	+ ');">');
@@ -775,9 +768,8 @@
 			if (unum.length > 0) {
 				// 디테일 빈하트일때 좋아요 등록
 				if ($('#h' + qnum).attr('src') == "resources/images/icon/menu/iconmonstr-heart-thin-72.png") {
-					$
-							.ajax({
-								url : "BoardAddHeart.do",
+					$.ajax({
+								url : "qnaAddHeart.do",
 								data : {
 									qnum : qnum,
 									unum : unum
@@ -806,9 +798,8 @@
 
 					//디테일 꽉찬하트일때 좋아요 취소
 				} else if ($('#h' + qnum).attr('src') == 'resources/images/icon/menu/detailHeart.png') {
-					$
-							.ajax({
-								url : "BoardDelHeart.do",
+					$.ajax({
+								url : "qnaDelHeart.do",
 								data : {
 									qnum : qnum,
 									unum : unum
@@ -838,7 +829,7 @@
 
 				function detailHeartCount() {
 					$.ajax({
-						url : "BoardDetailHeart.do",
+						url : "qnaDetailHeart.do",
 						data : {
 							qnum : qnum
 						},
@@ -869,7 +860,7 @@
 			if (unum.length > 0) {
 				if (comment.length > 0) {
 					$.ajax({
-						url : "BoardComment.do",
+						url : "qnaComment.do",
 						data : {
 							comment : comment,
 							unum : unum,
@@ -911,7 +902,7 @@
 			console.log('댓글 리스트 ajax 실행');
 			console.log('해당 댓글 글넘 : ' + qnum);
 			$.ajax({
-						url : "BoardDetailComm.do",
+						url : "qnaDetailComm.do",
 						data : {
 							qnum : qnum
 						},
@@ -934,21 +925,21 @@
 															+ '</div>'
 															+ '<div class="comment-content">'
 															+ '<p class="comment-user" id="tag'
-															+ data[i].c_unum
+															+ data[i].cq_unum
 															+ '" onclick="tagComment(id);">'
 															+ data[i].uname
 															+ '</p>'
 															+ '<p class="comment-comment">'
-															+ data[i].c_content
+															+ data[i].cq_content
 															+ '</p>'
-															+ '<div class="comment-delete del'+data[i].c_no+'"></div>'
-															+ //id="del'+data[i].c_unum+'"
+															+ '<div class="comment-delete del'+data[i].cq_no+'"></div>'
+															+ //id="del'+data[i].cq_unum+'"
 															'</div>' + '</div>');
-									if (data[i].c_unum == unum1) {
-										$('.del' + data[i].c_no)
+									if (data[i].cq_unum == unum1) {
+										$('.del' + data[i].cq_no)
 												.append(
 														'<img src="resources/images/icon/menu/commentDelete.png" id="'
-																+ data[i].c_no
+																+ data[i].cq_no
 																+ '" onclick="commentDelete(id,'
 																+ qnum + ');">');
 									}
@@ -987,7 +978,7 @@
 			var del = confirm('댓글을 삭제하시겠습니까?');
 			if (del == true) {
 				$.ajax({
-					url : "CommentDelete.do",
+					url : "qnaCommentDelete.do",
 					data : {
 						cno : id
 					},

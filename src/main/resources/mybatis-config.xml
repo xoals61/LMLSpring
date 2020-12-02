@@ -13,6 +13,7 @@
 		<typeAlias type="com.kh.lml.member.model.vo.ChatLog" alias="Chatlog"/>
 		<typeAlias type="com.kh.lml.board.model.vo.Comment" alias="Comment"/>
 		<typeAlias type="com.kh.lml.qna.vo.qnaBoard" alias="qnaBoard"/>
+		<typeAlias type="com.kh.lml.qna.vo.qnaComment" alias="qnaComment"/>
 		
 	</typeAliases>
 	

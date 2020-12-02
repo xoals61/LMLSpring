@@ -19,9 +19,9 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.JsonIOException;
-import com.kh.lml.board.model.vo.Board;
 import com.kh.lml.qna.Service.qnaService;
 import com.kh.lml.qna.vo.qnaBoard;
+import com.kh.lml.qna.vo.qnaComment;
 
 @SessionAttributes("loginUser")
 @Controller
@@ -83,7 +83,7 @@ public class qna_controller {
 				qo.setq_num(getqnum);
 				qo.setq_hash(slist[i].toString());
 
-				int res = qService.insertStyleHash(qo);
+				qService.insertStyleHash(qo);
 			}
 		}
 		if(result > 0) {
@@ -153,7 +153,7 @@ public class qna_controller {
 	// 디테일
 	@ResponseBody
 	@RequestMapping(value="qnaDetail.do", produces="application/json; charset=UTF-8")
-	public String boardDetail(HttpServletResponse response, int qnum) throws JsonIOException, JsonProcessingException{
+	public String qnaDetail(HttpServletResponse response, int qnum) throws JsonIOException, JsonProcessingException{
 
 		ArrayList<qnaBoard> list = qService.selectOne(qnum);
 
@@ -165,4 +165,124 @@ public class qna_controller {
 		String jsonStr = mapper.writeValueAsString(list);
 		return jsonStr;
 	}
+
+	// 좋아요 불러오기
+	@ResponseBody
+	@RequestMapping(value="qnaHeart.do", produces="application/json; charset=UTF-8")
+	public String qnaHeart(HttpServletResponse response, int unum) throws JsonIOException, JsonProcessingException{
+
+		ArrayList<qnaComment> list = qService.qnaHeartList(unum);
+
+		ObjectMapper mapper = new ObjectMapper();
+
+		String jsonStr = mapper.writeValueAsString(list);
+
+		return jsonStr;
+	}
+	// 좋아요 등록
+	@ResponseBody
+	@RequestMapping(value="qnaAddHeart.do")
+	public String qnaAddHeart(int qnum, int unum) {
+
+		qnaBoard q = new qnaBoard(qnum, unum);
+
+		int result = qService.addHeart(q);
+
+		if(result > 0) {
+			return "success";
+		}else {
+			return "fail";
+		}
+	}
+	// 좋아요 취소
+		@ResponseBody
+		@RequestMapping(value="qnaDelHeart.do")
+		public String qnaDelHeart(int qnum, int unum) {
+		
+			qnaBoard q = new qnaBoard(qnum, unum);
+		
+			int result = qService.deleteHeart(q);
+		
+			if(result > 0) {
+				return "success";
+			}else {
+				return "fail";
+			}
+		}
+		// 디테일 해쉬태그 불러오기
+		@ResponseBody
+		@RequestMapping(value="qnaDetailHash.do", produces="application/json; charset=UTF-8")
+		public String qnaDetailHash(HttpServletResponse response, int qnum) throws JsonIOException, JsonProcessingException{
+			
+			ArrayList<String> list = qService.selectHash(qnum);
+			System.out.println("해시태그 리스트입니다. : " + list);
+			ObjectMapper mapper = new ObjectMapper();
+			
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			mapper.setDateFormat(sdf);
+			
+			String jsonStr = mapper.writeValueAsString(list);
+			
+			return jsonStr;
+		}
+		
+		// 좋아요 불러오기
+		@ResponseBody
+		@RequestMapping(value="qnaDetailHeart.do", produces="application/json; charset=UTF-8")
+		public String qnaDetailHeart(HttpServletResponse response, int qnum) throws JsonIOException, JsonProcessingException{
+			
+			ArrayList<qnaBoard> list = qService.getDetailHeart(qnum);
+			
+			ObjectMapper mapper = new ObjectMapper();
+			
+			String jsonStr = mapper.writeValueAsString(list);
+			
+			return jsonStr;
+		}
+		// 디테일 댓글 불러오기
+		@ResponseBody
+		@RequestMapping(value="qnaDetailComm.do", produces="application/json; charset=UTF-8")
+		public String qnaDetailComm(HttpServletResponse response, int qnum) throws JsonIOException, JsonProcessingException{
+			
+			ArrayList<qnaComment> list = qService.selectComment(qnum);
+			
+			ObjectMapper mapper = new ObjectMapper();
+			
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			mapper.setDateFormat(sdf);
+			
+			String jsonStr = mapper.writeValueAsString(list);
+			
+			return jsonStr;
+		}
+		// 댓글 등록
+		@ResponseBody
+		@RequestMapping(value="qnaComment.do")
+		public String qnaComment(String comment, int unum, int qnum) {
+		
+			qnaComment cm = new qnaComment(qnum, comment, unum);
+		
+			int result = qService.addComment(cm);
+		
+			//int result = mService.followBtn(f);
+		
+			if(result > 0) {
+				return "success";
+			}else {
+				return "fail";
+			}
+		}
+		// 댓글 삭제
+		@ResponseBody
+		@RequestMapping(value="qnaCommentDelete.do")
+		public String CommentDelete(int cno) {
+		
+			int result = qService.deleteComment(cno);
+		
+			if(result > 0) {
+				return "success";
+			}else {
+				return "fail";
+			}
+		}
 }

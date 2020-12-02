@@ -6,7 +6,10 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.kh.lml.board.model.vo.Board;
+import com.kh.lml.board.model.vo.Comment;
 import com.kh.lml.qna.vo.qnaBoard;
+import com.kh.lml.qna.vo.qnaComment;
 
 @Repository("qDao")
 public class qnaDao {
@@ -32,5 +35,37 @@ public class qnaDao {
 
 	public ArrayList<qnaBoard> selectOne(int qnum) {
 		return (ArrayList)sqlSession.selectList("qnaMapper.selectOne",qnum);
+	}
+
+	public ArrayList<qnaComment> qnaHeartList(int unum) {
+		return (ArrayList)sqlSession.selectList("qnaMapper.qnaHeartList",unum);
+	}
+
+	public int addHeart(qnaBoard q) {
+		return sqlSession.insert("qnaMapper.addHeart", q);
+	}
+
+	public int deleteHeart(qnaBoard q) {
+		return sqlSession.insert("qnaMapper.deleteHeart", q);
+	}
+
+	public ArrayList<String> selectHash(int qnum) {
+		return (ArrayList)sqlSession.selectList("qnaMapper.selectHash",qnum);
+	}
+
+	public ArrayList<qnaBoard> getDetailHeart(int qnum) {
+		return (ArrayList)sqlSession.selectList("qnaMapper.getDetailHeart",qnum);
+	}
+
+	public ArrayList<qnaComment> selectComment(int qnum) {
+		return (ArrayList)sqlSession.selectList("qnaMapper.selectComment",qnum);
+	}
+
+	public int addComment(qnaComment cm) {
+		return sqlSession.insert("qnaMapper.addComment", cm);
+	}
+
+	public int deleteComment(int cno) {
+		return sqlSession.update("qnaMapper.deleteComment",cno);
 	}
 }
