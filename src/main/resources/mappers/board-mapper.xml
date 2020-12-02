@@ -26,6 +26,8 @@
 		<result property="h_bnum" column="H_BNUM"/>
 		<result property="h_unum" column="H_UNUM"/>
 		<result property="u_hash" column="USERTAG"/>
+		<result property="t_tagUnum" column="T_UNUM"/>
+		<result property="t_bnum" column="T_BNUM"/>
 		
 		
 		<!-- <result property="b_hashtag" column="B_HASHTAG"/>
@@ -135,6 +137,18 @@
 		DELETE FROM LML_COMMENT
 		WHERE C_NO = #{cno}
 	</update>
+	
+	<select id="getTagUserNum" resultType="_int">
+		SELECT USER_NUM
+		FROM LML_MEM
+		WHERE UNAME LIKE #{tagUser}
+		AND DEL_FLAG = 'N'
+	</select>
+	
+	<insert id="insertTagUser" parameterType="Board">
+		INSERT INTO LML_USERTAG
+		VALUES (#{t_tagUnum}, #{t_bnum})
+	</insert>
 	
 </mapper>
 

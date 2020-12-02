@@ -75,7 +75,10 @@ public class BoardController {
 		int getbnum = bService.getbnum();
 		
 		String b_hash =b.getB_hash();
+		//System.out.println("1. b_hash는 : " + b_hash);
+		
 		String[] slist = b_hash.split(",");
+		//System.out.println("2. slist는 : " + slist);
 		
 		if(b_hash.length() > 0) {
 			for(int i=0; i<slist.length; i++){
@@ -85,7 +88,23 @@ public class BoardController {
 				
 				int res = bService.insertStyleHash(bo);
 			}
-			
+		}
+		
+		String tagUser = b.getT_unum();
+		//System.out.println("3. tagUser는 : " + tagUser);
+		String[] tagUserArr = tagUser.split(",");
+		System.out.println("4. tagUserArr는 : " + Integer.parseInt(tagUserArr[0].toString()));
+		
+        //System.out.println("4. tagUserArr는 : " + tagUserArr);
+        
+		if(tagUser.length() > 0) {
+			for(int i=0; i<tagUserArr.length; i++){
+				Board bo = new Board();
+				bo.setT_bnum(getbnum);
+				bo.setT_tagUnum(Integer.parseInt(tagUserArr[i].toString()));
+				
+				int res = bService.insertTagUser(bo);
+			}
 		}
 		
 		
@@ -320,7 +339,15 @@ public class BoardController {
 		return res;
 	}
 	
-	
+	// 글쓰기 사용자태그 부분 사용자 있는지 없는지 확인
+	@ResponseBody
+	@RequestMapping(value="getTagUserNum.do", produces="application/json; charset=UTF-8")
+	public int getTagUserNum(String tagUser) throws JsonIOException, JsonProcessingException{
+		
+		int res = bService.getTagUserNum(tagUser);
+		
+		return res;
+	}
 	
 
 	

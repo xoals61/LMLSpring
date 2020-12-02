@@ -102,6 +102,16 @@ public class BoardServiceImpl implements BoardService {
 		return bDao.getFollowList(m);
 	}
 
+	@Override
+	public int getTagUserNum(String tagUser) {
+		return bDao.getTagUserNum(tagUser);
+	}
+
+	@Override
+	public int insertTagUser(Board bo) {
+		return bDao.insertTagUser(bo);
+	}
+
 
 
 

@@ -41,6 +41,10 @@ public class Board {
 
 	private String u_hash;
 	
+	private String t_unum;
+	private int t_tagUnum;
+	private int t_bnum;
+	
 	
 	public Board() {
 		super();
@@ -377,8 +381,32 @@ public class Board {
 		this.u_hash = u_hash;
 	}
 
+	public String getT_unum() {
+		return t_unum;
+	}
 
+	public void setT_unum(String t_unum) {
+		this.t_unum = t_unum;
+	}
 
+	public int getT_tagUnum() {
+		return t_tagUnum;
+	}
+
+	public void setT_tagUnum(int t_tagUnum) {
+		this.t_tagUnum = t_tagUnum;
+	}
+
+	public int getT_bnum() {
+		return t_bnum;
+	}
+
+	public void setT_bnum(int t_bnum) {
+		this.t_bnum = t_bnum;
+	}
+
+	
+	
 	
 
 	

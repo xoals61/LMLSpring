@@ -82,6 +82,14 @@ public class BoardDao {
 		return sqlSession.selectOne("memberMapper.getFollowList",m);
 	}
 
+	public int getTagUserNum(String tagUser) {
+		return sqlSession.selectOne("boardMapper.getTagUserNum",tagUser);
+	}
+
+	public int insertTagUser(Board bo) {
+		return sqlSession.insert("boardMapper.insertTagUser", bo);
+	}
+
 
 
 

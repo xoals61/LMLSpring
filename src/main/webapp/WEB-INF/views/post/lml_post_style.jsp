@@ -83,7 +83,7 @@
 									
 									<div class="post-cont-div2">
 								<input type="text" id="hashtag2" autocomplete=”off”  class="tagtag" size="7" placeholder="사용자 태그입력" />
-										<input type="hidden"  id="hashArr2" name="b_hash" value=""/>
+										<input type="hidden"  id="hashArr2" name="t_unum" value=""/>
 										<button type="button"  class="tagbtn"  id="tagbtn2" onclick="addhash2();"> 태그 등록</button>
 									</div>
 									</div>
@@ -194,6 +194,7 @@
 		for(var word in splitedArray) {
 			word = splitedArray[word];
 	 	  	var ab = word.replace("@",""); 
+	 	  	
 		   	if(word.indexOf('@') == 0){
 			   word = '<a style=" margin-right: 9px;" href=\'Search.do?keyword='+ab+'\'>'+word+'</a>';
 		   	}
@@ -207,17 +208,51 @@
 		var hashar="";
 		
 		function addhash2(){
-			var tag = '<a style="color:red;" href=\'Search.do?keyword='+$('#hashtag2').val()+'\'>'  +  '@'+$('#hashtag2').val()+'</a><br>';
 			
-			document.getElementById('hih2').innerHTML+= tag;
+			var tagUser = $('#hashtag2').val();
 			
-			hasharr += '@'+$('#hashtag2').val()+',';
-			$('#hih2').scrollTop($('#hih2').prop('scrollHeight'));
-			$('#hashArr2').val(hashar);
-		
-			$('#hashtag2').val("");
+			$.ajax({
+				url:"getTagUserNum.do",
+				data:{tagUser:tagUser},
+				success:function(data){	
+					if(data != null){
+						console.log('사람있음 : ' + data);
+						if($('#ut'+data).length == 0){
+							var tag = '<div class="userTagDiv"><a style="color:red;" href=\'Search.do?keyword='+$('#hashtag2').val()+'\'>'  +  '@'+$('#hashtag2').val()+'</a>&nbsp;&nbsp;&nbsp;<img src="resources/images/icon/menu/commentDelete.png" id="ut'+data+'" onclick="userTagDelete(id);"></div>';
+							
+							document.getElementById('hih2').innerHTML+= tag;
+							
+							//hashar += '@'+$('#hashtag2').val()+',';
+							hashar += data+',';
+							$('#hih2').scrollTop($('#hih2').prop('scrollHeight'));
+							$('#hashArr2').val(hashar);
+						
+							$('#hashtag2').val("");
+						}else{
+							alert('이미 태그 된 사용자입니다.');
+						}
+						
+					}else{
+						alert('일치하는 사용자를 찾을 수 없습니다.');
+					}
+				},
+				error:function(request,status,error){
+					console.log("** error code : " + request.status + "\n"
+						+ "message : " + request.responseText + "\n"
+						+ "error : " + error);
+				}
+			});
 		}
 		
+		function userTagDelete(id){
+			var deleteNum = id.substring(2);
+			var tagArr = $('#hashArr2').val();
+			var res = tagArr.replace(deleteNum+',', '');
+			
+			$('#'+id).parent().remove();
+			$('#hashArr2').val(res);
+			//console.log(id + " , " + deleteNum);
+		}
 		
 		
 		

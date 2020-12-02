@@ -40,6 +40,10 @@ public interface BoardService {
 
 	int getFollowList(Member m);
 
+	int getTagUserNum(String tagUser);
+
+	int insertTagUser(Board bo);
+
 
 
 }

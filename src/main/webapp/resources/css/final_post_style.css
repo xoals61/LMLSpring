@@ -29,7 +29,7 @@ section {
 
 .Abox {
 	width: 1400px;
-	height: 800px;
+	height: 850px;
 	border: 1px solid rgb(216, 213, 213);
 	border-radius: 0.4em;
 	background-color: white;
@@ -285,4 +285,14 @@ padding-top: 25px;
     border-bottom: 1px solid #554f4f;
     margin-bottom: 13px;
 
+}
+
+.userTagDiv{
+	height: 30px;
+}
+
+.userTagDiv img{
+	width:20px;
+	height:20px;
+	cursor:pointer;
 }
