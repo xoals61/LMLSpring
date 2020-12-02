@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,11 +27,9 @@ public class JM_memberController {
 	@RequestMapping("werlist.do")
 	private ArrayList<Member> werlist(String id) {
 		int uNum = mService.finduNum(id);
-		System.out.println("werlist" + uNum);
 
 		ArrayList<Member> FollowerList = mService.selectFollowerList(uNum);
 		ArrayList<Integer> couple = mService.coupleFind(uNum);
-		System.out.println(couple);
 		
 		for(Member a : FollowerList) {
 			a.setBtn("button2");
@@ -41,13 +42,6 @@ public class JM_memberController {
 			}
 
 		}
-		
-		
-		
-		for (Member a : FollowerList) {
-			System.out.println("여기 팔로워 리스트"+a);
-
-		}
 		return FollowerList;
 
 	}
@@ -56,7 +50,6 @@ public class JM_memberController {
 	@RequestMapping("woolist.do")
 	private ArrayList<Member> woolist(String id) {
 		int uNum = mService.finduNum(id);
-		System.out.println("woolist" + uNum);
 
 		ArrayList<Member> FollowooList = mService.selectFollowList(uNum);
 		
@@ -65,25 +58,15 @@ public class JM_memberController {
 		
 		for(Member a : FollowooList) {
 			a.setBtn("button1");
-			
-
 		}
 		
-		
-		
-		
-		
-		for (Member a : FollowooList) {
-			System.out.println(a);
-
-		}
 		return FollowooList;
 	}
 
 	@RequestMapping("userPage.do")
 	private String userPage(String id, Model model) {
 		Member m = mService.userPage(id);
-		System.out.println(m + "여기 유저 찾는곳?");
+	
 		
 		
 		
@@ -111,11 +94,8 @@ public class JM_memberController {
 
 	@RequestMapping("SearchUser.do") 
 	public ModelAndView Search(ModelAndView mv,String keyword) {
-		System.out.println("키워드는?"+ keyword);
-		// ArrayList<Member> SearchBoard = mService.searchBoardList(keyword);
 		ArrayList<Member> SearchUser = mService.searchUserList1(keyword); 
 		int userCount = mService.searchUserCount(keyword);
-		System.out.println("이름검색 : " +userCount);
 
 		mv.addObject("searchUser", SearchUser); 
 		mv.addObject("userCount",userCount);
@@ -135,7 +115,6 @@ public class JM_memberController {
 		map.put("fromid",fromid);
 		map.put("newroomid",toid+fromid);
 		String chatRoom =mService.findRoom(map);
-		System.out.println("챗룸"+chatRoom);
 		
 		if(chatRoom != null) {
 			return "redirect:Message.do?id=" + fromid;
@@ -158,21 +137,27 @@ public class JM_memberController {
 	
 	
 	@RequestMapping("Search.do")
-	public ModelAndView Search1(ModelAndView mv, String keyword) {
+	public ModelAndView Search1(ModelAndView mv, String keyword,HttpServletRequest request) {
 
 		// ArrayList<Member> SearchBoard = mService.searchBoardList(keyword);
 		ArrayList<Member> SearchUser = mService.searchUserList1(keyword);
 		ArrayList<Member> tagPost = mService.tagList1(keyword);
 		int userCount = mService.searchUserCount(keyword);
 		int tagCount = mService.searchtagCount(keyword);
+		
+		HttpSession session = request.getSession();
+		Member loginUser = (Member)session.getAttribute("loginUser");
+		int uNum = loginUser.getUser_num();
+		System.out.println("로그인 유저 넘버 : " + uNum);
+		ArrayList<Member> FollowList = mService.selectFollowList(uNum);
+
 		// 6명만 나옴. 
 		// 회원번호, 사진, 아이디, 이름, 팔로우 여부(팔로우 했으면 X, 팔로우 아니면 팔로우 버튼 나오게) -팔로우 버튼 눌렀을 시 팔로우.do
 		// 팔로우 여부는 ajax로 하자..
 
-		System.out.println("검색 : " + userCount);
-
+		
+		mv.addObject("followlist",FollowList);
 		mv.addObject("searchUser", SearchUser);
-		System.out.println(SearchUser);
 		mv.addObject("userCount",userCount);
 		mv.addObject("keyword", keyword);
 		mv.addObject("tagpost", tagPost);
