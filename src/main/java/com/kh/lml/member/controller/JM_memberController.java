@@ -150,7 +150,7 @@ public class JM_memberController {
 		int uNum = loginUser.getUser_num();
 		System.out.println("로그인 유저 넘버 : " + uNum);
 		ArrayList<Member> FollowList = mService.selectFollowList(uNum);
-
+		System.out.println(FollowList);
 		// 6명만 나옴. 
 		// 회원번호, 사진, 아이디, 이름, 팔로우 여부(팔로우 했으면 X, 팔로우 아니면 팔로우 버튼 나오게) -팔로우 버튼 눌렀을 시 팔로우.do
 		// 팔로우 여부는 ajax로 하자..
