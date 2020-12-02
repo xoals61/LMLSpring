@@ -6,7 +6,6 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.kh.lml.board.model.vo.Board;
 import com.kh.lml.qna.dao.qnaDao;
 import com.kh.lml.qna.vo.qnaBoard;
 
@@ -31,7 +30,11 @@ public class qnaServiceImpl implements qnaService{
 		return qDao.insertStyleHash(qo);
 	}
 	@Override
-	public ArrayList<Board> selectList() {
+	public ArrayList<qnaBoard> selectList() {
 		return qDao.selectList();
+	}
+	@Override
+	public ArrayList<qnaBoard> selectOne(int qnum) {
+		return qDao.selectOne(qnum);
 	}
 }

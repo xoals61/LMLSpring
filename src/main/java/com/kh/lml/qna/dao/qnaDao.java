@@ -6,7 +6,6 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.kh.lml.board.model.vo.Board;
 import com.kh.lml.qna.vo.qnaBoard;
 
 @Repository("qDao")
@@ -27,7 +26,11 @@ public class qnaDao {
 		return sqlSession.insert("qnaMapper.insertStyleHash", qo);
 	}
 
-	public ArrayList<Board> selectList() {
+	public ArrayList<qnaBoard> selectList() {
 		return (ArrayList)sqlSession.selectList("qnaMapper.selectList");
+	}
+
+	public ArrayList<qnaBoard> selectOne(int qnum) {
+		return (ArrayList)sqlSession.selectList("qnaMapper.selectOne",qnum);
 	}
 }

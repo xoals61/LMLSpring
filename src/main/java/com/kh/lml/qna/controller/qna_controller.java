@@ -41,7 +41,7 @@ public class qna_controller {
 		MultipartFile[] fileList = {file1,file2,file3,file4,file5};
 		String[] renameFileList = new String[5];
 		if(fileList[0].getOriginalFilename().equals("")) {
-				renameFileList[0] = "ClipartKey_317802201201150215.png";
+			renameFileList[0] = "ClipartKey_317802201201150215.png";
 		}else {
 			for(int i = 0; i < fileList.length; i++) {
 				if(!fileList[i].getOriginalFilename().equals("")) {
@@ -72,7 +72,7 @@ public class qna_controller {
 		 */
 		int result = qService.insertStylePost(q);
 		System.out.println("result : " + result);
-		int getbnum = qService.getqnum();
+		int getqnum = qService.getqnum();
 
 		String b_hash =q.getq_hash();
 		String[] slist = b_hash.split(",");
@@ -80,7 +80,7 @@ public class qna_controller {
 		if(b_hash.length() > 0) {
 			for(int i=0; i<slist.length; i++){
 				qnaBoard qo = new qnaBoard();
-				qo.setq_num(getbnum);
+				qo.setq_num(getqnum);
 				qo.setq_hash(slist[i].toString());
 
 				int res = qService.insertStyleHash(qo);
@@ -132,7 +132,7 @@ public class qna_controller {
 	@RequestMapping(value="qnaIndexAjax.do", produces="application/json; charset=UTF-8")
 	public String index1(HttpServletResponse response) throws JsonIOException, JsonProcessingException{
 
-		ArrayList<Board> list = qService.selectList();
+		ArrayList<qnaBoard> list = qService.selectList();
 
 		ObjectMapper mapper = new ObjectMapper();
 
@@ -148,5 +148,21 @@ public class qna_controller {
 	public String qnaPage() {
 		System.out.println("qnaPage로 이동");
 		return "minwoo/qnaPage";
+	}
+
+	// 디테일
+	@ResponseBody
+	@RequestMapping(value="qnaDetail.do", produces="application/json; charset=UTF-8")
+	public String boardDetail(HttpServletResponse response, int qnum) throws JsonIOException, JsonProcessingException{
+
+		ArrayList<qnaBoard> list = qService.selectOne(qnum);
+
+		ObjectMapper mapper = new ObjectMapper();
+
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		mapper.setDateFormat(sdf);
+
+		String jsonStr = mapper.writeValueAsString(list);
+		return jsonStr;
 	}
 }

@@ -13,5 +13,7 @@ public interface qnaService {
 
 	int insertStyleHash(qnaBoard qo);
 
-	ArrayList<Board> selectList();
+	ArrayList<qnaBoard> selectList();
+
+	ArrayList<qnaBoard> selectOne(int qnum);
 }

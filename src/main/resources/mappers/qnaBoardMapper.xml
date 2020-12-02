@@ -39,4 +39,10 @@
 		JOIN LML_MEM ON (Q_USER_NUM = USER_NUM)
 		ORDER BY Q_NUM DESC
 	</select>
+	<select id="selectOne" resultMap="qnaboardResultSet">
+		SELECT *
+		FROM LML_QNABOARD
+		JOIN LML_MEM ON (Q_USER_NUM = USER_NUM)
+		WHERE Q_NUM = #{qnum}
+	</select>
 </mapper>

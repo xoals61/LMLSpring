@@ -18,96 +18,113 @@
 <body>
 	<jsp:include page="../common/header.jsp" />
 	<script>
-		$(function(){
-			$.ajax({
-				url:"qnaIndexAjax.do",
-				dataType:"JSON",
-				success:function(data){					
-					
-					var a = 0;	// tr
-					var b = 0;	// data[b]
-					
-					var row = Math.ceil(data.length/3);		// 총 tr
-					
-					addTable();
-					
-					window.onscroll = function (e) {
-		        		  if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
-		        			  if(a<row){
-		        				  addTable();
-		        			  }		        			  
-		        		  }
-		        	}
-					
-					function addTable(){
-						boardHover();
-						heartIcon();
-						for(var i=0; i<7; i++){	// 행
-							if(a<row){
-								
-								$('#table').append('<tr id="'+a+'">');
-							
-								for(var j=0; j<3; j++){	// 열
-									
-									if(b < data.length){
-										
-										$('#'+a).append('<td>'+
-													'<div class="content">'+
-														'<div>'+
-															'<img src="resources/quploadFiles/'+ data[b].image1 +'" class="cImg">'+
-														'</div>'+
-														'<div class="chover">'+
-															'<div class="hover-detail-content" onclick="modalDetail('+data[b].q_num+');"></div>'+
-															'<div class="chContnet">'+
-																'<div class="user">'+
-																	'<div class="userImg">'+
-																		'<a href="userPage.do?id='+ data[b].q_user_id +'"><img src="resources/images/profileImg/'+ data[b].q_profile_img +'"></a>'+
-																	'</div>'+
-																	'<a href="userPage.do?id='+ data[b].q_user_id +'"><div class="userId">'+ data[b].q_name +'</div></a>'+
-																'</div>'+
-																'<div class="con" onclick="modalDetail('+data[b].q_num+');">'+
-																	'<div class="userCon">'+
-																		'<p>'+ data[b].q_content +'</p>'+
-																	'</div>'+
-																'</div>'+
-																'<div class="cBtn">'+
-																	'<div class="cHeart">'+
-																		'<img src="resources/images/icon/main/heart.png"  id="th'+ data[b].q_num +'" class="cheart">'+
-																	'</div>'+
-																	'<div class="cComment" onclick="modalDetail('+data[b].q_num+');">'+
-																		'<div class="cbox"></div>'+
-																		'<img src="resources/images/icon/main/comment.png">'+
-																	'</div>'+
-																	'<div class="cEtc">'+
-																		'<img src="resources/images/icon/main/etc.png">'+
-																	'</div>'+
-																'</div>'+
-															'</div>'+
-														'</div>'+
-													'</div>'+
-												'</td>');
-										
-									}else if(b >= data.length){
-										
+		$(function() {
+			$
+					.ajax({
+						url : "qnaIndexAjax.do",
+						dataType : "JSON",
+						success : function(data) {
+
+							var a = 0; // tr
+							var b = 0; // data[b]
+
+							var row = Math.ceil(data.length / 3);
+
+							addTable();
+
+							window.onscroll = function(e) {
+								if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+									if (a < row) {
+										addTable();
 									}
-									b++;
 								}
-								a++;
 							}
+
+							function addTable() {
+								boardHover();
+								heartIcon();
+								for (var i = 0; i < 7; i++) { // 행
+									if (a < row) {
+
+										$('#table').append('<tr id="'+a+'">');
+
+										for (var j = 0; j < 3; j++) { // 열
+
+											if (b < data.length) {
+
+												$('#' + a)
+														.append(
+																'<td>'
+																		+ '<div class="content">'
+																		+ '<div>'
+																		+ '<img src="resources/quploadFiles/'+ data[b].image1 +'" class="cImg">'
+																		+ '</div>'
+																		+ '<div class="chover">'
+																		+ '<div class="hover-detail-content" onclick="modalDetail('
+																		+ data[b].q_num
+																		+ ');"></div>'
+																		+ '<div class="chContnet">'
+																		+ '<div class="user">'
+																		+ '<div class="userImg">'
+																		+ '<a href="userPage.do?id='
+																		+ data[b].q_user_id
+																		+ '"><img src="resources/images/profileImg/'+ data[b].q_profile_img +'"></a>'
+																		+ '</div>'
+																		+ '<a href="userPage.do?id='
+																		+ data[b].q_user_id
+																		+ '"><div class="userId">'
+																		+ data[b].q_name
+																		+ '</div></a>'
+																		+ '</div>'
+																		+ '<div class="con" onclick="modalDetail('
+																		+ data[b].q_num
+																		+ ');">'
+																		+ '<div class="userCon">'
+																		+ '<p>'
+																		+ data[b].q_content
+																		+ '</p>'
+																		+ '</div>'
+																		+ '</div>'
+																		+ '<div class="cBtn">'
+																		+ '<div class="cHeart">'
+																		+ '<img src="resources/images/icon/main/heart.png"  id="th'+ data[b].q_num +'" class="cheart">'
+																		+ '</div>'
+																		+ '<div class="cComment" onclick="modalDetail('
+																		+ data[b].q_num
+																		+ ');">'
+																		+ '<div class="cbox"></div>'
+																		+ '<img src="resources/images/icon/main/comment.png">'
+																		+ '</div>'
+																		+ '<div class="cEtc">'
+																		+ '<img src="resources/images/icon/main/etc.png">'
+																		+ '</div>'
+																		+ '</div>'
+																		+ '</div>'
+																		+ '</div>'
+																		+ '</div>'
+																		+ '</td>');
+
+											} else if (b >= data.length) {
+
+											}
+											b++;
+										}
+										a++;
+									}
+								}
+								boardHover();
+								heartIcon();
+							}
+						},
+						error : function(request, status, error) {
+							alert("code : " + request.status + "\n"
+									+ "message : " + request.responseText
+									+ "\n" + "error : " + error);
 						}
-						boardHover();
-						heartIcon();
-					}
-				},
-				error:function(request,status,error){
-					alert("code : " + request.status + "\n"
-						+ "message : " + request.responseText + "\n"
-						+ "error : " + error);
-				}
-			});
+					});
 		});
 	</script>
-	
+
 	<section>
 		<!-- ===================================================== 모달 ======================================================== -->
 		<div class="myModal" id="myModal" style="display: none;">
@@ -278,11 +295,11 @@
 		<div class="scContent">
 			<div class="upBtn">
 				<img src="resources/images/icon/main/arrow.png">
-			</div> 
-			<c:if test="${loginUser ne null}">
-			<div class="postBtn">
-				<img src="resources/images/icon/main/plus.png">
 			</div>
+			<c:if test="${loginUser ne null}">
+				<div class="postBtn">
+					<img src="resources/images/icon/main/plus.png">
+				</div>
 			</c:if>
 			<div class="choice">
 				<p class="pchoice">체형별 보기</p>
@@ -317,570 +334,714 @@
 			</div>
 			<div class="ctable">
 				<table id="table">
-					
+
 				</table>
 			</div>
 		</div>
 		<div class="modal2" id="modal2" style="display: none;"></div>
-        <div class="md_content" id="md_content" style="display: none;">
-            <span id="text">업로드</span>
-            <button class="xbutton">X</button>
-            <hr style="border: solid 0.5px rgb(211, 211, 211);">
+		<div class="md_content" id="md_content" style="display: none;">
+			<span id="text">업로드</span>
+			<button class="xbutton">X</button>
+			<hr style="border: solid 0.5px rgb(211, 211, 211);">
 
-            <div class="post-style-div" onclick="postStyle();">
-                <div class="post-style-btn"><img class="posticon" src="resources/images/icon/main/sunglasses.png"></div>
-                <div class="post-style-p">스타일</div>
-            </div>
+			<div class="post-style-div" onclick="postStyle();">
+				<div class="post-style-btn">
+					<img class="posticon"
+						src="resources/images/icon/main/sunglasses.png">
+				</div>
+				<div class="post-style-p">스타일</div>
+			</div>
 
-            <div class="post-qna-div" onclick="postQna();">
-                <div class="post-qna-btn"><img class="posticon" src="resources/images/icon/main/QandA.png"></div>
-                <div class="post-qna-p">QnA</div>
-            </div>
-        </div>
+			<div class="post-qna-div" onclick="postQna();">
+				<div class="post-qna-btn">
+					<img class="posticon" src="resources/images/icon/main/QandA.png">
+				</div>
+				<div class="post-qna-p">QnA</div>
+			</div>
+		</div>
 	</section>
 
 	<jsp:include page="../common/footer.jsp" />
 
 
 	<script>
-	
 		// 하트 리스트
-		function heartIcon(){
-			
+		function heartIcon() {
+
 			var unum = '<c:out value="${loginUser.user_num}"/>';
-			
-			if(unum.length > 0){
-				$.ajax({
-					url:"BoardHeart.do",
-					data:{unum:unum},
-					success:function(data){	
-						if(data.length > 0){
-							for(var i=0; i<data.length; i++){
-								$('#th'+data[i]).attr('src','resources/images/icon/main/heart2.png');
+
+			if (unum.length > 0) {
+				$
+						.ajax({
+							url : "BoardHeart.do",
+							data : {
+								unum : unum
+							},
+							success : function(data) {
+								if (data.length > 0) {
+									for (var i = 0; i < data.length; i++) {
+										$('#th' + data[i])
+												.attr('src',
+														'resources/images/icon/main/heart2.png');
+									}
+								}
+							},
+							error : function(request, status, error) {
+								console.log("** error code : " + request.status
+										+ "\n" + "message : "
+										+ request.responseText + "\n"
+										+ "error : " + error);
 							}
-						}
-					},
-					error:function(request,status,error){
-						console.log("** error code : " + request.status + "\n"
-							+ "message : " + request.responseText + "\n"
-							+ "error : " + error);
-					}
-				});
+						});
 			}
 		}
-		
+
 		// 게시물 마우스오버
-		function boardHover(){
-		  	$('.chover').hide();
-		    $('.content').mouseover(function(){
-		        $('.chover',this).show();
-		    });
-		    $('.content').mouseout(function(){
-		        $('.chover').hide();
-		    });
-		    
-		    /* 게시물 좋아요 아이콘 클릭 시 아이콘 변경 */
-			$(".cHeart").click(function(){
-				
-				var bnum = $('.cheart',this).attr("id").substring(2);
-				var unum = '<c:out value="${loginUser.user_num}"/>';
-				
-				if(unum.length > 0){
-					
-					//빈하트일때 좋아요 등록
-					if($('.cheart',this).attr('src') == "resources/images/icon/main/heart.png"){
-						
-						$.ajax({
-							url:"BoardAddHeart.do",
-							data:{bnum:bnum, unum:unum},
-							success:function(data){	
-								if(data == "success"){
-									$('#th'+bnum).attr('src','resources/images/icon/main/heart2.png');
-								}else{
-									alert('좋아요 실패');
-								}
-							},
-							error:function(request,status,error){
-								console.log("** error code : " + request.status + "\n"
-									+ "message : " + request.responseText + "\n"
-									+ "error : " + error);
-							}
-						});
-						
-					//꽉찬하트일때 좋아요 취소
-					}else if($('.cheart',this).attr('src') == "resources/images/icon/main/heart2.png"){
-						
-						 $.ajax({
-							url:"BoardDelHeart.do",
-							data:{bnum:bnum, unum:unum},
-							success:function(data){	
-								if(data == "success"){
-									$('#th'+bnum).attr('src','resources/images/icon/main/heart.png');
-								}else{
-									alert('좋아요 취소 실패');
-								}
-							},
-							error:function(request,status,error){
-								console.log("** error code : " + request.status + "\n"
-									+ "message : " + request.responseText + "\n"
-									+ "error : " + error);
-							}
-						});
-				 	} 
-				}else{
-					alert('로그인 후 이용 가능합니다.');
-				}
+		function boardHover() {
+			$('.chover').hide();
+			$('.content').mouseover(function() {
+				$('.chover', this).show();
 			});
+			$('.content').mouseout(function() {
+				$('.chover').hide();
+			});
+
+			/* 게시물 좋아요 아이콘 클릭 시 아이콘 변경 */
+			$(".cHeart")
+					.click(
+							function() {
+
+								var qnum = $('.cheart', this).attr("id")
+										.substring(2);
+								var unum = '<c:out value="${loginUser.user_num}"/>';
+
+								if (unum.length > 0) {
+
+									//빈하트일때 좋아요 등록
+									if ($('.cheart', this).attr('src') == "resources/images/icon/main/heart.png") {
+
+										$
+												.ajax({
+													url : "BoardAddHeart.do",
+													data : {
+														qnum : qnum,
+														unum : unum
+													},
+													success : function(data) {
+														if (data == "success") {
+															$('#th' + qnum)
+																	.attr(
+																			'src',
+																			'resources/images/icon/main/heart2.png');
+														} else {
+															alert('좋아요 실패');
+														}
+													},
+													error : function(request,
+															status, error) {
+														console
+																.log("** error code : "
+																		+ request.status
+																		+ "\n"
+																		+ "message : "
+																		+ request.responseText
+																		+ "\n"
+																		+ "error : "
+																		+ error);
+													}
+												});
+
+										//꽉찬하트일때 좋아요 취소
+									} else if ($('.cheart', this).attr('src') == "resources/images/icon/main/heart2.png") {
+
+										$
+												.ajax({
+													url : "BoardDelHeart.do",
+													data : {
+														qnum : qnum,
+														unum : unum
+													},
+													success : function(data) {
+														if (data == "success") {
+															$('#th' + qnum)
+																	.attr(
+																			'src',
+																			'resources/images/icon/main/heart.png');
+														} else {
+															alert('좋아요 취소 실패');
+														}
+													},
+													error : function(request,
+															status, error) {
+														console
+																.log("** error code : "
+																		+ request.status
+																		+ "\n"
+																		+ "message : "
+																		+ request.responseText
+																		+ "\n"
+																		+ "error : "
+																		+ error);
+													}
+												});
+									}
+								} else {
+									alert('로그인 후 이용 가능합니다.');
+								}
+							});
 		}
 
-
 		/* 체형별 */
-		$( document ).ready( function() {
-		    $('.choice1').hide();
-		    $( '.pchoice' ).click( function() {
-		        $( '.choice' ).animate( {
-		            width: '1106px',
-		            height: '50px',
-		            cursor: 'pointer'
-		        }, 400 );
-		        $('.choice').css('cursor','default');
-		        $('.choice1').show();
-		        $('.pchoice').hide();
-		    } );
-		    $( '.close' ).click( function() {
-		        $( '.choice' ).animate( {
-		            width: '100px',
-		            height: '30px'
-		        }, 400 );
-		        $('.choice1').hide();
-		        setTimeout(function() {
-		            $('.pchoice').show();
-		        }, 400);
-		        $('.choice').css('cursor','pointer');
-		    } );
+		$(document).ready(function() {
+			$('.choice1').hide();
+			$('.pchoice').click(function() {
+				$('.choice').animate({
+					width : '1106px',
+					height : '50px',
+					cursor : 'pointer'
+				}, 400);
+				$('.choice').css('cursor', 'default');
+				$('.choice1').show();
+				$('.pchoice').hide();
+			});
+			$('.close').click(function() {
+				$('.choice').animate({
+					width : '100px',
+					height : '30px'
+				}, 400);
+				$('.choice1').hide();
+				setTimeout(function() {
+					$('.pchoice').show();
+				}, 400);
+				$('.choice').css('cursor', 'pointer');
+			});
 
 		});
-          
 
 		/* 맨 위로 가는 버튼 */
-		$( document ).ready( function() {
-		    $('.upBtn').hide();
-		    $( window ).scroll( function() {
-		        if ( $( this ).scrollTop() > 200 ) {
-		            $( '.upBtn' ).fadeIn();
-		        } else {
-		            $( '.upBtn' ).fadeOut();
-		        }
-		    });
-		    $( '.upBtn' ).click( function() {
-		        $( 'html, body' ).animate( { scrollTop : 0 }, 400 );
-		        return false;
-		    });
+		$(document).ready(function() {
+			$('.upBtn').hide();
+			$(window).scroll(function() {
+				if ($(this).scrollTop() > 200) {
+					$('.upBtn').fadeIn();
+				} else {
+					$('.upBtn').fadeOut();
+				}
+			});
+			$('.upBtn').click(function() {
+				$('html, body').animate({
+					scrollTop : 0
+				}, 400);
+				return false;
+			});
 		});
 
 		/* 모달팝업 디테일 */
-		function modalDetail(bnum){
-			
-			console.log('### 글넘 : ' + bnum);
-			
+		function modalDetail(qnum) {
+
+			console.log('### 글넘 : ' + qnum);
+
 			var modal = document.getElementById('myModal');
 			var detail = document.getElementById('board-detail');
 			var content = document.getElementById('conte');
-			
-			$('.myModal').css('display','block');
-			$('.board-detail').css('display','block');
-			
-			$.ajax({
-				url:"BoardDetail.do",
-				data:{bnum:bnum},
-				dataType:"JSON",
-				success:function(data){	
-					hashHeartAjax();
-					replyList();
-					
-					$('.board-detail').append('<div class="board-img">'+
-							'<img src="resources/quploadFiles/'+ data[0].image1 +'">'+
-							'</div>'+
-							'<div class="board-right">'+
-								'<div class="board-user">'+
-									'<div class="board-userImg">'+
-									'<a href="userPage.do?id='+data[0].q_user_id+'"><img src="resources/images/profileImg/'+ data[0].q_profile_img +'"></a>'+
-									'</div>'+
-									'<a href="userPage.do?id='+data[0].q_user_id+'"><div class="board-id">'+
-											'<p>'+ data[0].q_name +'</p>'+
-										'</div></a>'+
-									'<div class="board-follow">팔로잉</div>'+
-								'</div>'+
-								'<div class="board-textDiv">'+
-									'<div class="board-text">'+ data[0].q_content +'</div>'+
-									'<div class="board-hashtag"></div>'+
-								'</div>'+
-								'<div class="board-stateicon">'+
-									'<div class="board-heartCount"></div>'+
-									'<div class="board-heart">'+
-										'<img src="resources/images/icon/menu/iconmonstr-heart-thin-72.png" id="h'+bnum+'" onclick="addHeart('+bnum+');">'+
-									'</div>'+
-									'<div class="board-etc">'+
-										'<img src="resources/images/icon/main/menu1.png">'+
-									'</div>'+
-								'</div>'+
-								'<div class="board-clothesInfo">'+
-									
-								'</div>'+
-							'</div>'+
-							'<div class="board-bottom">'+
-								'<div class="commentCount">'+
-									
-								'</div>'+
-								'<div class="board-commentDiv">'+
-									
-								'</div>'+
-								'<div class="board-commentWrite">'+
-									'<div class="comment-write">'+
-										'<input type="text" id="'+bnum+'" class="c-content" placeholder="댓글 달기...">'+
-									'</div>'+
-									'<div class="comment-submit" onclick="cSubmit();">게시</div>'+
-								'</div>'+
-							'</div>');
-				},
-				error:function(request,status,error){
-					console.log("** error code : " + request.status + "\n"
-						+ "message : " + request.responseText + "\n"
-						+ "error : " + error);
-				}
-			});
-			
+
+			$('.myModal').css('display', 'block');
+			$('.board-detail').css('display', 'block');
+
+			$
+					.ajax({
+						url : "qnaDetail.do",
+						data : {
+							qnum : qnum
+						},
+						dataType : "JSON",
+						success : function(data) {
+							hashHeartAjax();
+							replyList();
+
+							$('.board-detail')
+									.append(
+											'<div class="board-img">'
+													+ '<img src="resources/quploadFiles/'+ data[0].image1 +'">'
+													+ '</div>'
+													+ '<div class="board-right">'
+													+ '<div class="board-user">'
+													+ '<div class="board-userImg">'
+													+ '<a href="userPage.do?id='
+													+ data[0].q_user_id
+													+ '"><img src="resources/images/profileImg/'+ data[0].q_profile_img +'"></a>'
+													+ '</div>'
+													+ '<a href="userPage.do?id='
+													+ data[0].q_user_id
+													+ '"><div class="board-id">'
+													+ '<p>'
+													+ data[0].q_name
+													+ '</p>'
+													+ '</div></a>'
+													+ '<div class="board-follow">팔로잉</div>'
+													+ '</div>'
+													+ '<div class="board-textDiv">'
+													+ '<div class="board-text">'
+													+ data[0].q_content
+													+ '</div>'
+													+ '<div class="board-hashtag"></div>'
+													+ '</div>'
+													+ '<div class="board-stateicon">'
+													+ '<div class="board-heartCount"></div>'
+													+ '<div class="board-heart">'
+													+ '<img src="resources/images/icon/menu/iconmonstr-heart-thin-72.png" id="h'
+													+ qnum
+													+ '" onclick="addHeart('
+													+ qnum
+													+ ');">'
+													+ '</div>'
+													+ '<div class="board-etc">'
+													+ '<img src="resources/images/icon/main/menu1.png">'
+													+ '</div>'
+													+ '</div>'
+													+ '<div class="board-clothesInfo">'
+													+
+
+													'</div>'
+													+ '</div>'
+													+ '<div class="board-bottom">'
+													+ '<div class="commentCount">'
+													+
+
+													'</div>'
+													+ '<div class="board-commentDiv">'
+													+
+
+													'</div>'
+													+ '<div class="board-commentWrite">'
+													+ '<div class="comment-write">'
+													+ '<input type="text" id="'+qnum+'" class="c-content" placeholder="댓글 달기...">'
+													+ '</div>'
+													+ '<div class="comment-submit" onclick="cSubmit();">게시</div>'
+													+ '</div>' + '</div>');
+						},
+						error : function(request, status, error) {
+							console.log("** error code : " + request.status
+									+ "\n" + "message : "
+									+ request.responseText + "\n" + "error : "
+									+ error);
+						}
+					});
+
 			window.onclick = function(event) {
-			    if (event.target == modal) {
-			        modal.style.display = "none";
-			        detail.style.display = "none";
-			        $('.board-detail').empty();
-			    }
+				if (event.target == modal) {
+					modal.style.display = "none";
+					detail.style.display = "none";
+					$('.board-detail').empty();
+				}
 			}
-			
-			function hashHeartAjax(){
+
+			function hashHeartAjax() {
 				// 해쉬태그 불러오기
 				$.ajax({
-					url:"BoardDetailHash.do",
-					data:{bnum:bnum},
-					dataType:"JSON",
-					success:function(data){
-						for(var i=0; i<data.length; i++){
-							$('.board-hashtag').append('<a href=\'Search.do?keyword='+data[i].substring(1)+'\'>' + data[i] + ' </a>');
+					url : "BoardDetailHash.do",
+					data : {
+						qnum : qnum
+					},
+					dataType : "JSON",
+					success : function(data) {
+						for (var i = 0; i < data.length; i++) {
+							$('.board-hashtag').append(
+									'<a href=\'Search.do?keyword='
+											+ data[i].substring(1) + '\'>'
+											+ data[i] + ' </a>');
 						}
 					},
-					error:function(request,status,error){
+					error : function(request, status, error) {
 						console.log("** error code : " + request.status + "\n"
-							+ "message : " + request.responseText + "\n"
-							+ "error : " + error);
+								+ "message : " + request.responseText + "\n"
+								+ "error : " + error);
 					}
 				});
-				
+
 				// 디테일 좋아요 리스트 & 내가 좋아요 눌렀음 빨간하트로.
-				$.ajax({
-					url:"BoardDetailHeart.do",
-					data:{bnum:bnum},
-					dataType:"JSON",
-					success:function(data){
-						$('.board-heartCount').html('좋아요 '+ data.length +'개');
-						if(data.length > 0){
-							var unum = '<c:out value="${loginUser.user_num}"/>';
-							for(var i=0; i<data.length; i++){
-								if(data[i].h_unum == unum){
-									$('#h'+bnum).attr('src','resources/images/icon/menu/detailHeart.png');
+				$
+						.ajax({
+							url : "BoardDetailHeart.do",
+							data : {
+								qnum : qnum
+							},
+							dataType : "JSON",
+							success : function(data) {
+								$('.board-heartCount').html(
+										'좋아요 ' + data.length + '개');
+								if (data.length > 0) {
+									var unum = '<c:out value="${loginUser.user_num}"/>';
+									for (var i = 0; i < data.length; i++) {
+										if (data[i].h_unum == unum) {
+											$('#h' + qnum)
+													.attr('src',
+															'resources/images/icon/menu/detailHeart.png');
+										}
+									}
 								}
+							},
+							error : function(request, status, error) {
+								console.log("** error code : " + request.status
+										+ "\n" + "message : "
+										+ request.responseText + "\n"
+										+ "error : " + error);
 							}
-						}
-					},
-					error:function(request,status,error){
-						console.log("** error code : " + request.status + "\n"
-							+ "message : " + request.responseText + "\n"
-							+ "error : " + error);
-					}
-				});
+						});
 			}
-			
+
 			// 디테일 댓글 리스트
-			function replyList(){
-				$.ajax({
-					url:"BoardDetailComm.do",
-					data:{bnum:bnum},
-					dataType:"JSON",
-					success:function(data){	
-						if(data.length > 0){
-							console.log(data);
-							var unum1 = '<c:out value="${loginUser.user_num}"/>';
-							$('.commentCount').empty();
-							$('.commentCount').append('<p>댓글 ('+data.length+')</p>');
-							$('.board-commentDiv').empty();
-							for(var i=0; i<data.length; i++){
-								$('.board-commentDiv').append(''+
-										'<div class="board-comment">'+
-										'<div class="comment-img">'+
-											'<a href="./jiman/MyPage.html"><img src="resources/images/profileImg/'+ data[i].profile +'"></a>'+
-										'</div>'+
-										'<div class="comment-content">'+
-											'<p class="comment-user" id="tag'+data[i].c_unum+'" onclick="tagComment(id);">'+ data[i].uname +'</p>'+
-											'<p class="comment-comment">'+ data[i].c_content +'</p>'+
-											'<div class="comment-delete del'+data[i].c_no+'"></div>'+
-										'</div>'+
-									'</div>');
-								if(data[i].c_unum == unum1){	// 댓글 단 사람이랑 로그인유저랑 같으면
-									$('.del'+data[i].c_no).append('<img src="resources/images/icon/menu/commentDelete.png" id="'+data[i].c_no+'" onclick="commentDelete(id,'+bnum+');">');
+			function replyList() {
+				$
+						.ajax({
+							url : "BoardDetailComm.do",
+							data : {
+								qnum : qnum
+							},
+							dataType : "JSON",
+							success : function(data) {
+								if (data.length > 0) {
+									console.log(data);
+									var unum1 = '<c:out value="${loginUser.user_num}"/>';
+									$('.commentCount').empty();
+									$('.commentCount').append(
+											'<p>댓글 (' + data.length + ')</p>');
+									$('.board-commentDiv').empty();
+									for (var i = 0; i < data.length; i++) {
+										$('.board-commentDiv')
+												.append(
+														''
+																+ '<div class="board-comment">'
+																+ '<div class="comment-img">'
+																+ '<a href="./jiman/MyPage.html"><img src="resources/images/profileImg/'+ data[i].profile +'"></a>'
+																+ '</div>'
+																+ '<div class="comment-content">'
+																+ '<p class="comment-user" id="tag'
+																+ data[i].c_unum
+																+ '" onclick="tagComment(id);">'
+																+ data[i].uname
+																+ '</p>'
+																+ '<p class="comment-comment">'
+																+ data[i].c_content
+																+ '</p>'
+																+ '<div class="comment-delete del'+data[i].c_no+'"></div>'
+																+ '</div>'
+																+ '</div>');
+										if (data[i].c_unum == unum1) { // 댓글 단 사람이랑 로그인유저랑 같으면
+											$('.del' + data[i].c_no)
+													.append(
+															'<img src="resources/images/icon/menu/commentDelete.png" id="'
+																	+ data[i].c_no
+																	+ '" onclick="commentDelete(id,'
+																	+ qnum
+																	+ ');">');
+										}
+									}
+
+								} else {
+									console.log(data.length);
+									//$('.commentCount').empty();
+									$('.commentCount').append(
+											'<p>댓글 (' + data.length + ')</p>');
+									//$('.board-commentDiv').empty();
+									$('.board-commentDiv')
+											.append(
+													''
+															+ '<div class="board-comment">'
+															+
+															//'<div class="comment-img"></div>'+
+															'<div class="comment-content">'
+															+ '<p class="comment-user">등록된 댓글이 없습니다.</p>'
+															+ '<p class="comment-comment"></p>'
+															+ '</div>'
+															+ '</div>');
 								}
+							},
+							error : function(request, status, error) {
+								console.log("** error code : " + request.status
+										+ "\n" + "message : "
+										+ request.responseText + "\n"
+										+ "error : " + error);
 							}
-							
-							
-						}else{
-							console.log(data.length);
-							//$('.commentCount').empty();
-							$('.commentCount').append('<p>댓글 ('+data.length+')</p>');
-							//$('.board-commentDiv').empty();
-							$('.board-commentDiv').append(''+
-								'<div class="board-comment">'+
-									//'<div class="comment-img"></div>'+
-									'<div class="comment-content">'+
-										'<p class="comment-user">등록된 댓글이 없습니다.</p>'+
-										'<p class="comment-comment"></p>'+
-									'</div>'+
-								'</div>');
-						}
-					},
-					error:function(request,status,error){
-						console.log("** error code : " + request.status + "\n"
-							+ "message : " + request.responseText + "\n"
-							+ "error : " + error);
-					}
-				});
+						});
 			}
-			
+
 		}
-		
-		function addHeart(bnum){
-			var bnum = bnum;
+
+		function addHeart(qnum) {
+			var qnum = qnum;
 			var unum = '<c:out value="${loginUser.user_num}"/>';
-			
-			if(unum.length > 0){
+
+			if (unum.length > 0) {
 				// 디테일 빈하트일때 좋아요 등록
-				if($('#h'+bnum).attr('src') == "resources/images/icon/menu/iconmonstr-heart-thin-72.png"){
+				if ($('#h' + qnum).attr('src') == "resources/images/icon/menu/iconmonstr-heart-thin-72.png") {
+					$
+							.ajax({
+								url : "BoardAddHeart.do",
+								data : {
+									qnum : qnum,
+									unum : unum
+								},
+								success : function(data) {
+									if (data == "success") {
+										$('#h' + qnum)
+												.attr('src',
+														'resources/images/icon/menu/detailHeart.png');
+										$('#th' + qnum)
+												.attr('src',
+														'resources/images/icon/main/heart2.png');
+										detailHeartCount();
+									} else {
+										alert('좋아요 실패');
+									}
+								},
+								error : function(request, status, error) {
+									console.log("** error code : "
+											+ request.status + "\n"
+											+ "message : "
+											+ request.responseText + "\n"
+											+ "error : " + error);
+								}
+							});
+
+					//디테일 꽉찬하트일때 좋아요 취소
+				} else if ($('#h' + qnum).attr('src') == 'resources/images/icon/menu/detailHeart.png') {
+					$
+							.ajax({
+								url : "BoardDelHeart.do",
+								data : {
+									qnum : qnum,
+									unum : unum
+								},
+								success : function(data) {
+									if (data == "success") {
+										$('#h' + qnum)
+												.attr('src',
+														'resources/images/icon/menu/iconmonstr-heart-thin-72.png');
+										$('#th' + qnum)
+												.attr('src',
+														'resources/images/icon/main/heart.png');
+										detailHeartCount();
+									} else {
+										alert('좋아요 취소 실패');
+									}
+								},
+								error : function(request, status, error) {
+									console.log("** error code : "
+											+ request.status + "\n"
+											+ "message : "
+											+ request.responseText + "\n"
+											+ "error : " + error);
+								}
+							});
+				}
+
+				function detailHeartCount() {
 					$.ajax({
-						url:"BoardAddHeart.do",
-						data:{bnum:bnum, unum:unum},
-						success:function(data){	
-							if(data == "success"){
-								$('#h'+bnum).attr('src','resources/images/icon/menu/detailHeart.png');
-								$('#th'+bnum).attr('src','resources/images/icon/main/heart2.png');
-								detailHeartCount();
-							}else{
-								alert('좋아요 실패');
-							}
+						url : "BoardDetailHeart.do",
+						data : {
+							qnum : qnum
 						},
-						error:function(request,status,error){
-							console.log("** error code : " + request.status + "\n"
-								+ "message : " + request.responseText + "\n"
-								+ "error : " + error);
-						}
-					});
-					
-				//디테일 꽉찬하트일때 좋아요 취소
-				}else if($('#h'+bnum).attr('src') == 'resources/images/icon/menu/detailHeart.png'){
-					$.ajax({
-						url:"BoardDelHeart.do",
-						data:{bnum:bnum, unum:unum},
-						success:function(data){	
-							if(data == "success"){
-								$('#h'+bnum).attr('src','resources/images/icon/menu/iconmonstr-heart-thin-72.png');
-								$('#th'+bnum).attr('src','resources/images/icon/main/heart.png');
-								detailHeartCount();
-							}else{
-								alert('좋아요 취소 실패');
-							}
+						dataType : "JSON",
+						success : function(data) {
+							$('.board-heartCount').html(
+									'좋아요 ' + data.length + '개');
 						},
-						error:function(request,status,error){
-							console.log("** error code : " + request.status + "\n"
-								+ "message : " + request.responseText + "\n"
-								+ "error : " + error);
-						}
-					});
-			 	} 
-				
-				function detailHeartCount(){
-					$.ajax({
-						url:"BoardDetailHeart.do",
-						data:{bnum:bnum},
-						dataType:"JSON",
-						success:function(data){
-							$('.board-heartCount').html('좋아요 '+ data.length +'개');
-						},
-						error:function(request,status,error){
-							console.log("** error code : " + request.status + "\n"
-								+ "message : " + request.responseText + "\n"
-								+ "error : " + error);
+						error : function(request, status, error) {
+							console.log("** error code : " + request.status
+									+ "\n" + "message : "
+									+ request.responseText + "\n" + "error : "
+									+ error);
 						}
 					});
 				}
-			}else{
+			} else {
 				alert('로그인 후 이용 가능합니다.');
 			}
 		}
-		
-		
+
 		// 댓글등록 ajax
-		function cSubmit(){
+		function cSubmit() {
 			var comment = $('.c-content').val();
 			var unum = '<c:out value="${loginUser.user_num}"/>';
-			var bnum = $('.c-content').attr("id");
-			
-			if(unum.length>0){
-				if(comment.length > 0){
+			var qnum = $('.c-content').attr("id");
+
+			if (unum.length > 0) {
+				if (comment.length > 0) {
 					$.ajax({
-						url:"BoardComment.do",
-						data:{comment:comment, unum:unum, bnum:bnum},
-						success:function(data){	
-							if(data == "success"){
-								getReplyList(bnum);
+						url : "BoardComment.do",
+						data : {
+							comment : comment,
+							unum : unum,
+							qnum : qnum
+						},
+						success : function(data) {
+							if (data == "success") {
+								getReplyList(qnum);
 								$('.c-content').val('');
-							}else{
+							} else {
 								alert('댓글 등록 실패');
 							}
 						},
-						error:function(request,status,error){
-							console.log("** error code : " + request.status + "\n"
-								+ "message : " + request.responseText + "\n"
-								+ "error : " + error);
+						error : function(request, status, error) {
+							console.log("** error code : " + request.status
+									+ "\n" + "message : "
+									+ request.responseText + "\n" + "error : "
+									+ error);
 						}
 					});
-				}else{
+				} else {
 					alert('댓글을 입력해주세요.');
 				}
-			}else{
+			} else {
 				alert('로그인 후 이용 가능합니다.');
 			}
 		}
-		
+
 		// 태그 댓글등록 ajax
-		function tagComment(id){
+		function tagComment(id) {
 			var tagunum = id.substring(3);
-			var tagname = $('#'+id).html();
-			
-			$('.c-content').val('@'+tagname+' ');
+			var tagname = $('#' + id).html();
+
+			$('.c-content').val('@' + tagname + ' ');
 		}
-		
+
 		// 댓글 리스트 ajax
-		function getReplyList(bnum){
+		function getReplyList(qnum) {
 			console.log('댓글 리스트 ajax 실행');
-			console.log('해당 댓글 글넘 : ' + bnum);
+			console.log('해당 댓글 글넘 : ' + qnum);
 			$.ajax({
-				url:"BoardDetailComm.do",
-				data:{bnum:bnum},
-				dataType:"JSON",
-				success:function(data){	
-					if(data.length > 0){
-						var unum1 = '<c:out value="${loginUser.user_num}"/>';
-						console.log(data);
-						$('.commentCount').empty();
-						$('.commentCount').append('<p>댓글 ('+data.length+')</p>');
-						$('.board-commentDiv').empty();
-						for(var i=0; i<data.length; i++){
-							$('.board-commentDiv').append(''+
-									'<div class="board-comment">'+
-									'<div class="comment-img">'+
-										'<a href="./jiman/MyPage.html"><img src="resources/images/profileImg/'+ data[i].profile +'"></a>'+
-									'</div>'+
-									'<div class="comment-content">'+
-										'<p class="comment-user" id="tag'+data[i].c_unum+'" onclick="tagComment(id);">'+ data[i].uname +'</p>'+
-										'<p class="comment-comment">'+ data[i].c_content +'</p>'+
-										'<div class="comment-delete del'+data[i].c_no+'"></div>'+	//id="del'+data[i].c_unum+'"
-									'</div>'+
-								'</div>');
-							if(data[i].c_unum == unum1){
-								$('.del'+data[i].c_no).append('<img src="resources/images/icon/menu/commentDelete.png" id="'+data[i].c_no+'" onclick="commentDelete(id,'+bnum+');">');
+						url : "BoardDetailComm.do",
+						data : {
+							qnum : qnum
+						},
+						dataType : "JSON",
+						success : function(data) {
+							if (data.length > 0) {
+								var unum1 = '<c:out value="${loginUser.user_num}"/>';
+								console.log(data);
+								$('.commentCount').empty();
+								$('.commentCount').append(
+										'<p>댓글 (' + data.length + ')</p>');
+								$('.board-commentDiv').empty();
+								for (var i = 0; i < data.length; i++) {
+									$('.board-commentDiv')
+											.append(
+													''
+															+ '<div class="board-comment">'
+															+ '<div class="comment-img">'
+															+ '<a href="./jiman/MyPage.html"><img src="resources/images/profileImg/'+ data[i].profile +'"></a>'
+															+ '</div>'
+															+ '<div class="comment-content">'
+															+ '<p class="comment-user" id="tag'
+															+ data[i].c_unum
+															+ '" onclick="tagComment(id);">'
+															+ data[i].uname
+															+ '</p>'
+															+ '<p class="comment-comment">'
+															+ data[i].c_content
+															+ '</p>'
+															+ '<div class="comment-delete del'+data[i].c_no+'"></div>'
+															+ //id="del'+data[i].c_unum+'"
+															'</div>' + '</div>');
+									if (data[i].c_unum == unum1) {
+										$('.del' + data[i].c_no)
+												.append(
+														'<img src="resources/images/icon/menu/commentDelete.png" id="'
+																+ data[i].c_no
+																+ '" onclick="commentDelete(id,'
+																+ qnum + ');">');
+									}
+								}
+
+							} else {
+								console.log(data.length);
+								//$('.commentCount').empty();
+								$('.commentCount').append(
+										'<p>댓글 (' + data.length + ')</p>');
+								//$('.board-commentDiv').empty();
+								$('.board-commentDiv')
+										.append(
+												''
+														+ '<div class="board-comment">'
+														+
+														//'<div class="comment-img"></div>'+
+														'<div class="comment-content">'
+														+ '<p class="comment-user">등록된 댓글이 없습니다.</p>'
+														+ '<p class="comment-comment"></p>'
+														+ '</div>' + '</div>');
 							}
+						},
+						error : function(request, status, error) {
+							console.log("** error code : " + request.status
+									+ "\n" + "message : "
+									+ request.responseText + "\n" + "error : "
+									+ error);
 						}
-						
-					}else{
-						console.log(data.length);
-						//$('.commentCount').empty();
-						$('.commentCount').append('<p>댓글 ('+data.length+')</p>');
-						//$('.board-commentDiv').empty();
-						$('.board-commentDiv').append(''+
-							'<div class="board-comment">'+
-								//'<div class="comment-img"></div>'+
-								'<div class="comment-content">'+
-									'<p class="comment-user">등록된 댓글이 없습니다.</p>'+
-									'<p class="comment-comment"></p>'+
-								'</div>'+
-							'</div>');
-					}
-				},
-				error:function(request,status,error){
-					console.log("** error code : " + request.status + "\n"
-						+ "message : " + request.responseText + "\n"
-						+ "error : " + error);
-				}
-			});
+					});
 		}
-		
+
 		// 댓글 삭제
-		function commentDelete(id,bnum){
-			console.log('삭제 아뒤, 비넘 : ' + id + ', ' + bnum);
+		function commentDelete(id, qnum) {
+			console.log('삭제 아뒤, 비넘 : ' + id + ', ' + qnum);
 			var del = confirm('댓글을 삭제하시겠습니까?');
-			if(del == true){
+			if (del == true) {
 				$.ajax({
-					url:"CommentDelete.do",
-					data:{cno:id},
-					success:function(data){	
-						if(data == "success"){
-							getReplyList(bnum);
-						}else{
+					url : "CommentDelete.do",
+					data : {
+						cno : id
+					},
+					success : function(data) {
+						if (data == "success") {
+							getReplyList(qnum);
+						} else {
 							alert('댓글 삭제 실패');
 						}
 					},
-					error:function(request,status,error){
+					error : function(request, status, error) {
 						console.log("** error code : " + request.status + "\n"
-							+ "message : " + request.responseText + "\n"
-							+ "error : " + error);
+								+ "message : " + request.responseText + "\n"
+								+ "error : " + error);
 					}
 				});
-			}else{}
+			} else {
+			}
 		}
 
-		
- 
 		var modal2 = document.getElementById('modal2');
-		var md_content = document.getElementById('md_content'); 
-      
-		$('.postBtn').click(function(){
-			$( 'html, body' ).animate( { scrollTop : 0 },0);
-			$('.modal2').css('display','block');
-			$('.md_content').css('display','block');
+		var md_content = document.getElementById('md_content');
+
+		$('.postBtn').click(function() {
+			$('html, body').animate({
+				scrollTop : 0
+			}, 0);
+			$('.modal2').css('display', 'block');
+			$('.md_content').css('display', 'block');
 		});
 
-		window.onclick = function(event) {
-		    if (event.target == modal2) {
-		        modal2.style.display = "none";
-		        md_content.style.display = "none";
-		    }
+		$('#modal2').click(function() {
+			modal2.style.display = "none";
+			md_content.style.display = "none";
+
+		});
+
+		$('.xbutton').click(function() {
+			modal2.style.display = "none";
+			md_content.style.display = "none";
+		});
+
+		function postStyle() {
+			location.href = "PostStyle.do";
 		}
 
-		$('.xbutton').click(function(){
-		    modal2.style.display = "none";
-		    md_content.style.display = "none";
-		});
-		
-		function postStyle(){
-		    location.href="PostStyle.do";
+		function postQna() {
+			location.href = "PostQna.do";
 		}
-		
-		function postQna(){
-		    location.href="PostQna.do";
+
+		function infoPage(id) {
+			location.href = "userPage.do?id=" + id;
 		}
-		
-		
-		function infoPage(id){
-			location.href="userPage.do?id="+id;
-		}
-    </script>
+	</script>
 
 
 </body>
