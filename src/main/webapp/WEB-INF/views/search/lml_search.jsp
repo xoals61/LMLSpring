@@ -136,7 +136,7 @@
 													<div class="uname">${searchUser[i].uname}</div>
 												</div>
 												<c:if
-													test="${ !empty loginUser.id && loginUser.user_num != searchUser[i].user_num}">
+													test="${ !empty loginUser.id && loginUser.user_num != searchUser[i].user_num }">
 													<div class="follow" id="${searchUser[i].user_num }">
 														<div class="">팔로우</div>
 													</div>

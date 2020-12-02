@@ -347,7 +347,8 @@ public class memberController {
 		ArrayList<Member> FollowList = mService.selectFollowList(uNum);
 		ArrayList<Member> FollowerList = mService.selectFollowerList(uNum);
 		ArrayList<Member> BlockList = mService.selectBlockList(uNum);
-
+		
+		System.out.println(FollowList);
 		mv.addObject("FollowList", FollowList);
 		mv.addObject("FollowerList", FollowerList);
 		mv.addObject("BlockList", BlockList);
