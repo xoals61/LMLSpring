@@ -93,7 +93,7 @@ public class BoardController {
 		String tagUser = b.getT_unum();
 		//System.out.println("3. tagUser는 : " + tagUser);
 		String[] tagUserArr = tagUser.split(",");
-		System.out.println("4. tagUserArr는 : " + Integer.parseInt(tagUserArr[0].toString()));
+		//System.out.println("4. tagUserArr는 : " + Integer.parseInt(tagUserArr[0].toString()));
 		
         //System.out.println("4. tagUserArr는 : " + tagUserArr);
         

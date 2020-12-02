@@ -220,6 +220,16 @@ public class MemberServiceImpl implements MemberService {
 		return mDao.deleteChatLog(roomid);
 	}
 
+	@Override
+	public int boardDelete(int uNum) {
+		return mDao.deleteBoard(uNum);
+	}
+
+	@Override
+	public int commentDelete(int uNum) {
+		return mDao.deleteComment(uNum);
+	}
+
 	
 
 

@@ -85,6 +85,10 @@ public interface MemberService {
 
 	int deleteChatLog(String roomid);
 
+	int boardDelete(int uNum);
+
+	int commentDelete(int uNum);
+
 
 
 

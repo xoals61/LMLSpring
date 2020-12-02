@@ -142,5 +142,12 @@ public class MemberDao {
 	public int deleteChatLog(String roomid) {
 		return sqlSession.delete("memberMapper.deleteChatLog",roomid);
 	}
+	public int deleteBoard(int uNum) {
+		return sqlSession.delete("memberMapper.deleteBoard",uNum);
+	}
+	public int deleteComment(int uNum) {
+		return sqlSession.delete("memberMapper.deleteComment",uNum);
+	}
 
+	
 }

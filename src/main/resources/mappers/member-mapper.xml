@@ -173,9 +173,9 @@
 		resultMap="memberResultSet">
 		SELECT USER_NUM, ID, UNAME, PROFILE_IMG,RENAME_PROFILE_IMG
 		FROM LML_MEM
-		WHERE ID LIKE LOWER('%' || #{keyword} || '%')
+		WHERE (ID LIKE LOWER('%' || #{keyword} || '%')
 		OR UNAME LIKE
-		LOWER('%' || #{keyword} || '%')
+		LOWER('%' || #{keyword} || '%'))
 		AND DEL_FLAG='N'
 	</select>
 
@@ -183,9 +183,9 @@
 		SELECT COUNT(*)
 		FROM
 		LML_MEM
-		WHERE ID LIKE LOWER('%' || #{keyword} || '%')
+		WHERE (ID LIKE LOWER('%' || #{keyword} || '%')
 		OR UNAME LIKE
-		LOWER('%' || #{keyword} || '%')
+		LOWER('%' || #{keyword} || '%'))
 		AND DEL_FLAG='N'
 	</select>
 	<!-- 1113은지 -->
@@ -324,7 +324,16 @@ WHERE FROM_FOLLOW IN (SELECT TO_FOLLOW
 	DELETE FROM CHAT_RECORD
 	WHERE CHATROOMID = #{roomid}
 	</delete> 
+	<delete id="deleteBoard" parameterType="_int">
+	DELETE FROM LML_BOARD
+	WHERE B_USER_NUM = #{uNum}
 	
+	</delete>
+	<delete id="deleteComment" parameterType="_int">
+	DELETE FROM LML_COMMENT
+	WHERE C_UNUM = #{uNum}
+	
+	</delete>
 </mapper>
 
 

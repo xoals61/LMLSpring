@@ -502,7 +502,9 @@ public class memberController {
 	public String mDelete(String id,Model model) {
 
 		int result = mService.mDelete(id);
-
+		int uNum = mService.finduNum(id);
+		mService.boardDelete(uNum);
+		mService.commentDelete(uNum);
 		if(result>0) {
 
 			return "redirect:logout.do";

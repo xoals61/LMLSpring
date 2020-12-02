@@ -130,6 +130,7 @@
         $(document).ready(function() {
           	var id = "${User.id}";
           //팔로워 목록 불러오는 ajax
+            //팔로워 목록 불러오는 ajax
             $.ajax({
 				url : "werlist.do",
 				data : {
@@ -139,7 +140,7 @@
 				success : function(data) {
 					
 					if (data != null) {
-						console.log(data);
+						console.log("여기 팔로워 리스트 "+data);
 						var a = Object.keys(data).length;
 						/* $('.mo_fallower').append("<table class='add_table'>"); */
 						
@@ -148,10 +149,19 @@
 						for(var i = 0; i<a;i++){
 							console.log(data[i].id);
 							console.log(data[i].rename_profile_img);
+							var value;
+							if(data[i].btn=="button1"){
+								value = '팔로잉';
+							}else{
+								value = '팔로우';
+							}
+							
+							
+							
 							var img = "<table class='add_table'><tr><td class='imgtd' rowspan='2' style='width: 10%;'><a class='taga' href='userPage.do?id="+data[i].id+"'><img style='width:75px; height:69px;' class='userimg' src='resources/images/profileImg/"+ data[i].rename_profile_img+"'></a></td>"+
-							"<td class='idtd' style='width: 30%;'><a class='taga' href='userPage.do?id="+data[i].id+"'>"+data[i].id+"</a></td><td class='btntd' rowspan='2' style='width: 30%;'>"+ "<input class='button2'  name='button2' type='button' value='팔로우' onclick='followBtn(this.name, this.id);'>"
+							"<td class='idtd' style='width: 30%;'><a class='taga' href='userPage.do?id="+data[i].id+"'>"+data[i].id+"</a></td><td class='btntd' rowspan='2' style='width: 30%;'>"+ "<input class='"+data[i].btn+"' id='"+ data[i].from_follower +"'  name='"+data[i].btn+"' type='button' value='"+value+"' onclick='followBtn(this.name, this.id);'>"
 									+"</td></tr><tr><td  class='nametd'><a class='taga' href='userPage.do?id="+data[i].id+"'>"+data[i].uname+"</a></td></tr></table>";
-									
+							
 						/* $('.mo_fallower').append("<tr><td class='imgtd' rowspan='2' style='width:10%'><img class='userimg' src='resources/images/profileImg/"+data[i].rename_profile_img+"></tr></td>"); */
 						/* $('.mo_fallower').append("<table class='add_table'><tr><td class='imgtd' rowspan='2' style='width: 10%;'><img style='width:80px; height:80px;' class='userimg' src='resources/images/profileImg/"+ data[i].rename_profile_img+"'><td>");
 						$('.mo_fallower').append("<td class='idtd' style='width: 30%;'>"+data[i].id+"</td><td class='btntd' rowspan='2' style='width: 30%;'>");
@@ -171,7 +181,7 @@
 				}
 			});
             //팔로우 목록 불러오는 ajax
-            $.ajax({
+          $.ajax({
 				url : "woolist.do",
 				data : {
 					id : id
@@ -180,7 +190,7 @@
 				success : function(data) {
 					
 					if (data != null) {
-						console.log(data);
+						console.log("여기 팔로우 리스트"+data);
 						var a = Object.keys(data).length;
 						/* $('.mo_fallower').append("<table class='add_table'>"); */
 						
@@ -189,10 +199,16 @@
 						for(var i = 0; i<a;i++){
 							console.log(data[i].id);
 							console.log(data[i].rename_profile_img);
+							var value;
+							if(data[i].btn=="button1"){
+								value = '팔로잉';
+							}else{
+								value = '팔로우';
+							}
 							
 							
 							var img = "<table class='add_table'><tr><td class='imgtd' rowspan='2' style='width: 10%;'><a class='taga' href='userPage.do?id="+data[i].id+"'><img style='width:75px; height:69px;' class='userimg' src='resources/images/profileImg/"+ data[i].rename_profile_img+"'></a></td>"+
-							"<td class='idtd' style='width: 30%;'><a class='taga' href='userPage.do?id="+data[i].id+"'>"+data[i].id+"</a></td><td class='btntd' rowspan='2' style='width: 30%;'>"+ "<input class='button2'  name='button2' type='button' value='팔로우' onclick='followBtn(this.name, this.id);'>"
+							"<td class='idtd' style='width: 30%;'><a class='taga' href='userPage.do?id="+data[i].id+"'>"+data[i].id+"</a></td><td class='btntd' rowspan='2' style='width: 30%;'>"+ "<input class='"+data[i].btn+"' id='"+ data[i].to_follow +"'  name='"+data[i].btn+"' type='button' value='"+value+"' onclick='followBtn(this.name, this.id);'>"
 									+"</td></tr><tr><td  class='nametd'><a class='taga' href='userPage.do?id="+data[i].id+"'>"+data[i].uname+"</a></td></tr></table>";
 							
 						/* $('.mo_fallower').append("<tr><td class='imgtd' rowspan='2' style='width:10%'><img class='userimg' src='resources/images/profileImg/"+data[i].rename_profile_img+"></tr></td>"); */
@@ -261,6 +277,78 @@
                 	  detailwoo.style.display = "none";
                   }
               }
+              
+              function followBtn(name, id){
+        			
+        			if(name == 'button1'){	// 언팔로우
+        				console.log(name);
+        				console.log(id);
+        			
+        				var followQ = confirm('언팔로우 하시겠습니까?');
+        				
+        				if(followQ){
+        					
+        					console.log('woo 언팔');
+        					
+        					var toUnFollow = id;	// 팔로우 취소 할 상대
+        					var fromFollow = '${loginUser.user_num}';	// 본인
+        				
+        					console.log("Un - to : " + toUnFollow + " / from : " + fromFollow);
+        					
+        					$.ajax({
+        						url:"unfollowBtn.do",
+        						data:{toUnFollow:toUnFollow, fromFollow:fromFollow},
+        						type:"post",
+        						success:function(data){
+        							if(data == "success"){
+        					
+        								$('#'+id).prop("name",'button2');
+        								$('#'+id).prop("class",'button2');
+        								$('#'+id).prop("value",'팔로우');
+        							}else{
+        								alert("실패");
+        							}
+        						},
+        						error:function(jqxhr, textStatus,errorThrown){
+        							console.log("ajax 처리 실패");
+        						}
+        					});
+        					
+        				}else{	alert('언팔 불가능');	}
+        				
+        			}else if(name == 'button2'){	// 팔로우
+        				
+        				var followQ = confirm('팔로우 하시겠습니까?');
+        				
+        				if(followQ){
+        					
+        					var toFollow = id;	// 팔로우 할 상대
+        					var fromFollow = '${loginUser.user_num}';	// 본인
+        					
+        					$.ajax({
+        						url:"followBtn.do",
+        						data:{toFollow:toFollow, fromFollow:fromFollow},
+        						type:"post",
+        						success:function(data){
+        							if(data == "success"){
+        								console.log("followBtn");
+        								$('#'+id).prop("class",'button1');
+        								$('#'+id).prop("value",'팔로잉');
+        								$('#'+id).prop("name",'button1');
+        							}else{
+        								alert("실패");
+        							}
+        						},
+        						error:function(jqxhr, textStatus,errorThrown){
+        							console.log("ajax 처리 실패");
+        						}
+        					});
+        				}else{	alert('팔로우 불가능');	}
+        				
+        			}else if(name == 'button3'){
+        				console.log('차단' + name);
+        			}
+        		}
         
     </script>
 

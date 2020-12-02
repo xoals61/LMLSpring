@@ -135,18 +135,16 @@
 													<div class="uid">${searchUser[i].id}</div>
 													<div class="uname">${searchUser[i].uname}</div>
 												</div>
-												<c:set var="k" value="'yes'"/>
+												<c:set var="k" value="0"/>
 												<c:forEach var="follow" items="${followlist }">
-												 <c:if test="${follow.to_follow == searchUser[i].user_num} ">
-												 	<c:set var="k" value="'no'"/>
-													
+												
+												 <c:if test="${follow.to_follow+0 == searchUser[i].user_num+0}">
+												 	<c:set var="k" value="1"/>				
 												 </c:if>
 												</c:forEach>
-													<script type="text/javascript">
-												console.log(${k});
-												</script> 	
+												
 												<c:if
-													test="${ !empty loginUser.id && loginUser.user_num != searchUser[i].user_num && k == 'yes'}">
+													test="${ !empty loginUser.id && loginUser.user_num != searchUser[i].user_num && k eq 0}">
 													
 													<div class="follow" id="${searchUser[i].user_num }">
 														<div class="">팔로우</div>
