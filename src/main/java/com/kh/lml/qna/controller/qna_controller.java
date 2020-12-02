@@ -89,7 +89,7 @@ public class qna_controller {
 		if(result > 0) {
 			System.out.println("글쓰기 성공");
 			/* return "../../index"; */
-			return "redirect:/index.do";
+			return "minwoo/qnaPage";
 		}else {
 			System.out.println("글쓰기 실패");
 			return "../../index";
