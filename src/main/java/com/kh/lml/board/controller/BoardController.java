@@ -85,7 +85,7 @@ public class BoardController {
 				Board bo = new Board();
 				bo.setB_num(getbnum);
 				bo.setB_hash(slist[i].toString());
-				
+				 
 				int res = bService.insertStyleHash(bo);
 			}
 		}
