@@ -13,6 +13,20 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
     <link rel="stylesheet" href="resources/css/final_main.css">
     <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
+    
+
+
+
+<!-- 여기 채팅 겁난다 -->
+<script src="http://52.79.234.164:3001/socket.io/socket.io.js"></script>
+<script>
+var socket;
+$(document).ready(function () {
+	socket = io("http://52.79.234.164:3001");
+	
+});
+</script>
+    
 </head>
 	<header>
         <div class="hTitle">
@@ -44,7 +58,97 @@
                             </ul>
                         </div><!--메뉴-->
                         <div class="heart"><img src="./resources/images/icon/menu/iconmonstr-heart-thin-72.png" class="heart heartIcon"></div><!--알림-->
-                        <div><a href="Message.do?id=${ loginUser.id}"><img src="./resources/images/icon/menu/iconmonstr-speech-bubble-thin-72.png"></a></div><!--채팅-->
+                        <div><a href="Message.do?id=${ loginUser.id}"><img src="./resources/images/icon/menu/iconmonstr-speech-bubble-thin-72.png"></a><p class="messageAlarm" hidden="hidden">0</p></div><!--채팅-->
+                        <script>
+                        $(document).ready(function () {
+			var id= "${loginUser.id}";
+			
+			
+			$.ajax({
+				url : "chatLogin.do",
+				data : {id : id},
+				type : "post",
+				success : function(data) {
+					
+					console.log(data);
+					for(var i = 0;i<data.length;i++){
+					socket.emit("login",id,data[i].chatroomid);
+					}
+					
+					
+				},
+				error : function(jqxhr, textStatus, errorThrown) {
+					console.log("ajax 오류");
+
+				}
+				});
+			
+			
+			
+			
+			$.ajax({
+				url : "alalarm.do",
+				data : {id : id},
+				type : "post",
+				success : function(data) {
+					
+					console.log(data);
+					if(Number(data)==0){
+						$('.messageAlarm').attr("hidden","hidden");
+						$('.messageAlarm').html(Number(data));
+					}else{
+						$('.messageAlarm').removeAttr("hidden");
+						$('.messageAlarm').html(Number(data));
+					}
+					
+					
+					
+				},
+				error : function(jqxhr, textStatus, errorThrown) {
+					console.log("ajax 오류");
+
+				}
+				});
+			
+			
+			socket.on('hi',function(room,name,msg){
+				console.log('hi?');
+				 var id= "${loginUser.id}";
+				 $.ajax({
+    					url : "alalarm.do",
+    					data : {id : id},
+    					type : "post",
+    					success : function(data) {
+    						
+    						console.log(data);
+    						if(Number(data)==0){
+    							$('.messageAlarm').attr("hidden","hidden");
+    							$('.messageAlarm').html(Number(data));
+    						}else{
+    							$('.messageAlarm').removeAttr("hidden");
+    							$('.messageAlarm').html(Number(data));
+    						}
+    						
+    					},
+    					error : function(jqxhr, textStatus, errorThrown) {
+    						console.log("ajax 오류");
+
+    					}
+    					});
+				 
+				 
+				 
+				 
+				 
+				 
+			 });
+			
+			
+});
+                        
+                        </script>  
+                        
+                        
                         </c:if>
                         
 						<c:if test="${ empty sessionScope.loginUser }">
@@ -57,7 +161,7 @@
         <div class="hMenu">
             <div class="hMenu1">
                 <div class="hMenu2 on"><a href="likepost.do"><span>인기순</span></a></div>
-                <div class="hMenu2"><a href="newpost.do"><span>최신순</span></a></div>
+                <div class="hMenu2"><span>최신순</span></div>
                <c:if test="${ !empty sessionScope.loginUser }">
                 <div class="hMenu2"><a href="followingpost.do"><span>팔로잉</span></a></div>
                 </c:if>
@@ -83,6 +187,7 @@
 	        	lastScrollTop = st;
 	    	});
 		});
+
 	    
 	    $(document).ready(function(){
             $('.hMenu2').on('click', function(){

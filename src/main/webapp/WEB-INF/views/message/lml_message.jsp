@@ -20,24 +20,15 @@
 
 
 
-<!-- 여기 채팅 겁난다 -->
-<script src="http://52.79.234.164:3001/socket.io/socket.io.js"></script>
-
-
-
-
-
 
 <body>
 	<jsp:include page="../common/header.jsp" />
 	<script>
-	  var socket;
+	  
       var rename_profile_img;
       var touser;
       var RoomID;
- $(document).ready(function () {
-				socket = io("http://52.79.234.164:3001");
-});
+ 
  </script>
 	<section>
 		<div class="sContent">
@@ -66,10 +57,7 @@
 									</div>
 								</div>
 								<script>
-								  $(document).ready(function () {
-									  var as = "${loginUser.id}";
-									  socket.emit("login",as,"${message.chatroomid}");
-								  });
+								 
 								
                                     $('.${message.touser}').on('click', function () {
                                     	$(".message").html('');
@@ -90,6 +78,14 @@
 
                                        
                                        $(".useridatag").attr("href","userPage.do?id=${message.touser}");
+                                       
+                                       
+                                       
+                                     
+                                       
+                                       
+                                       
+                                       
                                        
                                        $.ajax({
                        					url : "chatLog.do",
@@ -132,7 +128,29 @@
                           					});
                                        
                                        
-                                       
+                                       $.ajax({
+                             				url : "alalarm.do",
+                             				data : {id : "${loginUser.id}"},
+                             				type : "post",
+                             				success : function(data) {
+                             					
+                             					console.log(data);
+                             					if(Number(data)==0){
+                             						$('.messageAlarm').attr("hidden","hidden");
+                             						$('.messageAlarm').html(Number(data));
+                             					}else{
+                             						$('.messageAlarm').removeAttr("hidden");
+                             						$('.messageAlarm').html(Number(data));
+                             					}
+                             					
+                             					
+                             					
+                             				},
+                             				error : function(jqxhr, textStatus, errorThrown) {
+                             					console.log("ajax 오류");
+
+                             				}
+                             				});
                                        
                                     });
                                     
@@ -182,7 +200,7 @@
             	
             	
             	 socket.on('hi',function(room,name,msg){
-
+					
      				if(name ==touser){
         				$('.message').append('<div class="yourmessagediv"><img src="resources/images/profileImg/' + rename_profile_img +  '" class="yourmessageimg"><div style="width:fit-content;   margin: 0 0 0 82px;"><p class="yourmessage">'+ msg +'</p></div></div>');
      				}
@@ -217,7 +235,32 @@
 
        					}
        					});
-        	
+        			
+        		    $.ajax({
+           				url : "alalarm.do",
+           				data : {id : "${loginUser.id}"},
+           				type : "post",
+           				success : function(data) {
+           					
+           					console.log(data);
+           					if(Number(data)==0){
+           						$('.messageAlarm').attr("hidden","hidden");
+           						$('.messageAlarm').html(Number(data));
+           					}else{
+           						$('.messageAlarm').removeAttr("hidden");
+           						$('.messageAlarm').html(Number(data));
+           					}
+           					
+           					
+           					
+           				},
+           				error : function(jqxhr, textStatus, errorThrown) {
+           					console.log("ajax 오류");
+
+           				}
+           				});
+        		    
+        		    
         		    
         		    $.ajax({
       					url : "checkChat.do",

@@ -230,7 +230,15 @@ public class MemberServiceImpl implements MemberService {
 		return mDao.deleteComment(uNum);
 	}
 
-	
+	@Override
+	public int alalarm(String id) {
+		return mDao.alalarm(id);
+	}
+
+	@Override
+	public ArrayList<ChatRoom> chatList(String id) {
+		return mDao.chatList(id);
+	}
 
 
 

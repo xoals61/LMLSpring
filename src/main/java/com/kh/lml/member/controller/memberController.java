@@ -146,7 +146,18 @@ public class memberController {
 
 
 
-
+	@ResponseBody
+	@RequestMapping("chatLogin.do")
+	public ArrayList<ChatRoom> chatLogin(String id){
+		
+		ArrayList<ChatRoom> chatRoomList = mService.chatList(id);
+		
+		
+		
+		
+		return chatRoomList;
+	}
+		
 
 
 
@@ -729,4 +740,13 @@ public class memberController {
 		}
 	}
 
+	@ResponseBody
+	@RequestMapping("alalarm.do")
+	public int alalarm(String id) {
+		
+		int count = mService.alalarm(id);
+		
+		return count;
+	}
+	
 }

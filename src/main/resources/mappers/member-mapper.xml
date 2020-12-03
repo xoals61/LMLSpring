@@ -334,6 +334,19 @@ WHERE FROM_FOLLOW IN (SELECT TO_FOLLOW
 	WHERE C_UNUM = #{uNum}
 	
 	</delete>
+	<select id="chatList" parameterType="String" resultMap="chatRoomResultSet">
+	SELECT * FROM CHAT_ROOM
+	WHERE FROMUSER= #{id}
+	</select>
+	
+	<select id="alalarm" parameterType="String" resultType="Integer">
+	SELECT SUM(COUNT) AS ALAL FROM CHAT_ROOM
+	WHERE FROMUSER= #{id}
+	
+	
+	
+	</select>
+	
 </mapper>
 
 

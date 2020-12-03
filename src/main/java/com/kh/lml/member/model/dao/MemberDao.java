@@ -149,5 +149,15 @@ public class MemberDao {
 		return sqlSession.delete("memberMapper.deleteComment",uNum);
 	}
 
-	
+public int alalarm(String id) {
+		
+		if(sqlSession.selectOne("memberMapper.alalarm",id)==null) {
+			return 0;
+		}else {
+			return sqlSession.selectOne("memberMapper.alalarm",id);
+		}
+	}
+	public ArrayList<ChatRoom> chatList(String id) {
+		return (ArrayList)sqlSession.selectList("memberMapper.chatList",id);
+	}
 }

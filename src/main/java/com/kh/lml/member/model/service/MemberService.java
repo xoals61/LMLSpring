@@ -89,7 +89,9 @@ public interface MemberService {
 
 	int commentDelete(int uNum);
 
+	int alalarm(String id);
 
+	ArrayList<ChatRoom> chatList(String id);
 
 
 
