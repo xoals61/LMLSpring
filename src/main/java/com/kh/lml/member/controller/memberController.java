@@ -49,7 +49,7 @@ public class memberController {
 	private MemberService mService;
 
 
-	
+
 	// 로그아웃(임시로 만들어놓음)
 	@RequestMapping("Logout.do")
 	public String Logout() {
@@ -63,12 +63,12 @@ public class memberController {
 	// 마이페이지
 	@RequestMapping("MyPage.do")
 	public ModelAndView myPage(ModelAndView mv, int uNum) {
-		
+
 		ArrayList<Board> list = mService.myPost(uNum);
-		
-		
-		
-		
+
+
+
+
 		int Follow = mService.countFollowList(uNum);
 		int Follower = mService.countFollowerList(uNum);
 		int myboardCount = mService.boardCount(uNum);
@@ -78,7 +78,7 @@ public class memberController {
 		mv.addObject("Myboardlist", list);
 		System.out.println("나여기컨트롤러 리스트 : "+list);
 		mv.setViewName("jiman/lml_MyPage");
-		
+
 
 		return mv;
 	}
@@ -107,14 +107,14 @@ public class memberController {
 	@RequestMapping("Message.do")
 	public String Message(String id,Model model) {
 		System.out.println("message id : " + id);
-		
+
 		ArrayList<ChatRoom> messageList = mService.messageList(id);
-		
+
 		for(int i = 0 ; i < messageList.size();i++) {
 			messageList.get(i).setRecentChat(textLengthOverCut(mService.recentChat(messageList.get(i).getChatroomid()), 5, "..."));
 		}
-		
-		
+
+
 		System.out.println("messageListsize" + messageList.size());
 		if(messageList.size()>0) {
 			for(ChatRoom a : messageList) {
@@ -123,34 +123,34 @@ public class memberController {
 			model.addAttribute("messageList",messageList);
 			return "message/lml_message";
 		}else {
-			
+
 			System.out.println("친구 목록없음");
-			
+
 			return "message/lml_message";
 		}
-		
-		
-		
+
+
+
 	}
-	
-	
-	
+
+
+
 	private String textLengthOverCut(String txt,int len,String lastTxt) {
 		if(txt!=null) {
-        if (txt.length()> len) {
-            txt = txt.substring(0,len) + lastTxt;
-        }
+			if (txt.length()> len) {
+				txt = txt.substring(0,len) + lastTxt;
+			}
 		}
-        return txt;
-    }
+		return txt;
+	}
 
-	
-	
-	
-	
-	
-	
-	
+
+
+
+
+
+
+
 	/**
 	 * 아이디 중복체크
 	 *  @ResponseBody를사용
@@ -191,7 +191,7 @@ public class memberController {
 	public String PostStyle() {
 		return "post/lml_post_style";
 	}
-	
+
 	@RequestMapping("PostQna.do")
 	public String PostQna() {
 		return "post/lml_post_qna";
@@ -241,20 +241,20 @@ public class memberController {
 	@RequestMapping("mUpdate.do")
 	public String mUpdate(Member m,Model model,HttpServletRequest request,
 			@RequestParam(name="profileimg",required=false)MultipartFile file) {
-		
-		
-		
+
+
+		System.out.println("여기 업뎅이트 :" + m);
 		if(!file.getOriginalFilename().equals("")) {
 			// 서버에 업로드 해야한다.
 			String renameFileName = saveFile(file,request);
-			
+
 			if(renameFileName != null) { // 파일이 잘 저장된 경우
 				m.setProfile_img(file.getOriginalFilename()); // 파일명만 DB에저장
 				m.setRename_profile_img(renameFileName);
 			}
 		}
 
-		System.out.println("update "+m);
+
 		int result =mService.mUpdate(m);
 		if(result >0) {
 			model.addAttribute("loginUser", m);
@@ -265,7 +265,7 @@ public class memberController {
 			return "common/errorPage";
 		}
 	}
-	
+
 	public String saveFile(MultipartFile file, HttpServletRequest request) {
 
 		// 파일이 저장될 경로를 설정하기
@@ -301,7 +301,7 @@ public class memberController {
 
 		return renameFileName;
 	}
-	
+
 
 	@ResponseBody
 	@RequestMapping("pwdCheck.do")
@@ -347,7 +347,7 @@ public class memberController {
 		ArrayList<Member> FollowList = mService.selectFollowList(uNum);
 		ArrayList<Member> FollowerList = mService.selectFollowerList(uNum);
 		ArrayList<Member> BlockList = mService.selectBlockList(uNum);
-		
+
 		System.out.println(FollowList);
 		mv.addObject("FollowList", FollowList);
 		mv.addObject("FollowerList", FollowerList);
@@ -356,7 +356,7 @@ public class memberController {
 
 		return mv;
 	}
-	
+
 	@RequestMapping("Settings5_woo.do")
 	public ModelAndView Settings5_woo(ModelAndView mv, int uNum) {
 
@@ -371,7 +371,7 @@ public class memberController {
 
 		return mv;
 	}
-	
+
 	@RequestMapping("Settings5_block.do")
 	public ModelAndView Settings5_block(ModelAndView mv, int uNum) {
 
@@ -468,8 +468,8 @@ public class memberController {
 
 
 
-	
-	
+
+
 	@RequestMapping("SearchHash.do")
 	public ModelAndView Search1(ModelAndView mv, String keyword) {
 
@@ -488,14 +488,14 @@ public class memberController {
 
 
 
-	
-	
-	
-	
-	
-	
-	
-	
+
+
+
+
+
+
+
+
 
 
 	@RequestMapping("mDelete.do")
@@ -590,27 +590,27 @@ public class memberController {
 					response.append(inputLine);
 				}
 				br.close();
-				
+
 				JSONParser parsing = new JSONParser();
 				Object obj = parsing.parse(response.toString());
 				JSONObject jsonObj = (JSONObject)obj;
 				JSONObject resObj = (JSONObject)jsonObj.get("response");
-				
+
 				name = (String)resObj.get("name");
 				id = (String)resObj.get("id");
 				gender = (String)resObj.get("gender");
 				nickname = (String)resObj.get("nickname");
 				mail = (String)resObj.get("email");
-				
-				
+
+
 				System.out.println("hi : " + response.toString());
 				System.out.println("name : " +name);
 				System.out.println("nickname : " +nickname);
-				
+
 				System.out.println("id : " +id);
 				System.out.println("gender : " +gender);
-				
-				
+
+
 			} catch (Exception e) {
 				System.out.println(e);
 
@@ -634,17 +634,17 @@ public class memberController {
 				model.addAttribute("msg","로그인 실패!");
 				return "common/errorPage";
 			}
-			
+
 		}else {
 			int result = mService.nInsertMember(m);
-			
-			
-			
+
+
+
 			if(result>0) {
-				
+
 				Member loginUser = mService.nloginMember(id);
-				
-				
+
+
 				System.out.println(loginUser);
 				if(loginUser != null) {
 					model.addAttribute("loginUser", loginUser);
@@ -658,75 +658,75 @@ public class memberController {
 				model.addAttribute("msg","네아로 회원가입 실패!");
 				return "common/errorPage";
 			}
-			
-			
-			
+
+
+
 		}
-	
-	
+
+
 	}
 
 	@ResponseBody
 	@RequestMapping("chatLog.do")
 	public ArrayList<ChatLog> chatLog(String chatid){
 		System.out.println(chatid);
-		
+
 		ArrayList<ChatLog> chatlog = mService.chatLog(chatid);
 		return chatlog;
 	}
-	
+
 	@ResponseBody
 	@RequestMapping("chatAlram.do")
 	public String chatAlram(String roomid,String name) {
-		
+
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("roomid", roomid);
 		map.put("name",name);
-		
+
 		System.out.println("roomid : " + roomid);
 		System.out.println("name : " + name);
-		
+
 		int result = mService.chatAlram(map);
-		
+
 		if(result>0) {
 			return "ok";
 		}else {
 			return "fail";
 		}
-		
-		
+
+
 	}
-	
+
 	@ResponseBody
 	@RequestMapping("checkChat.do")
 	public String checkChat(String room,String name) {
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("roomid", room);
 		map.put("name",name);
-		
+
 		int result = mService.checkChat(map);
-		
+
 		if(result>0) {
 			return "ok";
 		}else {
 			return "fail";
 		}
-		
+
 	}
-	
+
 	@RequestMapping("deleteChat.do")
 	public String deleteChat(String roomid,Model model) {
 		System.out.println("여기온다고? : " + roomid);
-		
+
 		int result = mService.deleteChat(roomid);
 		int result2 = mService.deleteChatLog(roomid);
 		if(result >0 || result2>0) {
-		String id = ((Member)model.getAttribute("loginUser")).getId();
-		return "redirect:Message.do?id=" + id;
+			String id = ((Member)model.getAttribute("loginUser")).getId();
+			return "redirect:Message.do?id=" + id;
 		}else {
 			model.addAttribute("msg","메세지 삭제 실패");
 			return "common/errorPage";
 		}
 	}
-	
+
 }

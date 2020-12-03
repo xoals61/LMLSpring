@@ -34,7 +34,7 @@
                 </div>
                
                 <div class="rContent">
-                    <form class="MyInfo" method="POST" action="mUpdate.do" enctype="multipart/form-data">
+                    <form class="MyInfo" method="POST" action="mUpdate.do" enctype="multipart/form-data" onsubmit="return profilecheck();">
                         <div class="profile">
                             <div class="photo">
                            
@@ -42,6 +42,7 @@
                             </div>
                             <div class="ChangeBtn">
                                  <input type="file" id="file" name="profileimg" onchange="changeValue(this)" />
+                                 
                                  <button type="button" id="btn-upload">프로필 사진 바꾸기</button></div>
                         </div>
                         <div class="ModifyInfo">
@@ -104,6 +105,7 @@
     </script>
 
   <script>
+  
     function changeValue(value) {
 
         console.log("실행되니");

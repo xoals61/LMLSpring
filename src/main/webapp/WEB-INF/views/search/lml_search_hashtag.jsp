@@ -34,7 +34,7 @@
                         	${tagCount} 개의 게시글
 					</div>
 			</div>
-			<div class="hashTable">
+			<div class="hashTable1">
 				<c:if test="${ !empty tagpost}">
 					<table id="table">
 						<c:forEach var="tagBoard" items="${tagpost}" varStatus="status">
