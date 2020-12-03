@@ -319,7 +319,7 @@ table {
 }
 
 .blockbtn {
-	margin-left: 27px;
+	margin-left: 2px;
 	border-radius: 25px;
 	border: 0.8ps;
 	background-color: #ffffff !important;
@@ -331,6 +331,7 @@ table {
 	width: 85px;
 	height: 33px;
 	font-weight: bolder;
+	cursor:pointer;
 }
 
 .blockbtn:focus {
@@ -359,4 +360,30 @@ table {
 .messegebtn:focus {
 	outline: 0;
 	border: solid 1px;
+}
+
+.followbtn {
+	margin-left: 27px;
+    border-radius: 25px;
+    border: 0.8ps;
+    background-color: #ffffff !important;
+    outline: none;
+    font-size: 19px;
+    border: solid 1px rgb(50, 158, 230);
+    color: rgb(50, 158, 230);
+    width: 85px;
+    height: 33px;
+    font-weight: bolder;
+    cursor:pointer;
+}
+
+.followbtn:focus {
+	outline: 0;
+	border: solid 1px;
+}
+
+.followbtn:hover {
+	color: white;
+	background-color: rgb(50, 158, 230) !important;
+	border: solid 1px rgb(50, 158, 230);
 }

@@ -58,6 +58,8 @@
 							<c:if test="${loginUser ne null}">
 							<button class="messegebtn" onclick="location.href='toMessage.do?toid=${User.id}&fromid=${loginUser.id}'">메세지
 								</button>
+								<button class="followbtn">팔로우
+								</button>
 								<button class="blockbtn">차단
 								</button>
 								</c:if>
