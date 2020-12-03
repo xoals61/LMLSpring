@@ -89,18 +89,19 @@
 		SELECT BOARD_SEQ.CURRVAL AS B_NUM FROM DUAL
 	</select>
 	
-	<select id="selectHash" resultType="string">
+	<select id="selectHash" parameterType="_int"  resultType="string">
 		SELECT HASHTAG 
 		FROM LML_HASH 
 		WHERE H_BNUM = #{bnum}
 		ORDER BY HASHTAG DESC
 	</select>
 	
-	<select id="getTagUser" resultType="string">
-	SELECT T_UNUM
-		FROM LML_USERTAG
+	<select id="getTagUser" parameterType="_int" resultType="string">
+	SELECT UNAME
+		FROM LML_USERTAG a
+        JOIN LML_MEM b ON A.T_UNUM= B.USER_NUM
 		WHERE T_BNUM = #{bnum}
-        ORDER BY T_UNUM DESC;
+        ORDER BY T_UNUM DESC 
 	</select>
 	
 	
@@ -146,10 +147,10 @@
 		WHERE C_NO = #{cno}
 	</update>
 	
-	<select id="getTagUserNum" resultType="_int">
+	<select id="getTagUserNum" parameterType="String" resultType="_int">
 		SELECT USER_NUM
 		FROM LML_MEM
-		WHERE UNAME LIKE #{tagUser}
+		WHERE UNAME = #{tagUser}
 		AND DEL_FLAG = 'N'
 	</select>
 	

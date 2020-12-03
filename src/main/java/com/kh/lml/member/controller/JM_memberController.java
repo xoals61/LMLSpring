@@ -147,7 +147,11 @@ public class JM_memberController {
 		
 		HttpSession session = request.getSession();
 		Member loginUser = (Member)session.getAttribute("loginUser");
-		int uNum = loginUser.getUser_num();
+		int uNum = 0;
+		if(loginUser != null) {
+			uNum = loginUser.getUser_num();
+		}
+		//int uNum = loginUser.getUser_num();
 		System.out.println("로그인 유저 넘버 : " + uNum);
 		ArrayList<Member> FollowList = mService.selectFollowList(uNum);
 		System.out.println(FollowList);

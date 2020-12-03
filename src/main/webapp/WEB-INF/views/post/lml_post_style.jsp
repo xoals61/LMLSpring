@@ -21,8 +21,8 @@
 	<section>
 		<div class="AContent">
 			<form action="stylePostUpload.do" method="post"
-				enctype="multipart/form-data" >
-				<button type="submit" class="uploadBtn" onclick="insert();" >업로드</button>
+				enctype="multipart/form-data"  onsubmit="return insert()">
+				<button id="uploadd" type="submit" class="uploadBtn" >업로드</button>
 				<div class="Atable">
 					<div class="Abox">
 						<div class="post-div">
@@ -33,7 +33,7 @@
 
 								<div class="post-img-div">
 									<div class="img-upload1" id="preview1">
-										<input type="file" id="up1input" name="bUploadImg1" class="uploadImg" onchange="changeValue(this,$('#up1'))"  accept="image/*" re/>
+										<input type="file" id="up1input" name="bUploadImg1" class="uploadImg" onchange="changeValue(this,$('#up1'))"  accept="image/*" />
                                     	<img class="img-upload-icon" id="up1" src="resources/images/post/imgPlusIcon.png" onclick="uploadBtn(this.id);"/>
                                     	<!-- multiple="multiple"  -->
 									</div>
@@ -60,7 +60,7 @@
 								<div class="post-cont">설명</div>
 								<div class="post-cont-div">
 									<div id="cont-write" class="cont-write">
-										<textarea id="b_content" name="b_content" placeholder="내용을 입력해주세요"></textarea>
+										<textarea id="b_content" name="b_content" placeholder="내용을 입력해주세요" required="required"></textarea>
 									</div>
 								</div>
 							</div>
@@ -82,7 +82,7 @@
 									</div>
 									
 									<div class="post-cont-div2">
-								<input type="text" id="hashtag2" autocomplete=”off”  class="tagtag" size="7" placeholder="사용자 태그입력" />
+								<input type="text" id="hashtag2" autocomplete=”off”  class="tagtag" size="7" placeholder="사용자 닉네임 입력" />
 										<input type="hidden"  id="hashArr2" name="t_unum" value=""/>
 										<button type="button"  class="tagbtn"  id="tagbtn2" onclick="addhash2();"> 태그 등록</button>
 									</div>
@@ -131,23 +131,7 @@
      * 
      * @returns {Boolean}
      */
-    var doubleSubmitFlag = false;
-    function doubleSubmitCheck(){
-        if(doubleSubmitFlag){
-            return doubleSubmitFlag;
-        }else{
-            doubleSubmitFlag = true;
-            return false;
-        }
-    }
- 
-    function insert(){
-        if(doubleSubmitCheck()) return;
- 
-        alert("등록");
-    }
-
-	
+  
 	//게시글 태그 입력
 	
 		var content = document.getElementById('b_content').innerHTML;
@@ -183,7 +167,28 @@
 			$('#hashtag').val("");
 		}
 		
+		function insert(){
 		
+			 var fileCheck1 = document.getElementById("up1input").value;	 
+			 var fileCheck2 = document.getElementById("up2input").value;	 
+			 var fileCheck3 = document.getElementById("up3input").value;	 
+			 var fileCheck4 = document.getElementById("up4input").value;	 
+			 var fileCheck5 = document.getElementById("up5input").value;	 
+			 
+			 
+			if((!fileCheck1)&&(!fileCheck2)&&(!fileCheck3)&&(!fileCheck4)&&(!fileCheck5)){
+				
+				alert("이미지 1개 이상은 필수입니다");
+
+				return false;
+				
+			}else if((fileCheck1)&&(fileCheck2)&&(fileCheck3)&&(fileCheck4)&&(fileCheck5)){
+				
+			 $('#uploadd').prop('disabled',false);
+			return true;
+			
+		}
+		}
 		
 		//사용자 태그 인풋
 		
@@ -218,6 +223,10 @@
 					if(data != null){
 						console.log('사람있음 : ' + data);
 						if($('#ut'+data).length == 0){
+							if(Number(data)==0){
+								alert('그 딴 사람없음');
+							}
+							else{
 							var tag = '<div class="userTagDiv"><a style="color:red;" href=\'Search.do?keyword='+$('#hashtag2').val()+'\'>'  +  '@'+$('#hashtag2').val()+'</a>&nbsp;&nbsp;&nbsp;<img src="resources/images/icon/menu/commentDelete.png" id="ut'+data+'" onclick="userTagDelete(id);"></div>';
 							
 							document.getElementById('hih2').innerHTML+= tag;
@@ -228,6 +237,7 @@
 							$('#hashArr2').val(hashar);
 						
 							$('#hashtag2').val("");
+							}
 						}else{
 							alert('이미 태그 된 사용자입니다.');
 						}

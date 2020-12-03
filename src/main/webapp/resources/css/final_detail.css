@@ -121,14 +121,24 @@ a:hover{
     font-weight: 300;
 }
 .board-Usertag{
-	width: 328px;
+    width: 328px;
     height: 34px;
+    font-size: large;
     position: absolute;
     margin: 306px 14px 8px;
     color: rgb(0, 46, 83);
     font-weight: 300;
     
 }
+
+
+
+
+
+
+
+
+
 
 .board-stateicon{
     width: 355px;
@@ -157,18 +167,53 @@ a:hover{
     height: 25px;
     cursor: pointer;
 }
-
 .board-etc{
     width: 25px;
     height: 25px;
     margin: 14px 2px 13px 12px;
     float: left;
+    cursor:pointer;
 }
 
 .board-etc img{
     width: 22px;
     height: 23px;
 }
+
+.boardSub{
+    position: absolute;
+    right: 20px;
+    top: 469px;
+    width: 60px;
+    background-color: rgb(255, 255, 255);
+    padding: 0;
+    margin: 0;
+    border-radius: 4px;
+    box-shadow: 0px 0px 11px rgb(220,220,220);
+}
+
+.boardSub li{
+    list-style-type:none;
+    height: 30px;
+    font-size: 15px;
+    cursor:pointer; 
+    text-align: center;
+}
+
+.boardSub1{
+    margin: 3px 5px 3px 5px;
+    color: rgb(94, 94, 94);
+}
+
+.boardSub li:hover{
+    background-color: rgba(238, 238, 238, 0.699);
+}
+
+.boardSub a{
+    text-decoration: none;
+}
+
+
 
 
 /* 옷정보 */

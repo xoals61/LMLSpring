@@ -49,6 +49,17 @@ public class BoardDao {
 		return (ArrayList)sqlSession.selectList("boardMapper.selectHash",bnum);
 	}
 
+	public ArrayList<String> getUserHash(int bnum) {
+	
+		return (ArrayList)sqlSession.selectList("boardMapper.getTagUser", bnum);
+	}
+	
+	
+	
+	
+	
+	
+
 	public ArrayList<Comment> selectComment(int bnum) {
 		return (ArrayList)sqlSession.selectList("boardMapper.selectComment",bnum);
 	}
@@ -83,7 +94,13 @@ public class BoardDao {
 	}
 
 	public int getTagUserNum(String tagUser) {
-		return sqlSession.selectOne("boardMapper.getTagUserNum",tagUser);
+		
+		if(sqlSession.selectOne("boardMapper.getTagUserNum",tagUser)==null) {
+		return 0;
+		}
+		else {
+			return sqlSession.selectOne("boardMapper.getTagUserNum",tagUser);
+		}
 	}
 
 	public int insertTagUser(Board bo) {
@@ -92,11 +109,6 @@ public class BoardDao {
 
 
 
-	public ArrayList<String> getUserHash(int bnum) {
-	
-		return (ArrayList)sqlSession.selectList("boardMapper.getTagUser", bnum);
-	}
-	
 
 
 
