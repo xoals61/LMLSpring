@@ -439,6 +439,8 @@ public class BoardController {
 			@RequestParam(value="bUploadImg4", required=false) MultipartFile file4,
 			@RequestParam(value="bUploadImg5", required=false) MultipartFile file5) {	
 		
+		System.out.println("11가져옴 >> " + file1.toString() + " ,##, " + file2.toString() + " ,##, " + file3.toString());
+		
 		MultipartFile[] fileList = {file1,file2,file3,file4,file5};
 		
 		String[] renameFileList = new String[5];
@@ -464,6 +466,8 @@ public class BoardController {
 		b.setImage3(renameFileList[2]);
 		b.setImage4(renameFileList[3]);
 		b.setImage5(renameFileList[4]);
+		
+		System.out.println("22가져옴 >> " +b.toString());
 		
 		int result = bService.updateStylePost(b);
 		int getbnum = b.getB_num();

@@ -28,7 +28,7 @@
 					<div class="Abox">
 						<div class="post-div">
 							<input type="hidden" name="b_user_num" value="${loginUser.user_num}" />
-							<input type="hidden" name="b_user_num" value="${b.b_num}" />
+							<input type="hidden" name="b_num" value="${b.b_num}" />
 							<div class="div-img">
 								<div class="post-img">스타일 이미지</div>
 

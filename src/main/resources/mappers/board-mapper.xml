@@ -193,11 +193,16 @@
    <insert id="updateSyltePost" parameterType="Board">
       UPDATE LML_BOARD
       SET B_CONTENT=#{b_content},
+     	 IMAGE1=#{image1},
+         IMAGE2=#{image2},
+         IMAGE3=#{image3},
+         IMAGE4=#{image4},
+         IMAGE5=#{image5},
          B_TOP=#{b_top},
          B_BOTTOM=#{b_bottom},
          B_SHOES=#{b_shoes},
          B_ACC=#{b_acc},
-         B_ETC=#{b_etc},
+         B_ETC=#{b_etc}
       WHERE B_NUM=#{b_num}
    </insert>
    
