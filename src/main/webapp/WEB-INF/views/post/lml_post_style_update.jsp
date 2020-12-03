@@ -22,7 +22,7 @@
 		<div class="AContent">
 			<form action="stylePostUpdate.do" method="post"
 				enctype="multipart/form-data"  onsubmit="return insert()">
-				<button id="uploadd" type="submit" class="uploadBtn" >업로드</button>
+				<button id="uploadd" type="submit" class="uploadBtn" >수정하기</button>
 				<div class="Atable">
 					<div class="Abox">
 						<div class="post-div">

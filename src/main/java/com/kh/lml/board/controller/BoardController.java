@@ -392,10 +392,9 @@ public class BoardController {
 	
 	@RequestMapping("bUpdateView.do")
 	   public ModelAndView boardUpdateView(ModelAndView mv, int bnum) {
-	      System.out.println("########컨트롤러 옴?");
-	      mv.addObject("b", bService.selectUpdateBoard(bnum)).setViewName("post/lml_post_style_update");
-	      System.out.println("##수정 가져옴??????????????????????????????????????????????????????");
-	      System.out.println("수정 : " + mv);
+	      
+		mv.addObject("b", bService.selectUpdateBoard(bnum)).setViewName("post/lml_post_style_update");
+	   // mv.addObject("t", )
 	      
 	      return mv;
 	   }
