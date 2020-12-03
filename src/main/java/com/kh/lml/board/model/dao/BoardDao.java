@@ -115,12 +115,29 @@ public class BoardDao {
 	      return sqlSession.selectOne("boardMapper.selectUpdateBoard",bnum);
 	   }
 
-	public ArrayList<Board> selectUpdateBoardTag(int bnum) {
+//	public ArrayList<Board> selectUpdateBoardTag(int bnum) {
+//		return (ArrayList)sqlSession.selectList("boardMapper.selectUpdateBoardTag",bnum);
+//	}
+
+	public ArrayList<Board> getTagUser(int bnum) {
+		return (ArrayList)sqlSession.selectList("boardMapper.selectUpdateBoardUserTag",bnum);
+	}
+
+	public ArrayList<Board> getTag(int bnum) {
 		return (ArrayList)sqlSession.selectList("boardMapper.selectUpdateBoardTag",bnum);
 	}
 
-	public ArrayList<Board> selectUpdateBoardUserTag(int bnum) {
-		return (ArrayList)sqlSession.selectList("boardMapper.selectUpdateBoardUserTag",bnum);
+	public int updateSyltePost(Board b) {
+		System.out.println(b.toString());
+		return sqlSession.update("boardMapper.updateSyltePost",b);
+	}
+
+	public int deleteStyleHash(int getbnum) {
+		return sqlSession.update("boardMapper.deleteStyleHash",getbnum);
+	}
+
+	public int deleteStyleUserTag(int getbnum) {
+		return sqlSession.update("boardMapper.deleteStyleUserTag",getbnum);
 	}
 
 

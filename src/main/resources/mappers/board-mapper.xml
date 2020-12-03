@@ -161,14 +161,15 @@
 	<select id="likePostSelectList" resultMap="boardResultSet">
 		SELECT *
            FROM LML_BOARD A1
-              LEFT JOIN (SELECT A.B_NUM,COUNT(B.H_BNUM) AS CNT
+               JOIN (SELECT A.B_NUM ,COUNT(A.B_NUM) AS CNT
                    FROM LML_BOARD A
-                       LEFT JOIN LML_HEART B ON (B.H_BNUM =A.B_NUM)
-                     	   GROUP BY A.B_NUM) B1
+                       JOIN LML_HEART B
+                           ON (B_NUM = H_BNUM)
+                     	   GROUP BY B_NUM) B1
                    ON A1.B_NUM = B1.B_NUM
-                    JOIN LML_MEM
+                   JOIN LML_MEM
                        ON (B_USER_NUM = USER_NUM)
-                       ORDER BY CNT DESC 
+                       ORDER BY CNT DESC
 	</select>
 	
 	<select id="selectUpdateBoard" parameterType="_int" resultMap="boardResultSet">
@@ -179,10 +180,43 @@
    
    <select id="selectUpdateBoardTag" parameterType="_int" resultMap="boardResultSet">
       	SELECT * 
+		FROM LML_HASH
+		WHERE H_BNUM = #{bnum}
+   </select>
+   
+   <select id="selectUpdateBoardUserTag" parameterType="_int" resultMap="boardResultSet">
+      	SELECT * 
 		FROM LML_USERTAG
 		JOIN LML_MEM ON (T_UNUM = USER_NUM)
 		WHERE T_BNUM = #{bnum}
    </select>
+   
+   <insert id="updateSyltePost" parameterType="Board">
+      UPDATE LML_BOARD
+      SET B_CONTENT=#{b_content},
+         B_TOP=#{b_top},
+         B_BOTTOM=#{b_bottom},
+         B_SHOES=#{b_shoes},
+         B_ACC=#{b_acc},
+         B_ETC=#{b_etc},
+      WHERE B_NUM=#{b_num}
+   </insert>
+   
+   <!-- IMAGE1=#{image1},
+         IMAGE2=#{image2},
+         IMAGE3=#{image3},
+         IMAGE4=#{image4},
+         IMAGE5=#{image5}, -->
+   
+   <update id="deleteStyleHash" parameterType="_int"> 
+      DELETE FROM LML_HASH
+      WHERE H_BNUM = #{getbnum}
+   </update>
+   
+   <update id="deleteStyleUserTag" parameterType="_int"> 
+      DELETE FROM LML_USERTAG
+      WHERE T_BNUM = #{getbnum}
+   </update>
 </mapper>
 
 

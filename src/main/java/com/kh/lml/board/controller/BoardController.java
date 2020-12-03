@@ -396,10 +396,130 @@ public class BoardController {
 	      mv.addObject("b", bService.selectUpdateBoard(bnum)).setViewName("post/lml_post_style_update");
 	      
 
-		  mv.addObject("t", bService.selectUpdateBoardTag(bnum)); 
-		  mv.addObject("u", bService.selectUpdateBoardUserTag(bnum)); 
+		  //mv.addObject("t", bService.selectUpdateBoardTag(bnum)); 
 	      
 		  return mv;
 	   }
+	
+	// 업데이트 태그유저 불러오기
+	@ResponseBody
+	@RequestMapping(value="getTagUser.do", produces="application/json; charset=UTF-8")
+	public String getTagUser(HttpServletResponse response, int bnum) throws JsonIOException, JsonProcessingException{
+		
+		ArrayList<Board> list = bService.getTagUser(bnum);
+		
+		ObjectMapper mapper = new ObjectMapper();
+		
+		String jsonStr = mapper.writeValueAsString(list);
+		
+		return jsonStr;
+	}
+	
+	// 업데이트 태그 불러오기
+	@ResponseBody
+	@RequestMapping(value="getTag.do", produces="application/json; charset=UTF-8")
+	public String getTag(HttpServletResponse response, int bnum) throws JsonIOException, JsonProcessingException{
+		
+		ArrayList<Board> list = bService.getTag(bnum);
+		
+		ObjectMapper mapper = new ObjectMapper();
+		
+		String jsonStr = mapper.writeValueAsString(list);
+		
+		return jsonStr;
+	}
+	
+	
+	// 수정하기
+	@RequestMapping("stylePostUpdate.do")
+	public String stylePostUpdate(Board b, MultipartHttpServletRequest request,
+			@RequestParam(value="bUploadImg1", required=false) MultipartFile file1,
+			@RequestParam(value="bUploadImg2", required=false) MultipartFile file2,
+			@RequestParam(value="bUploadImg3", required=false) MultipartFile file3,
+			@RequestParam(value="bUploadImg4", required=false) MultipartFile file4,
+			@RequestParam(value="bUploadImg5", required=false) MultipartFile file5) {	
+		
+		MultipartFile[] fileList = {file1,file2,file3,file4,file5};
+		
+		String[] renameFileList = new String[5];
+		
+		for(int i = 0; i < fileList.length; i++) {
+			if(!fileList[i].getOriginalFilename().equals("")) {
+				String renameFileName = saveFile(fileList[i],request);
+					
+				if(renameFileName != null) { 
+					b.setOriginalFileName(fileList[i].getOriginalFilename());
+					b.setRenameFileName(renameFileName);
+					
+					renameFileList[i] = renameFileName;
+					
+				}else {
+					renameFileList[i] = null;
+				}
+			}
+		}
+		
+		b.setImage1(renameFileList[0]);
+		b.setImage2(renameFileList[1]);
+		b.setImage3(renameFileList[2]);
+		b.setImage4(renameFileList[3]);
+		b.setImage5(renameFileList[4]);
+		
+		int result = bService.updateStylePost(b);
+		int getbnum = b.getB_num();
+		
+		String b_hash =b.getB_hash();
+		
+		String[] slist = b_hash.split(",");
+		
+		if(b_hash.length() > 0) {
+			int delhash = bService.deleteStyleHash(getbnum);
+			
+			if(delhash>0) {
+				for(int i=0; i<slist.length; i++){
+					Board bo = new Board();
+					bo.setB_num(getbnum);
+					bo.setB_hash(slist[i].toString());
+					
+					int res = bService.insertStyleHash(bo);
+				}
+			}else {
+				System.out.println("기존 해시태그 삭제 안 됨");
+			}
+			
+		}
+		
+		String tagUser = b.getT_unum();
+		String[] tagUserArr = tagUser.split(",");
+        
+		if(tagUser.length() > 0) {
+			int delUserTag = bService.deleteStyleUserTag(getbnum);
+			if(delUserTag>0) {
+				for(int i=0; i<tagUserArr.length; i++){
+					Board bo = new Board();
+					bo.setT_bnum(getbnum);
+					bo.setT_tagUnum(Integer.parseInt(tagUserArr[i].toString()));
+					
+					int res = bService.insertTagUser(bo);
+				}
+			}else {
+				System.out.println("유저태그 삭제 안 됨");
+			}
+
+			
+		}
+		
+		
+		if(result > 0) {
+			System.out.println("글수정 성공");
+			/* return "../../index"; */
+			return "redirect:/index.do";
+		}else {
+			System.out.println("글수정 실패");
+			return "../../index";
+			
+		}
+		
+	}
 	
 }
