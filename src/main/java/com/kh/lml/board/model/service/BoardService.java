@@ -50,4 +50,8 @@ public interface BoardService {
 
 	Board selectUpdateBoard(int bnum);
 
+	ArrayList<Board> selectUpdateBoardTag(int bnum);
+
+	ArrayList<Board> selectUpdateBoardUserTag(int bnum);
+
 }

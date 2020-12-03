@@ -125,6 +125,16 @@ public class BoardServiceImpl implements BoardService {
 	   public Board selectUpdateBoard(int bnum) {
 	      return bDao.selectUpdateBoard(bnum);
 	   }
+	
+	@Override
+	   public ArrayList<Board> selectUpdateBoardTag(int bnum) {
+	      return bDao.selectUpdateBoardTag(bnum);
+	   }
+
+	   @Override
+	   public ArrayList<Board> selectUpdateBoardUserTag(int bnum) {
+	      return bDao.selectUpdateBoardUserTag(bnum);
+	   }
 
 
 

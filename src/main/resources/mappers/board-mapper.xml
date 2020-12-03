@@ -177,6 +177,13 @@
       FROM LML_BOARD 
       WHERE B_NUM = #{bnum}
    </select>
+   
+   <select id="selectUpdateBoardTag" parameterType="_int" resultMap="boardResultSet">
+      	SELECT * 
+		FROM LML_USERTAG
+		JOIN LML_MEM ON (T_UNUM = USER_NUM)
+		WHERE T_BNUM = #{bnum}
+   </select>
 </mapper>
 
 

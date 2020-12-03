@@ -393,10 +393,13 @@ public class BoardController {
 	@RequestMapping("bUpdateView.do")
 	   public ModelAndView boardUpdateView(ModelAndView mv, int bnum) {
 	      
-		mv.addObject("b", bService.selectUpdateBoard(bnum)).setViewName("post/lml_post_style_update");
-	    mv.addObject("t", bService.selectUpdateBoard(bnum)); 
+	      mv.addObject("b", bService.selectUpdateBoard(bnum)).setViewName("post/lml_post_style_update");
 	      
-	      return mv;
+
+		  mv.addObject("t", bService.selectUpdateBoardTag(bnum)); 
+		  mv.addObject("u", bService.selectUpdateBoardUserTag(bnum)); 
+	      
+		  return mv;
 	   }
 	
 }

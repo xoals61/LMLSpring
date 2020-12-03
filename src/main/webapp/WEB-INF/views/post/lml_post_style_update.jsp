@@ -150,6 +150,7 @@
 	<script>
 	
 		$(function(){
+			
 			var tagtag = '<c:out value="${t.image1}"/>';
 			console.log(tagtag);
 		});

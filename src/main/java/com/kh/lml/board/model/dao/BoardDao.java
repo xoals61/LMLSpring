@@ -115,6 +115,14 @@ public class BoardDao {
 	      return sqlSession.selectOne("boardMapper.selectUpdateBoard",bnum);
 	   }
 
+	public ArrayList<Board> selectUpdateBoardTag(int bnum) {
+		return (ArrayList)sqlSession.selectList("boardMapper.selectUpdateBoardTag",bnum);
+	}
+
+	public ArrayList<Board> selectUpdateBoardUserTag(int bnum) {
+		return (ArrayList)sqlSession.selectList("boardMapper.selectUpdateBoardUserTag",bnum);
+	}
+
 
 
 
