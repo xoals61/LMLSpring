@@ -22,7 +22,7 @@
 		<div class="AContent">
 			<form action="styleQnaUpload.do" method="post"
 				enctype="multipart/form-data">
-				<button type="submit" class="uploadBtn" onclick="insert();">업로드</button>
+				<button type="submit" class="uploadBtn" onclick="return insert();">업로드</button>
 				<div class="Atable">
 					<div class="Abox">
 						<div class="post-div">
@@ -124,8 +124,18 @@
 		function insert() {
 			if (doubleSubmitCheck())
 				return;
-
-			alert("등록");
+			const up1input = document.getElementById('up1input').value;
+			const up2input = document.getElementById('up2input').value;
+			const up3input = document.getElementById('up3input').value;
+			const up4input = document.getElementById('up4input').value;
+			const up5input = document.getElementById('up5input').value;
+			if(!up1input){
+				alert("제일 왼쪽에 있는 이미지를 등록해주셔야합니다.");
+				return false;
+			}else{
+				alert("등록");
+				return true;
+			}
 		}
 
 		var content = document.getElementById('q_content').innerHTML;
