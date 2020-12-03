@@ -121,7 +121,10 @@ public class BoardServiceImpl implements BoardService {
 		return bDao.likePostSelectList();
 	}
 	
-
+	@Override
+	   public Board selectUpdateBoard(int bnum) {
+	      return bDao.selectUpdateBoard(bnum);
+	   }
 
 
 

@@ -296,3 +296,9 @@ padding-top: 25px;
 	height:20px;
 	cursor:pointer;
 }
+
+.img-upload-update {
+	width: 180px;
+	height: 180px;
+	float: left;
+}

@@ -111,7 +111,9 @@ public class BoardDao {
 		return (ArrayList)sqlSession.selectList("boardMapper.likePostSelectList");
 	}
 
-
+	public Board selectUpdateBoard(int bnum) {
+	      return sqlSession.selectOne("boardMapper.selectUpdateBoard",bnum);
+	   }
 
 
 

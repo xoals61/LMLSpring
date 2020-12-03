@@ -365,10 +365,7 @@
 									'<div class="board-etc">'+
 		                              '<img src="resources/images/icon/main/menu1.png">'+
 		                              '<ul class="boardSub">'+
-		                                      '<a href="#"><li><div class="boardSub1">수정</div></li></a>'+
-		                                       '<a href="#"><li><div class="boardSub1">삭제</div></li></a>'+
-		                                       '<a href="#"><li><div class="boardSub1">신고</div></li></a>'+
-		                                   '</ul>'+
+		                              '</ul>'+
 		                           '</div>'+
 								'</div>'+
 								'<div class="board-clothesInfo">'+
@@ -391,7 +388,7 @@
 							'</div>');
 					
 					followList(data[0].b_user_num);
-					boardSub(data[0].b_user_num);
+					boardSub(data[0].b_user_num, bnum);
 					if(data[0].b_top !=null){
 						$('.board-clothesInfo').append('<div class="clothesInfo-div">'+
 								'<div class="clothes-img">'+
@@ -464,21 +461,28 @@
 			}
 			
 			
-			function boardSub(bunum){
-	            var unum = '<c:out value="${loginUser.user_num}"/>';
+			function boardSub(bunum, bnum){
+	        	var unum = '<c:out value="${loginUser.user_num}"/>';
 	            var bunum = bunum;
+	            var bnum = bnum;
 	            
-	            if(unum.length>0){
-	               if(unum == bunum){
-	                  
-	               }
-	            }
+	            console.log('비넘 넘어와줘 ' + bnum)
 	            
-	               $('.boardSub').hide();
-	               $('.board-etc').click(function(){
-	                   $('ul',this).slideToggle("fast");
-	               });
-	         }
+	            $('.boardSub').hide();
+	            $('.board-etc').click(function(){
+	            	$('ul',this).slideToggle("fast");
+	            	if(unum.length>0){
+		            	if(unum == bunum){
+		               		$('.boardSub').append('<a href="bUpdateView.do?bnum='+bnum+'"><li><div class="boardSub1">수정</div></li></a>'+
+                                    			'<a href="#"><li><div class="boardSub1">삭제</div></li></a>');      	
+		               	}else{
+		               		$('.boardSub').append('<a href="#"><li><div class="boardSub1">신고</div></li></a>');
+		            	}
+		            }else{
+	               		$('.boardSub').append('<a href="#"><li><div class="boardSub1">신고</div></li></a>');
+	            	}
+	            });
+	        }
 	           
 	           $("body").click(function(e){
 	               if(!$('.board-etc').has(e.target).length){

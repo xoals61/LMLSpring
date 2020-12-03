@@ -48,6 +48,6 @@ public interface BoardService {
 	
 	ArrayList<Board> likePostSelectList();
 
-
+	Board selectUpdateBoard(int bnum);
 
 }
