@@ -394,7 +394,7 @@ public class BoardController {
 	   public ModelAndView boardUpdateView(ModelAndView mv, int bnum) {
 	      
 		mv.addObject("b", bService.selectUpdateBoard(bnum)).setViewName("post/lml_post_style_update");
-	   // mv.addObject("t", )
+	    mv.addObject("t", bService.selectUpdateBoard(bnum));
 	      
 	      return mv;
 	   }
