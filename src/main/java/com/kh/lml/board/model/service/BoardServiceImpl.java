@@ -126,15 +126,36 @@ public class BoardServiceImpl implements BoardService {
 	      return bDao.selectUpdateBoard(bnum);
 	   }
 	
-	@Override
-	   public ArrayList<Board> selectUpdateBoardTag(int bnum) {
-	      return bDao.selectUpdateBoardTag(bnum);
-	   }
+//	@Override
+//	   public ArrayList<Board> selectUpdateBoardTag(int bnum) {
+//	      return bDao.selectUpdateBoardTag(bnum);
+//	   }
 
-	   @Override
-	   public ArrayList<Board> selectUpdateBoardUserTag(int bnum) {
-	      return bDao.selectUpdateBoardUserTag(bnum);
-	   }
+
+	@Override
+	public ArrayList<Board> getTagUser(int bnum) {
+		return bDao.getTagUser(bnum);
+	}
+
+	@Override
+	public ArrayList<Board> getTag(int bnum) {
+		return bDao.getTag(bnum);
+	}
+
+	@Override
+	public int updateStylePost(Board b) {
+		return bDao.updateSyltePost(b);
+	}
+
+	@Override
+	public int deleteStyleHash(int getbnum) {
+		return bDao.deleteStyleHash(getbnum);
+	}
+
+	@Override
+	public int deleteStyleUserTag(int getbnum) {
+		return bDao.deleteStyleUserTag(getbnum);
+	}
 
 
 

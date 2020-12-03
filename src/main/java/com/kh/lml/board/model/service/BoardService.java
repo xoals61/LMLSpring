@@ -50,8 +50,16 @@ public interface BoardService {
 
 	Board selectUpdateBoard(int bnum);
 
-	ArrayList<Board> selectUpdateBoardTag(int bnum);
+	//ArrayList<Board> selectUpdateBoardTag(int bnum);
 
-	ArrayList<Board> selectUpdateBoardUserTag(int bnum);
+	ArrayList<Board> getTagUser(int bnum);
+
+	ArrayList<Board> getTag(int bnum);
+
+	int updateStylePost(Board b);
+
+	int deleteStyleHash(int getbnum);
+
+	int deleteStyleUserTag(int getbnum);
 
 }

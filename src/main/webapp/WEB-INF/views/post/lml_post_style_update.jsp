@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -26,8 +27,8 @@
 				<div class="Atable">
 					<div class="Abox">
 						<div class="post-div">
-							<input type="hidden" name="b_user_num"
-								value="${loginUser.user_num}" />
+							<input type="hidden" name="b_user_num" value="${loginUser.user_num}" />
+							<input type="hidden" name="b_user_num" value="${b.b_num}" />
 							<div class="div-img">
 								<div class="post-img">스타일 이미지</div>
 
@@ -99,12 +100,13 @@
 										<button type="button" class="tagbtn" id="tagbtn" onclick="addhash();">태그 등록</button>
 								</div>
 									
-									<div id="hih2" style="width: 250px; height: 100px; margin-left: 332px;  border: solid 1px gainsboro;
-																	 overflow-y: scroll;">
+									<div id="hih2" style="width: 250px; height: 100px; margin-left: 332px;  border: solid 1px gainsboro; overflow-y: scroll;">
+										
 									</div>
 									
 									<div class="post-cont-div2">
 								<input type="text" id="hashtag2" autocomplete=”off”  class="tagtag" size="7" placeholder="사용자 닉네임 입력" />
+										
 										<input type="hidden"  id="hashArr2" name="t_unum" value=""/>
 										<button type="button"  class="tagbtn"  id="tagbtn2" onclick="addhash2();"> 태그 등록</button>
 									</div>
@@ -148,28 +150,66 @@
 
 	</section>
 	<script>
-	
+		//게시글 태그 입력
+		// 가져오기
+		var tagnum = 1;
+		
 		$(function(){
+			var hasharr="";
+			var bnum = '<c:out value="${b.b_num}"/>';
 			
-			var tagtag = '<c:out value="${t.image1}"/>';
-			console.log(tagtag);
+			
+			$.ajax({
+				url:"getTag.do",
+				data:{bnum:bnum},
+				dataType:"JSON",
+				success:function(data){
+					if(data.length>0){
+						for(var i=0; i<data.length; i++){
+							var tag = '<div class="userTagDiv"><a href=\'Search.do?keyword='+data[i].b_hash+'\'>'  +  data[i].b_hash+'</a>&nbsp;&nbsp;&nbsp;<img src="resources/images/icon/menu/commentDelete.png" id="tag'+data[i].b_hash.substring(1)+'" onclick="tagDelete(id);"></div>';
+							document.getElementById('hihi').innerHTML+= tag;
+							hasharr += data[i].b_hash+',';
+							tagnum++;
+						}
+						
+						$('#hihi').scrollTop($('#hihi').prop('scrollHeight'));
+						$('#hashArr').val(hasharr);
+						console.log('11태그놈: ' + $('#hashArr').val());
+					}
+				},
+				error:function(request,status,error){
+					console.log("** error code : " + request.status + "\n"
+						+ "message : " + request.responseText + "\n"
+						+ "error : " + error);
+				}
+			});
 		});
-  
-	//게시글 태그 입력
-			
-		var hasharr="";
+		
 		
 		function addhash(){
-			var tag = '<a href=\'Search.do?keyword='+$('#hashtag').val()+'\'>'  +  '#'+$('#hashtag').val()+'</a><br>';
+			var hasharr="";
 			
-			document.getElementById('hihi').innerHTML+= tag;
+			var extag = $('#hashArr').val();
+		    var newtag = '#'+$('#hashtag').val();
+		    
+		    console.log('22태그추가: ' + extag + '/ ' + newtag);
+		    console.log('존재0 노존재-1 : '+ extag.indexOf(newtag));
+
+		    if(extag.indexOf(newtag) == -1){	// 태그가 없는 경우
+				var tag = '<div class="userTagDiv"><a href=\'Search.do?keyword='+$('#hashtag').val()+'\'>'  +  '#'+$('#hashtag').val()+'</a>&nbsp;&nbsp;&nbsp;<img src="resources/images/icon/menu/commentDelete.png" id="tag'+$('#hashtag').val()+'" onclick="tagDelete(id);"></div>';
+				document.getElementById('hihi').innerHTML+= tag;
+				
+				extag += '#'+$('#hashtag').val()+',';
+				$('#hihi').scrollTop($('#hihi').prop('scrollHeight'));
+				$('#hashArr').val(extag);
+				
+				console.log('2222추가태그놈: ' + $('#hashArr').val());
 			
-			hasharr += '#'+$('#hashtag').val()+',';
-			console.log("제이쿼리는들어가? " + hasharr);
-			$('#hihi').scrollTop($('#hihi').prop('scrollHeight'));
-			$('#hashArr').val(hasharr);
-		
-			$('#hashtag').val("");
+				$('#hashtag').val("");
+		    }else{	// 태그 있는 경우
+		    	alert('이미 등록된 태그입니다.');
+		    }
+		    
 		}
 		
 		function insert(){
@@ -196,19 +236,51 @@
 		}
 		
 		//사용자 태그 인풋
-			
-		var hashar="";
+		// 가져오기
+		$(function(){
+			var hashar="";
+			var bnum = '<c:out value="${b.b_num}"/>';
+			console.log('비넘 : ' + bnum);
+			$.ajax({
+				url:"getTagUser.do",
+				data:{bnum:bnum},
+				dataType:"JSON",
+				success:function(data){
+					if(data.length>0){
+						for(var i=0; i<data.length; i++){
+							var tag = '<div class="userTagDiv"><a style="color:red;" href=\'Search.do?keyword='+data[i].b_name+'\'>'  +  '@'+data[i].b_name+'</a>&nbsp;&nbsp;&nbsp;<img src="resources/images/icon/menu/commentDelete.png" id="ut'+data[i].t_tagUnum+'" onclick="userTagDelete(id);"></div>';
+							
+							document.getElementById('hih2').innerHTML+= tag;
+							
+							hashar += data[i].t_tagUnum+',';
+						
+						}
+						$('#hih2').scrollTop($('#hih2').prop('scrollHeight'));
+						$('#hashArr2').val(hashar);
+						
+						console.log('1해시발 : ' + $('#hashArr2').val());
+					}
+				},
+				error:function(request,status,error){
+					console.log("** error code : " + request.status + "\n"
+						+ "message : " + request.responseText + "\n"
+						+ "error : " + error);
+				}
+			});
+		});
+		
 		
 		function addhash2(){
 			
 			var tagUser = $('#hashtag2').val();
+			var tagUserArr = $('#hashArr2').val();
+			var hashar="";
 			
 			$.ajax({
 				url:"getTagUserNum.do",
 				data:{tagUser:tagUser},
 				success:function(data){	
 					if(data != null){
-						console.log('사람있음 : ' + data);
 						if($('#ut'+data).length == 0){
 							if(Number(data)==0){
 								alert('그 딴 사람없음');
@@ -218,9 +290,11 @@
 							
 							document.getElementById('hih2').innerHTML+= tag;
 							
-							hashar += data+',';
+							tagUserArr += data+',';
 							$('#hih2').scrollTop($('#hih2').prop('scrollHeight'));
-							$('#hashArr2').val(hashar);
+							$('#hashArr2').val(tagUserArr);
+							
+							console.log('2해시발 : ' + $('#hashArr2').val());
 						
 							$('#hashtag2').val("");
 							}
@@ -247,6 +321,19 @@
 			
 			$('#'+id).parent().remove();
 			$('#hashArr2').val(res);
+			console.log('3해시발 : ' + $('#hashArr2').val());
+			//console.log(id + " , " + deleteNum);
+		}
+		
+		function tagDelete(id){
+			console.log(id);
+			var deleteNum = '#'+id.substring(3);
+			var tagArr = $('#hashArr').val();
+			var res = tagArr.replace(deleteNum+',', '');
+			
+			$('#'+id).parent().remove();
+			$('#hashArr').val(res);
+			console.log('33태그놈 : ' + $('#hashArr').val());
 			//console.log(id + " , " + deleteNum);
 		}
 		
@@ -291,41 +378,108 @@
         }
 
         var idnum = 77701;
+       	
+       	$(function(){
+       		var btop = '<c:out value="${b.b_top}"/>';
+       		var bbottom = '<c:out value="${b.b_bottom}"/>';
+       		var bshoes = '<c:out value="${b.b_shoes}"/>';
+       		var bacc = '<c:out value="${b.b_acc}"/>';
+       		var betc = '<c:out value="${b.b_etc}"/>';
+       		
+       		if(btop.length > 0){
+       			$('.tagArea').append('<div class="tag" id='+ idnum +'>'+
+                        '<p class="clothes" id="top">top</p>'+
+                        '<p class="brand">'+ btop +'</pv>'+
+                        '<div class="deleteStyleTag"><img src="resources/images/post/close.png"></div>'+
+                        '<input type="hidden" value="top" />' +	
+                        '<input type="hidden" name="b_top" value='+ btop + ' />' +	
+                    '</div>');
+       			idnum++;
+       		}
+       		if(bbottom.length > 0){
+       			$('.tagArea').append('<div class="tag" id='+ idnum +'>'+
+                        '<p class="clothes" id="bottom">bottom</p>'+
+                        '<p class="brand">'+ bbottom +'</pv>'+
+                        '<div class="deleteStyleTag"><img src="resources/images/post/close.png"></div>'+
+                        '<input type="hidden" value="bottom" />' +	
+                        '<input type="hidden" name="b_bottom" value='+ bbottom + ' />' +	
+                    '</div>');
+       			idnum++;
+       		}
+       		if(bshoes.length > 0){
+       			$('.tagArea').append('<div class="tag" id='+ idnum +'>'+
+                        '<p class="clothes" id="shoes">shoes</p>'+
+                        '<p class="brand">'+ bshoes +'</pv>'+
+                        '<div class="deleteStyleTag"><img src="resources/images/post/close.png"></div>'+
+                        '<input type="hidden" value="shoes" />' +	
+                        '<input type="hidden" name="b_shoes" value='+ bshoes + ' />' +	
+                    '</div>');
+       			idnum++;
+       		}
+       		if(bacc.length > 0){
+       			$('.tagArea').append('<div class="tag" id='+ idnum +'>'+
+                        '<p class="clothes" id="acc">acc</p>'+
+                        '<p class="brand">'+ bacc +'</pv>'+
+                        '<div class="deleteStyleTag"><img src="resources/images/post/close.png"></div>'+
+                        '<input type="hidden" value="acc" />' +	
+                        '<input type="hidden" name="b_acc" value='+ bacc + ' />' +	
+                    '</div>');
+       			idnum++;
+       		}
+       		if(betc.length > 0){
+       			$('.tagArea').append('<div class="tag" id='+ idnum +'>'+
+                        '<p class="clothes" id="etc">etc</p>'+
+                        '<p class="brand">'+ betc +'</pv>'+
+                        '<div class="deleteStyleTag"><img src="resources/images/post/close.png"></div>'+
+                        '<input type="hidden" value="etc" />' +	
+                        '<input type="hidden" name="b_etc" value='+ betc + ' />' +	
+                    '</div>');
+       			idnum++;
+       		}
+       		
+       	});
 
         function styleTagBtn(){
             var clothes = document.getElementById('clothes').value;
             var brand = document.getElementById('brand').value;
             
-            var name ="";
-            
-            if(clothes == "top"){
-            	name = "b_top";
-            }else if(clothes == "bottom"){
-            	name = "b_bottom";
-            }else if(clothes == "shoes"){
-            	name = "b_shoes";
-            }
-            else if(clothes == "shoes"){
-            	name = "b_shoes";
-            }else if(clothes == "acc"){
-            	name = "b_acc";
-            }else if(clothes == "etc"){
-            	name = "b_etc";
-            }
-
-            if(brand.length > 0){
-            	
-                $('.tagArea').append('<div class="tag" id='+ idnum +'>'+
-                                        '<p class="clothes">'+ clothes +'</p>'+
-                                        '<p class="brand">'+ brand +'</pv>'+
-                                        '<div class="deleteStyleTag"><img src="resources/images/post/close.png"></div>'+
-                                        '<input type="hidden" value='+ clothes + ' />' +	
-                                        '<input type="hidden" name='+ name +' value='+ brand + ' />' +	
-                                    '</div>');
-                idnum++;
+            if($('#'+clothes).length > 0){
+            	 alert('이미 등록된 스타일태그입니다.');
+                
             }else{
-                alert("옷 정보를 입력해주세요.");
+               
+				var name ="";
+                
+                if(clothes == "top"){
+                	name = "b_top";
+                }else if(clothes == "bottom"){
+                	name = "b_bottom";
+                }else if(clothes == "shoes"){
+                	name = "b_shoes";
+                }
+                else if(clothes == "shoes"){
+                	name = "b_shoes";
+                }else if(clothes == "acc"){
+                	name = "b_acc";
+                }else if(clothes == "etc"){
+                	name = "b_etc";
+                }
+
+                if(brand.length > 0){
+                	
+                    $('.tagArea').append('<div class="tag" id='+ idnum +'>'+
+                                            '<p class="clothes" id="'+clothes+'">'+ clothes +'</p>'+
+                                            '<p class="brand">'+ brand +'</pv>'+
+                                            '<div class="deleteStyleTag"><img src="resources/images/post/close.png"></div>'+
+                                            '<input type="hidden" value='+ clothes + ' />' +	
+                                            '<input type="hidden" name='+ name +' value='+ brand + ' />' +	
+                                        '</div>');
+                    idnum++;
+                }else{
+                    alert("옷 정보를 입력해주세요.");
+                }
             }
+            
         }
 
         $(document).on("click", ".deleteStyleTag", function (e) {
