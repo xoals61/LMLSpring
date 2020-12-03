@@ -22,7 +22,36 @@
 		<result property="b_profile_img" column="RENAME_PROFILE_IMG"/>
 		<result property="b_user_id" column="ID"/>
 		<result property="b_name" column="UNAME"/>
+		<result property="b_hash" column="HASHTAG"/>
+		<result property="h_bnum" column="H_BNUM"/>
+		<result property="h_unum" column="H_UNUM"/>
+		<result property="u_hash" column="USERTAG"/>
+		<result property="t_tagUnum" column="T_UNUM"/>
+		<result property="t_bnum" column="T_BNUM"/>
 		
+		
+		<!-- <result property="b_hashtag" column="B_HASHTAG"/>
+		<result property="b_images" column="B_IMAGES"/>
+		<result property="b_top" column="B_TOP"/>
+		<result property="b_bottom" column="B_BOTTOM"/>
+		<result property="b_shoes" column="B_SHOES"/>
+		<result property="b_acc" column="B_ACC"/>
+		<result property="b_etc" column="B_ETC"/>
+		<result property="originalFileName" column="ORIGINALFILENAME"/>
+		<result property="renameFileName" column="RENAMEFILENAME"/> -->
+	</resultMap>
+	
+	<resultMap type="Comment" id="CommentResultSet">
+		<id property="c_no" column="C_NO"/>
+		<result property="c_bno" column="C_BNO"/>
+		<result property="c_content" column="C_CONTENT"/>
+		<result property="c_unum" column="C_UNUM"/>
+		<result property="c_recno" column="C_RECNO"/>
+		<result property="c_level" column="C_LEVEL"/>
+		<result property="c_utag" column="C_UTAG"/>
+		<result property="c_date" column="C_DATE"/>
+		<result property="uname" column="UNAME"/>
+		<result property="profile" column="RENAME_PROFILE_IMG"/>
 	</resultMap>
 	
 	
@@ -68,7 +97,29 @@
 	
 	
 	
+	<select id="bodyselectpost" parameterType="String" resultMap="boardResultSet">
 	
+		SELECT * FROM
+		LML_BOARD a
+		 JOIN LML_MEM b ON  b.USER_NUM = a.B_USER_NUM
+		 WHERE ((#{weight}='1' AND <![CDATA[(b.WEIGHT < 40)]]>)
+		 		OR (#{weight}='2' AND <![CDATA[(40<= b.WEIGHT AND b.WEIGHT < 50)]]>)
+		 		OR (#{weight}='3' AND <![CDATA[(50<= b.WEIGHT AND b.WEIGHT < 60)]]>)
+		 		OR (#{weight}='4' AND <![CDATA[(60<= b.WEIGHT AND b.WEIGHT < 70)]]>)
+		 		OR (#{weight}='5' AND <![CDATA[(70<= b.WEIGHT AND b.WEIGHT < 80)]]>)
+		 		OR (#{weight}='6' AND <![CDATA[(80<= b.WEIGHT AND b.WEIGHT < 90)]]>)
+		 		OR (#{weight}='7' AND <![CDATA[(90<= b.WEIGHT AND b.WEIGHT < 100)]]>)
+		 		OR (#{weight}='8' AND <![CDATA[(100<= b.WEIGHT)]]>
+		 		)) AND
+		 		(
+		 		(#{height}='1' AND <![CDATA[(b.HEIGHT < 140)]]>)
+		 		OR (#{height}='2' AND <![CDATA[(140 <= b.HEIGHT AND b.HEIGHT <150))]]>
+		 		OR (#{height}='3' AND <![CDATA[(150 <= b.HEIGHT AND b.HEIGHT <160))]]>
+		 		OR (#{height}='4' AND <![CDATA[(160 <= b.HEIGHT AND b.HEIGHT <170))]]>
+		 		OR (#{height}='5' AND <![CDATA[(170 <= b.HEIGHT AND b.HEIGHT <180))]]>
+		 		OR (#{height}='6' AND <![CDATA[(180 <= b.HEIGHT AND b.HEIGHT <190))]]>
+		 		OR (#{height}='7' AND <![CDATA[(190 < b.HEIGHT))]]>)
+	</select>
 	
 	
 	

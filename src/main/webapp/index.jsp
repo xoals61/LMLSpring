@@ -129,8 +129,8 @@
 				<div class="choice1">
 				<form action="bodyselect.do">
 					<div class="cSelect">
-						키 : <select name="height">
-							<option value="">---</option>
+						키 : <select name="height" id="height">
+							<option value="0" selected="selected">---</option>
 							<option value="1">140cm 이하</option>
 							<option value="2">140~150cm</option>
 							<option value="3">150~160cm</option>
@@ -138,8 +138,8 @@
 							<option value="5">170~180cm</option>
 							<option value="6">180~190cm</option>
 							<option value="7">190cm 이상</option>
-						</select>&nbsp;&nbsp;&nbsp; 몸무게 : <select name="weight">
-							<option value="">---</option>
+						</select>&nbsp;&nbsp;&nbsp; 몸무게 : <select name="weight" id=name="weight">
+							<option value="0"selected="selected">---</option>
 							<option value="1">40kg 이하</option>
 							<option value="2">40~50kg</option>
 							<option value="3">50~60kg</option>
@@ -149,7 +149,7 @@
 							<option value="7">90~100kg</option>
 							<option value="8">100kg 이상</option>
 						</select>&nbsp;&nbsp;&nbsp;
-						<div class="choiceBtn">체형별 보기</div>
+						<button class="choiceBtn">체형별 보기</button>
 					</div>
 					</form>
 					<div class="close">

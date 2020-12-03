@@ -2,6 +2,8 @@ package com.kh.lml.board.controller;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -66,26 +68,48 @@ public class JM_BoardController {
 		return "indexPost/newpost";
 	}
 	
-	// 체형별 보기
-		@ResponseBody
-		@RequestMapping(value="bodySelectAjax", produces="application/json; charset=UTF-8")
-		public String index1(HttpServletResponse response) throws JsonIOException, JsonProcessingException{
-			
-			ArrayList<Board> list = jService.bodySelect();
-			
+	
+	@RequestMapping("bodyselect.do")
+	public String body(String weight, String height,Model model) {
+	
+		
+		model.addAttribute("weight", weight);
+		model.addAttribute("height", height);
+		
+		
+		
+		return "indexPost/bodyselect";
+	
+	
+	
+	}
+	
+	
+	
+	
+	
+	
+	@ResponseBody
+	@RequestMapping(value="bodyselectAjax.do",produces="application/json; charset=UTF-8")
+		public String bodyselect(HttpServletRequest request, String weight,  String  height) throws JsonProcessingException{
+		System.out.println(weight);
+		System.out.println(height);
+	
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("weight", weight);
+		map.put("height", height);
+		System.out.println("셀렉트 몸무게 키 :" +map);
+		
+		ArrayList<Board> list = jService.bodyselectpost(map);
+			for(Board b : list) {
+				System.out.println("되어라되어라: "+ b);	
+			}
 			ObjectMapper mapper = new ObjectMapper();
-			
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 			mapper.setDateFormat(sdf);
-			
 			String jsonStr = mapper.writeValueAsString(list);
-			
 			return jsonStr;
 		}
-	
-	
-	
-	
 	
 	
 	

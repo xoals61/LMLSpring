@@ -1,6 +1,7 @@
 package com.kh.lml.board.model.service;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,11 +24,18 @@ public class JM_BoardServiceImpl implements JM_BoardService {
 
 
 	@Override
-	public ArrayList<Board> bodySelect() {
-	
-		return null;
+	public ArrayList<Board> bodyselectpost(Map<String, String> map) {
+		
+		return  jDao.bodyselectpost(map);
 	}
-	
+
+
+
+
+
+
+
+
 	
 	
 }
