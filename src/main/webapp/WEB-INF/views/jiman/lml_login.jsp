@@ -116,7 +116,7 @@ LML 서비스 및 제품(이하 ‘서비스’)을 이용해 주셔서 감사�
 				<!-- 아이디 중복 체크 끝 -->
 
 				<input name="uname" id="inputname" type="text" class="input-field"
-					placeholder="name" required> <span class="guides oks">사용가능</span>
+					placeholder="Nickname" required> <span class="guides oks">사용가능</span>
 				<span class="guides errors">사용불가능</span> <input type="hidden"
 					name="nameDuplicateCheck" id="nameDuplicateCheck" value="0">
 
@@ -124,7 +124,7 @@ LML 서비스 및 제품(이하 ‘서비스’)을 이용해 주셔서 감사�
 					placeholder="Your Email" required> <input name="upwd"
 					id="inputpwd" type="password" class="input-field"
 					placeholder="Enter Password (문자+숫자+특수문자)" required> <input
-					name="m_phone" type="number" class="input-field"
+					name="m_phone" type="text" class="input-field"
 					placeholder="phone" required> <input name="height"
 					id="inheight" type="number" class="input-field" placeholder="hight"
 					required style="width: 100px;">cm &nbsp; &nbsp; <input

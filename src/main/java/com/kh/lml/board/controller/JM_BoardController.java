@@ -61,5 +61,33 @@ public class JM_BoardController {
 	
 
 	
+	@RequestMapping("newpost.do")
+	public String Logout() {
+		return "indexPost/newpost";
+	}
+	
+	// 체형별 보기
+		@ResponseBody
+		@RequestMapping(value="bodySelectAjax", produces="application/json; charset=UTF-8")
+		public String index1(HttpServletResponse response) throws JsonIOException, JsonProcessingException{
+			
+			ArrayList<Board> list = jService.bodySelect();
+			
+			ObjectMapper mapper = new ObjectMapper();
+			
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			mapper.setDateFormat(sdf);
+			
+			String jsonStr = mapper.writeValueAsString(list);
+			
+			return jsonStr;
+		}
+	
+	
+	
+	
+	
+	
+	
 	
 }

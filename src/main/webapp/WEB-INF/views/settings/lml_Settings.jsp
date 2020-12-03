@@ -83,7 +83,7 @@
                         </div>
                         <div class="Fbtn">
                             <button class="btns2"id="Delbtn" type="button" onClick="location.href='Settings4.do'">탈퇴</button>
-                            <input class="btns2" id="Sbtn" type="submit" value="변경하기"/>
+                            <input class="btns2" id="Sbtn" type="submit" onclick="sub()" value="변경하기"/>
                         </div>
                     </form>
                </div>
@@ -152,6 +152,19 @@
                 $(this).addClass('on')
         });
     });
+    
+    
+    
+    
+    
+    function sub(){
+    	alert('변경되셨습니다');
+    }
+    
+    
+    
+    
+    
 </script>
 
       
