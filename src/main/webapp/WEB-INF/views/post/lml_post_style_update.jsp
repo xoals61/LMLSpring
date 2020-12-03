@@ -148,11 +148,11 @@
 
 	</section>
 	<script>
-	   /**
-     * 중복서브밋 방지
-     * 
-     * @returns {Boolean}
-     */
+	
+		$(function(){
+			var tagtag = '<c:out value="${t.image1}"/>';
+			console.log(tagtag);
+		});
   
 	//게시글 태그 입력
 			
