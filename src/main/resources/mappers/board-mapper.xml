@@ -161,13 +161,12 @@
 	<select id="likePostSelectList" resultMap="boardResultSet">
 		SELECT *
            FROM LML_BOARD A1
-               JOIN (SELECT A.B_NUM ,COUNT(A.B_NUM) AS CNT
+              LEFT JOIN (SELECT A.B_NUM,COUNT(B.H_BNUM) AS CNT
                    FROM LML_BOARD A
-                       JOIN LML_HEART B
-                           ON (B_NUM = H_BNUM)
-                     	   GROUP BY B_NUM) B1
+                       LEFT JOIN LML_HEART B ON (B.H_BNUM =A.B_NUM)
+                     	   GROUP BY A.B_NUM) B1
                    ON A1.B_NUM = B1.B_NUM
-                   JOIN LML_MEM
+                    JOIN LML_MEM
                        ON (B_USER_NUM = USER_NUM)
                        ORDER BY CNT DESC
 	</select>

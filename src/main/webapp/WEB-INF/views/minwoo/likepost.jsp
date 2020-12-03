@@ -48,9 +48,13 @@
 								$('#table').append('<tr id="'+a+'">');
 							
 								for(var j=0; j<3; j++){	// 열
-									
 									if(b < data.length){
-										
+									var page = "userPage.do?id=" + data[b].b_user_id;
+										if(data[b].b_user_id=='${loginUser.id}'){
+											page = "MyPage.do?uNum=${loginUser.user_num}";
+											
+											
+										}
 										$('#'+a).append('<td>'+
 													'<div class="content">'+
 														'<div>'+
@@ -61,9 +65,9 @@
 															'<div class="chContnet">'+
 																'<div class="user">'+
 																	'<div class="userImg">'+
-																		'<a href="userPage.do?id='+ data[b].b_user_id +'"><img src="resources/images/profileImg/'+ data[b].b_profile_img +'"></a>'+
+																	'<a href="'+page + '"><img src="resources/images/profileImg/'+ data[b].b_profile_img +'"></a>'+
 																	'</div>'+
-																	'<a href="userPage.do?id='+ data[b].b_user_id +'"><div class="userId">'+ data[b].b_name +'</div></a>'+
+																	'<a href="'+page + '"><div class="userId">'+ data[b].b_name +'</div></a>'+
 																'</div>'+
 																'<div class="con" onclick="modalDetail('+data[b].b_num+');">'+
 																	'<div class="userCon">'+
@@ -338,15 +342,22 @@
 					hashHeartAjax();
 					replyList();
 					
+					var page = "userPage.do?id=" + data[0].b_user_id;
+
+					if(data[0].b_user_id=='${loginUser.id}'){
+						page = "MyPage.do?uNum=${loginUser.user_num}";
+					}
+					
+					
 					$('.board-detail').append('<div class="board-img">'+
 							'<img src="resources/buploadFiles/'+ data[0].image1 +'">'+
 							'</div>'+
 							'<div class="board-right">'+
 								'<div class="board-user">'+
 									'<div class="board-userImg">'+
-									'<a href="userPage.do?id='+data[0].b_user_id+'"><img src="resources/images/profileImg/'+ data[0].b_profile_img +'"></a>'+
+									'<a href="'+page + '"><img src="resources/images/profileImg/'+ data[0].b_profile_img +'"></a>'+
 									'</div>'+
-									'<a href="userPage.do?id='+data[0].b_user_id+'"><div class="board-id">'+
+									'<a href="'+page + '"><div class="board-id">'+
 											'<p>'+ data[0].b_name +'</p>'+
 										'</div></a>'+
 									'<div class="board-follow" id="fo'+data[0].b_user_num+'" onclick="addFollow(id);"></div>'+

@@ -188,16 +188,53 @@ $(document).ready(function () {
 	        	lastScrollTop = st;
 	    	});
 		});
+		
+	   
 
-	    
 	    $(document).ready(function(){
             $('.hMenu2').on('click', function(){
                 $(this).addClass('on');
                 $(this).siblings().removeClass('on');
+                console.log("dd?");
             });
             
             $(".hMenu").css("top", "60px");
-            
+            $(function(){
+    	        var pageName = "";
+    	     
+    	        var tempPageName = window.location.href;
+    	        var strPageName = tempPageName.split("/");
+    	        pageName = strPageName[strPageName.length-1].split("?")[0];
+    	        
+    	        if(pageName=="likepost.do"){
+    /* 	        	$('.hMenu2').eq(0).siblings().removeClass('on');
+    	        	$('.hMenu2').eq(0).addClass('on');
+     */	        	
+     $('.hMenu2').eq(0).trigger("click");
+     
+     console.log('?');
+    	        }else if(pageName=="Index.do"){
+    	        /* 	$('.hMenu2').eq(1).siblings().removeClass('on');
+    	        	$('.hMenu2').eq(1).addClass('on'); */
+    	        	 $('.hMenu2').eq(1).trigger("click");
+    	        	console.log(1);
+    	        }else if(pageName=="followingpost.do"){
+    	        	/* $('.hMenu2').eq(2).siblings().removeClass('on');
+    	        	$('.hMenu2').eq(2).addClass('on'); */
+    	        	 $('.hMenu2').eq(2).trigger("click");
+    	        	console.log(2);
+    	        }else if(pageName=="qnaPage.do"){
+    	        	/* $('.hMenu2').eq(3).siblings().removeClass('on');
+    	        	$('.hMenu2').eq(3).addClass('on'); */
+    	        	 $('.hMenu2').eq(3).trigger("click");
+    	        	console.log(3);
+    	        }
+    	        
+    	        
+    	        
+    	      console.log(pageName);
+    	    });
+    	    
         });
 	    
 	    /* 마이페이지 햄버거메뉴 */
