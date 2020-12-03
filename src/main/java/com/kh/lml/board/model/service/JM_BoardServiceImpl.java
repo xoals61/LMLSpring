@@ -20,6 +20,13 @@ public class JM_BoardServiceImpl implements JM_BoardService {
 	public ArrayList<Board> followingpost(int usernum) {
 		return jDao.followingpost(usernum);
 	}
+
+
+	@Override
+	public ArrayList<Board> bodySelect() {
+	
+		return null;
+	}
 	
 	
 	

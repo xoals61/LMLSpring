@@ -7,5 +7,7 @@ public interface JM_BoardService {
 
 
 	ArrayList<Board> followingpost(int usernum);
+
+	ArrayList<Board> bodySelect();
 	
 }

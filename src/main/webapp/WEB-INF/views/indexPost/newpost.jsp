@@ -5,7 +5,7 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<title>찐메인</title>
+<title>최신순</title>
 <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
 <link
 	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500&display=swap"
@@ -16,7 +16,7 @@
 <c:url var="mypage" value="MyPage.do" />
 </head>
 <body>
-	<jsp:include page="WEB-INF/views/common/header.jsp" />
+<jsp:include page="../common/header.jsp" />
 	<script>
 		$(function(){
 			$.ajax({
@@ -127,7 +127,6 @@
 			<div class="choice">
 				<p class="pchoice">체형별 보기</p>
 				<div class="choice1">
-				<form action="bodyselect.do">
 					<div class="cSelect">
 						키 : <select name="height">
 							<option value="">---</option>
@@ -151,7 +150,6 @@
 						</select>&nbsp;&nbsp;&nbsp;
 						<div class="choiceBtn">체형별 보기</div>
 					</div>
-					</form>
 					<div class="close">
 						<img src="resources/images/icon/main/close.png">
 					</div>
@@ -181,7 +179,7 @@
         </div>
 	</section>
 
-	<jsp:include page="WEB-INF/views/common/footer.jsp" />
+	<jsp:include page="../common/footer.jsp" />
 
 
 	<script>
@@ -367,7 +365,10 @@
 									'<div class="board-etc">'+
 		                              '<img src="resources/images/icon/main/menu1.png">'+
 		                              '<ul class="boardSub">'+
-		                              '</ul>'+
+		                                      '<a href="#"><li><div class="boardSub1">수정</div></li></a>'+
+		                                       '<a href="#"><li><div class="boardSub1">삭제</div></li></a>'+
+		                                       '<a href="#"><li><div class="boardSub1">신고</div></li></a>'+
+		                                   '</ul>'+
 		                           '</div>'+
 								'</div>'+
 								'<div class="board-clothesInfo">'+
@@ -390,7 +391,7 @@
 							'</div>');
 					
 					followList(data[0].b_user_num);
-					boardSub(data[0].b_user_num, bnum);
+					boardSub(data[0].b_user_num);
 					if(data[0].b_top !=null){
 						$('.board-clothesInfo').append('<div class="clothesInfo-div">'+
 								'<div class="clothes-img">'+
@@ -463,28 +464,21 @@
 			}
 			
 			
-			function boardSub(bunum, bnum){
-	        	var unum = '<c:out value="${loginUser.user_num}"/>';
+			function boardSub(bunum){
+	            var unum = '<c:out value="${loginUser.user_num}"/>';
 	            var bunum = bunum;
-	            var bnum = bnum;
 	            
-	            console.log('비넘 넘어와줘 ' + bnum)
+	            if(unum.length>0){
+	               if(unum == bunum){
+	                  
+	               }
+	            }
 	            
-	            $('.boardSub').hide();
-	            $('.board-etc').click(function(){
-	            	$('ul',this).slideToggle("fast");
-	            	if(unum.length>0){
-		            	if(unum == bunum){
-		               		$('.boardSub').append('<a href="bUpdateView.do?bnum='+bnum+'"><li><div class="boardSub1">수정</div></li></a>'+
-                                    			'<a href="#"><li><div class="boardSub1">삭제</div></li></a>');      	
-		               	}else{
-		               		$('.boardSub').append('<a href="#"><li><div class="boardSub1">신고</div></li></a>');
-		            	}
-		            }else{
-	               		$('.boardSub').append('<a href="#"><li><div class="boardSub1">신고</div></li></a>');
-	            	}
-	            });
-	        }
+	               $('.boardSub').hide();
+	               $('.board-etc').click(function(){
+	                   $('ul',this).slideToggle("fast");
+	               });
+	         }
 	           
 	           $("body").click(function(e){
 	               if(!$('.board-etc').has(e.target).length){

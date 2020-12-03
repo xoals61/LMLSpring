@@ -57,7 +57,7 @@
         <div class="hMenu">
             <div class="hMenu1">
                 <div class="hMenu2 on"><a href="likepost.do"><span>인기순</span></a></div>
-                <div class="hMenu2"><span>최신순</span></div>
+                <div class="hMenu2"><a href="newpost.do"><span>최신순</span></a></div>
                <c:if test="${ !empty sessionScope.loginUser }">
                 <div class="hMenu2"><a href="followingpost.do"><span>팔로잉</span></a></div>
                 </c:if>
