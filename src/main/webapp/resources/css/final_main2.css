@@ -212,7 +212,6 @@
 	border: #acacac solid 1px;
 	padding: 2px;
 	transition: all 0.1s ease;
-	margin: -24px 350px;
 }
 
 .choiceBtn:hover {
@@ -237,7 +236,7 @@
 	position: absolute;
 	width: 20px;
 	height: 20px;
-	margin: -4px;
+	margin: -21px 0px 0px 19px;
 }
 
 /* 게시물 테이블 */
