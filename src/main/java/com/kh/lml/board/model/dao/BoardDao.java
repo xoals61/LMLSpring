@@ -90,6 +90,10 @@ public class BoardDao {
 		return sqlSession.insert("boardMapper.insertTagUser", bo);
 	}
 
+	public ArrayList<Board> likePostSelectList() {
+		return (ArrayList)sqlSession.selectList("boardMapper.likePostSelectList");
+	}
+
 
 
 

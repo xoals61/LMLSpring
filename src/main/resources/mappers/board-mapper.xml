@@ -149,7 +149,19 @@
 		INSERT INTO LML_USERTAG
 		VALUES (#{t_tagUnum}, #{t_bnum})
 	</insert>
-	
+	<select id="likePostSelectList" resultMap="boardResultSet">
+		SELECT *
+           FROM LML_BOARD A1
+               JOIN (SELECT A.B_NUM ,COUNT(A.B_NUM) AS CNT
+                   FROM LML_BOARD A
+                       JOIN LML_HEART B
+                           ON (B_NUM = H_BNUM)
+                     	   GROUP BY B_NUM) B1
+                   ON A1.B_NUM = B1.B_NUM
+                   JOIN LML_MEM
+                       ON (B_USER_NUM = USER_NUM)
+                       ORDER BY CNT DESC
+	</select>
 </mapper>
 
 

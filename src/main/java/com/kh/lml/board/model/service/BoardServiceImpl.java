@@ -112,6 +112,11 @@ public class BoardServiceImpl implements BoardService {
 		return bDao.insertTagUser(bo);
 	}
 
+	@Override
+	public ArrayList<Board> likePostSelectList() {
+		return bDao.likePostSelectList();
+	}
+
 
 
 

@@ -182,6 +182,22 @@ public class BoardController {
 		
 		return jsonStr;
 	}
+	// 인덱스 좋아요순으로
+		@ResponseBody
+		@RequestMapping(value="likepost.do", produces="application/json; charset=UTF-8")
+		public String likepost(HttpServletResponse response) throws JsonIOException, JsonProcessingException{
+			
+			ArrayList<Board> list = bService.likePostSelectList();
+			
+			ObjectMapper mapper = new ObjectMapper();
+			
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			mapper.setDateFormat(sdf);
+			
+			String jsonStr = mapper.writeValueAsString(list);
+			
+			return jsonStr;
+		}
 	
 	// 디테일
 	@ResponseBody
