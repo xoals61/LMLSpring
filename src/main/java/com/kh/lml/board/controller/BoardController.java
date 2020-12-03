@@ -232,6 +232,22 @@ public class BoardController {
 		
 		return jsonStr;
 	}
+	//사용자 태그 가져오기
+	@ResponseBody
+	@RequestMapping(value="UserDetailHash.do", produces="application/json; charset=UTF-8")
+	public String UserDetailHash(HttpServletResponse response, int bnum) throws JsonIOException, JsonProcessingException{
+		System.out.println("여기컨트롤러리스트" +bnum); //1063
+		ArrayList<String> list = bService.UserHash(bnum);
+		System.out.println("여기컨트롤러리스트"+list);
+		ObjectMapper mapper = new ObjectMapper();
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		mapper.setDateFormat(sdf);
+		
+		String wow = mapper.writeValueAsString(list);
+		
+		return wow;
+	}
 	
 	// 디테일 댓글 불러오기
 	@ResponseBody
@@ -360,9 +376,12 @@ public class BoardController {
 	@RequestMapping(value="getTagUserNum.do", produces="application/json; charset=UTF-8")
 	public int getTagUserNum(String tagUser) throws JsonIOException, JsonProcessingException{
 		
+		System.out.println("여기컨트롤러태그유저: "+tagUser);
 		int res = bService.getTagUserNum(tagUser);
 		
-		return res;
+		
+			return res;
+		
 	}
 	
 	@RequestMapping("likepost.do")

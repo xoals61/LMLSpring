@@ -336,6 +336,7 @@
 				dataType:"JSON",
 				success:function(data){	
 					hashHeartAjax();
+					hashUSerAjax();
 					replyList();
 					
 					$('.board-detail').append('<div class="board-img">'+
@@ -354,6 +355,7 @@
 								'<div class="board-textDiv">'+
 									'<div class="board-text">'+ data[0].b_content +'</div>'+
 									'<div class="board-hashtag"></div>'+
+									'<div class="board-Usertag"></div>'+
 								'</div>'+
 								'<div class="board-stateicon">'+
 									'<div class="board-heartCount"></div>'+
@@ -361,8 +363,13 @@
 										'<img src="resources/images/icon/menu/iconmonstr-heart-thin-72.png" id="h'+bnum+'" onclick="addHeart('+bnum+');">'+
 									'</div>'+
 									'<div class="board-etc">'+
-										'<img src="resources/images/icon/main/menu1.png">'+
-									'</div>'+
+		                              '<img src="resources/images/icon/main/menu1.png">'+
+		                              '<ul class="boardSub">'+
+		                                      '<a href="#"><li><div class="boardSub1">수정</div></li></a>'+
+		                                       '<a href="#"><li><div class="boardSub1">삭제</div></li></a>'+
+		                                       '<a href="#"><li><div class="boardSub1">신고</div></li></a>'+
+		                                   '</ul>'+
+		                           '</div>'+
 								'</div>'+
 								'<div class="board-clothesInfo">'+
 									
@@ -384,7 +391,7 @@
 							'</div>');
 					
 					followList(data[0].b_user_num);
-					
+					boardSub(data[0].b_user_num);
 					if(data[0].b_top !=null){
 						$('.board-clothesInfo').append('<div class="clothesInfo-div">'+
 								'<div class="clothes-img">'+
@@ -456,8 +463,48 @@
 			    }
 			}
 			
+			
+			function boardSub(bunum){
+	            var unum = '<c:out value="${loginUser.user_num}"/>';
+	            var bunum = bunum;
+	            
+	            if(unum.length>0){
+	               if(unum == bunum){
+	                  
+	               }
+	            }
+	            
+	               $('.boardSub').hide();
+	               $('.board-etc').click(function(){
+	                   $('ul',this).slideToggle("fast");
+	               });
+	         }
+	           
+	           $("body").click(function(e){
+	               if(!$('.board-etc').has(e.target).length){
+	                   $('.boardSub').hide();
+	               }
+	           });
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
 			function hashHeartAjax(){
 				// 해쉬태그 불러오기
+				//게시글 해쉬태그
 				$.ajax({
 					url:"BoardDetailHash.do",
 					data:{bnum:bnum},
@@ -473,6 +520,11 @@
 							+ "error : " + error);
 					}
 				});
+				//사용자태그
+			
+				
+				
+				
 				
 				// 디테일 좋아요 리스트 & 내가 좋아요 눌렀음 빨간하트로.
 				$.ajax({
@@ -497,6 +549,31 @@
 					}
 				});
 			}
+			
+			
+			
+			
+			function hashUSerAjax(){
+				$.ajax({
+					url:"UserDetailHash.do",
+					data:{bnum:bnum},
+					dataType:"JSON",
+					success:function(data){	
+						for(var i=0; i<data.length; i++){
+				$('.board-Usertag').append('<a href=\'Search.do?keyword='+data[i]+'\'>' +"@" +data[i] + ' </a>');
+						}
+					},
+					error:function(request,status,error){
+						console.log("** error code : " + request.status + "\n"
+							+ "message : " + request.responseText + "\n"
+							+ "error : " + error);
+					}
+				});
+				
+			}
+			
+			
+			
 			
 			function followList(bunum){
 				// 디테일 팔로우리스트 가져오기

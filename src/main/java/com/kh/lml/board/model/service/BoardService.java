@@ -43,7 +43,9 @@ public interface BoardService {
 	int getTagUserNum(String tagUser);
 
 	int insertTagUser(Board bo);
-
+	
+	ArrayList<String> UserHash(int bnum);
+	
 	ArrayList<Board> likePostSelectList();
 
 

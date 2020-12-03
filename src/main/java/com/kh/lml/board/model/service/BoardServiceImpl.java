@@ -113,9 +113,14 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
+	public ArrayList<String> UserHash(int bnum) {
+		return bDao.getUserHash(bnum);
+	}
+	@Override
 	public ArrayList<Board> likePostSelectList() {
 		return bDao.likePostSelectList();
 	}
+	
 
 
 
