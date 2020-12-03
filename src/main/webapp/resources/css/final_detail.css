@@ -113,11 +113,21 @@ a:hover{
 
 .board-hashtag{
     width: 328px;
-    height: 58px;
+    height: fit-content;
     position: absolute;
-    margin: 278px 14px 8px;
+    margin: 264px 14px 8px;
+    color: rgb(0, 46, 83);
+    /* background: orange; */
+    font-weight: 300;
+}
+.board-Usertag{
+	width: 328px;
+    height: 34px;
+    position: absolute;
+    margin: 306px 14px 8px;
     color: rgb(0, 46, 83);
     font-weight: 300;
+    
 }
 
 .board-stateicon{

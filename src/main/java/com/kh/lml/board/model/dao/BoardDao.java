@@ -92,5 +92,13 @@ public class BoardDao {
 
 
 
+	public ArrayList<String> getUserHash(int bnum) {
+	
+		return (ArrayList)sqlSession.selectList("boardMapper.getTagUser", bnum);
+	}
+	
+
+
+
 
 }

@@ -354,6 +354,7 @@
 								'<div class="board-textDiv">'+
 									'<div class="board-text">'+ data[0].b_content +'</div>'+
 									'<div class="board-hashtag"></div>'+
+									'<div class="board-Usertag"></div>'+
 								'</div>'+
 								'<div class="board-stateicon">'+
 									'<div class="board-heartCount"></div>'+
@@ -458,6 +459,7 @@
 			
 			function hashHeartAjax(){
 				// 해쉬태그 불러오기
+				//게시글 해쉬태그
 				$.ajax({
 					url:"BoardDetailHash.do",
 					data:{bnum:bnum},
@@ -465,6 +467,22 @@
 					success:function(data){	
 						for(var i=0; i<data.length; i++){
 							$('.board-hashtag').append('<a href=\'Search.do?keyword='+data[i].substring(1)+'\'>' + data[i] + ' </a>');
+						}
+					},
+					error:function(request,status,error){
+						console.log("** error code : " + request.status + "\n"
+							+ "message : " + request.responseText + "\n"
+							+ "error : " + error);
+					}
+				});
+				//사용자태그
+				$.ajax({
+					url:"UserDetailHash.do",
+					data:{bnum:bnum},
+					dataType:"JSON",
+					success:function(data){	
+						for(var i=0; i<data.length; i++){
+							$('.board-Usertag').append('<a href=\'Search.do?keyword='+data[i].substring(1)+'\'>' + data[i] + ' </a>');
 						}
 					},
 					error:function(request,status,error){

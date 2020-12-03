@@ -44,6 +44,8 @@ public interface BoardService {
 
 	int insertTagUser(Board bo);
 
+	ArrayList<String> UserHash(int bnum);
+
 
 
 }

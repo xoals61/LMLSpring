@@ -216,6 +216,22 @@ public class BoardController {
 		
 		return jsonStr;
 	}
+	//사용자 태그 가져오기
+	@ResponseBody
+	@RequestMapping(value="UserDetailHash.do", produces="application/json; charset=UTF-8")
+	public String UserDetailHash(HttpServletResponse response, int bnum) throws JsonIOException, JsonProcessingException{
+		
+		ArrayList<String> list = bService.UserHash(bnum);
+		
+		ObjectMapper mapper = new ObjectMapper();
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		mapper.setDateFormat(sdf);
+		
+		String jsonStr = mapper.writeValueAsString(list);
+		
+		return jsonStr;
+	}
 	
 	// 디테일 댓글 불러오기
 	@ResponseBody

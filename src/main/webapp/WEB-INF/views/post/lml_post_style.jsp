@@ -21,8 +21,8 @@
 	<section>
 		<div class="AContent">
 			<form action="stylePostUpload.do" method="post"
-				enctype="multipart/form-data">
-				<button type="submit" class="uploadBtn" onclick="insert();">업로드</button>
+				enctype="multipart/form-data" >
+				<button type="submit" class="uploadBtn" onclick="insert();" >업로드</button>
 				<div class="Atable">
 					<div class="Abox">
 						<div class="post-div">
@@ -33,7 +33,7 @@
 
 								<div class="post-img-div">
 									<div class="img-upload1" id="preview1">
-										<input type="file" id="up1input" name="bUploadImg1" class="uploadImg" onchange="changeValue(this,$('#up1'))"  accept="image/*" />
+										<input type="file" id="up1input" name="bUploadImg1" class="uploadImg" onchange="changeValue(this,$('#up1'))"  accept="image/*" re/>
                                     	<img class="img-upload-icon" id="up1" src="resources/images/post/imgPlusIcon.png" onclick="uploadBtn(this.id);"/>
                                     	<!-- multiple="multiple"  -->
 									</div>

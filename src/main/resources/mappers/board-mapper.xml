@@ -96,6 +96,14 @@
 		ORDER BY HASHTAG DESC
 	</select>
 	
+	<select id="getTagUser" resultType="string">
+	SELECT T_UNUM
+		FROM LML_USERTAG
+		WHERE T_BNUM = #{bnum}
+        ORDER BY T_UNUM DESC;
+	</select>
+	
+	
 	<select id="selectComment" resultMap="CommentResultSet">
 		SELECT C_NO, C_BNO, C_CONTENT, C_UNUM, C_RECNO, C_LEVEL, C_DATE, UNAME, RENAME_PROFILE_IMG
 		FROM LML_COMMENT
