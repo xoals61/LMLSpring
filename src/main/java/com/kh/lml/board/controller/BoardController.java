@@ -349,6 +349,10 @@ public class BoardController {
 		return res;
 	}
 	
-
+	@RequestMapping("likepost.do")
+	public String likepost() {
+		System.out.println("인기순으로 이동");
+		return "minwoo/likepost";
+	}
 	
 }
