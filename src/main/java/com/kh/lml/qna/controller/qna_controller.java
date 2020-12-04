@@ -93,7 +93,6 @@ public class qna_controller {
 		}else {
 			System.out.println("글쓰기 실패");
 			return "../../index";
-
 		}
 	}
 	private String saveFile(MultipartFile file, HttpServletRequest request) {

@@ -5,7 +5,7 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<title>lml_Post_Style</title>
+<title>lml_QnA_Style</title>
 
 <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
 <link
@@ -75,7 +75,7 @@
 								<div class="post-cont-div">
 									<div id="cont-write" class="cont-write">
 										<textarea id="q_content" name="q_content"
-											placeholder="내용을 입력해주세요"></textarea>
+											placeholder="내용을 입력해주세요" required></textarea>
 									</div>
 									<div id="hihi"
 										style="width: 100px; height: 100px; margin-left: 600px; background: yellow;">
@@ -122,18 +122,24 @@
 		}
 
 		function insert() {
-			if (doubleSubmitCheck())
-				return;
+			//if (doubleSubmitCheck())
+			//	return false;
 			const up1input = document.getElementById('up1input').value;
 			const up2input = document.getElementById('up2input').value;
 			const up3input = document.getElementById('up3input').value;
 			const up4input = document.getElementById('up4input').value;
 			const up5input = document.getElementById('up5input').value;
-			if(!up1input){
+			const content2 = document.getElementById('q_content');
+			
+			if(!up1input && (!up2input||!up3input||!up4input||!up5input)){
 				alert("제일 왼쪽에 있는 이미지를 등록해주셔야합니다.");
+				return false;
+			}else if(!(content2.value.length>0)){
+				alert("질문 내용을 입력해주세요.");
 				return false;
 			}else{
 				alert("등록");
+				$('#uploadd').prop('disabled',false);
 				return true;
 			}
 		}

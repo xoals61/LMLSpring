@@ -175,20 +175,19 @@
 			 var fileCheck3 = document.getElementById("up3input").value;	 
 			 var fileCheck4 = document.getElementById("up4input").value;	 
 			 var fileCheck5 = document.getElementById("up5input").value;	 
-			 
-			 
-			if((!fileCheck1)&&(!fileCheck2)&&(!fileCheck3)&&(!fileCheck4)&&(!fileCheck5)){
+			 const content2 = document.getElementById('q_content');
 				
-				alert("이미지 1개 이상은 필수입니다");
-
-				return false;
-				
-			}else if((fileCheck1)&&(fileCheck2)&&(fileCheck3)&&(fileCheck4)&&(fileCheck5)){
-				
-			 $('#uploadd').prop('disabled',false);
-			return true;
-			
-		}
+				if(!up1input && (!up2input||!up3input||!up4input||!up5input)){
+					alert("제일 왼쪽에 있는 이미지를 등록해주셔야합니다.");
+					return false;
+				}else if(!(content2.value.length>0)){
+					alert("질문 내용을 입력해주세요.");
+					return false;
+				}else{
+					alert("등록");
+					$('#uploadd').prop('disabled',false);
+					return true;
+				}
 		}
 		
 		//사용자 태그 인풋

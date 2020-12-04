@@ -66,9 +66,6 @@ public class JM_memberController {
 	@RequestMapping("userPage.do")
 	private String userPage(String id, Model model) {
 		Member m = mService.userPage(id);
-	
-		
-		
 		
 		int uNum = mService.finduNum(id);
 		int Follow = mService.countFollowList(uNum);
@@ -83,6 +80,13 @@ public class JM_memberController {
 			model.addAttribute("Follow", Follow);
 			model.addAttribute("Follower", Follower);
 			model.addAttribute("boardCount", boardCount);
+			
+			System.out.println("Userboardlist : " + list);
+			System.out.println("User : " + m);
+			System.out.println("Follow : " + Follow);
+			System.out.println("Follower : " + Follower);
+			System.out.println("boardCount : " + boardCount);
+			
 			return "jiman/lml_UserPage";
 		} else {
 			model.addAttribute("msg", "바보야 유저 없다");

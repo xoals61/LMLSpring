@@ -13,6 +13,7 @@
 
 <link rel="stylesheet" href="resources/css/final_main2.css">
 <link rel="stylesheet" href="resources/css/final_detail.css">
+<link rel="stylesheet" href="resources/css/minwoo/slide.css">
 <c:url var="mypage" value="MyPage.do" />
 </head>
 <body>
@@ -352,8 +353,15 @@
 						page = "MyPage.do?uNum=${loginUser.user_num}";
 					}
 					
-					$('.board-detail').append('<div class="board-img">'+
+					$('.board-detail').append(
+							'<div class="slide">'
+						    + '<img id="prev" src="resources/images/minwoo/next-1.png" alt="prev">'
+						    + '<img id="next" src="resources/images/minwoo/next-1.png" alt="next">'
+							+ '<div id="num1" class="board-img">' +
+							'<span>' +
 							'<img src="resources/buploadFiles/'+ data[0].image1 +'">'+
+							'</span>' +
+							'</div>'+
 							'</div>'+
 							'<div class="board-right">'+
 								'<div class="board-user">'+
@@ -456,7 +464,62 @@
 							'<div class="clothes-info">'+ data[0].b_etc +'</div>'+
 						'</div>');
 					}
-					
+					console.log(data[0].image1);
+					console.log(data[0].image2);
+					console.log(data[0].image3);
+					console.log(data[0].image4);
+					console.log(data[0].image5);
+				 	const prev = document.getElementById('prev');
+				    const next = document.getElementById('next');
+				    const ultag = document.getElementsByClassName('board-img');
+				    const imgArr =[data[0].image2,data[0].image3,data[0].image4,data[0].image5];
+				    var num = 0; // imgcheck에 사용하는 전역변수
+				    let arr = imgcheck(); // 배열 정렬, 배열이 없으면 화살표 안보이게 설정.
+				    imgmake(arr); // 이미지 생성
+				    function imgmake(arr){
+				        //이미지가 있으면 생성
+				        for(let i = 0; i<arr.length; i++){
+				          var para = document.createElement('span');
+				          var img = document.createElement('img');
+				          var element = document.getElementById("num1");
+				          img.src="resources/buploadFiles/"+arr[i];
+				          para.appendChild(img);
+				          element.appendChild(para);
+				        }
+				      }
+				      function imgcheck(){
+				        let arr=[];
+				        
+				        //배열 null 개수 체크 밑 제거
+				        for(let i = 0; i<imgArr.length; i++){
+				          if(imgArr[i]!=null){
+				            num++;
+				            arr.push(imgArr[i]);
+				          }
+				        }
+				        // 배열안에 아무것도 없으면 화살표 버튼(이미지)을 안보이게 설정.
+				        if(num==0){
+				          prev.style.display='none';
+				          next.style.display='none';
+				        }
+				        return arr;
+				      }
+				      
+				      function prevfun(){
+				        if((ultag[0].id.substring(3,4) != '1'))
+				          ultag[0].id = ultag[0].id.substring(0,3) + ((Number(ultag[0].id.substring(3,4)))-1);
+				        else
+				          ultag[0].id = ('num' + String(arr.length+1));
+				        
+				      }
+				      function nextfun(){
+				        if((ultag[0].id.substring(3,4) != String((arr.length+1))))
+				          ultag[0].id = ultag[0].id.substring(0,3) + ((Number(ultag[0].id.substring(3,4)))+1);
+				        else
+				          ultag[0].id = 'num1';
+				      }
+				      prev.addEventListener("click",prevfun);
+				      next.addEventListener("click",nextfun);
 				},
 				error:function(request,status,error){
 					console.log("** error code : " + request.status + "\n"
