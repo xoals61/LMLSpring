@@ -33,8 +33,10 @@
 								<div class="post-img">스타일 이미지</div>
 
 								<div class="post-img-div">
+								
 									<div class="img-upload1" id="preview1">
 										<input type="file" value="${b.image1}" id="up1input" name="bUploadImg1" class="uploadImg" onchange="changeValue(this,$('#up1'))"  accept="image/*" />
+										<input type="hidden" value="${b.image1}"/>
 										<c:if test="${ !empty b.image1 }">
                                     		<img class="img-upload-update" id="up1" src="resources/buploadFiles/${b.image1}" onclick="uploadBtn(this.id);"/>										
 										</c:if>
@@ -42,6 +44,7 @@
 											<img class="img-upload-icon" id="up1" src="resources/images/post/imgPlusIcon.png" onclick="uploadBtn(this.id);"/>
 										</c:if>
 									</div>
+									
 									<div class="img-upload1" id="preview2">
 					 					<input type="file" value="${b.image2}" id="up2input" name="bUploadImg2" class="uploadImg" onchange="changeValue(this,$('#up2'))"  accept="image/*" />
 										<c:if test="${ !empty b.image2 }">
@@ -150,6 +153,15 @@
 
 	</section>
 	<script>
+		$(function(){
+			console.log('사진1 : ' + $('#up1input').val());
+		});
+		
+		function pic(){
+			console.log('업로드사진1 : ' + $('#up1input').val());
+		}
+	
+	
 		//게시글 태그 입력
 		// 가져오기
 		var tagnum = 1;
@@ -370,6 +382,7 @@
                 }
                 reader.readAsDataURL(html.files[0]);
             }
+        	pic();
         }
 
         /*iput태그 파일*/
