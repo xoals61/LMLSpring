@@ -33,7 +33,7 @@
 								<div class="post-img">스타일 이미지</div>
 
 								<div class="post-img-div">
-								
+								 
 									<div class="img-upload1" id="preview1">
 										<input type="file" id="up1input" name="bUploadImg1" class="uploadImg" onchange="changeValue(this,$('#up1'))"  accept="image/*" />
 										<input type="hidden" value="${b.image1}" name="image1"/>
