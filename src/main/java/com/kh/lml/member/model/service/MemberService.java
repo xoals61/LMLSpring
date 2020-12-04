@@ -93,6 +93,8 @@ public interface MemberService {
 
 	ArrayList<ChatRoom> chatList(String id);
 
+	ArrayList<Board> mytagPost(int uNum);
+
 
 
 	//1113은지

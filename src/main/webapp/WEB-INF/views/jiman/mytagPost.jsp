@@ -368,11 +368,6 @@
            
               
               
-              function tag(){
-           
-            	  location.href="myTagPost.do?uNum${loginUser.user_num}";
-              }
-              
     </script>
 
 </body>
