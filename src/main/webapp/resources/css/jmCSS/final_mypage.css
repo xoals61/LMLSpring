@@ -33,6 +33,26 @@
 	position: relative;
 	min-width: 1120px;
 }
+.myModal2 {
+    /* display: none; Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 15; /*Sit on top*/
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0, 0, 0, 0.781); /* Fallback color */
+}
+.board-detail2{
+    width: 955px;
+    height: 850px;
+    background-color: white;
+    position: absolute;
+    left: 450px;
+    top: 25px;
+}
+
 
 .my_photo {
 	position: relative;

@@ -240,6 +240,12 @@ public class MemberServiceImpl implements MemberService {
 		return mDao.chatList(id);
 	}
 
+	@Override
+	public ArrayList<Board> mytagPost(int uNum) {
+		return mDao.mytagPost(uNum);
+	}
+
+
 
 
 	//1113은지

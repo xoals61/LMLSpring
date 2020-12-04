@@ -160,4 +160,7 @@ public int alalarm(String id) {
 	public ArrayList<ChatRoom> chatList(String id) {
 		return (ArrayList)sqlSession.selectList("memberMapper.chatList",id);
 	}
+	public ArrayList<Board> mytagPost(int uNum) {
+		return (ArrayList)sqlSession.selectList("jm-board-mapper.mytagPost",uNum);
+	}
 }
