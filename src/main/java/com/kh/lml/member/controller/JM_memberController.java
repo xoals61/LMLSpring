@@ -172,7 +172,7 @@ public class JM_memberController {
 	}
 	@RequestMapping("myTagPost.do")
 	public ModelAndView myPage(ModelAndView mv, int uNum) {
-
+System.out.println("uNum:???" +uNum);
 	
 		ArrayList<Board> list = mService.mytagPost(uNum);
 
