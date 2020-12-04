@@ -31,7 +31,7 @@
 				<div class="hashtag">Tag 😜 ; ${keyword}</div>
 				<a href="SearchHash.do?keyword=${keyword}">
 					<div class="hashMore">
-						<c:if test="${tagCount > 1}">
+						<c:if test="${tagCount > 3}">
                         	${tagCount} 개의 게시글 더보기
                         </c:if>
 					</div>
