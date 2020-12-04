@@ -427,7 +427,7 @@ public class BoardController {
 		String jsonStr = mapper.writeValueAsString(list);
 		
 		return jsonStr;
-	}
+	} 
 	
 	
 	// 수정하기
