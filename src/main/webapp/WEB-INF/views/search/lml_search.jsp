@@ -53,7 +53,7 @@
 									</div>
 									<div class="chover">
 										<div class="hover-detail-content"
-											onclick="modalDetail('${tagBoard.b_num}');"></div>
+											></div>
 										<div class="chContnet">
 											<div class="user">
 												<div class="userImg">
@@ -75,7 +75,7 @@
 														class="cheart">
 												</div>
 												<div class="cComment"
-													onclick="modalDetail('${tagBoard.b_num}');">
+													>
 													<div class="cbox"></div>
 													<img src="resources/images/icon/main/comment.png">
 												</div>
@@ -202,7 +202,7 @@
 		}
 		
 		// 게시물 마우스오버
-		function boardHover(){
+		$(function(){
 		  	$('.chover').hide();
 		    $('.content').mouseover(function(){
 		        $('.chover',this).show();
@@ -263,7 +263,7 @@
 					alert('로그인 후 이용 가능합니다.');
 				}
 			});
-		}
+		});
 
 
 		/* 체형별 */
