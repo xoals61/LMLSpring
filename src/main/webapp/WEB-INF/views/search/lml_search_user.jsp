@@ -67,7 +67,7 @@
         </div>
     </section>
     
-    <jsp:include style="float:left" page="../common/footer.jsp"/>
+    <jsp:include page="../common/footer.jsp"/>
     
     <script>
     
