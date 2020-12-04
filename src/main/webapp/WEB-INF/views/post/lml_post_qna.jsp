@@ -77,30 +77,39 @@
 										<textarea id="q_content" name="q_content"
 											placeholder="내용을 입력해주세요" required></textarea>
 									</div>
+								</div>
+								<div id="post-cont" style="display: flex;">
+									<h5 style="padding-left: 10px;">게시글 태그</h5>
+									<h5 style="padding-left: 507px;">사용자 태그</h5>
+								</div>
+								<div style="display: -webkit-inline-box;">
 									<div id="hihi"
-										style="width: 100px; height: 100px; margin-left: 600px; background: yellow;">
+										style="width: 250px; height: 100px; border: solid 1px gainsboro; overflow-y: scroll;">
+									</div>
+
+									<div class="post-cont-div1"
+										style="padding-top: 25px; padding-left: 20px;">
+										<!-- <form action="#" id="tag" method="post"> -->
+										<input type="text" class="tagtag" autocomplete=”off”
+											id="hashtag" size="7" placeholder="게시글 태그입력" /> <input
+											type="hidden" id="hashArr" name="b_hash" value="" />
+										<button type="button" class="tagbtn" id="tagbtn"
+											onclick="addhash();">태그 등록</button>
+									</div>
+									<div id="hih2" style="width: 250px; height: 100px; margin-left: 332px;  border: solid 1px gainsboro;
+																	 overflow-y: scroll;">
+									</div>
+									
+									<div class="post-cont-div2">
+								<input type="text" id="hashtag2" autocomplete=”off”  class="tagtag" size="7" placeholder="사용자 닉네임 입력" />
+										<input type="hidden"  id="hashArr2" name="t_unum" value=""/>
+										<button type="button"  class="tagbtn"  id="tagbtn2" onclick="addhash2();"> 태그 등록</button>
 									</div>
 								</div>
 
 							</div>
-							<div class="div-cont1">
-								<div id="post-cont">
-									<h5>태그</h5>
-								</div>
-								<div class="post-cont-div1">
-									<!-- <form action="#" id="tag" method="post"> -->
-									<input type="text" id="hashtag" size="7" placeholder="태그입력" />
-									<input type="hidden" id="hashArr" name="q_hash" value="" />
-									<button type="button" id="tagbtn" onclick="addhash();">태그
-										등록</button>
-									<!-- </form> -->
-
-
-								</div>
-							</div>
 						</div>
 					</div>
-				</div>
 			</form>
 		</div>
 
@@ -130,16 +139,16 @@
 			const up4input = document.getElementById('up4input').value;
 			const up5input = document.getElementById('up5input').value;
 			const content2 = document.getElementById('q_content');
-			
-			if(!up1input && (!up2input||!up3input||!up4input||!up5input)){
+
+			if (!up1input && (!up2input || !up3input || !up4input || !up5input)) {
 				alert("제일 왼쪽에 있는 이미지를 등록해주셔야합니다.");
 				return false;
-			}else if(!(content2.value.length>0)){
+			} else if (!(content2.value.length > 0)) {
 				alert("질문 내용을 입력해주세요.");
 				return false;
-			}else{
+			} else {
 				alert("등록");
-				$('#uploadd').prop('disabled',false);
+				$('#uploadd').prop('disabled', false);
 				return true;
 			}
 		}
@@ -163,20 +172,79 @@
 
 		var hasharr = "";
 
-		function addhash() {
-			var tag = '<a href=\'Search.do?keyword=' + $('#hashtag').val()
-					+ '\'>' + '#' + $('#hashtag').val() + '</a><br>';
-
-			document.getElementById('hihi').innerHTML += tag;
-
-			hasharr += '#' + $('#hashtag').val() + ',';
+		function addhash(){
+			var tag = '<a href=\'Search.do?keyword='+$('#hashtag').val()+'\'>'  +  '#'+$('#hashtag').val()+'</a><br>';
+			
+			document.getElementById('hihi').innerHTML+= tag;
+			
+			hasharr += '#'+$('#hashtag').val()+',';
 			console.log("제이쿼리는들어가? " + hasharr);
-
+			$('#hihi').scrollTop($('#hihi').prop('scrollHeight'));
 			$('#hashArr').val(hasharr);
-
+		
 			$('#hashtag').val("");
 		}
-
+		var content = document.getElementById('b_content').innerHTML;
+		var splitedArray = content.split(' ');
+		var linkedContent = '';
+		
+		for(var word in splitedArray) {
+			word = splitedArray[word];
+	 	  	var ab = word.replace("@",""); 
+	 	  	
+		   	if(word.indexOf('@') == 0){
+			   word = '<a style=" margin-right: 9px;" href=\'Search.do?keyword='+ab+'\'>'+word+'</a>';
+		   	}
+		   	
+		   	linkedContent += word+' ';
+		}
+		
+		
+		document.getElementById('hih2').innerHTML = linkedContent; 
+			
+		var hashar="";
+		
+		function addhash2(){
+			
+			var tagUser = $('#hashtag2').val();
+			
+			$.ajax({
+				url:"getTagUserNum.do",
+				data:{tagUser:tagUser},
+				success:function(data){	
+					if(data != null){
+						console.log('사람있음 : ' + data);
+						if($('#ut'+data).length == 0){
+							if(Number(data)==0){
+								alert('그 딴 사람없음');
+							}
+							else{
+							var tag = '<div class="userTagDiv"><a style="color:red;" href=\'Search.do?keyword='+$('#hashtag2').val()+'\'>'  +  '@'+$('#hashtag2').val()+'</a>&nbsp;&nbsp;&nbsp;<img src="resources/images/icon/menu/commentDelete.png" id="ut'+data+'" onclick="userTagDelete(id);"></div>';
+							
+							document.getElementById('hih2').innerHTML+= tag;
+							
+							//hashar += '@'+$('#hashtag2').val()+',';
+							hashar += data+',';
+							$('#hih2').scrollTop($('#hih2').prop('scrollHeight'));
+							$('#hashArr2').val(hashar);
+						
+							$('#hashtag2').val("");
+							}
+						}else{
+							alert('이미 태그 된 사용자입니다.');
+						}
+						
+					}else{
+						alert('일치하는 사용자를 찾을 수 없습니다.');
+					}
+				},
+				error:function(request,status,error){
+					console.log("** error code : " + request.status + "\n"
+						+ "message : " + request.responseText + "\n"
+						+ "error : " + error);
+				}
+			});
+		}
 		function changeValue(html, $target) {
 			console.log(html.files.length);
 			if (html.files && html.files[0]) {
