@@ -140,6 +140,7 @@
 		
 		for(var word in splitedArray) {
 			word = splitedArray[word];
+			
 	 	  	var ab = word.replace("#",""); 
 		   	if(word.indexOf('#') == 0){
 			   word = '<a style=" margin-right: 9px;" href=\'Search.do?keyword='+ab+'\'>'+word+'</a>';
