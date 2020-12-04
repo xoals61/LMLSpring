@@ -19,7 +19,7 @@
 </head>
 <body>
 
-
+	
 
 	<jsp:include page="../common/header.jsp" />
 	
@@ -129,6 +129,24 @@
 	</section>
 
 	<script>
+	
+		$(function(){
+			
+			var toFollow='<c:out value="${User.user_num}"/>';
+			var fromFollow='<c:out value="${loginUser.user_num}"/>';
+			
+			console.log('팔로팔로 : ' + toFollow + ', ' + fromFollow);
+			
+			/* $.ajax({
+				url : "UserPageFollow.do",
+				data : {
+					id : id
+				},
+				type : "post",
+				success : function(data) {}
+			}); */
+		});
+		
         $(document).ready(function() {
           	var id = "${User.id}";
           //팔로워 목록 불러오는 ajax
