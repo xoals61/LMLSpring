@@ -439,7 +439,9 @@ public class BoardController {
 			@RequestParam(value="bUploadImg4", required=false) MultipartFile file4,
 			@RequestParam(value="bUploadImg5", required=false) MultipartFile file5) {	
 		
-		System.out.println("11가져옴 >> " + file1.toString() + " ,##, " + file2.toString() + " ,##, " + file3.toString());
+		System.out.println("11가져옴 >> " + file1 + " ,##, " + file2.toString() + " ,##, " + file3.toString());
+		System.out.println("11사진" + b.getImage1().toString());
+		
 		
 		MultipartFile[] fileList = {file1,file2,file3,file4,file5};
 		

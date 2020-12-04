@@ -193,11 +193,6 @@
    <insert id="updateSyltePost" parameterType="Board">
       UPDATE LML_BOARD
       SET B_CONTENT=#{b_content},
-     	 IMAGE1=#{image1},
-         IMAGE2=#{image2},
-         IMAGE3=#{image3},
-         IMAGE4=#{image4},
-         IMAGE5=#{image5},
          B_TOP=#{b_top},
          B_BOTTOM=#{b_bottom},
          B_SHOES=#{b_shoes},
