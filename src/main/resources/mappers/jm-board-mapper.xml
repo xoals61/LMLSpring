@@ -72,7 +72,7 @@
 
 	</select>
 
-	<select id="mytagPost" parameterType="String"
+	<select id="mytagPost" parameterType="_int"
 		resultMap="boardResultSet">
 		SELECT *
 		FROM LML_BOARD a
