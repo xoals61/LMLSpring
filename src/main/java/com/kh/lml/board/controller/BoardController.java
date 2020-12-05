@@ -468,7 +468,7 @@ public class BoardController {
 				bService.insertTagUser(bo);
 			}
 		}
-		
+
 		
 		if(result > 0) {
 			System.out.println("글수정 성공");
@@ -480,6 +480,50 @@ public class BoardController {
 			
 		}
 		
+	}
+	
+	@RequestMapping("boardDelete.do")
+	public String boardDelete(int b_num, HttpServletRequest request) {
+		
+		Board b = bService.selectUpdateBoard(b_num);
+		
+		if(b.getImage1() != null) {
+			deleteFile(b.getImage1(),request);
+		}
+		if(b.getImage2() != null) {
+			deleteFile(b.getImage2(),request);
+		}
+		if(b.getImage3() != null) {
+			deleteFile(b.getImage3(),request);
+		}
+		if(b.getImage4() != null) {
+			deleteFile(b.getImage4(),request);
+		}
+		if(b.getImage5() != null) {
+			deleteFile(b.getImage5(),request);
+		}
+		
+		int result = bService.deleteBoard(b_num);
+		
+		if(result > 0) {
+			System.out.println("글삭제 완료");
+			return "redirect:/index.do";
+		}else {
+			System.out.println("글삭제 실패");
+			return "../../index";
+		}
+	}
+	
+	private void deleteFile(String fileName, HttpServletRequest request) {
+		String root = request.getSession().getServletContext().getRealPath("resources");
+		
+		String savePath = root + "\\buploadFiles";
+		
+		File f = new File(savePath + "\\" + fileName); // 기존에 업로드 된 파일의 실제경로를 이용해서 file객체 생성
+		
+		if(f.exists()) {
+			f.delete();
+		}
 	}
 	
 }

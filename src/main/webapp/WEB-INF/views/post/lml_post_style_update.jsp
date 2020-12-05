@@ -23,7 +23,10 @@
 		<div class="AContent">
 			<form action="stylePostUpdate.do" method="post"
 				enctype="multipart/form-data"  onsubmit="return insert()">
+				
+				<button type="button" class="deleteBtn" id="${b.b_num }" onclick="boardDelete(id);">삭제하기</button>
 				<button id="uploadd" type="submit" class="uploadBtn" >수정하기</button>
+				
 				<div class="Atable">
 					<div class="Abox">
 						<div class="post-div">
@@ -139,6 +142,14 @@
 		
 		function pic(){
 			console.log('업로드사진1 : ' + $('#up1input').val());
+		}
+		
+		function boardDelete(id){
+			var qq = confirm('정말 삭제하시겠습니까?');
+			if(qq == true){
+				location.href = "boardDelete.do?b_num="+id;	
+			}else{}
+			
 		}
 	
 	
@@ -328,27 +339,6 @@
 			console.log('33태그놈 : ' + $('#hashArr').val());
 			//console.log(id + " , " + deleteNum);
 		}
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
 		
 		
 		

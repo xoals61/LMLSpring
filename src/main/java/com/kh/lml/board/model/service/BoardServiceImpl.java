@@ -157,6 +157,11 @@ public class BoardServiceImpl implements BoardService {
 		return bDao.deleteStyleUserTag(getbnum);
 	}
 
+	@Override
+	public int deleteBoard(int b_num) {
+		return bDao.deleteBoard(b_num);
+	}
+
 
 
 	 

@@ -129,11 +129,11 @@
 		WHERE H_UNUM = #{unum}
 	</select>
 	
-	<insert id="deleteHeart" parameterType="Board">
+	<delete id="deleteHeart" parameterType="Board">
 		DELETE FROM LML_HEART
 		WHERE H_BNUM = #{h_bnum}
 		AND H_UNUM = #{h_unum}
-	</insert>
+	</delete>
 	
 	<select id="getDetailHeart" resultMap="boardResultSet">
 		SELECT H_BNUM, H_UNUM, UNAME, RENAME_PROFILE_IMG
@@ -142,10 +142,10 @@
 		WHERE H_BNUM = #{bnum}
 	</select>
 	
-	<update id="deleteComment" parameterType="_int"> 
+	<delete id="deleteComment" parameterType="_int"> 
 		DELETE FROM LML_COMMENT
 		WHERE C_NO = #{cno}
-	</update>
+	</delete>
 	
 	<select id="getTagUserNum" parameterType="String" resultType="_int">
 		SELECT USER_NUM
@@ -207,15 +207,22 @@
          IMAGE4=#{image4},
          IMAGE5=#{image5}, -->
    
-   <update id="deleteStyleHash" parameterType="_int"> 
+   <delete id="deleteStyleHash" parameterType="_int"> 
       DELETE FROM LML_HASH
       WHERE H_BNUM = #{getbnum}
-   </update>
+   </delete>
    
-   <update id="deleteStyleUserTag" parameterType="_int"> 
+   <delete id="deleteStyleUserTag" parameterType="_int"> 
       DELETE FROM LML_USERTAG
       WHERE T_BNUM = #{getbnum}
-   </update>
+   </delete>
+   
+   <delete id="deleteBoard" parameterType="_int"> 
+		DELETE FROM LML_BOARD
+		WHERE B_NUM = #{b_num}
+	</delete>
+   
+   
 </mapper>
 
 

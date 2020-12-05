@@ -386,6 +386,8 @@
 									'<div class="board-etc">'+
 		                              '<img src="resources/images/icon/main/menu1.png">'+
 		                              '<ul class="boardSub">'+
+		                              '<a href="bUpdateView.do?bnum='+bnum+'" id="idboardUp"><li><div class="boardSub1">수정</div></li></a>'+
+		                              '<a href="Settings3.do" id="idboardDecla"><li><div class="boardSub1">신고</div></li></a>'+
 		                              '</ul>'+
 		                           '</div>'+
 								'</div>'+
@@ -536,26 +538,28 @@
 			    }
 			}
 			
+		
+			
 			
 			function boardSub(bunum, bnum){
 	        	var unum = '<c:out value="${loginUser.user_num}"/>';
 	            var bunum = bunum;
 	            var bnum = bnum;
 	            
-	            console.log('비넘 넘어와줘 ' + bnum)
-	            
 	            $('.boardSub').hide();
 	            $('.board-etc').click(function(){
 	            	$('ul',this).slideToggle("fast");
 	            	if(unum.length>0){
 		            	if(unum == bunum){
-		               		$('.boardSub').append('<a href="bUpdateView.do?bnum='+bnum+'"><li><div class="boardSub1">수정</div></li></a>'+
-                                    			'<a href="#"><li><div class="boardSub1">삭제</div></li></a>');      	
+		               		$('#idboardUp').show();
+		               		$('#idboardDecla').hide();
 		               	}else{
-		               		$('.boardSub').append('<a href="#"><li><div class="boardSub1">신고</div></li></a>');
+		               		$('#idboardUp').hide();
+		               		$('#idboardDecla').show();
 		            	}
 		            }else{
-	               		$('.boardSub').append('<a href="#"><li><div class="boardSub1">신고</div></li></a>');
+		            	$('#idboardUp').hide();
+	               		$('#idboardDecla').show();
 	            	}
 	            });
 	        }

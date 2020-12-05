@@ -78,7 +78,7 @@ public class BoardDao {
 	}
 
 	public int deleteHeart(Board b) {
-		return sqlSession.insert("boardMapper.deleteHeart", b);
+		return sqlSession.delete("boardMapper.deleteHeart", b);
 	}
 
 	public ArrayList<Board> getDetailHeart(int bnum) {
@@ -86,7 +86,7 @@ public class BoardDao {
 	}
 
 	public int deleteComment(int cno) {
-		return sqlSession.update("boardMapper.deleteComment",cno);
+		return sqlSession.delete("boardMapper.deleteComment",cno);
 	}
 
 	public int getFollowList(Member m) {
@@ -133,11 +133,15 @@ public class BoardDao {
 	}
 
 	public int deleteStyleHash(int getbnum) {
-		return sqlSession.update("boardMapper.deleteStyleHash",getbnum);
+		return sqlSession.delete("boardMapper.deleteStyleHash",getbnum);
 	}
 
 	public int deleteStyleUserTag(int getbnum) {
-		return sqlSession.update("boardMapper.deleteStyleUserTag",getbnum);
+		return sqlSession.delete("boardMapper.deleteStyleUserTag",getbnum);
+	}
+
+	public int deleteBoard(int b_num) {
+		return sqlSession.delete("boardMapper.deleteBoard",b_num);
 	}
 
 

@@ -62,4 +62,6 @@ public interface BoardService {
 
 	int deleteStyleUserTag(int getbnum);
 
+	int deleteBoard(int b_num);
+
 }
