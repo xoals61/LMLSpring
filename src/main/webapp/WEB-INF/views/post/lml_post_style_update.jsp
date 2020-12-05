@@ -34,52 +34,31 @@
 
 								<div class="post-img-div">
 								 
-									<div class="img-upload1" id="preview1">
-										<input type="file" id="up1input" name="bUploadImg1" class="uploadImg" onchange="changeValue(this,$('#up1'))"  accept="image/*" />
-										<input type="hidden" value="${b.image1}" name="image1"/>
-										<c:if test="${ !empty b.image1 }">
-                                    		<img class="img-upload-update" id="up1" src="resources/buploadFiles/${b.image1}" onclick="uploadBtn(this.id);"/>										
-										</c:if>
-										<c:if test="${ empty b.image1 }">
-											<img class="img-upload-icon" id="up1" src="resources/images/post/imgPlusIcon.png" onclick="uploadBtn(this.id);"/>
-										</c:if>
-									</div>
-									
-									<div class="img-upload1" id="preview2">
-					 					<input type="file" value="${b.image2}" id="up2input" name="bUploadImg2" class="uploadImg" onchange="changeValue(this,$('#up2'))"  accept="image/*" />
-					 					<input type="hidden" value="${b.image2}" name="bUploadImg2"/>
-										<c:if test="${ !empty b.image2 }">
-                                    		<img class="img-upload-update" id="up2" src="resources/buploadFiles/${b.image2}" onclick="uploadBtn(this.id);"/>										
-										</c:if>
-										<c:if test="${ empty b.image2 }">
-											<img class="img-upload-icon" id="up2" src="resources/images/post/imgPlusIcon.png" onclick="uploadBtn(this.id);"/>
-										</c:if>									</div>
-									<div class="img-upload1" id="preview3">
-										<input type="file" value="${b.image3}" id="up3input" name="bUploadImg3" class="uploadImg" onchange="changeValue(this,$('#up3'))"  accept="image/*" />
-										<c:if test="${ !empty b.image3 }">
-                                    		<img class="img-upload-update" id="up3" src="resources/buploadFiles/${b.image3}" onclick="uploadBtn(this.id);"/>										
-										</c:if>
-										<c:if test="${ empty b.image3 }">
-											<img class="img-upload-icon" id="up3" src="resources/images/post/imgPlusIcon.png" onclick="uploadBtn(this.id);"/>
-										</c:if>									</div>
-									<div class="img-upload1" id="preview4">
-										<input type="file" value="${b.image4}" id="up4input" name="bUploadImg4" class="uploadImg" onchange="changeValue(this,$('#up4'))"  accept="image/*" />
-                                    	<c:if test="${ !empty b.image4 }">
-                                    		<img class="img-upload-update" id="up4" src="resources/buploadFiles/${b.image4}" onclick="uploadBtn(this.id);"/>										
-										</c:if>
-										<c:if test="${ empty b.image4 }">
-											<img class="img-upload-icon" id="up4" src="resources/images/post/imgPlusIcon.png" onclick="uploadBtn(this.id);"/>
-										</c:if>
-									</div>
-									<div class="img-upload1" id="preview5">
-										<input type="file" value="${b.image5}" id="up5input" name="bUploadImg5" class="uploadImg" onchange="changeValue(this,$('#up5'))"  accept="image/*" />
-                                    	<c:if test="${ !empty b.image5 }">
-                                    		<img class="img-upload-update" id="up5" src="resources/buploadFiles/${b.image5}" onclick="uploadBtn(this.id);"/>										
-										</c:if>
-										<c:if test="${ empty b.image5 }">
-											<img class="img-upload-icon" id="up5" src="resources/images/post/imgPlusIcon.png" onclick="uploadBtn(this.id);"/>
-										</c:if>
-									</div>
+								 	<c:if test="${ !empty b.image1 }">
+										<div class="img-upload1" id="preview1">
+	                                    	<img class="img-upload-update" id="up1" src="resources/buploadFiles/${b.image1}"/>										
+										</div>
+									</c:if>
+									<c:if test="${ !empty b.image2 }">
+										<div class="img-upload1" id="preview2">
+	                                    	<img class="img-upload-update" id="up1" src="resources/buploadFiles/${b.image2}"/>										
+										</div>
+									</c:if>
+									<c:if test="${ !empty b.image3 }">
+										<div class="img-upload1" id="preview3">
+	                                    	<img class="img-upload-update" id="up1" src="resources/buploadFiles/${b.image3}"/>										
+										</div>
+									</c:if>
+									<c:if test="${ !empty b.image4 }">
+										<div class="img-upload1" id="preview4">
+	                                    	<img class="img-upload-update" id="up1" src="resources/buploadFiles/${b.image4}"/>										
+										</div>
+									</c:if>
+									<c:if test="${ !empty b.image5 }">
+										<div class="img-upload1" id="preview5">
+	                                    	<img class="img-upload-update" id="up1" src="resources/buploadFiles/${b.image5}"/>										
+										</div>
+									</c:if>
 									
 								</div>
 							</div>

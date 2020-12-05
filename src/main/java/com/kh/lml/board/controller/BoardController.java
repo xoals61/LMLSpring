@@ -86,7 +86,7 @@ public class BoardController {
 				bo.setB_num(getbnum);
 				bo.setB_hash(slist[i].toString());
 				 
-				int res = bService.insertStyleHash(bo);
+				bService.insertStyleHash(bo);
 			}
 		}
 		
@@ -103,7 +103,7 @@ public class BoardController {
 				bo.setT_bnum(getbnum);
 				bo.setT_tagUnum(Integer.parseInt(tagUserArr[i].toString()));
 				
-				int res = bService.insertTagUser(bo);
+				bService.insertTagUser(bo);
 			}
 		}
 		
@@ -432,44 +432,7 @@ public class BoardController {
 	
 	// 수정하기
 	@RequestMapping("stylePostUpdate.do")
-	public String stylePostUpdate(Board b, MultipartHttpServletRequest request,
-			@RequestParam(value="bUploadImg1", required=false) MultipartFile file1,
-			@RequestParam(value="bUploadImg2", required=false) MultipartFile file2,
-			@RequestParam(value="bUploadImg3", required=false) MultipartFile file3,
-			@RequestParam(value="bUploadImg4", required=false) MultipartFile file4,
-			@RequestParam(value="bUploadImg5", required=false) MultipartFile file5) {	
-		
-		System.out.println("11가져옴 >> " + file1 + " ,##, " + file2.toString() + " ,##, " + file3.toString());
-		System.out.println("11사진" + b.getImage1().toString());
-		
-		
-		MultipartFile[] fileList = {file1,file2,file3,file4,file5};
-		
-		String[] renameFileList = new String[5];
-		
-		for(int i = 0; i < fileList.length; i++) {
-			if(!fileList[i].getOriginalFilename().equals("")) {
-				String renameFileName = saveFile(fileList[i],request);
-					
-				if(renameFileName != null) { 
-					b.setOriginalFileName(fileList[i].getOriginalFilename());
-					b.setRenameFileName(renameFileName);
-					
-					renameFileList[i] = renameFileName;
-					
-				}else {
-					renameFileList[i] = null;
-				}
-			}
-		}
-		
-		b.setImage1(renameFileList[0]);
-		b.setImage2(renameFileList[1]);
-		b.setImage3(renameFileList[2]);
-		b.setImage4(renameFileList[3]);
-		b.setImage5(renameFileList[4]);
-		
-		System.out.println("22가져옴 >> " +b.toString());
+	public String stylePostUpdate(Board b, MultipartHttpServletRequest request) {	
 		
 		int result = bService.updateStylePost(b);
 		int getbnum = b.getB_num();
@@ -479,40 +442,31 @@ public class BoardController {
 		String[] slist = b_hash.split(",");
 		
 		if(b_hash.length() > 0) {
-			int delhash = bService.deleteStyleHash(getbnum);
 			
-			if(delhash>0) {
-				for(int i=0; i<slist.length; i++){
-					Board bo = new Board();
-					bo.setB_num(getbnum);
-					bo.setB_hash(slist[i].toString());
-					
-					int res = bService.insertStyleHash(bo);
-				}
-			}else {
-				System.out.println("기존 해시태그 삭제 안 됨");
+			bService.deleteStyleHash(getbnum);
+
+			for(int i=0; i<slist.length; i++){
+				Board bo = new Board();
+				bo.setB_num(getbnum);
+				bo.setB_hash(slist[i].toString());
+				
+				bService.insertStyleHash(bo);
 			}
-			
 		}
 		
 		String tagUser = b.getT_unum();
 		String[] tagUserArr = tagUser.split(",");
         
 		if(tagUser.length() > 0) {
-			int delUserTag = bService.deleteStyleUserTag(getbnum);
-			if(delUserTag>0) {
-				for(int i=0; i<tagUserArr.length; i++){
-					Board bo = new Board();
-					bo.setT_bnum(getbnum);
-					bo.setT_tagUnum(Integer.parseInt(tagUserArr[i].toString()));
-					
-					int res = bService.insertTagUser(bo);
-				}
-			}else {
-				System.out.println("유저태그 삭제 안 됨");
-			}
-
+			bService.deleteStyleUserTag(getbnum);
 			
+			for(int i=0; i<tagUserArr.length; i++){
+				Board bo = new Board();
+				bo.setT_bnum(getbnum);
+				bo.setT_tagUnum(Integer.parseInt(tagUserArr[i].toString()));
+				
+				bService.insertTagUser(bo);
+			}
 		}
 		
 		
