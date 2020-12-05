@@ -31,7 +31,7 @@
 				<div class="hashtag">Tag 😜 ; ${keyword}</div>
 				<a href="SearchHash.do?keyword=${keyword}">
 					<div class="hashMore">
-						<c:if test="${tagCount > 1}">
+						<c:if test="${tagCount > 3}">
                         	${tagCount} 개의 게시글 더보기
                         </c:if>
 					</div>
@@ -40,9 +40,9 @@
 			<div class="hashTable">
 				<c:if test="${ !empty tagpost}">
 					<table id="table">
-						<c:forEach var="tagBoard" items="${tagpost}" varStatus="status">
+						<c:forEach var="tagBoard" items="${tagpost}" begin = "1" end = "3"  varStatus="status" >
 						<c:set var="i" value="${status.index}" />
-							<c:if test="${status.index mod 3 eq 0}">
+							<c:if test="${status.index mod 3 eq 1 }">
 								<tr>
 							</c:if>
 							<td>
@@ -72,7 +72,7 @@
 											<div class="cBtn">
 												<div class="cHeart">
 												<img src="resources/images/icon/main/heart.png"
-														class="cheart">
+														class="cheart" id="th'+ ${ tagBoard.b_num}" >
 												</div>
 												<div class="cComment"
 													>
@@ -87,7 +87,7 @@
 									</div>
 							</td>
 
-							<c:if test="${status.index mod 3 eq 2}">
+							<c:if test="${status.index mod 3 eq 4}">
 								</tr>
 							</c:if>
 
@@ -938,7 +938,7 @@ $(".follow").click(function(e){
 					}
 				});
         	}else{
-        		
+        	
         	}
         });
     </script>
