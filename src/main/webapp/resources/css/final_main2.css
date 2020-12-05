@@ -395,3 +395,38 @@
 	height: 20px;
 	margin: 15px 48px;
 }
+
+.hoverSub{
+    position: absolute;
+    right: 20px;
+    top: 469px;
+    width: 60px;
+    background-color: rgb(255, 255, 255);
+    padding: 0;
+    margin: 0;
+    border-radius: 4px;
+    box-shadow: 0px 0px 11px rgb(220,220,220);
+}
+
+.hoverSub li{
+    list-style-type:none;
+    height: 30px;
+    font-size: 15px;
+    cursor:pointer; 
+    text-align: center;
+}
+
+.hoverSub1{
+    margin: 3px 5px 3px 5px;
+    color: rgb(94, 94, 94);
+}
+
+.hoverSub li:hover{
+    background-color: rgba(238, 238, 238, 0.699);
+}
+
+.hoverSub a{
+    text-decoration: none;
+}
+
+

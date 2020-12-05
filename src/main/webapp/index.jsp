@@ -84,8 +84,12 @@
 																		'<div class="cbox"></div>'+
 																		'<img src="resources/images/icon/main/comment.png">'+
 																	'</div>'+
-																	'<div class="cEtc">'+
+																	'<div class="cEtc" id="hv'+data[b].b_user_num+'">'+
 																		'<img src="resources/images/icon/main/etc.png">'+
+																		'<ul class="hoverSub">'+
+											                              '<a href="bUpdateView.do?bnum='+data[b].b_num+'" id="up"><li><div class="hoverSub1">수정</div></li></a>'+
+											                              '<a href="Settings3.do" id="de"><li><div class="hoverSub1">신고</div></li></a>'+
+											                              '</ul>'+
 																	'</div>'+
 																'</div>'+
 															'</div>'+
@@ -94,7 +98,7 @@
 												'</td>');
 										
 									}else if(b >= data.length){
-										
+										// onclick="hSub(id);"
 									}
 									b++;
 								}
@@ -191,6 +195,7 @@
 
 
 	<script>
+
 	
 		// 하트 리스트
 		function heartIcon(){
@@ -225,6 +230,8 @@
 		    });
 		    $('.content').mouseout(function(){
 		        $('.chover').hide();
+		        $('.hoverSub').hide();
+		        
 		    });
 		    
 		    /* 게시물 좋아요 아이콘 클릭 시 아이콘 변경 */
@@ -279,6 +286,32 @@
 					alert('로그인 후 이용 가능합니다.');
 				}
 			});
+		    
+			$(".cEtc").click(function(){
+				var bunum = $(this).attr("id").substring(2);
+				hSub(bunum);
+			});
+		}
+		
+		function hSub(bunum){
+			$('.hoverSub').show();
+			console.log('hSub 호출됨 : ' + bunum);
+			$('ul',this).slideToggle("fast");
+			var unum = '<c:out value="${loginUser.user_num}"/>';
+			console.log('호버1 : ' + unum);
+			console.log('호버2 : ' + bunum);
+        	if(unum.length>0){
+            	if(unum == bunum){
+            		$('#up').show();
+               		$('#de').hide();
+               	}else{
+               		$('#up').hide();
+               		$('#de').show();
+            	}
+            }else{
+            	$('#up').hide();
+           		$('#de').show();
+        	}
 		}
 
 
