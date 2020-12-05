@@ -303,7 +303,7 @@
 		AND TO_FOLLOW = #{to_follow}
 	</select>
 	
-	<select id="coupleFind" parameterType="int" resultType="_int">
+	<select id="coupleFind" parameterType="_int" resultType="_int">
 		SELECT FROM_FOLLOW AS MAT_FOLL
 FROM FOLLOW_LIST
 WHERE FROM_FOLLOW IN (SELECT TO_FOLLOW
@@ -372,6 +372,13 @@ WHERE FROM_FOLLOW IN (SELECT TO_FOLLOW
 		AND TO_FOLLOW=#{to_follow}
 	</update>
 	
+	<select id="loginUserFollowList" parameterType="_int" resultType="_int">
+		SELECT TO_FOLLOW
+		FROM FOLLOW_LIST
+		WHERE FROM_FOLLOW=#{loginUserNum}
+	
+	
+	</select>
 </mapper>
 
 

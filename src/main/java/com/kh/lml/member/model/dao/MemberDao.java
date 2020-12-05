@@ -175,5 +175,8 @@ public int alalarm(String id) {
 	public int unBlockBtn(Member m) {
 		return sqlSession.update("memberMapper.unBlockBtn",m);
 	}
+	public ArrayList<Integer> loginUserFollowList(int loginUserNum) {
+		return (ArrayList)sqlSession.selectList("memberMapper.loginUserFollowList",loginUserNum);
+	}
 
 }

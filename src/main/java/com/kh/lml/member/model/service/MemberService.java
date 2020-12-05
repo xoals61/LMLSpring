@@ -103,6 +103,8 @@ public interface MemberService {
 
 	int unBlockBtn(Member m);
 
+	ArrayList<Integer> loginUserFollowList(int loginUserNum);
+
 	
 
 

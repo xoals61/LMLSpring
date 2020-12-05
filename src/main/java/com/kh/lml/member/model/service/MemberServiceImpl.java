@@ -265,6 +265,11 @@ public class MemberServiceImpl implements MemberService {
 		return mDao.unBlockBtn(m);
 	}
 
+	@Override
+	public ArrayList<Integer> loginUserFollowList(int loginUserNum) {
+		return mDao.loginUserFollowList(loginUserNum);
+	}
+
 
 
 

@@ -20,10 +20,11 @@
 <link rel="stylesheet" href="resources/css/final_detail.css">
 </head>
 <body>
-	<!-- 상세보기 모달(detail)  -->>
+	<!-- 상세보기 모달(detail)  -->
+	>
 	<div class="myModal2" id="myModal2" style="display: none;">
 		<div class="board-detail2" id="board-detail2" style="display: none;">
-			
+
 		</div>
 	</div>
 
@@ -63,9 +64,11 @@
 										onclick="location.href='toMessage.do?toid=${User.id}&fromid=${loginUser.id}'">메세지
 									</button>
 									<button class="followbtn" id="followbtn" onclick="uFollow(id);">팔로우</button>
-									<button class="unfollowbtn" id="unfollowbtn" onclick="uFollow(id);">팔로잉</button>
+									<button class="unfollowbtn" id="unfollowbtn"
+										onclick="uFollow(id);">팔로잉</button>
 									<button class="blockbtn" id="blockbtn" onclick="uFollow(id);">차단</button>
-									<button class="unblockbtn" id="unblockbtn" onclick="uFollow(id);">차단</button>
+									<button class="unblockbtn" id="unblockbtn"
+										onclick="uFollow(id);">차단</button>
 								</c:if>
 							</h2>
 						</div>
@@ -136,166 +139,187 @@
 	</section>
 
 	<script>
-	
 		$(function() {
 
 			var toFollow = '<c:out value="${User.user_num}"/>';
 			var fromFollow = '<c:out value="${loginUser.user_num}"/>';
 
 			console.log('유저페이지 팔로팔로 : ' + toFollow + ', ' + fromFollow);
-			
-			$.ajax({	// 팔로 상태
+
+			$.ajax({ // 팔로 상태
 				url : "upGetFollow.do",
-				data : {toFollow:toFollow, fromFollow:fromFollow},
+				data : {
+					toFollow : toFollow,
+					fromFollow : fromFollow
+				},
 				dataType : "JSON",
 				success : function(data) {
-					if(data != null){	// 로그인유저가 팔로함
-						if(data.f_block == 'N'){	// 차단 안 함
+					if (data != null) { // 로그인유저가 팔로함
+						if (data.f_block == 'N') { // 차단 안 함
 							$('.followbtn').hide();
 							$('.unblockbtn').hide();
-						}else if(data.f_block == 'Y'){	// 차단한 상대임
+						} else if (data.f_block == 'Y') { // 차단한 상대임
 							$('.followbtn').hide();
 							$('.unfollowbtn').hide();
 							$('.blockbtn').hide();
 							console.log('차단한놈');
 						}
-						
-					}else{	// 로그인유저가 팔로 안 함
+
+					} else { // 로그인유저가 팔로 안 함
 						$('.unfollowbtn').hide();
 						$('.unblockbtn').hide();
 					}
 				},
-				error:function(request,status,error){
+				error : function(request, status, error) {
 					console.log("** error code : " + request.status + "\n"
-						+ "message : " + request.responseText + "\n"
-						+ "error : " + error);
+							+ "message : " + request.responseText + "\n"
+							+ "error : " + error);
 				}
-			});		
-			
+			});
+
 		});
-		
-		
-		
-		function uFollow(id){
-			
+
+		function uFollow(id) {
+
 			var toFollow = '<c:out value="${User.user_num}"/>';
 			var fromFollow = '<c:out value="${loginUser.user_num}"/>';
-			
-			if(id == "followbtn"){	// 팔로우
+
+			if (id == "followbtn") { // 팔로우
 				var qq = confirm('팔로우 하시겠습니까?');
-				if(qq==true){
+				if (qq == true) {
 					$.ajax({
 						url : "followBtn.do",
-						data : {toFollow:toFollow, fromFollow:fromFollow},
+						data : {
+							toFollow : toFollow,
+							fromFollow : fromFollow
+						},
 						type : "POST",
 						success : function(data) {
-							if(data == "success"){
+							if (data == "success") {
 								upGetFollow();
-							}else{
+								location.reload();
+							} else {
 								console.log('팔로리스트 안 들어갔나봄');
 							}
 						},
-						error:function(){
+						error : function() {
 							console.log('팔로ajax 말 안 들음');
 						}
 					});
-				}else{}
-			
-			}else if(id == "unfollowbtn"){	// 언팔
+				} else {
+				}
+
+			} else if (id == "unfollowbtn") { // 언팔
 				var qq = confirm('언팔로우 하시겠습니까?');
-				if(qq==true){
+				if (qq == true) {
 					$.ajax({
 						url : "unfollowBtn.do",
-						data : {toUnFollow:toFollow, fromFollow:fromFollow},
+						data : {
+							toUnFollow : toFollow,
+							fromFollow : fromFollow
+						},
 						type : "POST",
 						success : function(data) {
-							if(data == "success"){
+							if (data == "success") {
 								upGetFollow();
-							}else{
+								location.reload();
+							} else {
 								console.log('팔로리스트 안 들어갔나봄');
 							}
 						},
-						error:function(){
+						error : function() {
 							console.log('팔로ajax 말 안 들음');
 						}
 					});
-				}else{}
-			
-			}else if(id == "blockbtn"){	// 차단
+				} else {
+				}
+
+			} else if (id == "blockbtn") { // 차단
 				var qq = confirm('차단 하시겠습니까?');
-				if(qq==true){
+				if (qq == true) {
 					$.ajax({
 						url : "blockBtn.do",
-						data : {toFollow:toFollow, fromFollow:fromFollow},
+						data : {
+							toFollow : toFollow,
+							fromFollow : fromFollow
+						},
 						type : "POST",
 						success : function(data) {
-							if(data == "success"){
+							if (data == "success") {
 								upGetFollow();
-							}else{
+							} else {
 								console.log('차단 안 들어갔나봄');
 							}
 						},
-						error:function(){
+						error : function() {
 							console.log('팔로ajax 말 안 들음');
 						}
 					});
-				}else{}
-			
-			}else if(id == "unblockbtn"){	//차단풀기
+				} else {
+				}
+
+			} else if (id == "unblockbtn") { //차단풀기
 				var qq = confirm('차단을 푸시겠습니까?');
-				if(qq==true){
+				if (qq == true) {
 					$.ajax({
 						url : "unblockBtn.do",
-						data : {toFollow:toFollow, fromFollow:fromFollow},
+						data : {
+							toFollow : toFollow,
+							fromFollow : fromFollow
+						},
 						type : "POST",
 						success : function(data) {
-							if(data == "success"){
+							if (data == "success") {
 								upGetFollow();
-							}else{
+							} else {
 								console.log('차단 안 들어갔나봄');
 							}
 						},
-						error:function(){
+						error : function() {
 							console.log('차단풀기ajax 말 안 들음');
 						}
 					});
-				}else{}
+				} else {
+				}
 			}
-			
-			function upGetFollow(){
-				
-				$.ajax({	// 팔로 상태
+
+			function upGetFollow() {
+
+				$.ajax({ // 팔로 상태
 					url : "upGetFollow.do",
-					data : {toFollow:toFollow, fromFollow:fromFollow},
+					data : {
+						toFollow : toFollow,
+						fromFollow : fromFollow
+					},
 					dataType : "JSON",
 					success : function(data) {
-						if(data != null){	// 로그인유저가 팔로함
-							if(data.f_block == 'N'){	// 차단 안 함
+						if (data != null) { // 로그인유저가 팔로함
+							if (data.f_block == 'N') { // 차단 안 함
 								$('.unfollowbtn').show();
 								$('.blockbtn').show();
 								$('.followbtn').hide();
 								$('.unblockbtn').hide();
-							}else if(data.f_block == 'Y'){	// 차단한 상대임
+							} else if (data.f_block == 'Y') { // 차단한 상대임
 								$('.followbtn').hide();
 								$('.unfollowbtn').hide();
 								$('.blockbtn').hide();
 								$('.unblockbtn').show();
 								console.log('차단한놈');
 							}
-							
-						}else{	// 로그인유저가 팔로 안 함
+
+						} else { // 로그인유저가 팔로 안 함
 							$('.followbtn').show();
 							$('.blockbtn').show();
 							$('.unfollowbtn').hide();
 							$('.unblockbtn').hide();
 						}
 					},
-					error:function(request,status,error){
+					error : function(request, status, error) {
 						console.log("** error code : " + request.status + "\n"
-							+ "message : " + request.responseText + "\n"
-							+ "error : " + error);
+								+ "message : " + request.responseText + "\n"
+								+ "error : " + error);
 					}
-				});		
+				});
 			}
 		}
 
@@ -303,13 +327,15 @@
 				.ready(
 						function() {
 							var id = "${User.id}";
+							var loginUserNum = Number("${loginUser.user_num}");
 							//팔로워 목록 불러오는 ajax
 							//팔로워 목록 불러오는 ajax
 							$
 									.ajax({
-										url : "werlist.do",
+										url : "userwerlist.do",
 										data : {
-											id : id
+											id : id,
+											loginUserNum : loginUserNum
 										},
 										type : "post",
 										success : function(data) {
@@ -335,7 +361,7 @@
 															+ data[i].id
 															+ "</a></td><td class='btntd' rowspan='2' style='width: 30%;'>"
 															+ "<input class='"
-															+ data[i].btn
+															+ data[i].btn +" f" + data[i].from_follower
 															+ "' id='"
 															+ data[i].from_follower
 															+ "'  name='"
@@ -371,9 +397,10 @@
 							//팔로우 목록 불러오는 ajax
 							$
 									.ajax({
-										url : "woolist.do",
+										url : "userwoolist.do",
 										data : {
-											id : id
+											id : id,
+											loginUserNum : loginUserNum
 										},
 										type : "post",
 										success : function(data) {
@@ -384,6 +411,7 @@
 
 												for (var i = 0; i < a; i++) {
 													var value;
+
 													if (data[i].btn == "button1") {
 														value = '팔로잉';
 													} else {
@@ -399,7 +427,7 @@
 															+ data[i].id
 															+ "</a></td><td class='btntd' rowspan='2' style='width: 30%;'>"
 															+ "<input class='"
-															+ data[i].btn
+															+ data[i].btn + " f" + data[i].to_follow
 															+ "' id='"
 															+ data[i].to_follow
 															+ "'  name='"
@@ -504,9 +532,9 @@
 						success : function(data) {
 							if (data == "success") {
 
-								$('#' + id).prop("name", 'button2');
-								$('#' + id).prop("class", 'button2');
-								$('#' + id).prop("value", '팔로우');
+								$('.f' + id).prop("name", 'button2');
+								$('.f' + id).prop("class", 'button2'+' f' +id);
+								$('.f' + id).prop("value", '팔로우');
 							} else {
 								alert("실패");
 							}
@@ -539,9 +567,9 @@
 						success : function(data) {
 							if (data == "success") {
 								console.log("followBtn");
-								$('#' + id).prop("class", 'button1');
-								$('#' + id).prop("value", '팔로잉');
-								$('#' + id).prop("name", 'button1');
+								$('.f' + id).prop("class", 'button1'+' f' +id);
+								$('.f' + id).prop("value", '팔로잉');
+								$('.f' + id).prop("name", 'button1');
 							} else {
 								alert("실패");
 							}
@@ -560,333 +588,414 @@
 		}
 		/*상세보기(detail) 시작*/
 		const content = document.getElementsByClassName("content");
-		
-		
-		function modalDetail(bnum){
+
+		function modalDetail(bnum) {
 			console.log('### 글넘 : ' + bnum);
 			var modal2 = document.getElementById('myModal2');
 			var detail2 = document.getElementById('board-detail2');
-			
-			$('.myModal2').css('display','block');
-			$('.board-detail2').css('display','block');
-			
-			$.ajax({
-				url:"BoardDetail.do",
-				data:{bnum:bnum},
-				dataType:"JSON",
-				success:function(data){	
-					hashHeartAjax();
-					replyList();
-					
-					var page = "userPage.do?id=" + data[0].b_user_id;
 
-					if(data[0].b_user_id=='${loginUser.id}'){
-						page = "MyPage.do?uNum=${loginUser.user_num}";
-					}
-					
-					
-					$('.board-detail2').append(
-							'<div class="slide">'
-						    + '<img id="prev" src="resources/images/minwoo/next-1.png" alt="prev">'
-						    + '<img id="next" src="resources/images/minwoo/next-1.png" alt="next">'
-							+ '<div id="num1" class="board-img">' +
-							'<span>' +
-							'<img src="resources/buploadFiles/'+ data[0].image1 +'">'+
-							'<span>' +
-							'</div>'+
-							'</div>'+
-							'<div class="board-right">'+
-								'<div class="board-user">'+
-									'<div class="board-userImg">'+
-									'<a href="'+page + '"><img src="resources/images/profileImg/'+ data[0].b_profile_img +'"></a>'+
-									'</div>'+
-									'<a href="'+page + '"><div class="board-id">'+
-											'<p>'+ data[0].b_name +'</p>'+
-										'</div></a>'+
-									'<div class="board-follow" id="fo'+data[0].b_user_num+'" onclick="addFollow(id);"></div>'+
-								'</div>'+
-								'<div class="board-textDiv">'+
-									'<div class="board-text">'+ data[0].b_content +'</div>'+
-									'<div class="board-hashtag"></div>'+
-								'</div>'+
-								'<div class="board-stateicon">'+
-									'<div class="board-heartCount"></div>'+
-									'<div class="board-heart">'+
-										'<img src="resources/images/icon/menu/iconmonstr-heart-thin-72.png" id="h'+bnum+'" onclick="addHeart('+bnum+');">'+
-									'</div>'+
-									'<div class="board-etc">'+
-										'<img src="resources/images/icon/main/menu1.png">'+
-									'</div>'+
-								'</div>'+
-								'<div class="board-clothesInfo">'+
-									
-								'</div>'+
-							'</div>'+
-							'<div class="board-bottom">'+
-								'<div class="commentCount">'+
-									
-								'</div>'+
-								'<div class="board-commentDiv">'+
-									
-								'</div>'+
-								'<div class="board-commentWrite">'+
-									'<div class="comment-write">'+
-										'<input type="text" id="'+bnum+'" class="c-content" placeholder="댓글 달기...">'+
-									'</div>'+
-									'<div class="comment-submit" onclick="cSubmit();">게시</div>'+
-								'</div>'+
-							'</div>');
-					
-					followList(data[0].b_user_num);
-					
-					if(data[0].b_top !=null){
-						$('.board-clothesInfo').append('<div class="clothesInfo-div">'+
-								'<div class="clothes-img">'+
-								'<img src="resources/images/detailImg/top.png">'+
-							'</div>'+
-							'<div class="clothes-p">상의</div>'+
-							'<div class="clothes-info">'+ data[0].b_top +'</div>'+
-						'</div>');
-					}
-					if(data[0].b_bottom !=null){
-						$('.board-clothesInfo').append('<div class="clothesInfo-div">'+
-								'<div class="clothes-img">'+
-								'<img src="resources/images/detailImg/pants.png">'+
-							'</div>'+
-							'<div class="clothes-p">상의</div>'+
-							'<div class="clothes-info">'+ data[0].b_bottom +'</div>'+
-						'</div>');
-					}
-					if(data[0].b_shoes !=null){
-						$('.board-clothesInfo').append('<div class="clothesInfo-div">'+
-								'<div class="clothes-img">'+
-								'<img src="resources/images/detailImg/pants.png">'+
-							'</div>'+
-							'<div class="clothes-p">상의</div>'+
-							'<div class="clothes-info">'+ data[0].b_shoes +'</div>'+
-						'</div>');
-					}
-					if(data[0].b_acc !=null){
-						$('.board-clothesInfo').append('<div class="clothesInfo-div">'+
-								'<div class="clothes-img">'+
-								'<img src="resources/images/detailImg/pants.png">'+
-							'</div>'+
-							'<div class="clothes-p">상의</div>'+
-							'<div class="clothes-info">'+ data[0].b_acc +'</div>'+
-						'</div>');
-					}
-					if(data[0].b_acc !=null){
-						$('.board-clothesInfo').append('<div class="clothesInfo-div">'+
-								'<div class="clothes-img">'+
-								'<img src="resources/images/detailImg/pants.png">'+
-							'</div>'+
-							'<div class="clothes-p">상의</div>'+
-							'<div class="clothes-info">'+ data[0].b_acc +'</div>'+
-						'</div>');
-					}
-					if(data[0].b_etc !=null){
-						$('.board-clothesInfo').append('<div class="clothesInfo-div">'+
-								'<div class="clothes-img">'+
-								'<img src="resources/images/detailImg/pants.png">'+
-							'</div>'+
-							'<div class="clothes-p">상의</div>'+
-							'<div class="clothes-info">'+ data[0].b_etc +'</div>'+
-						'</div>');
-					}
-					console.log(data[0].image1);
-					console.log(data[0].image2);
-					console.log(data[0].image3);
-					console.log(data[0].image4);
-					console.log(data[0].image5);
-				 	const prev = document.getElementById('prev');
-				    const next = document.getElementById('next');
-				    const ultag = document.getElementsByClassName('board-img');
-				    const imgArr =[data[0].image2,data[0].image3,data[0].image4,data[0].image5];
-				    var num = 0; // imgcheck에 사용하는 전역변수
-				    let arr = imgcheck(); // 배열 정렬, 배열이 없으면 화살표 안보이게 설정.
-				    imgmake(arr); // 이미지 생성
-				    function imgmake(arr){
-				        //이미지가 있으면 생성
-				        for(let i = 0; i<arr.length; i++){
-				          var para = document.createElement('span');
-				          var img = document.createElement('img');
-				          var element = document.getElementById("num1");
-				          img.src="resources/buploadFiles/"+arr[i];
-				          para.appendChild(img);
-				          element.appendChild(para);
-				        }
-				      }
-				      function imgcheck(){
-				        let arr=[];
-				        
-				        //배열 null 개수 체크 밑 제거
-				        for(let i = 0; i<imgArr.length; i++){
-				          if(imgArr[i]!=null){
-				            num++;
-				            arr.push(imgArr[i]);
-				          }
-				        }
-				        // 배열안에 아무것도 없으면 화살표 버튼(이미지)을 안보이게 설정.
-				        if(num==0){
-				          prev.style.display='none';
-				          next.style.display='none';
-				        }
-				        return arr;
-				      }
-				      
-				      function prevfun(){
-				        if((ultag[0].id.substring(3,4) != '1'))
-				          ultag[0].id = ultag[0].id.substring(0,3) + ((Number(ultag[0].id.substring(3,4)))-1);
-				        else
-				          ultag[0].id = ('num' + String(arr.length+1));
-				        
-				      }
-				      function nextfun(){
-				        if((ultag[0].id.substring(3,4) != String((arr.length+1))))
-				          ultag[0].id = ultag[0].id.substring(0,3) + ((Number(ultag[0].id.substring(3,4)))+1);
-				        else
-				          ultag[0].id = 'num1';
-				      }
-				      prev.addEventListener("click",prevfun);
-				      next.addEventListener("click",nextfun);
-				},
-				error:function(request,status,error){
-					console.log("** error code : " + request.status + "\n"
-						+ "message : " + request.responseText + "\n"
-						+ "error : " + error);
-				}
-			});
-			
-			window.onclick = function(event) {
-			    if (event.target == modal2) {
-			        modal2.style.display = "none";
-			        detail2.style.display = "none";
-			        $('.board-detail2').empty();
-			    }
-			}
-			function hashHeartAjax(){
-				// 해쉬태그 불러오기
-				$.ajax({
-					url:"BoardDetailHash.do",
-					data:{bnum:bnum},
-					dataType:"JSON",
-					success:function(data){	
-						for(var i=0; i<data.length; i++){
-							$('.board-hashtag').append('<a href=\'Search.do?keyword='+data[i].substring(1)+'\'>' + data[i] + ' </a>');
-						}
-					},
-					error:function(request,status,error){
-						console.log("** error code : " + request.status + "\n"
-							+ "message : " + request.responseText + "\n"
-							+ "error : " + error);
-					}
-				});
-				
-				// 디테일 좋아요 리스트 & 내가 좋아요 눌렀음 빨간하트로.
-				$.ajax({
-					url:"BoardDetailHeart.do",
-					data:{bnum:bnum},
-					dataType:"JSON",
-					success:function(data){
-						$('.board-heartCount').html('좋아요 '+ data.length +'개');
-						if(data.length > 0){
-							var unum = '<c:out value="${loginUser.user_num}"/>';
-							for(var i=0; i<data.length; i++){
-								if(data[i].h_unum == unum){
-									$('#h'+bnum).attr('src','resources/images/icon/menu/detailHeart.png');
+			$('.myModal2').css('display', 'block');
+			$('.board-detail2').css('display', 'block');
+
+			$
+					.ajax({
+						url : "BoardDetail.do",
+						data : {
+							bnum : bnum
+						},
+						dataType : "JSON",
+						success : function(data) {
+							hashHeartAjax();
+							replyList();
+
+							var page = "userPage.do?id=" + data[0].b_user_id;
+
+							if (data[0].b_user_id == '${loginUser.id}') {
+								page = "MyPage.do?uNum=${loginUser.user_num}";
+							}
+
+							$('.board-detail2')
+									.append(
+											'<div class="slide">'
+													+ '<img id="prev" src="resources/images/minwoo/next-1.png" alt="prev">'
+													+ '<img id="next" src="resources/images/minwoo/next-1.png" alt="next">'
+													+ '<div id="num1" class="board-img">'
+													+ '<span>'
+													+ '<img src="resources/buploadFiles/'+ data[0].image1 +'">'
+													+ '<span>'
+													+ '</div>'
+													+ '</div>'
+													+ '<div class="board-right">'
+													+ '<div class="board-user">'
+													+ '<div class="board-userImg">'
+													+ '<a href="'+page + '"><img src="resources/images/profileImg/'+ data[0].b_profile_img +'"></a>'
+													+ '</div>'
+													+ '<a href="'+page + '"><div class="board-id">'
+													+ '<p>'
+													+ data[0].b_name
+													+ '</p>'
+													+ '</div></a>'
+													+ '<div class="board-follow" id="fo'
+													+ data[0].b_user_num
+													+ '" onclick="addFollow(id);"></div>'
+													+ '</div>'
+													+ '<div class="board-textDiv">'
+													+ '<div class="board-text">'
+													+ data[0].b_content
+													+ '</div>'
+													+ '<div class="board-hashtag"></div>'
+													+ '</div>'
+													+ '<div class="board-stateicon">'
+													+ '<div class="board-heartCount"></div>'
+													+ '<div class="board-heart">'
+													+ '<img src="resources/images/icon/menu/iconmonstr-heart-thin-72.png" id="h'
+													+ bnum
+													+ '" onclick="addHeart('
+													+ bnum
+													+ ');">'
+													+ '</div>'
+													+ '<div class="board-etc">'
+													+ '<img src="resources/images/icon/main/menu1.png">'
+													+ '</div>'
+													+ '</div>'
+													+ '<div class="board-clothesInfo">'
+													+
+
+													'</div>'
+													+ '</div>'
+													+ '<div class="board-bottom">'
+													+ '<div class="commentCount">'
+													+
+
+													'</div>'
+													+ '<div class="board-commentDiv">'
+													+
+
+													'</div>'
+													+ '<div class="board-commentWrite">'
+													+ '<div class="comment-write">'
+													+ '<input type="text" id="'+bnum+'" class="c-content" placeholder="댓글 달기...">'
+													+ '</div>'
+													+ '<div class="comment-submit" onclick="cSubmit();">게시</div>'
+													+ '</div>' + '</div>');
+
+							followList(data[0].b_user_num);
+
+							if (data[0].b_top != null) {
+								$('.board-clothesInfo')
+										.append(
+												'<div class="clothesInfo-div">'
+														+ '<div class="clothes-img">'
+														+ '<img src="resources/images/detailImg/top.png">'
+														+ '</div>'
+														+ '<div class="clothes-p">상의</div>'
+														+ '<div class="clothes-info">'
+														+ data[0].b_top
+														+ '</div>' + '</div>');
+							}
+							if (data[0].b_bottom != null) {
+								$('.board-clothesInfo')
+										.append(
+												'<div class="clothesInfo-div">'
+														+ '<div class="clothes-img">'
+														+ '<img src="resources/images/detailImg/pants.png">'
+														+ '</div>'
+														+ '<div class="clothes-p">상의</div>'
+														+ '<div class="clothes-info">'
+														+ data[0].b_bottom
+														+ '</div>' + '</div>');
+							}
+							if (data[0].b_shoes != null) {
+								$('.board-clothesInfo')
+										.append(
+												'<div class="clothesInfo-div">'
+														+ '<div class="clothes-img">'
+														+ '<img src="resources/images/detailImg/pants.png">'
+														+ '</div>'
+														+ '<div class="clothes-p">상의</div>'
+														+ '<div class="clothes-info">'
+														+ data[0].b_shoes
+														+ '</div>' + '</div>');
+							}
+							if (data[0].b_acc != null) {
+								$('.board-clothesInfo')
+										.append(
+												'<div class="clothesInfo-div">'
+														+ '<div class="clothes-img">'
+														+ '<img src="resources/images/detailImg/pants.png">'
+														+ '</div>'
+														+ '<div class="clothes-p">상의</div>'
+														+ '<div class="clothes-info">'
+														+ data[0].b_acc
+														+ '</div>' + '</div>');
+							}
+							if (data[0].b_acc != null) {
+								$('.board-clothesInfo')
+										.append(
+												'<div class="clothesInfo-div">'
+														+ '<div class="clothes-img">'
+														+ '<img src="resources/images/detailImg/pants.png">'
+														+ '</div>'
+														+ '<div class="clothes-p">상의</div>'
+														+ '<div class="clothes-info">'
+														+ data[0].b_acc
+														+ '</div>' + '</div>');
+							}
+							if (data[0].b_etc != null) {
+								$('.board-clothesInfo')
+										.append(
+												'<div class="clothesInfo-div">'
+														+ '<div class="clothes-img">'
+														+ '<img src="resources/images/detailImg/pants.png">'
+														+ '</div>'
+														+ '<div class="clothes-p">상의</div>'
+														+ '<div class="clothes-info">'
+														+ data[0].b_etc
+														+ '</div>' + '</div>');
+							}
+							console.log(data[0].image1);
+							console.log(data[0].image2);
+							console.log(data[0].image3);
+							console.log(data[0].image4);
+							console.log(data[0].image5);
+							const prev = document.getElementById('prev');
+							const next = document.getElementById('next');
+							const ultag = document
+									.getElementsByClassName('board-img');
+							const imgArr = [ data[0].image2, data[0].image3,
+									data[0].image4, data[0].image5 ];
+							var num = 0; // imgcheck에 사용하는 전역변수
+							let arr = imgcheck(); // 배열 정렬, 배열이 없으면 화살표 안보이게 설정.
+							imgmake(arr); // 이미지 생성
+							function imgmake(arr) {
+								//이미지가 있으면 생성
+								for (let i = 0; i < arr.length; i++) {
+									var para = document.createElement('span');
+									var img = document.createElement('img');
+									var element = document
+											.getElementById("num1");
+									img.src = "resources/buploadFiles/"
+											+ arr[i];
+									para.appendChild(img);
+									element.appendChild(para);
 								}
 							}
+							function imgcheck() {
+								let arr = [];
+
+								//배열 null 개수 체크 밑 제거
+								for (let i = 0; i < imgArr.length; i++) {
+									if (imgArr[i] != null) {
+										num++;
+										arr.push(imgArr[i]);
+									}
+								}
+								// 배열안에 아무것도 없으면 화살표 버튼(이미지)을 안보이게 설정.
+								if (num == 0) {
+									prev.style.display = 'none';
+									next.style.display = 'none';
+								}
+								return arr;
+							}
+
+							function prevfun() {
+								if ((ultag[0].id.substring(3, 4) != '1'))
+									ultag[0].id = ultag[0].id.substring(0, 3)
+											+ ((Number(ultag[0].id.substring(3,
+													4))) - 1);
+								else
+									ultag[0].id = ('num' + String(arr.length + 1));
+
+							}
+							function nextfun() {
+								if ((ultag[0].id.substring(3, 4) != String((arr.length + 1))))
+									ultag[0].id = ultag[0].id.substring(0, 3)
+											+ ((Number(ultag[0].id.substring(3,
+													4))) + 1);
+								else
+									ultag[0].id = 'num1';
+							}
+							prev.addEventListener("click", prevfun);
+							next.addEventListener("click", nextfun);
+						},
+						error : function(request, status, error) {
+							console.log("** error code : " + request.status
+									+ "\n" + "message : "
+									+ request.responseText + "\n" + "error : "
+									+ error);
+						}
+					});
+
+			window.onclick = function(event) {
+				if (event.target == modal2) {
+					modal2.style.display = "none";
+					detail2.style.display = "none";
+					$('.board-detail2').empty();
+				}
+			}
+			function hashHeartAjax() {
+				// 해쉬태그 불러오기
+				$.ajax({
+					url : "BoardDetailHash.do",
+					data : {
+						bnum : bnum
+					},
+					dataType : "JSON",
+					success : function(data) {
+						for (var i = 0; i < data.length; i++) {
+							$('.board-hashtag').append(
+									'<a href=\'Search.do?keyword='
+											+ data[i].substring(1) + '\'>'
+											+ data[i] + ' </a>');
 						}
 					},
-					error:function(request,status,error){
+					error : function(request, status, error) {
 						console.log("** error code : " + request.status + "\n"
-							+ "message : " + request.responseText + "\n"
-							+ "error : " + error);
+								+ "message : " + request.responseText + "\n"
+								+ "error : " + error);
 					}
 				});
+
+				// 디테일 좋아요 리스트 & 내가 좋아요 눌렀음 빨간하트로.
+				$
+						.ajax({
+							url : "BoardDetailHeart.do",
+							data : {
+								bnum : bnum
+							},
+							dataType : "JSON",
+							success : function(data) {
+								$('.board-heartCount').html(
+										'좋아요 ' + data.length + '개');
+								if (data.length > 0) {
+									var unum = '<c:out value="${loginUser.user_num}"/>';
+									for (var i = 0; i < data.length; i++) {
+										if (data[i].h_unum == unum) {
+											$('#h' + bnum)
+													.attr('src',
+															'resources/images/icon/menu/detailHeart.png');
+										}
+									}
+								}
+							},
+							error : function(request, status, error) {
+								console.log("** error code : " + request.status
+										+ "\n" + "message : "
+										+ request.responseText + "\n"
+										+ "error : " + error);
+							}
+						});
 			}
-			
-			function followList(bunum){
+
+			function followList(bunum) {
 				// 디테일 팔로우리스트 가져오기
 				var unum = '<c:out value="${loginUser.user_num}"/>';
 				var bunum = bunum;
-				if(unum.length>0){
-					if(unum != bunum){
+				if (unum.length > 0) {
+					if (unum != bunum) {
 						$.ajax({
-							url:"BoardDetailFollowList.do",
-							data:{unum:unum,bunum:bunum},
-							success:function(data){
-								if(data == 0){
+							url : "BoardDetailFollowList.do",
+							data : {
+								unum : unum,
+								bunum : bunum
+							},
+							success : function(data) {
+								if (data == 0) {
 									$('.board-follow').html('팔로우');
-								}else if(data == 1){
+								} else if (data == 1) {
 									console.log('팔로우 했음 1 : ' + data);
 								}
 							},
-							error:function(request,status,error){
-								console.log("** error code : " + request.status + "\n"
-									+ "message : " + request.responseText + "\n"
-									+ "error : " + error);
+							error : function(request, status, error) {
+								console.log("** error code : " + request.status
+										+ "\n" + "message : "
+										+ request.responseText + "\n"
+										+ "error : " + error);
 							}
 						});
 					}
 				}
 			}
-			
+
 			// 디테일 댓글 리스트
-			function replyList(){
-				$.ajax({
-					url:"BoardDetailComm.do",
-					data:{bnum:bnum},
-					dataType:"JSON",
-					success:function(data){	
-						if(data.length > 0){
-							var unum1 = '<c:out value="${loginUser.user_num}"/>';
-							$('.commentCount').empty();
-							$('.commentCount').append('<p>댓글 ('+data.length+')</p>');
-							$('.board-commentDiv').empty();
-							for(var i=0; i<data.length; i++){
-								$('.board-commentDiv').append(''+
-										'<div class="board-comment">'+
-										'<div class="comment-img">'+
-											'<a href="./jiman/MyPage.html"><img src="resources/images/profileImg/'+ data[i].profile +'"></a>'+
-										'</div>'+
-										'<div class="comment-content">'+
-											'<p class="comment-user" id="tag'+data[i].c_unum+'" onclick="tagComment(id);">'+ data[i].uname +'</p>'+
-											'<p class="comment-comment">'+ data[i].c_content +'</p>'+
-											'<div class="comment-delete del'+data[i].c_no+'"></div>'+
-										'</div>'+
-									'</div>');
-								$('.board-commentDiv').scrollTop($('.board-commentDiv').prop('scrollHeight'));
-								if(data[i].c_unum == unum1){	// 댓글 단 사람이랑 로그인유저랑 같으면
-									$('.del'+data[i].c_no).append('<img src="resources/images/icon/menu/commentDelete.png" id="'+data[i].c_no+'" onclick="commentDelete(id,'+bnum+');">');
+			function replyList() {
+				$
+						.ajax({
+							url : "BoardDetailComm.do",
+							data : {
+								bnum : bnum
+							},
+							dataType : "JSON",
+							success : function(data) {
+								if (data.length > 0) {
+									var unum1 = '<c:out value="${loginUser.user_num}"/>';
+									$('.commentCount').empty();
+									$('.commentCount').append(
+											'<p>댓글 (' + data.length + ')</p>');
+									$('.board-commentDiv').empty();
+									for (var i = 0; i < data.length; i++) {
+										$('.board-commentDiv')
+												.append(
+														''
+																+ '<div class="board-comment">'
+																+ '<div class="comment-img">'
+																+ '<a href="./jiman/MyPage.html"><img src="resources/images/profileImg/'+ data[i].profile +'"></a>'
+																+ '</div>'
+																+ '<div class="comment-content">'
+																+ '<p class="comment-user" id="tag'
+																+ data[i].c_unum
+																+ '" onclick="tagComment(id);">'
+																+ data[i].uname
+																+ '</p>'
+																+ '<p class="comment-comment">'
+																+ data[i].c_content
+																+ '</p>'
+																+ '<div class="comment-delete del'+data[i].c_no+'"></div>'
+																+ '</div>'
+																+ '</div>');
+										$('.board-commentDiv').scrollTop(
+												$('.board-commentDiv').prop(
+														'scrollHeight'));
+										if (data[i].c_unum == unum1) { // 댓글 단 사람이랑 로그인유저랑 같으면
+											$('.del' + data[i].c_no)
+													.append(
+															'<img src="resources/images/icon/menu/commentDelete.png" id="'
+																	+ data[i].c_no
+																	+ '" onclick="commentDelete(id,'
+																	+ bnum
+																	+ ');">');
+										}
+									}
+
+								} else {
+									//$('.commentCount').empty();
+									$('.commentCount').append(
+											'<p>댓글 (' + data.length + ')</p>');
+									//$('.board-commentDiv').empty();
+									$('.board-commentDiv')
+											.append(
+													''
+															+ '<div class="board-comment">'
+															+
+															//'<div class="comment-img"></div>'+
+															'<div class="comment-content">'
+															+ '<p class="comment-user">등록된 댓글이 없습니다.</p>'
+															+ '<p class="comment-comment"></p>'
+															+ '</div>'
+															+ '</div>');
 								}
+							},
+							error : function(request, status, error) {
+								console.log("** error code : " + request.status
+										+ "\n" + "message : "
+										+ request.responseText + "\n"
+										+ "error : " + error);
 							}
-							
-							
-						}else{
-							//$('.commentCount').empty();
-							$('.commentCount').append('<p>댓글 ('+data.length+')</p>');
-							//$('.board-commentDiv').empty();
-							$('.board-commentDiv').append(''+
-								'<div class="board-comment">'+
-									//'<div class="comment-img"></div>'+
-									'<div class="comment-content">'+
-										'<p class="comment-user">등록된 댓글이 없습니다.</p>'+
-										'<p class="comment-comment"></p>'+
-									'</div>'+
-								'</div>');
-						}
-					},
-					error:function(request,status,error){
-						console.log("** error code : " + request.status + "\n"
-							+ "message : " + request.responseText + "\n"
-							+ "error : " + error);
-					}
-				});
+						});
 			}
 		}
-		for(let i=0; i<content.length;i++){
-			content[i].addEventListener("click",function(){
+		for (let i = 0; i < content.length; i++) {
+			content[i].addEventListener("click", function() {
 				//console.log(i); //각 content는 번호를 갖게 됬다.
 				modalDetail(content[i].id);
 			});
