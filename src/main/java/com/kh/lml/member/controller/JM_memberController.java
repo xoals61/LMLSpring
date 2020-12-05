@@ -238,29 +238,7 @@ public class JM_memberController {
 
 		return mv;
 	}
-	@RequestMapping("myTagPost.do")
-	public ModelAndView myPage(ModelAndView mv, int uNum) {
-		System.out.println("uNum:???" +uNum);
-
-		ArrayList<Board> list = mService.mytagPost(uNum);
-
-
-
-
-		int Follow = mService.countFollowList(uNum);
-		int Follower = mService.countFollowerList(uNum);
-		int myboardCount = mService.boardCount(uNum);
-		mv.addObject("Follow", Follow);
-		mv.addObject("Follower", Follower);
-		mv.addObject("boardCount", myboardCount);
-		mv.addObject("Myboardlist", list);
-		System.out.println("나여기컨트롤러 리스트 : "+list);
-		mv.setViewName("jiman/mytagPost");
-
-
-		return mv;
-	}
-
+	
 
 
 }

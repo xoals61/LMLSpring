@@ -105,9 +105,9 @@
 				<div></div>
 			</div>
 			<div class="tagmenu">
-				<span><button id="my" class="tagbtn" onclick="my()">MY
+				<span><button id="my" class="tagbtn"  value="1"onclick="my()">MY
 						게시물</button>
-					<button id="tag" class="tagbtn" onclick="tag()">태그된 게시물</button></span>
+					<button id="tag" class="tagbtn" value="2" onclick="tag()">태그된 게시물</button></span>
 			</div>
 			<div class="mytable">
 				<table>
@@ -377,7 +377,9 @@
               
               
               function my(){
-            	  location.href="MyPage.do?uNum=${loginUser.user_num}";
+            	 
+            	  
+            	  location.href="MyPage.do?uNum=${loginUser.user_num}&page=1";
             	  
               }
               
@@ -385,8 +387,8 @@
               
               
               function tag(){
-           
-            	  location.href="myTagPost.do?uNum=${loginUser.user_num}";
+                   	  
+            	  location.href="MyPage.do?uNum=${loginUser.user_num}&page=2";
               }
               /*상세보기(detail) 시작*/
       		const content = document.getElementsByClassName("content");

@@ -64,21 +64,30 @@ public class memberController {
 	}
 	// 마이페이지
 	@RequestMapping("MyPage.do")
-	public ModelAndView myPage(ModelAndView mv, int uNum) {
+	public ModelAndView myPage(ModelAndView mv, int uNum ,int page) {
 
-		ArrayList<Board> list = mService.myPost(uNum);
-
-
+		
+	
+		if(page ==1) {
+			ArrayList<Board> list = mService.myPost(uNum);
+			mv.addObject("Myboardlist", list);
+			System.out.println("태그 포스트 안드러오나");
+		}else if(page ==2) {
+			System.out.println("태그 포스트 들어오나");
+			ArrayList<Board> list = mService.mytagPost(uNum);
+			mv.addObject("Myboardlist", list);
+		}
 
 
 		int Follow = mService.countFollowList(uNum);
 		int Follower = mService.countFollowerList(uNum);
+
 		int myboardCount = mService.boardCount(uNum);
 		mv.addObject("Follow", Follow);
 		mv.addObject("Follower", Follower);
 		mv.addObject("boardCount", myboardCount);
-		mv.addObject("Myboardlist", list);
-		System.out.println("나여기컨트롤러 리스트 : "+list);
+		
+		
 		mv.setViewName("jiman/lml_MyPage");
 
 
@@ -151,15 +160,15 @@ public class memberController {
 	@ResponseBody
 	@RequestMapping("chatLogin.do")
 	public ArrayList<ChatRoom> chatLogin(String id){
-		
+
 		ArrayList<ChatRoom> chatRoomList = mService.chatList(id);
-		
-		
-		
-		
+
+
+
+
 		return chatRoomList;
 	}
-		
+
 
 
 
@@ -745,65 +754,65 @@ public class memberController {
 	@ResponseBody
 	@RequestMapping("alalarm.do")
 	public int alalarm(String id) {
-		
+
 		int count = mService.alalarm(id);
-		
+
 		return count;
 	}
-	
+
 	// 유저페이지 팔로여부
 	@ResponseBody
 	@RequestMapping(value="upGetFollow.do", produces="application/json; charset=UTF-8")
 	public String upGetFollow(HttpServletResponse response, int toFollow, int fromFollow) throws JsonIOException, JsonProcessingException{
-		
+
 		Member m = new Member(fromFollow,toFollow);
-		
+
 		Member ff = mService.upGetFollow(m);
-		
+
 		ObjectMapper mapper = new ObjectMapper();
-		
+
 		String jsonStr = mapper.writeValueAsString(ff);
-		
+
 		return jsonStr;
 	} 
-	
+
 	// 차단 등록
 	@ResponseBody
 	@RequestMapping(value="blockBtn.do")
 	public String blockBtn(int toFollow, int fromFollow) {
-	
+
 		Member m = new Member(fromFollow, toFollow);
-		
+
 		Member ff = mService.upGetFollow(m);
 		int result = -1;
-		
+
 		if(ff != null) {	//원래 팔로우 되어있는 경우
 			result = mService.blockBtn(m);
 		}else {		// 원래 팔로우 안 되어있는 경우
 			result = mService.newBlockBtn(m);
 		}
-	
+
 		if(result > 0) {
 			return "success";
 		}else {
 			return "fail";
 		}
 	}
-	
+
 	// 차단 풀기
 	@ResponseBody
 	@RequestMapping(value="unblockBtn.do")
 	public String unblockBtn(int toFollow, int fromFollow) {
-	
+
 		Member m = new Member(fromFollow, toFollow);
-		
+
 		int result = mService.unBlockBtn(m);
-	
+
 		if(result > 0) {
 			return "success";
 		}else {
 			return "fail";
 		}
 	}
-	
+
 }

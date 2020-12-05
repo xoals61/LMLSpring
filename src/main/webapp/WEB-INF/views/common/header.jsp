@@ -48,7 +48,7 @@ $(document).ready(function () {
                         <div class="myMenu">
                             <img src="resources/images/icon/menu/iconmonstr-menu-thin-72.png"><!-- 이미지 클릭 시 서브메뉴 나옴 -->
                             <ul class="mySub">
-	                            <c:url var="mypage" value="MyPage.do">
+	                            <c:url var="mypage" value="MyPage.do?page=1">
 									<c:param name="uNum" value="${ loginUser.user_num }"/>
 								</c:url>
                                 <a href='${mypage}'><li><div class="mySub1">마이페이지</div></li></a>
