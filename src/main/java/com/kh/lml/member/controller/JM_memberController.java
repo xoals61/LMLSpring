@@ -1,10 +1,12 @@
 package com.kh.lml.member.controller;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +16,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.JsonIOException;
 import com.kh.lml.board.model.vo.Board;
 import com.kh.lml.member.model.service.MemberService;
 import com.kh.lml.member.model.vo.Member;
@@ -196,6 +201,7 @@ System.out.println("uNum:???" +uNum);
 
 		return mv;
 	}
+
 
 
 }

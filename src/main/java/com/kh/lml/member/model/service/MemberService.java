@@ -95,6 +95,16 @@ public interface MemberService {
 
 	ArrayList<Board> mytagPost(int uNum);
 
+	Member upGetFollow(Member m);
+
+	int blockBtn(Member m);
+
+	int newBlockBtn(Member m);
+
+	int unBlockBtn(Member m);
+
+	
+
 
 
 	//1113은지

@@ -31,6 +31,8 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonIOException;
@@ -747,6 +749,61 @@ public class memberController {
 		int count = mService.alalarm(id);
 		
 		return count;
+	}
+	
+	// 유저페이지 팔로여부
+	@ResponseBody
+	@RequestMapping(value="upGetFollow.do", produces="application/json; charset=UTF-8")
+	public String upGetFollow(HttpServletResponse response, int toFollow, int fromFollow) throws JsonIOException, JsonProcessingException{
+		
+		Member m = new Member(fromFollow,toFollow);
+		
+		Member ff = mService.upGetFollow(m);
+		
+		ObjectMapper mapper = new ObjectMapper();
+		
+		String jsonStr = mapper.writeValueAsString(ff);
+		
+		return jsonStr;
+	} 
+	
+	// 차단 등록
+	@ResponseBody
+	@RequestMapping(value="blockBtn.do")
+	public String blockBtn(int toFollow, int fromFollow) {
+	
+		Member m = new Member(fromFollow, toFollow);
+		
+		Member ff = mService.upGetFollow(m);
+		int result = -1;
+		
+		if(ff != null) {	//원래 팔로우 되어있는 경우
+			result = mService.blockBtn(m);
+		}else {		// 원래 팔로우 안 되어있는 경우
+			result = mService.newBlockBtn(m);
+		}
+	
+		if(result > 0) {
+			return "success";
+		}else {
+			return "fail";
+		}
+	}
+	
+	// 차단 풀기
+	@ResponseBody
+	@RequestMapping(value="unblockBtn.do")
+	public String unblockBtn(int toFollow, int fromFollow) {
+	
+		Member m = new Member(fromFollow, toFollow);
+		
+		int result = mService.unBlockBtn(m);
+	
+		if(result > 0) {
+			return "success";
+		}else {
+			return "fail";
+		}
 	}
 	
 }

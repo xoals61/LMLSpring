@@ -347,6 +347,31 @@ WHERE FROM_FOLLOW IN (SELECT TO_FOLLOW
 	
 	</select>
 	
+	<select id="upGetFollow" parameterType="Member" resultMap="memberResultSet">
+		SELECT *
+		FROM FOLLOW_LIST
+		WHERE FROM_FOLLOW=#{from_follow}
+		AND TO_FOLLOW=#{to_follow}
+	</select>
+	
+	<update id="blockBtn" parameterType="Member">
+		UPDATE FOLLOW_LIST 
+		SET F_BLOCK='Y' 
+		WHERE FROM_FOLLOW=#{from_follow}
+		AND TO_FOLLOW=#{to_follow}
+	</update>
+	
+	<insert id="newBlockBtn" parameterType="Member">
+		INSERT INTO FOLLOW_LIST
+		VALUES(#{from_follow},#{to_follow},#{to_follow},#{from_follow},'Y')
+	</insert>
+	
+	<update id="unBlockBtn" parameterType="Member">
+		DELETE FROM FOLLOW_LIST
+		WHERE FROM_FOLLOW=#{from_follow}
+		AND TO_FOLLOW=#{to_follow}
+	</update>
+	
 </mapper>
 
 

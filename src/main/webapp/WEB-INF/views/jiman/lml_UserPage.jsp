@@ -62,8 +62,10 @@
 									<button class="messegebtn"
 										onclick="location.href='toMessage.do?toid=${User.id}&fromid=${loginUser.id}'">메세지
 									</button>
-									<button class="followbtn">팔로우</button>
-									<button class="blockbtn">차단</button>
+									<button class="followbtn" id="followbtn" onclick="uFollow(id);">팔로우</button>
+									<button class="unfollowbtn" id="unfollowbtn" onclick="uFollow(id);">팔로잉</button>
+									<button class="blockbtn" id="blockbtn" onclick="uFollow(id);">차단</button>
+									<button class="unblockbtn" id="unblockbtn" onclick="uFollow(id);">차단</button>
 								</c:if>
 							</h2>
 						</div>
@@ -134,22 +136,168 @@
 	</section>
 
 	<script>
+	
 		$(function() {
 
 			var toFollow = '<c:out value="${User.user_num}"/>';
 			var fromFollow = '<c:out value="${loginUser.user_num}"/>';
 
-			console.log('팔로팔로 : ' + toFollow + ', ' + fromFollow);
-
-			/* $.ajax({
-				url : "UserPageFollow.do",
-				data : {
-					id : id
+			console.log('유저페이지 팔로팔로 : ' + toFollow + ', ' + fromFollow);
+			
+			$.ajax({	// 팔로 상태
+				url : "upGetFollow.do",
+				data : {toFollow:toFollow, fromFollow:fromFollow},
+				dataType : "JSON",
+				success : function(data) {
+					if(data != null){	// 로그인유저가 팔로함
+						if(data.f_block == 'N'){	// 차단 안 함
+							$('.followbtn').hide();
+							$('.unblockbtn').hide();
+						}else if(data.f_block == 'Y'){	// 차단한 상대임
+							$('.followbtn').hide();
+							$('.unfollowbtn').hide();
+							$('.blockbtn').hide();
+							console.log('차단한놈');
+						}
+						
+					}else{	// 로그인유저가 팔로 안 함
+						$('.unfollowbtn').hide();
+						$('.unblockbtn').hide();
+					}
 				},
-				type : "post",
-				success : function(data) {}
-			}); */
+				error:function(request,status,error){
+					console.log("** error code : " + request.status + "\n"
+						+ "message : " + request.responseText + "\n"
+						+ "error : " + error);
+				}
+			});		
+			
 		});
+		
+		
+		
+		function uFollow(id){
+			
+			var toFollow = '<c:out value="${User.user_num}"/>';
+			var fromFollow = '<c:out value="${loginUser.user_num}"/>';
+			
+			if(id == "followbtn"){	// 팔로우
+				var qq = confirm('팔로우 하시겠습니까?');
+				if(qq==true){
+					$.ajax({
+						url : "followBtn.do",
+						data : {toFollow:toFollow, fromFollow:fromFollow},
+						type : "POST",
+						success : function(data) {
+							if(data == "success"){
+								upGetFollow();
+							}else{
+								console.log('팔로리스트 안 들어갔나봄');
+							}
+						},
+						error:function(){
+							console.log('팔로ajax 말 안 들음');
+						}
+					});
+				}else{}
+			
+			}else if(id == "unfollowbtn"){	// 언팔
+				var qq = confirm('언팔로우 하시겠습니까?');
+				if(qq==true){
+					$.ajax({
+						url : "unfollowBtn.do",
+						data : {toUnFollow:toFollow, fromFollow:fromFollow},
+						type : "POST",
+						success : function(data) {
+							if(data == "success"){
+								upGetFollow();
+							}else{
+								console.log('팔로리스트 안 들어갔나봄');
+							}
+						},
+						error:function(){
+							console.log('팔로ajax 말 안 들음');
+						}
+					});
+				}else{}
+			
+			}else if(id == "blockbtn"){	// 차단
+				var qq = confirm('차단 하시겠습니까?');
+				if(qq==true){
+					$.ajax({
+						url : "blockBtn.do",
+						data : {toFollow:toFollow, fromFollow:fromFollow},
+						type : "POST",
+						success : function(data) {
+							if(data == "success"){
+								upGetFollow();
+							}else{
+								console.log('차단 안 들어갔나봄');
+							}
+						},
+						error:function(){
+							console.log('팔로ajax 말 안 들음');
+						}
+					});
+				}else{}
+			
+			}else if(id == "unblockbtn"){	//차단풀기
+				var qq = confirm('차단을 푸시겠습니까?');
+				if(qq==true){
+					$.ajax({
+						url : "unblockBtn.do",
+						data : {toFollow:toFollow, fromFollow:fromFollow},
+						type : "POST",
+						success : function(data) {
+							if(data == "success"){
+								upGetFollow();
+							}else{
+								console.log('차단 안 들어갔나봄');
+							}
+						},
+						error:function(){
+							console.log('차단풀기ajax 말 안 들음');
+						}
+					});
+				}else{}
+			}
+			
+			function upGetFollow(){
+				
+				$.ajax({	// 팔로 상태
+					url : "upGetFollow.do",
+					data : {toFollow:toFollow, fromFollow:fromFollow},
+					dataType : "JSON",
+					success : function(data) {
+						if(data != null){	// 로그인유저가 팔로함
+							if(data.f_block == 'N'){	// 차단 안 함
+								$('.unfollowbtn').show();
+								$('.blockbtn').show();
+								$('.followbtn').hide();
+								$('.unblockbtn').hide();
+							}else if(data.f_block == 'Y'){	// 차단한 상대임
+								$('.followbtn').hide();
+								$('.unfollowbtn').hide();
+								$('.blockbtn').hide();
+								$('.unblockbtn').show();
+								console.log('차단한놈');
+							}
+							
+						}else{	// 로그인유저가 팔로 안 함
+							$('.followbtn').show();
+							$('.blockbtn').show();
+							$('.unfollowbtn').hide();
+							$('.unblockbtn').hide();
+						}
+					},
+					error:function(request,status,error){
+						console.log("** error code : " + request.status + "\n"
+							+ "message : " + request.responseText + "\n"
+							+ "error : " + error);
+					}
+				});		
+			}
+		}
 
 		$(document)
 				.ready(
@@ -167,15 +315,10 @@
 										success : function(data) {
 
 											if (data != null) {
-												console.log("여기 팔로워 리스트 "
-														+ data);
 												var a = Object.keys(data).length;
 												/* $('.mo_fallower').append("<table class='add_table'>"); */
 
 												for (var i = 0; i < a; i++) {
-													console.log(data[i].id);
-													console
-															.log(data[i].rename_profile_img);
 													var value;
 													if (data[i].btn == "button1") {
 														value = '팔로잉';
@@ -236,16 +379,10 @@
 										success : function(data) {
 
 											if (data != null) {
-												console
-														.log("여기 팔로우 리스트"
-																+ data);
 												var a = Object.keys(data).length;
 												/* $('.mo_fallower').append("<table class='add_table'>"); */
 
 												for (var i = 0; i < a; i++) {
-													console.log(data[i].id);
-													console
-															.log(data[i].rename_profile_img);
 													var value;
 													if (data[i].btn == "button1") {
 														value = '팔로잉';

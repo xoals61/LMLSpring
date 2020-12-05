@@ -245,6 +245,28 @@ public class MemberServiceImpl implements MemberService {
 		return mDao.mytagPost(uNum);
 	}
 
+	@Override
+	public Member upGetFollow(Member m) {
+		return mDao.upGetFollow(m);
+	}
+
+	@Override
+	public int blockBtn(Member m) {
+		return mDao.blockBtn(m);
+	}
+
+	@Override
+	public int newBlockBtn(Member m) {
+		return mDao.newBlockBtn(m);
+	}
+
+	@Override
+	public int unBlockBtn(Member m) {
+		return mDao.unBlockBtn(m);
+	}
+
+
+
 
 
 

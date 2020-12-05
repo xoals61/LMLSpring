@@ -163,4 +163,17 @@ public int alalarm(String id) {
 	public ArrayList<Board> mytagPost(int uNum) {
 		return (ArrayList)sqlSession.selectList("jm-board-mapper.mytagPost",uNum);
 	}
+	public Member upGetFollow(Member m) {
+		return sqlSession.selectOne("memberMapper.upGetFollow",m);
+	}
+	public int blockBtn(Member m) {
+		return sqlSession.update("memberMapper.blockBtn",m);
+	}
+	public int newBlockBtn(Member m) {
+		return sqlSession.update("memberMapper.newBlockBtn",m);
+	}
+	public int unBlockBtn(Member m) {
+		return sqlSession.update("memberMapper.unBlockBtn",m);
+	}
+
 }
