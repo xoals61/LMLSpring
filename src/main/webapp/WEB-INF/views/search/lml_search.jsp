@@ -72,7 +72,7 @@
 											<div class="cBtn">
 												<div class="cHeart">
 												<img src="resources/images/icon/main/heart.png"
-														class="cheart" id="th'+ ${ tagBoard.b_num}" >
+														class="cheart"  >
 												</div>
 												<div class="cComment"
 													>

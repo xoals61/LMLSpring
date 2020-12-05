@@ -7,6 +7,17 @@
 a{
 	color : black;
 }
+a:hover{
+/* 	font-weight:bolder;
+	color:linear-gradient(  to right, red ,orange,yellow,green,blue,purple );
+	
+ 	 background: linear-gradient(  to right, red ,orange,yellow,green,blue,purple );
+	 */
+	   background: -webkit-linear-gradient(30deg, red,orange,green,blue,purple);
+    color: transparent;
+    -webkit-background-clip: text;
+
+}
 body {
 	max-width: 1920px;
 	margin: 0 auto;
