@@ -38,8 +38,6 @@
                 </div>
                 <div class="rContent" id="rContent">
                         <div class="friends">
-                            <input class="fsearch" type="text">
-                            <input class-="fbtn" type="button" value="검색">
                         </div>
                         <div class="change_address">
                             <!-- <button>FALLOWER</button>
@@ -68,9 +66,9 @@
 							<c:forEach var="bl" items="${ BlockList }">
 	                       		<table class="add_table">
 		                            <tr>
-		                                <td class="imgtd" rowspan="2" style="width: 10%;"><img class="userimg" src="resources/images/jmImg/${bl.profile_img }" alt="#"></td>
+		                                <td class="imgtd" rowspan="2" style="width: 10%;"><img class="userimg" src="resources/images/profileImg/${bl.rename_profile_img }" alt="#"></td>
 		                                <td class="idtd" style="width: 30%;">${bl.id }</td>
-		                                <td class="btntd" rowspan="2" style="width: 30%;"><input class="button3" type="button" value="차단"></td>
+		                                <td class="btntd" rowspan="2" style="width: 30%;"><input class="button3" type="button" value="차단" id="${bl.to_follow }" name="button3" onclick="blockBtn(this.name, this.id);"></td>
 		                            </tr>
 		                            <tr>
 		                                <td>${bl.uname }</td>
@@ -108,348 +106,70 @@
 		</script>
 
 	<script>
-		function followBtn(name, id){
-			
-			if(name == 'button1'){	// 언팔로우
-				
-				var followQ = confirm('언팔로우 하시겠습니까?');
-				
-				if(followQ){
-					
-					var toUnFollow = id;	// 팔로우 취소 할 상대
-					var fromFollow = '<c:out value="${fromFollow}"/>';	// 본인
-					
-					$.ajax({
-						url:"unfollowBtn.do",
-						data:{toUnFollow:toUnFollow, fromFollow:fromFollow},
-						type:"post",
-						success:function(data){
-							if(data == "success"){
-								$('#'+id).prop('class','button2');
-								$('#'+id).prop('name','button2');
-								$('#'+id).prop('value','팔로우');
-								getFollowList();
-							}else{
-								alert("실패");
-							}
-						},
-						error:function(jqxhr, textStatus,errorThrown){
-							console.log("ajax 처리 실패");
-						}
-					});
-					
-				}else{	alert('언팔 불가능');	}
-				
-			}else if(name == 'button2'){	// 팔로우
-				
-				var followQ = confirm('팔로우 하시겠습니까?');
-				
-				if(followQ){
-					
-					var toFollow = id;	// 팔로우 할 상대
-					var fromFollow = '<c:out value="${fromFollow}"/>';	// 본인
-					
-					$.ajax({
-						url:"followBtn.do",
-						data:{toFollow:toFollow, fromFollow:fromFollow},
-						type:"post",
-						success:function(data){
-							if(data == "success"){
-								$('#'+id).prop('class','button1');
-								$('#'+id).prop('name','button1');
-								$('#'+id).prop('value','팔로잉');
-								getFollowList();
-							}else{
-								alert("실패");
-							}
-						},
-						error:function(jqxhr, textStatus,errorThrown){
-							console.log("ajax 처리 실패");
-						}
-					});
-				}else{	alert('팔로우 불가능');	}
-				
-			}else if(name == 'button3'){
-				console.log('차단' + name);
-			}
-		}
-		
-		
-		function getFollowList(){	// 팔로우테이블 새로고침
-			
-			var fromFollow = '<c:out value="${fromFollow}"/>';
-			
-			$.ajax({
-				url:"updateFollowList.do",
-				data:{uNum:fromFollow},
-				dataType:"json",
-				success:function(data){
-					if(data.length > 0){
-						console.log(data);
-						
-						
-					}else{
-						
-					}
-				},
-				error:function(jqxhr, textStatus,errorThrown){
-					console.log("ajax 처리 실패");
-				}
-			});
-        }
-     
-      
-	      // button2 팔로우 버튼 눌렀을 때
-	      /* $(document).ready(function(){
-		  	$('.button2',this).click(function(){
-			
-		  	console.log("회원 : " + $(this).prop('id') + " / 버튼 : " + $(this).prop('value'));
-			var id = $(this).prop('id');
-			
-			if($('#'+id).prop('value') == "팔로우"){
-				var followQ = confirm('팔로우 하시겠습니까?');
-				console.log('안녕하세오 혹시 팔로우입니까?');
-				if(followQ){
-					var toFollow = $(this).prop('id');	// 팔로우 할 상대
-					var fromFollow = '<c:out value="${fromFollow}"/>';	// 본인
-					
-					
-					$.ajax({
-						url:"followBtn.do",
-						data:{toFollow:toFollow, fromFollow:fromFollow},
-						type:"post",
-						success:function(data){
-							if(data == "success"){
-								getFollowList();
-								$('#'+toFollow).prop('class','button1');
-								$('#'+toFollow).prop('value','팔로잉');
-								//$('.address table').remove();
-							}else{
-								alert("실패");
-							}
-						},
-						error:function(jqxhr, textStatus,errorThrown){
-							console.log("ajax 처리 실패");
-						}
-					});
-					
-					function getFollowList(){
-			        	var uNum = toFollow;
-			        	
-			        	$.ajax({
-			        		url:"fSelectUser.do",
-			        		data:{uNum:uNum},
-			        		dataType:"json",
-			        		success:function(data){
-			        			if(data.id.length > 0){
-			        				$("#address_woo").append('<table class="add_table">' +
-										                         '<tr>' +
-									                             '<td class="imgtd" rowspan="2" style="width: 10%;"><img class="userimg" src="resources/images/jmImg/'+data.profile_img+'" alt="#"></td>'+
-									                             '<td class="idtd" style="width: 30%;">'+data.id+'</td>'+
-									                             '<td class="btntd" rowspan="2" style="width: 30%;"><input class="button1" type="button" value="팔로잉"></td>'+
-									                         '</tr>'+
-									                         '<tr>'+
-									                             '<td>'+data.uname+'</td>'+
-									                         '</tr>'+
-									                     '</table>');
-			        			}else{
-									alert("실패");
-								}
-							},
-							error:function(request,status,errorData){
-								console.log("user 처리 실패");
-								console.log(request.status + ":" + errorData);
-							}
-			        	});
-			        }
-				}else{
-					
-				}
-			}else{
-				
-			}
-		}); 
-		
-		$('.button1',this).click(function(){
-			
-			console.log("회원 : " + $(this).attr('id') + " / 버튼 : " + $(this).attr('value'));
-			var id = $(this).attr('id');
-			if($('#'+id).prop('value') == "팔로잉"){
-				console.log('안녕하세오 혹시 팔로잉입니까?');
-				var unfollowQ = confirm('팔로우를 취소하시겠습니까?');
-				
-				if(unfollowQ){
-					var toUnFollow = $(this).prop('id');	// 팔로우 취소 할 상대
-					var fromFollow = '<c:out value="${fromFollow}"/>';	// 본인
-					
-					console.log("toUnFollow : " + toUnFollow);
-					console.log("fromFollow : " + fromFollow);
-					
-					$.ajax({
-						url:"unfollowBtn.do",
-						data:{toUnFollow:toUnFollow, fromFollow:fromFollow},
-						type:"post",
-						success:function(data){
-							if(data == "success"){
-								$('#'+toUnFollow).prop('class','button2');
-								$('#'+toUnFollow).prop('value','팔로우');
-								$('#'+toUnFollow).click(button2);
-								$('#'+toUnFollow).off('click').on('click', function(){
-									button2();
-								})
-								//getFollowList();
-							}else{
-								alert("실패");
-							}
-						},
-						error:function(jqxhr, textStatus,errorThrown){
-							console.log("ajax 처리 실패");
-						}
-					});
-					
-					/* function getFollowList(){
-			        	var uNum = toFollow;
-			        	console.log("uNum : " + uNum);
-			        	$.ajax({
-			        		url:"fSelectUser.do",
-			        		data:{uNum:uNum},
-			        		dataType:"json",
-			        		success:function(data){
-			        			if(data.id.length > 0){
-			        				$("#address_woo").append('<table class="add_table">' +
-										                         '<tr>' +
-									                             '<td class="imgtd" rowspan="2" style="width: 10%;"><img class="userimg" src="resources/images/jmImg/'+data.profile_img+'" alt="#"></td>'+
-									                             '<td class="idtd" style="width: 30%;">'+data.id+'</td>'+
-									                             '<td class="btntd" rowspan="2" style="width: 30%;"><input class="button1" type="button" value="팔로잉"></td>'+
-									                         '</tr>'+
-									                         '<tr>'+
-									                             '<td>'+data.uname+'</td>'+
-									                         '</tr>'+
-									                     '</table>');
-			        			}else{
-									alert("실패");
-								}
-							},
-							error:function(request,status,errorData){
-								console.log("user 처리 실패");
-								console.log(request.status + ":" + errorData);
-							}
-			        	});
-			        } 
-				}else{
-					
-				}
-				
-			}else{
-				alert('언팔안됨');
-			}
-		});
-	});
-	      
-       function button2(){
-    	   
-   			
-   		  	console.log("회원 : " + $(this).prop('id') + " / 버튼 : " + $(this).prop('value'));
-   			var id = $(this).prop('id');
-   			
-   			if($('#'+id).prop('value') == "팔로우"){
-   				var followQ = confirm('팔로우 하시겠습니까?');
-   				console.log('안녕하세오 혹시 팔로우입니까?');
-   				if(followQ){
-   					var toFollow = $(this).prop('id');	// 팔로우 할 상대
-   					var fromFollow = '<c:out value="${fromFollow}"/>';	// 본인
-   					
-   					
-   					$.ajax({
-   						url:"followBtn.do",
-   						data:{toFollow:toFollow, fromFollow:fromFollow},
-   						type:"post",
-   						success:function(data){
-   							if(data == "success"){
-   								getFollowList();
-   								$('#'+toFollow).prop('class','button1');
-   								$('#'+toFollow).prop('value','팔로잉');
-   								$('#'+toFollow).click('value','팔로잉');
-   								//$('.address table').remove();
-   							}else{
-   								alert("실패");
-   							}
-   						},
-   						error:function(jqxhr, textStatus,errorThrown){
-   							console.log("ajax 처리 실패");
-   						}
-   					});
-   					
-   					function getFollowList(){
-   			        	var uNum = toFollow;
-   			        	
-   			        	$.ajax({
-   			        		url:"fSelectUser.do",
-   			        		data:{uNum:uNum},
-   			        		dataType:"json",
-   			        		success:function(data){
-   			        			if(data.id.length > 0){
-   			        				$("#address_woo").append('<table class="add_table">' +
-   										                         '<tr>' +
-   									                             '<td class="imgtd" rowspan="2" style="width: 10%;"><img class="userimg" src="resources/images/jmImg/'+data.profile_img+'" alt="#"></td>'+
-   									                             '<td class="idtd" style="width: 30%;">'+data.id+'</td>'+
-   									                             '<td class="btntd" rowspan="2" style="width: 30%;"><input class="button1" type="button" value="팔로잉"></td>'+
-   									                         '</tr>'+
-   									                         '<tr>'+
-   									                             '<td>'+data.uname+'</td>'+
-   									                         '</tr>'+
-   									                     '</table>');
-   			        			}else{
-   									alert("실패");
-   								}
-   							},
-   							error:function(request,status,errorData){
-   								console.log("user 처리 실패");
-   								console.log(request.status + ":" + errorData);
-   							}
-   			        	});
-   			        }
-   				}else{
-   					
-   				}
-   			}else{
-   				
-   			}
-   		
-    	   
-    	   
-       } */
-	      
-	      
-	      
-        /* $(document).ready(function() {
-	        $('#address').show(); //페이지를 로드할 때 표시할 요소
-	        $('#address_woo').hide(); //페이지를 로드할 때 숨길 요소
-	        $('#address_block').hide(); //페이지를 로드할 때 숨길 요소
 	
-	     
-        });
-
-        $('#add_woo').click(function(){
-	        $ ('#address').hide(); //클릭 시 첫 번째 요소 숨김
-	        $ ('#address_block').hide(); //클릭 시 세번째 요소 숨김
-	        $ ('#address_woo').show(); //클릭 시 두 번째 요소 표시
-	        return false;
-        });
-        
-        $('#add_block').click(function(){
-	        $ ('#address').hide(); //클릭 시 첫 번째 요소 숨김
-	        $ ('#address_woo').hide(); //클릭 시 두 번째 요소 숨김
-	        $ ('#address_block').show(); //클릭 시 세 번째 요소 표시
-	        return false;
-        });
-        
-        $('#add_wer').click(function(){
-	        $ ('#address_woo').hide(); //클릭 시 첫 번째 요소 숨김
-	        $ ('#address_block').hide(); //클릭 시 두 번째 요소 숨김
-	        $ ('#address').show(); //클릭 시 세 번째 요소 표시
-	        return false;
-        }); */
+	function blockBtn(name, id){
+		
+		if(name == 'button3'){	// 차단
+			
+			var followQ = confirm('차단 해제하시겠습니까?');
+			
+			if(followQ){
+				
+				console.log('block 차단 해제');
+				
+				var toFollow = id;	// 차단 해제 할 상대
+				var fromFollow = '<c:out value="${loginUser.user_num}"/>';	// 본인
+				
+				console.log("Un - to : " + toFollow + " / from : " + fromFollow);
+				
+				$.ajax({
+					url:"unblockBtn.do",
+					data:{toFollow:toFollow, fromFollow:fromFollow},
+					type:"post",
+					success:function(data){
+						if(data == "success"){
+							$('#'+id).prop('class','button4');
+							$('#'+id).prop('name','button4');
+						}else{
+							alert("실패");
+						}
+					},
+					error:function(jqxhr, textStatus,errorThrown){
+						console.log("ajax 처리 실패");
+					}
+				});
+				
+			}else{}
+			
+		}else if(name == 'button4'){	// 차단
+			
+			var followQ = confirm('차단 하시겠습니까?');
+			
+			if(followQ){
+				
+				var toFollow = id;	// 차단 할 상대
+				var fromFollow = '<c:out value="${loginUser.user_num}"/>';	// 본인
+				
+				$.ajax({
+					url:"blockBtn.do",
+					data:{toFollow:toFollow, fromFollow:fromFollow},
+					type:"post",
+					success:function(data){
+						if(data == "success"){
+							$('#'+id).prop('class','button3');
+							$('#'+id).prop('name','button3');
+						}else{
+							alert("실패");
+						}
+					},
+					error:function(jqxhr, textStatus,errorThrown){
+						console.log("ajax 처리 실패");
+					}
+				});
+			}else{}
+			
+		}
+	}
 
         </script>
 

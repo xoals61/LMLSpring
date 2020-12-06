@@ -38,8 +38,7 @@
                 </div>
                 <div class="rContent" id="rContent">
                         <div class="friends">
-                            <input class="fsearch" type="text">
-                            <input class-="fbtn" type="button" value="검색">
+                            
                         </div>
                         <div class="change_address">
                             <!-- <button>FALLOWER</button>
@@ -69,7 +68,7 @@
 							<c:set var="fromFollow" value="${f.from_follow}"/>
 		                    	<table class="add_table">
 			                         <tr>
-			                             <td class="imgtd" rowspan="2" style="width: 10%;"><img class="userimg" src="resources/images/jmImg/${f.profile_img }" alt="#"></td>
+			                             <td class="imgtd" rowspan="2" style="width: 10%;"><img class="userimg" src="resources/images/profileImg/${f.rename_profile_img }" alt="#"></td>
 			                             <td class="idtd" style="width: 30%;">${f.id }</td>
 			                             <td class="btntd" rowspan="2" style="width: 30%;"><input class="button1" id="${f.to_follow }" type="button" value="팔로잉" name="button1" onclick="followBtn(this.name, this.id);"></td>
 			                         </tr>

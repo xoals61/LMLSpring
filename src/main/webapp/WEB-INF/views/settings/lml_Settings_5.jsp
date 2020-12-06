@@ -38,8 +38,6 @@
                 </div>
                 <div class="rContent" id="rContent">
                         <div class="friends">
-                            <input class="fsearch" type="text">
-                            <input class-="fbtn" type="button" value="검색">
                         </div>
                         <div class="change_address">
                             <!-- <button>FALLOWER</button>

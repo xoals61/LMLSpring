@@ -417,7 +417,7 @@
 								'<img src="resources/images/detailImg/top.png">'+
 							'</div>'+
 							'<div class="clothes-p">상의</div>'+
-							'<div class="clothes-info">'+ data[0].b_top +'</div>'+
+							'<div class="clothes-info" id="'+data[0].b_top+'" onclick="brandSearch(id);">'+ data[0].b_top +'</div>'+
 						'</div>');
 					}
 					if(data[0].b_bottom !=null){
@@ -426,7 +426,7 @@
 								'<img src="resources/images/detailImg/pants.png">'+
 							'</div>'+
 							'<div class="clothes-p">상의</div>'+
-							'<div class="clothes-info">'+ data[0].b_bottom +'</div>'+
+							'<div class="clothes-info" id="'+data[0].b_bottom+'" onclick="brandSearch(id);">'+ data[0].b_bottom +'</div>'+
 						'</div>');
 					}
 					if(data[0].b_shoes !=null){
@@ -435,7 +435,7 @@
 								'<img src="resources/images/detailImg/pants.png">'+
 							'</div>'+
 							'<div class="clothes-p">상의</div>'+
-							'<div class="clothes-info">'+ data[0].b_shoes +'</div>'+
+							'<div class="clothes-info" id="'+data[0].b_shoes+'" onclick="brandSearch(id);">'+ data[0].b_shoes +'</div>'+
 						'</div>');
 					}
 					if(data[0].b_acc !=null){
@@ -444,16 +444,7 @@
 								'<img src="resources/images/detailImg/pants.png">'+
 							'</div>'+
 							'<div class="clothes-p">상의</div>'+
-							'<div class="clothes-info">'+ data[0].b_acc +'</div>'+
-						'</div>');
-					}
-					if(data[0].b_acc !=null){
-						$('.board-clothesInfo').append('<div class="clothesInfo-div">'+
-								'<div class="clothes-img">'+
-								'<img src="resources/images/detailImg/pants.png">'+
-							'</div>'+
-							'<div class="clothes-p">상의</div>'+
-							'<div class="clothes-info">'+ data[0].b_acc +'</div>'+
+							'<div class="clothes-info" id="'+data[0].b_acc+'" onclick="brandSearch(id);">'+ data[0].b_acc +'</div>'+
 						'</div>');
 					}
 					if(data[0].b_etc !=null){
@@ -462,7 +453,7 @@
 								'<img src="resources/images/detailImg/pants.png">'+
 							'</div>'+
 							'<div class="clothes-p">상의</div>'+
-							'<div class="clothes-info">'+ data[0].b_etc +'</div>'+
+							'<div class="clothes-info" id="'+data[0].b_etc+'" onclick="brandSearch(id);">'+ data[0].b_etc +'</div>'+
 						'</div>');
 					}
 					console.log(data[0].image1);
@@ -570,21 +561,6 @@
 	           });
 			
 			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
 			function hashHeartAjax(){
 				// 해쉬태그 불러오기
 				//게시글 해쉬태그
@@ -632,8 +608,6 @@
 					}
 				});
 			}
-			
-			
 			
 			
 			function hashUSerAjax(){
@@ -746,6 +720,11 @@
 			}
 			
 			
+		}
+		
+		function brandSearch(brand){
+			var newWindow = window.open("about:blank");
+			newWindow.location.href = 'https://search.naver.com/search.naver?where=nexearch&sm=top_hty&fbm=1&ie=utf8&query='+brand;
 		}
 		
 		function addFollow(bunum){

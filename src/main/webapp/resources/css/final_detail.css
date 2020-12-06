@@ -259,6 +259,7 @@ a:hover{
     position: absolute;
     margin: 40px 78px;
     font-weight: 400;
+    cursor:pointer;
 }
 
 

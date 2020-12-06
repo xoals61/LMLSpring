@@ -250,9 +250,11 @@ input, textarea:focus {outline:none;}
 }
 .friends{
     width: 619.8px;
-    height: 55px;
-    border: 1px solid rgb(216, 213, 213);
+    height: 0;
+    border-top: 1px solid rgb(216, 213, 213);
     padding: 13px 0 0 57px;
+    border-left: 1px solid rgb(216,213,213);
+    border-right: 1px solid rgb(216,213,213);
 }
 .fsearch{
     width: 400px;
@@ -314,6 +316,20 @@ input, textarea:focus {outline:none;}
     font-weight: 700;
     font-size: 18px;
     background-color: #f85961;
+    outline: none;
+    transition: 0.3s;
+    width: 75px;
+    height: 35px;
+}
+
+.button4 {
+	border: 1px solid #f85961;
+    border-radius: 0.4em;
+    cursor: pointer;
+    color: #f85961;
+    font-weight: 700;
+    font-size: 18px;
+    background-color: rgb(255, 255, 255);
     outline: none;
     transition: 0.3s;
     width: 75px;
