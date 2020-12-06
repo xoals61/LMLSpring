@@ -448,6 +448,10 @@
       									'</div>'+
       									'<div class="board-etc">'+
       										'<img src="resources/images/icon/main/menu1.png">'+
+      										'<ul class="boardSub">'+
+      		                              '<a href="bUpdateView.do?bnum='+bnum+'" id="idboardUp"><li><div class="boardSub1">수정</div></li></a>'+
+      		                              '<a href="Settings3.do" id="idboardDecla"><li><div class="boardSub1">신고</div></li></a>'+
+      		                              '</ul>'+
       									'</div>'+
       								'</div>'+
       								'<div class="board-clothesInfo">'+
@@ -470,7 +474,7 @@
       							'</div>');
       					
       					followList(data[0].b_user_num);
-      					
+      					boardSub(data[0].b_user_num, bnum);
       					if(data[0].b_top !=null){
       						$('.board-clothesInfo').append('<div class="clothesInfo-div">'+
       								'<div class="clothes-img">'+
@@ -596,6 +600,30 @@
       			        $('.board-detail2').empty();
       			    }
       			}
+      			
+      			function boardSub(bunum, bnum){
+    	        	var unum = '<c:out value="${loginUser.user_num}"/>';
+    	            var bunum = bunum;
+    	            var bnum = bnum;
+    	            
+    	            $('.boardSub').hide();
+    	            $('.board-etc').click(function(){
+    	            	$('ul',this).slideToggle("fast");
+    	            	if(unum.length>0){
+    		            	if(unum == bunum){
+    		               		$('#idboardUp').show();
+    		               		$('#idboardDecla').hide();
+    		               	}else{
+    		               		$('#idboardUp').hide();
+    		               		$('#idboardDecla').show();
+    		            	}
+    		            }else{
+    		            	$('#idboardUp').hide();
+    	               		$('#idboardDecla').show();
+    	            	}
+    	            });
+    	        }
+      			
       			function hashHeartAjax(){
       				// 해쉬태그 불러오기
       				$.ajax({
@@ -672,6 +700,13 @@
       					dataType:"JSON",
       					success:function(data){	
       						if(data.length > 0){
+      							
+      							var page = "userPage.do?id=" + data[0].c_id;
+    							
+    							if(data[0].c_id=='${loginUser.id}'){
+    								page = "MyPage.do?uNum=${loginUser.user_num}";
+    							}
+      							
       							var unum1 = '<c:out value="${loginUser.user_num}"/>';
       							$('.commentCount').empty();
       							$('.commentCount').append('<p>댓글 ('+data.length+')</p>');
@@ -680,7 +715,7 @@
       								$('.board-commentDiv').append(''+
       										'<div class="board-comment">'+
       										'<div class="comment-img">'+
-      											'<a href="./jiman/MyPage.html"><img src="resources/images/profileImg/'+ data[i].profile +'"></a>'+
+      											'<a href="'+page + '"><img src="resources/images/profileImg/'+ data[i].profile +'"></a>'+
       										'</div>'+
       										'<div class="comment-content">'+
       											'<p class="comment-user" id="tag'+data[i].c_unum+'" onclick="tagComment(id);">'+ data[i].uname +'</p>'+

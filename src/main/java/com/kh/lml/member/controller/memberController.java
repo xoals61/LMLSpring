@@ -764,7 +764,7 @@ public class memberController {
 	@ResponseBody
 	@RequestMapping(value="upGetFollow.do", produces="application/json; charset=UTF-8")
 	public String upGetFollow(HttpServletResponse response, int toFollow, int fromFollow) throws JsonIOException, JsonProcessingException{
-
+		System.out.println("upGetFollow 들어옴");
 		Member m = new Member(fromFollow,toFollow);
 
 		Member ff = mService.upGetFollow(m);
