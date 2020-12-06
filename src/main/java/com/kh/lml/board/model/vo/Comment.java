@@ -13,13 +13,14 @@ public class Comment {
 	private Date c_date;
 	private String uname;
 	private String profile;
+	private String c_id;
 	
 	public Comment() {
 		super();
 	}
 
 	public Comment(int c_no, int c_bno, String c_content, int c_unum, int c_recno, int c_level, String c_utag,
-			Date c_date, String uname, String profile) {
+			Date c_date, String uname, String profile, String c_id) {
 		super();
 		this.c_no = c_no;
 		this.c_bno = c_bno;
@@ -31,7 +32,10 @@ public class Comment {
 		this.c_date = c_date;
 		this.uname = uname;
 		this.profile = profile;
+		this.c_id = c_id;
 	}
+
+
 
 
 
@@ -121,6 +125,14 @@ public class Comment {
 
 	public void setProfile(String profile) {
 		this.profile = profile;
+	}
+
+	public String getC_id() {
+		return c_id;
+	}
+
+	public void setC_id(String c_id) {
+		this.c_id = c_id;
 	}
 
 	

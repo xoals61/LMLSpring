@@ -51,6 +51,7 @@
 		<result property="c_utag" column="C_UTAG"/>
 		<result property="c_date" column="C_DATE"/>
 		<result property="uname" column="UNAME"/>
+		<result property="c_id" column="ID"/>
 		<result property="profile" column="RENAME_PROFILE_IMG"/>
 	</resultMap>
 	
@@ -106,7 +107,7 @@
 	
 	
 	<select id="selectComment" resultMap="CommentResultSet">
-		SELECT C_NO, C_BNO, C_CONTENT, C_UNUM, C_RECNO, C_LEVEL, C_DATE, UNAME, RENAME_PROFILE_IMG
+		SELECT C_NO, C_BNO, C_CONTENT, C_UNUM, C_RECNO, C_LEVEL, C_DATE, UNAME, RENAME_PROFILE_IMG,ID
 		FROM LML_COMMENT
 		JOIN LML_MEM ON (C_UNUM = USER_NUM)
 		WHERE C_BNO = #{bnum}

@@ -692,15 +692,23 @@
 					dataType:"JSON",
 					success:function(data){	
 						if(data.length > 0){
+							
+							var page = "userPage.do?id=" + data[0].c_id;
+							
+							if(data[0].c_id=='${loginUser.id}'){
+								page = "MyPage.do?uNum=${loginUser.user_num}";
+							}
+							
 							var unum1 = '<c:out value="${loginUser.user_num}"/>';
 							$('.commentCount').empty();
 							$('.commentCount').append('<p>댓글 ('+data.length+')</p>');
 							$('.board-commentDiv').empty();
 							for(var i=0; i<data.length; i++){
+								console.log('ㅆㅣ아이디  : ' + data[i].c_id);
 								$('.board-commentDiv').append(''+
 										'<div class="board-comment">'+
 										'<div class="comment-img">'+
-											'<a href="./jiman/MyPage.html"><img src="resources/images/profileImg/'+ data[i].profile +'"></a>'+
+											'<a href="'+page + '"><img src="resources/images/profileImg/'+ data[i].profile +'"></a>'+
 										'</div>'+
 										'<div class="comment-content">'+
 											'<p class="comment-user" id="tag'+data[i].c_unum+'" onclick="tagComment(id);">'+ data[i].uname +'</p>'+
@@ -893,15 +901,23 @@
 				dataType:"JSON",
 				success:function(data){	
 					if(data.length > 0){
+						
+						var page = "userPage.do?id=" + data[0].c_id;
+						
+						if(data[0].c_id=='${loginUser.id}'){
+							page = "MyPage.do?uNum=${loginUser.user_num}";
+						}
+						
 						var unum1 = '<c:out value="${loginUser.user_num}"/>';
 						$('.commentCount').empty();
 						$('.commentCount').append('<p>댓글 ('+data.length+')</p>');
 						$('.board-commentDiv').empty();
 						for(var i=0; i<data.length; i++){
+							console.log('ㅆㅣ아이디  : ' + data[i].c_id);
 							$('.board-commentDiv').append(''+
 									'<div class="board-comment">'+
 									'<div class="comment-img">'+
-										'<a href="./jiman/MyPage.html"><img src="resources/images/profileImg/'+ data[i].profile +'"></a>'+
+										'<a href="'+page + '"><img src="resources/images/profileImg/'+ data[i].profile +'"></a>'+
 									'</div>'+
 									'<div class="comment-content">'+
 										'<p class="comment-user" id="tag'+data[i].c_unum+'" onclick="tagComment(id);">'+ data[i].uname +'</p>'+

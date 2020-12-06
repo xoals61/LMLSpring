@@ -145,37 +145,39 @@
 			var fromFollow = '<c:out value="${loginUser.user_num}"/>';
 
 			console.log('유저페이지 팔로팔로 : ' + toFollow + ', ' + fromFollow);
+			if(fromFollow.lenght>0){
+				$.ajax({ // 팔로 상태
+					url : "upGetFollow.do",
+					data : {
+						toFollow : toFollow,
+						fromFollow : fromFollow
+					},
+					dataType : "JSON",
+					success : function(data) {
+						if (data != null) { // 로그인유저가 팔로함
+							if (data.f_block == 'N') { // 차단 안 함
+								$('.followbtn').hide();
+								$('.unblockbtn').hide();
+							} else if (data.f_block == 'Y') { // 차단한 상대임
+								$('.followbtn').hide();
+								$('.unfollowbtn').hide();
+								$('.blockbtn').hide();
+								console.log('차단한놈');
+							}
 
-			$.ajax({ // 팔로 상태
-				url : "upGetFollow.do",
-				data : {
-					toFollow : toFollow,
-					fromFollow : fromFollow
-				},
-				dataType : "JSON",
-				success : function(data) {
-					if (data != null) { // 로그인유저가 팔로함
-						if (data.f_block == 'N') { // 차단 안 함
-							$('.followbtn').hide();
-							$('.unblockbtn').hide();
-						} else if (data.f_block == 'Y') { // 차단한 상대임
-							$('.followbtn').hide();
+						} else { // 로그인유저가 팔로 안 함
 							$('.unfollowbtn').hide();
-							$('.blockbtn').hide();
-							console.log('차단한놈');
+							$('.unblockbtn').hide();
 						}
-
-					} else { // 로그인유저가 팔로 안 함
-						$('.unfollowbtn').hide();
-						$('.unblockbtn').hide();
+					},
+					error : function(request, status, error) {
+						console.log("** error code : " + request.status + "\n"
+								+ "message : " + request.responseText + "\n"
+								+ "error : " + error);
 					}
-				},
-				error : function(request, status, error) {
-					console.log("** error code : " + request.status + "\n"
-							+ "message : " + request.responseText + "\n"
-							+ "error : " + error);
-				}
-			});
+				});
+			}
+			
 
 		});
 
