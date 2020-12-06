@@ -248,6 +248,7 @@
 						success : function(data) {
 							if (data == "success") {
 								upGetFollow();
+								location.reload();
 							} else {
 								console.log('차단 안 들어갔나봄');
 							}
@@ -272,6 +273,7 @@
 						success : function(data) {
 							if (data == "success") {
 								upGetFollow();
+								location.reload();
 							} else {
 								console.log('차단 안 들어갔나봄');
 							}
@@ -546,7 +548,7 @@
 					});
 
 				} else {
-					alert('언팔 불가능');
+					
 				}
 
 			} else if (name == 'button2') { // 팔로우
@@ -580,7 +582,7 @@
 						}
 					});
 				} else {
-					alert('팔로우 불가능');
+					
 				}
 
 			} else if (name == 'button3') {
@@ -591,7 +593,6 @@
 		const content = document.getElementsByClassName("content");
 
 		function modalDetail(bnum) {
-			console.log('### 글넘 : ' + bnum);
 			var modal2 = document.getElementById('myModal2');
 			var detail2 = document.getElementById('board-detail2');
 
