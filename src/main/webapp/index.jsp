@@ -416,7 +416,7 @@
 								'<div class="clothes-img">'+
 								'<img src="resources/images/detailImg/top.png">'+
 							'</div>'+
-							'<div class="clothes-p">상의</div>'+
+							'<div class="clothes-p">top</div>'+
 							'<div class="clothes-info" id="'+data[0].b_top+'" onclick="brandSearch(id);">'+ data[0].b_top +'</div>'+
 						'</div>');
 					}
@@ -425,42 +425,37 @@
 								'<div class="clothes-img">'+
 								'<img src="resources/images/detailImg/pants.png">'+
 							'</div>'+
-							'<div class="clothes-p">상의</div>'+
+							'<div class="clothes-p">bottom</div>'+
 							'<div class="clothes-info" id="'+data[0].b_bottom+'" onclick="brandSearch(id);">'+ data[0].b_bottom +'</div>'+
 						'</div>');
 					}
 					if(data[0].b_shoes !=null){
 						$('.board-clothesInfo').append('<div class="clothesInfo-div">'+
 								'<div class="clothes-img">'+
-								'<img src="resources/images/detailImg/pants.png">'+
+								'<img src="resources/images/detailImg/shoes.png">'+
 							'</div>'+
-							'<div class="clothes-p">상의</div>'+
+							'<div class="clothes-p">shoes</div>'+
 							'<div class="clothes-info" id="'+data[0].b_shoes+'" onclick="brandSearch(id);">'+ data[0].b_shoes +'</div>'+
 						'</div>');
 					}
 					if(data[0].b_acc !=null){
 						$('.board-clothesInfo').append('<div class="clothesInfo-div">'+
 								'<div class="clothes-img">'+
-								'<img src="resources/images/detailImg/pants.png">'+
+								'<img src="resources/images/detailImg/bag.png">'+
 							'</div>'+
-							'<div class="clothes-p">상의</div>'+
+							'<div class="clothes-p">acc</div>'+
 							'<div class="clothes-info" id="'+data[0].b_acc+'" onclick="brandSearch(id);">'+ data[0].b_acc +'</div>'+
 						'</div>');
 					}
 					if(data[0].b_etc !=null){
 						$('.board-clothesInfo').append('<div class="clothesInfo-div">'+
 								'<div class="clothes-img">'+
-								'<img src="resources/images/detailImg/pants.png">'+
+								'<img src="resources/images/detailImg/watch.png">'+
 							'</div>'+
-							'<div class="clothes-p">상의</div>'+
+							'<div class="clothes-p">etc</div>'+
 							'<div class="clothes-info" id="'+data[0].b_etc+'" onclick="brandSearch(id);">'+ data[0].b_etc +'</div>'+
 						'</div>');
 					}
-					console.log(data[0].image1);
-					console.log(data[0].image2);
-					console.log(data[0].image3);
-					console.log(data[0].image4);
-					console.log(data[0].image5);
 				 	const prev = document.getElementById('prev');
 				    const next = document.getElementById('next');
 				    const ultag = document.getElementsByClassName('board-img');
@@ -468,6 +463,7 @@
 				    var num = 0; // imgcheck에 사용하는 전역변수
 				    let arr = imgcheck(); // 배열 정렬, 배열이 없으면 화살표 안보이게 설정.
 				    imgmake(arr); // 이미지 생성
+				    
 				    function imgmake(arr){
 				        //이미지가 있으면 생성
 				        for(let i = 0; i<arr.length; i++){
@@ -479,6 +475,7 @@
 				          element.appendChild(para);
 				        }
 				      }
+				    
 				      function imgcheck(){
 				        let arr=[];
 				        
@@ -504,12 +501,14 @@
 				          ultag[0].id = ('num' + String(arr.length+1));
 				        
 				      }
+				      
 				      function nextfun(){
 				        if((ultag[0].id.substring(3,4) != String((arr.length+1))))
 				          ultag[0].id = ultag[0].id.substring(0,3) + ((Number(ultag[0].id.substring(3,4)))+1);
 				        else
 				          ultag[0].id = 'num1';
 				      }
+				      
 				      prev.addEventListener("click",prevfun);
 				      next.addEventListener("click",nextfun);
 				},
@@ -579,10 +578,6 @@
 							+ "error : " + error);
 					}
 				});
-				//사용자태그
-			
-				
-				
 				
 				
 				// 디테일 좋아요 리스트 & 내가 좋아요 눌렀음 빨간하트로.

@@ -117,9 +117,10 @@
 					</c:if>
 						<td>
 							<div class="content" id="${myBoard.b_num}">
-								<div class=img>
+								<div class="img" style="cursor:pointer;">
 									<img src="resources/buploadFiles/${myBoard.image1}" class="cImg">
 								</div>
+							</div>
 						</td>
 						
 					<c:if test="${status.index mod 3 eq 2}">

@@ -48,21 +48,17 @@
 							<td>
 								<div class="content" onclick="modalDetail('${tagBoard.b_num}')">
 									<div class=img>
-										<img src="resources/buploadFiles/${tagBoard.image1}"
-											class="cImg">
+										<img src="resources/buploadFiles/${tagBoard.image1}" class="cImg">
 									</div>
 									<div class="chover">
-										<div class="hover-detail-content"
-											></div>
+										<div class="hover-detail-content"></div>
 										<div class="chContnet">
 											<div class="user">
 												<div class="userImg">
-													<a href="userPage.do?id=${ tagBoard.b_user_id }"><img
-														src="resources/images/profileImg/${ tagBoard.b_profile_img}"></a>
+													<a href="userPage.do?id=${ tagBoard.b_user_id }"><img src="resources/images/profileImg/${ tagBoard.b_profile_img}"></a>
 														
 												</div>
-												<a href="userPage.do?id=${ tagBoard.b_user_id }">
-												<div class="userId">${ tagBoard.b_name}</div></a>
+												<a href="userPage.do?id=${ tagBoard.b_user_id }"><div class="userId">${ tagBoard.b_name}</div></a>
 											</div>
 											<div class="con" onclick="modalDetail('${tagBoard.b_num}');">
 												<div class="userCon">
@@ -70,21 +66,17 @@
 												</div>
 											</div>
 											<div class="cBtn">
-												<div class="cHeart">
-												<img src="resources/images/icon/main/heart.png"
-														class="cheart"  >
+												<div class="cHeart" >
+													<img src="resources/images/icon/main/heart.png" id="th${tagBoard.b_num}" class="cheart" onclick="addHeart(id);">
 												</div>
-												<div class="cComment"
-													>
+												<div class="cComment" onclick="modalDetail('${tagBoard.b_num}')">
 													<div class="cbox"></div>
 													<img src="resources/images/icon/main/comment.png">
-												</div>
-												<div class="cEtc">
-													<img src="resources/images/icon/main/etc.png">
 												</div>
 											</div>
 										</div>
 									</div>
+								</div>
 							</td>
 
 							<c:if test="${status.index mod 3 eq 4}">
@@ -177,8 +169,8 @@
 	<script>
 	
 		// 하트 리스트
-		function heartIcon(){
-			
+		$(function(){
+			console.log('하트리스트 ?? ');
 			var unum = '<c:out value="${loginUser.user_num}"/>';
 			
 			if(unum.length > 0){
@@ -199,7 +191,8 @@
 					}
 				});
 			}
-		}
+		});
+		
 		
 		// 게시물 마우스오버
 		$(function(){
@@ -211,10 +204,13 @@
 		        $('.chover').hide();
 		    });
 		    
-		    /* 게시물 좋아요 아이콘 클릭 시 아이콘 변경 */
-			$(".cHeart").click(function(){
+		});
+		
+		function addHeart(id){
+			console.log('에드하트');
+			 /* 게시물 좋아요 아이콘 클릭 시 아이콘 변경 */
 				
-				var bnum = $('.cheart',this).attr("id").substring(2);
+				var bnum = id.substring(2);
 				var unum = '<c:out value="${loginUser.user_num}"/>';
 				
 				if(unum.length > 0){
@@ -262,8 +258,8 @@
 				}else{
 					alert('로그인 후 이용 가능합니다.');
 				}
-			});
-		});
+			
+		}
 
 
 		/* 체형별 */
@@ -357,6 +353,8 @@
 									'<div class="board-etc">'+
 		                              '<img src="resources/images/icon/main/menu1.png">'+
 		                              '<ul class="boardSub">'+
+		                              '<a href="bUpdateView.do?bnum='+bnum+'" id="idboardUp"><li><div class="boardSub1">수정</div></li></a>'+
+		                              '<a href="Settings3.do" id="idboardDecla"><li><div class="boardSub1">신고</div></li></a>'+
 		                              '</ul>'+
 		                           '</div>'+
 								'</div>'+
@@ -386,8 +384,8 @@
 								'<div class="clothes-img">'+
 								'<img src="resources/images/detailImg/top.png">'+
 							'</div>'+
-							'<div class="clothes-p">상의</div>'+
-							'<div class="clothes-info">'+ data[0].b_top +'</div>'+
+							'<div class="clothes-p">top</div>'+
+							'<div class="clothes-info" id="'+data[0].b_top+'" onclick="brandSearch(id);">'+ data[0].b_top +'</div>'+
 						'</div>');
 					}
 					if(data[0].b_bottom !=null){
@@ -395,44 +393,35 @@
 								'<div class="clothes-img">'+
 								'<img src="resources/images/detailImg/pants.png">'+
 							'</div>'+
-							'<div class="clothes-p">상의</div>'+
-							'<div class="clothes-info">'+ data[0].b_bottom +'</div>'+
+							'<div class="clothes-p">bottom</div>'+
+							'<div class="clothes-info" id="'+data[0].b_bottom+'" onclick="brandSearch(id);">'+ data[0].b_bottom +'</div>'+
 						'</div>');
 					}
 					if(data[0].b_shoes !=null){
 						$('.board-clothesInfo').append('<div class="clothesInfo-div">'+
 								'<div class="clothes-img">'+
-								'<img src="resources/images/detailImg/pants.png">'+
+								'<img src="resources/images/detailImg/shoes.png">'+
 							'</div>'+
-							'<div class="clothes-p">상의</div>'+
-							'<div class="clothes-info">'+ data[0].b_shoes +'</div>'+
+							'<div class="clothes-p">shoes</div>'+
+							'<div class="clothes-info" id="'+data[0].b_shoes+'" onclick="brandSearch(id);">'+ data[0].b_shoes +'</div>'+
 						'</div>');
 					}
 					if(data[0].b_acc !=null){
 						$('.board-clothesInfo').append('<div class="clothesInfo-div">'+
 								'<div class="clothes-img">'+
-								'<img src="resources/images/detailImg/pants.png">'+
+								'<img src="resources/images/detailImg/bag.png">'+
 							'</div>'+
-							'<div class="clothes-p">상의</div>'+
-							'<div class="clothes-info">'+ data[0].b_acc +'</div>'+
-						'</div>');
-					}
-					if(data[0].b_acc !=null){
-						$('.board-clothesInfo').append('<div class="clothesInfo-div">'+
-								'<div class="clothes-img">'+
-								'<img src="resources/images/detailImg/pants.png">'+
-							'</div>'+
-							'<div class="clothes-p">상의</div>'+
-							'<div class="clothes-info">'+ data[0].b_acc +'</div>'+
+							'<div class="clothes-p">acc</div>'+
+							'<div class="clothes-info" id="'+data[0].b_acc+'" onclick="brandSearch(id);">'+ data[0].b_acc +'</div>'+
 						'</div>');
 					}
 					if(data[0].b_etc !=null){
 						$('.board-clothesInfo').append('<div class="clothesInfo-div">'+
 								'<div class="clothes-img">'+
-								'<img src="resources/images/detailImg/pants.png">'+
+								'<img src="resources/images/detailImg/watch.png">'+
 							'</div>'+
-							'<div class="clothes-p">상의</div>'+
-							'<div class="clothes-info">'+ data[0].b_etc +'</div>'+
+							'<div class="clothes-p">etc</div>'+
+							'<div class="clothes-info" id="'+data[0].b_etc+'" onclick="brandSearch(id);">'+ data[0].b_etc +'</div>'+
 						'</div>');
 					}
 					
@@ -465,13 +454,15 @@
 	            	$('ul',this).slideToggle("fast");
 	            	if(unum.length>0){
 		            	if(unum == bunum){
-		               		$('.boardSub').append('<a href="bUpdateView.do?bnum='+bnum+'"><li><div class="boardSub1">수정</div></li></a>'+
-                                    			'<a href="#"><li><div class="boardSub1">삭제</div></li></a>');      	
+		            		$('#idboardUp').show();
+		               		$('#idboardDecla').hide();      	
 		               	}else{
-		               		$('.boardSub').append('<a href="#"><li><div class="boardSub1">신고</div></li></a>');
-		            	}
+		               		$('#idboardUp').hide();
+		               		$('#idboardDecla').show();		            	
+		               	}
 		            }else{
-	               		$('.boardSub').append('<a href="#"><li><div class="boardSub1">신고</div></li></a>');
+		            	$('#idboardUp').hide();
+	               		$('#idboardDecla').show();
 	            	}
 	            });
 	        }
@@ -653,6 +644,11 @@
 			
 		}
 		
+		function brandSearch(brand){
+			var newWindow = window.open("about:blank");
+			newWindow.location.href = 'https://search.naver.com/search.naver?where=nexearch&sm=top_hty&fbm=1&ie=utf8&query='+brand;
+		}
+		
 		function addFollow(bunum){
 			var fromFollow = '<c:out value="${loginUser.user_num}"/>';
 			var toFollow = bunum.substring(2);
@@ -830,9 +826,9 @@
 						$('.board-commentDiv').scrollTop($('.board-commentDiv').prop('scrollHeight'));
 					}else{
 						console.log(data.length);
-						//$('.commentCount').empty();
+						$('.commentCount').empty();
 						$('.commentCount').append('<p>댓글 ('+data.length+')</p>');
-						//$('.board-commentDiv').empty();
+						$('.board-commentDiv').empty();
 						$('.board-commentDiv').append(''+
 							'<div class="board-comment">'+
 								//'<div class="comment-img"></div>'+
