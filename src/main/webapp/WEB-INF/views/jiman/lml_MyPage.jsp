@@ -408,7 +408,7 @@
       					var page = "userPage.do?id=" + data[0].b_user_id;
 
       					if(data[0].b_user_id=='${loginUser.id}'){
-      						page = "MyPage.do?uNum=${loginUser.user_num}";
+      						page = "MyPage.do?uNum=${loginUser.user_num}&page=1";
       					}
       					
       					
@@ -703,65 +703,307 @@
       			} */
       			
       			// 디테일 댓글 리스트
-      			function replyList(){
-      				$.ajax({
-      					url:"BoardDetailComm.do",
-      					data:{bnum:bnum},
-      					dataType:"JSON",
-      					success:function(data){	
-      						if(data.length > 0){
-      							
-      							var page = "userPage.do?id=" + data[0].c_id;
+    			function replyList(){
+    				$.ajax({
+    					url:"BoardDetailComm.do",
+    					data:{bnum:bnum},
+    					dataType:"JSON",
+    					success:function(data){	
+    						if(data.length > 0){
+    							var page = "userPage.do?id=" + data[0].c_id;
     							
     							if(data[0].c_id=='${loginUser.id}'){
     								page = "MyPage.do?uNum=${loginUser.user_num}";
     							}
-      							
-      							var unum1 = '<c:out value="${loginUser.user_num}"/>';
-      							$('.commentCount').empty();
-      							$('.commentCount').append('<p>댓글 ('+data.length+')</p>');
-      							$('.board-commentDiv').empty();
-      							for(var i=0; i<data.length; i++){
-      								$('.board-commentDiv').append(''+
-      										'<div class="board-comment">'+
-      										'<div class="comment-img">'+
-      											'<a href="'+page + '"><img src="resources/images/profileImg/'+ data[i].profile +'"></a>'+
-      										'</div>'+
-      										'<div class="comment-content">'+
-      											'<p class="comment-user" id="tag'+data[i].c_unum+'" onclick="tagComment(id);">'+ data[i].uname +'</p>'+
-      											'<p class="comment-comment">'+ data[i].c_content +'</p>'+
-      											'<div class="comment-delete del'+data[i].c_no+'"></div>'+
-      										'</div>'+
-      									'</div>');
-      								$('.board-commentDiv').scrollTop($('.board-commentDiv').prop('scrollHeight'));
-      								if(data[i].c_unum == unum1){	// 댓글 단 사람이랑 로그인유저랑 같으면
-      									$('.del'+data[i].c_no).append('<img src="resources/images/icon/menu/commentDelete.png" id="'+data[i].c_no+'" onclick="commentDelete(id,'+bnum+');">');
-      								}
-      							}
-      							
-      							
-      						}else{
-      							//$('.commentCount').empty();
-      							$('.commentCount').append('<p>댓글 ('+data.length+')</p>');
-      							//$('.board-commentDiv').empty();
-      							$('.board-commentDiv').append(''+
-      								'<div class="board-comment">'+
-      									//'<div class="comment-img"></div>'+
-      									'<div class="comment-content">'+
-      										'<p class="comment-user">등록된 댓글이 없습니다.</p>'+
-      										'<p class="comment-comment"></p>'+
-      									'</div>'+
-      								'</div>');
-      						}
-      					},
-      					error:function(request,status,error){
-      						console.log("** error code : " + request.status + "\n"
-      							+ "message : " + request.responseText + "\n"
-      							+ "error : " + error);
-      					}
-      				});
-      			}
+    							
+    							var unum1 = '<c:out value="${loginUser.user_num}"/>';
+    							$('.commentCount').empty();
+    							$('.commentCount').append('<p>댓글 ('+data.length+')</p>');
+    							$('.board-commentDiv').empty();
+    							for(var i=0; i<data.length; i++){
+    								console.log('ㅆㅣ아이디  : ' + data[i].c_id);
+    								$('.board-commentDiv').append(''+
+    										'<div class="board-comment">'+
+    										'<div class="comment-img">'+
+    											'<a href="'+page + '"><img src="resources/images/profileImg/'+ data[i].profile +'"></a>'+
+    										'</div>'+
+    										'<div class="comment-content">'+
+    											'<p class="comment-user" id="tag'+data[i].c_unum+'" onclick="tagComment(id);">'+ data[i].uname +'</p>'+
+    											'<p class="comment-comment">'+ data[i].c_content +'</p>'+
+    											'<div class="comment-delete del'+data[i].c_no+'"></div>'+
+    										'</div>'+
+    									'</div>');
+    								$('.board-commentDiv').scrollTop($('.board-commentDiv').prop('scrollHeight'));
+    								if(data[i].c_unum == unum1){	// 댓글 단 사람이랑 로그인유저랑 같으면
+    									$('.del'+data[i].c_no).append('<img src="resources/images/icon/menu/commentDelete.png" id="'+data[i].c_no+'" onclick="commentDelete(id,'+bnum+');">');
+    								}
+    							}
+    							
+    							
+    						}else{
+    							$('.commentCount').empty();
+    							$('.commentCount').append('<p>댓글 ('+data.length+')</p>');
+    							$('.board-commentDiv').empty();
+    							$('.board-commentDiv').append(''+
+    								'<div class="board-comment">'+
+    									//'<div class="comment-img"></div>'+
+    									'<div class="comment-content">'+
+    										'<p class="comment-user">등록된 댓글이 없습니다.</p>'+
+    										'<p class="comment-comment"></p>'+
+    									'</div>'+
+    								'</div>');
+    						}
+    					},
+    					error:function(request,status,error){
+    						console.log("** error code : " + request.status + "\n"
+    							+ "message : " + request.responseText + "\n"
+    							+ "error : " + error);
+    					}
+    				});
+    			}
       		}
+      		
+      		
+      		
+      		
+      		
+      		
+      		
+      		
+      		/* 디테일 스타일태그 클릭 시 네이버 검색 */
+    		function brandSearch(brand){
+    			var newWindow = window.open("about:blank");
+    			newWindow.location.href = 'https://search.naver.com/search.naver?where=nexearch&sm=top_hty&fbm=1&ie=utf8&query='+brand;
+    		}
+    		
+    		/* 디테일 팔로우 버튼 */
+    		/* function addFollow(bunum){
+    			var fromFollow = '<c:out value="${loginUser.user_num}"/>';
+    			var toFollow = bunum.substring(2);
+    			
+    			if(fromFollow.length>0){
+    				var qfollow = confirm('팔로우 하시겠습니까?');
+    				if(qfollow == true){
+    					$.ajax({
+    						url:"followBtn.do",
+    						data:{toFollow:toFollow, fromFollow:fromFollow},
+    						type:"post",
+    						success:function(data){
+    							if(data == "success"){
+    								$('#'+bunum).html('');
+    							}else{
+    								alert("실패");
+    							}
+    						},
+    						error:function(jqxhr, textStatus,errorThrown){
+    							console.log("ajax 처리 실패");
+    						}
+    					});
+    				}
+    			}else{
+    				alert('로그인 후 이용 가능합니다.');
+    			}
+    		} */
+    		
+    		/* 디테일 좋아요 눌러버려 */
+    		function addHeart(bnum){
+    			var bnum = bnum;
+    			var unum = '<c:out value="${loginUser.user_num}"/>';
+    			
+    			if(unum.length > 0){
+    				// 디테일 빈하트일때 좋아요 등록
+    				if($('#h'+bnum).attr('src') == "resources/images/icon/menu/iconmonstr-heart-thin-72.png"){
+    					$.ajax({
+    						url:"BoardAddHeart.do",
+    						data:{bnum:bnum, unum:unum},
+    						success:function(data){	
+    							if(data == "success"){
+    								$('#h'+bnum).attr('src','resources/images/icon/menu/detailHeart.png');
+    								$('#th'+bnum).attr('src','resources/images/icon/main/heart2.png');
+    								detailHeartCount();
+    							}else{
+    								alert('좋아요 실패');
+    							}
+    						},
+    						error:function(request,status,error){
+    							console.log("** error code : " + request.status + "\n"
+    								+ "message : " + request.responseText + "\n"
+    								+ "error : " + error);
+    						}
+    					});
+    					
+    				//디테일 꽉찬하트일때 좋아요 취소
+    				}else if($('#h'+bnum).attr('src') == 'resources/images/icon/menu/detailHeart.png'){
+    					$.ajax({
+    						url:"BoardDelHeart.do",
+    						data:{bnum:bnum, unum:unum},
+    						success:function(data){	
+    							if(data == "success"){
+    								$('#h'+bnum).attr('src','resources/images/icon/menu/iconmonstr-heart-thin-72.png');
+    								$('#th'+bnum).attr('src','resources/images/icon/main/heart.png');
+    								detailHeartCount();
+    							}else{
+    								alert('좋아요 취소 실패');
+    							}
+    						},
+    						error:function(request,status,error){
+    							console.log("** error code : " + request.status + "\n"
+    								+ "message : " + request.responseText + "\n"
+    								+ "error : " + error);
+    						}
+    					});
+    			 	} 
+    				
+    				// 좋아요 수
+    				function detailHeartCount(){
+    					$.ajax({
+    						url:"BoardDetailHeart.do",
+    						data:{bnum:bnum},
+    						dataType:"JSON",
+    						success:function(data){
+    							$('.board-heartCount').html('좋아요 '+ data.length +'개');
+    						},
+    						error:function(request,status,error){
+    							console.log("** error code : " + request.status + "\n"
+    								+ "message : " + request.responseText + "\n"
+    								+ "error : " + error);
+    						}
+    					});
+    				}
+    			}else{
+    				alert('로그인 후 이용 가능합니다.');
+    			}
+    		}
+    		
+    		
+    		/* 디테일 댓글 등록 */
+    		function cSubmit(){
+    			var comment = $('.c-content').val();
+    			comment.split("@");
+    			var unum = '<c:out value="${loginUser.user_num}"/>';
+    			var bnum = $('.c-content').attr("id");
+    			
+    			if(unum.length>0){
+    				if(comment.length > 0){
+    					$.ajax({
+    						url:"BoardComment.do",
+    						data:{comment:comment, unum:unum, bnum:bnum},
+    						success:function(data){	
+    							if(data == "success"){
+    								getReplyList(bnum);
+    								$('.c-content').val('');
+    								$('.board-commentDiv').scrollTop($('.board-commentDiv').prop('scrollHeight'));
+    							}else{
+    								alert('댓글 등록 실패');
+    							}
+    						},
+    						error:function(request,status,error){
+    							console.log("** error code : " + request.status + "\n"
+    								+ "message : " + request.responseText + "\n"
+    								+ "error : " + error);
+    						}
+    					});
+    				}else{
+    					alert('댓글을 입력해주세요.');
+    				}
+    			}else{
+    				alert('로그인 후 이용 가능합니다.');
+    			}
+    		}
+    		
+    		/* 댓글 삭제 */
+    		function commentDelete(id,bnum){
+    			console.log('삭제 아뒤, 비넘 : ' + id + ', ' + bnum);
+    			var del = confirm('댓글을 삭제하시겠습니까?');
+    			if(del == true){
+    				$.ajax({
+    					url:"CommentDelete.do",
+    					data:{cno:id},
+    					success:function(data){	
+    						if(data == "success"){
+    							getReplyList(bnum);
+    						}else{
+    							alert('댓글 삭제 실패');
+    						}
+    					},
+    					error:function(request,status,error){
+    						console.log("** error code : " + request.status + "\n"
+    							+ "message : " + request.responseText + "\n"
+    							+ "error : " + error);
+    					}
+    				});
+    			}else{}
+    		}
+    		
+    		/* 디테일 댓글 등록,삭제 시 실행되는 댓글리스트 */
+    		function getReplyList(bnum){
+    			console.log('해당 댓글 글넘 : ' + bnum);
+    			$.ajax({
+    				url:"BoardDetailComm.do",
+    				data:{bnum:bnum},
+    				dataType:"JSON",
+    				success:function(data){	
+    					if(data.length > 0){
+    						
+    						var page = "userPage.do?id=" + data[0].c_id;
+    						
+    						if(data[0].c_id=='${loginUser.id}'){
+    							page = "MyPage.do?uNum=${loginUser.user_num}";
+    						}
+    						
+    						var unum1 = '<c:out value="${loginUser.user_num}"/>';
+    						$('.commentCount').empty();
+    						$('.commentCount').append('<p>댓글 ('+data.length+')</p>');
+    						$('.board-commentDiv').empty();
+    						for(var i=0; i<data.length; i++){
+    							console.log('ㅆㅣ아이디  : ' + data[i].c_id);
+    							$('.board-commentDiv').append(''+
+    									'<div class="board-comment">'+
+    									'<div class="comment-img">'+
+    										'<a href="'+page + '"><img src="resources/images/profileImg/'+ data[i].profile +'"></a>'+
+    									'</div>'+
+    									'<div class="comment-content">'+
+    										'<p class="comment-user" id="tag'+data[i].c_unum+'" onclick="tagComment(id);">'+ data[i].uname +'</p>'+
+    										'<p class="comment-comment">'+ data[i].c_content +'</p>'+
+    										'<div class="comment-delete del'+data[i].c_no+'"></div>'+	//id="del'+data[i].c_unum+'"
+    									'</div>'+
+    								'</div>');
+    							if(data[i].c_unum == unum1){
+    								$('.del'+data[i].c_no).append('<img src="resources/images/icon/menu/commentDelete.png" id="'+data[i].c_no+'" onclick="commentDelete(id,'+bnum+');">');
+    							}
+    						}
+    						console.log("scrollHeight : " + $('.board-commentDiv').prop('scrollHeight'));
+    						$('.board-commentDiv').scrollTop($('.board-commentDiv').prop('scrollHeight'));
+    					}else{
+    						$('.commentCount').empty();
+    						$('.commentCount').append('<p>댓글 ('+data.length+')</p>');
+    						$('.board-commentDiv').empty();
+    						$('.board-commentDiv').append(''+
+    							'<div class="board-comment">'+
+    								//'<div class="comment-img"></div>'+
+    								'<div class="comment-content">'+
+    									'<p class="comment-user">등록된 댓글이 없습니다.</p>'+
+    									'<p class="comment-comment"></p>'+
+    								'</div>'+
+    							'</div>');
+    					}
+    				},
+    				error:function(request,status,error){
+    					console.log("** error code : " + request.status + "\n"
+    						+ "message : " + request.responseText + "\n"
+    						+ "error : " + error);
+    				}
+    			});
+    		}
+      		
+      		
+      		
+      		
+      		
+      		
+      		
+      		
+      		
       		for(let i=0; i<content.length;i++){
       			content[i].addEventListener("click",function(){
       				//console.log(i); //각 content는 번호를 갖게 됬다.

@@ -348,7 +348,7 @@
 					var page = "userPage.do?id=" + data[0].b_user_id;
 					
 					if(data[0].b_user_id=='${loginUser.id}'){
-						page = "MyPage.do?uNum=${loginUser.user_num}";
+						page = "MyPage.do?uNum=${loginUser.user_num}&page=1";
 					}
 					
 					$('.board-detail').append(
