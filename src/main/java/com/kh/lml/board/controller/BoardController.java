@@ -72,7 +72,7 @@ public class BoardController {
 		b.setImage5(renameFileList[4]);
 		
 		int result = bService.insertStylePost(b);
-		int getbnum = bService.getbnum();	// ㅇ
+		int getbnum = bService.getbnum();	// ㅇ 
 		
 		String b_hash =b.getB_hash();
 		
