@@ -521,7 +521,7 @@
 				}
 			});
 			
-			// 다른 곳 누르면 모달 꺼짐
+			/* 다른 곳 누르면 모달 꺼짐 */ 
 			window.onclick = function(event) {
 			    if (event.target == modal) {
 			        modal.style.display = "none";
@@ -532,7 +532,7 @@
 			
 		
 			
-			// 디테일 부메뉴(수정, 신고)
+			/* 디테일 부메뉴(수정, 신고) */
 			function boardSub(bunum, bnum){
 	        	var unum = '<c:out value="${loginUser.user_num}"/>';
 	            var bunum = bunum;
@@ -556,7 +556,7 @@
 	            });
 	        }
 	           
-			// 다른 곳 클릭하면 디테일 부메뉴 숨김
+			/* 다른 곳 클릭하면 디테일 부메뉴 숨김 */
 	        $("body").click(function(e){
 	            if(!$('.board-etc').has(e.target).length){
 	                $('.boardSub').hide();

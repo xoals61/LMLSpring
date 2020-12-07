@@ -252,7 +252,6 @@
         });
         });
 
-        /* 알림 아이콘 클릭 시 아이콘 변경 */
         
         
           /* 모달팝업 디테일 */
@@ -378,19 +377,13 @@
               
               
               function my(){
-            	 
-            	  
             	  location.href="MyPage.do?uNum=${loginUser.user_num}&page=1";
-            	  
               }
-              
-              
-              
               
               function tag(){
-                   	  
             	  location.href="MyPage.do?uNum=${loginUser.user_num}&page=2";
               }
+              
               /*상세보기(detail) 시작*/
       		const content = document.getElementsByClassName("content");
       		
@@ -409,6 +402,7 @@
       				dataType:"JSON",
       				success:function(data){	
       					hashHeartAjax();
+      					hashUSerAjax();
       					replyList();
       					
       					var page = "userPage.do?id=" + data[0].b_user_id;
@@ -441,6 +435,7 @@
       								'<div class="board-textDiv">'+
       									'<div class="board-text">'+ data[0].b_content +'</div>'+
       									'<div class="board-hashtag"></div>'+
+      									'<div class="board-Usertag"></div>'+
       								'</div>'+
       								'<div class="board-stateicon">'+
       									'<div class="board-heartCount"></div>'+
@@ -476,65 +471,53 @@
       					
       					followList(data[0].b_user_num);
       					boardSub(data[0].b_user_num, bnum);
+      					
       					if(data[0].b_top !=null){
-      						$('.board-clothesInfo').append('<div class="clothesInfo-div">'+
-      								'<div class="clothes-img">'+
-      								'<img src="resources/images/detailImg/top.png">'+
-      							'</div>'+
-      							'<div class="clothes-p">상의</div>'+
-      							'<div class="clothes-info">'+ data[0].b_top +'</div>'+
-      						'</div>');
-      					}
-      					if(data[0].b_bottom !=null){
-      						$('.board-clothesInfo').append('<div class="clothesInfo-div">'+
-      								'<div class="clothes-img">'+
-      								'<img src="resources/images/detailImg/pants.png">'+
-      							'</div>'+
-      							'<div class="clothes-p">상의</div>'+
-      							'<div class="clothes-info">'+ data[0].b_bottom +'</div>'+
-      						'</div>');
-      					}
-      					if(data[0].b_shoes !=null){
-      						$('.board-clothesInfo').append('<div class="clothesInfo-div">'+
-      								'<div class="clothes-img">'+
-      								'<img src="resources/images/detailImg/pants.png">'+
-      							'</div>'+
-      							'<div class="clothes-p">상의</div>'+
-      							'<div class="clothes-info">'+ data[0].b_shoes +'</div>'+
-      						'</div>');
-      					}
-      					if(data[0].b_acc !=null){
-      						$('.board-clothesInfo').append('<div class="clothesInfo-div">'+
-      								'<div class="clothes-img">'+
-      								'<img src="resources/images/detailImg/pants.png">'+
-      							'</div>'+
-      							'<div class="clothes-p">상의</div>'+
-      							'<div class="clothes-info">'+ data[0].b_acc +'</div>'+
-      						'</div>');
-      					}
-      					if(data[0].b_acc !=null){
-      						$('.board-clothesInfo').append('<div class="clothesInfo-div">'+
-      								'<div class="clothes-img">'+
-      								'<img src="resources/images/detailImg/pants.png">'+
-      							'</div>'+
-      							'<div class="clothes-p">상의</div>'+
-      							'<div class="clothes-info">'+ data[0].b_acc +'</div>'+
-      						'</div>');
-      					}
-      					if(data[0].b_etc !=null){
-      						$('.board-clothesInfo').append('<div class="clothesInfo-div">'+
-      								'<div class="clothes-img">'+
-      								'<img src="resources/images/detailImg/pants.png">'+
-      							'</div>'+
-      							'<div class="clothes-p">상의</div>'+
-      							'<div class="clothes-info">'+ data[0].b_etc +'</div>'+
-      						'</div>');
-      					}
-      					console.log(data[0].image1);
-      					console.log(data[0].image2);
-      					console.log(data[0].image3);
-      					console.log(data[0].image4);
-      					console.log(data[0].image5);
+    						$('.board-clothesInfo').append('<div class="clothesInfo-div">'+
+    								'<div class="clothes-img">'+
+    								'<img src="resources/images/detailImg/top.png">'+
+    							'</div>'+
+    							'<div class="clothes-p">top</div>'+
+    							'<div class="clothes-info" id="'+data[0].b_top+'" onclick="brandSearch(id);">'+ data[0].b_top +'</div>'+
+    						'</div>');
+    					}
+    					if(data[0].b_bottom !=null){
+    						$('.board-clothesInfo').append('<div class="clothesInfo-div">'+
+    								'<div class="clothes-img">'+
+    								'<img src="resources/images/detailImg/pants.png">'+
+    							'</div>'+
+    							'<div class="clothes-p">bottom</div>'+
+    							'<div class="clothes-info" id="'+data[0].b_bottom+'" onclick="brandSearch(id);">'+ data[0].b_bottom +'</div>'+
+    						'</div>');
+    					}
+    					if(data[0].b_shoes !=null){
+    						$('.board-clothesInfo').append('<div class="clothesInfo-div">'+
+    								'<div class="clothes-img">'+
+    								'<img src="resources/images/detailImg/shoes.png">'+
+    							'</div>'+
+    							'<div class="clothes-p">shoes</div>'+
+    							'<div class="clothes-info" id="'+data[0].b_shoes+'" onclick="brandSearch(id);">'+ data[0].b_shoes +'</div>'+
+    						'</div>');
+    					}
+    					if(data[0].b_acc !=null){
+    						$('.board-clothesInfo').append('<div class="clothesInfo-div">'+
+    								'<div class="clothes-img">'+
+    								'<img src="resources/images/detailImg/bag.png">'+
+    							'</div>'+
+    							'<div class="clothes-p">acc</div>'+
+    							'<div class="clothes-info" id="'+data[0].b_acc+'" onclick="brandSearch(id);">'+ data[0].b_acc +'</div>'+
+    						'</div>');
+    					}
+    					if(data[0].b_etc !=null){
+    						$('.board-clothesInfo').append('<div class="clothesInfo-div">'+
+    								'<div class="clothes-img">'+
+    								'<img src="resources/images/detailImg/watch.png">'+
+    							'</div>'+
+    							'<div class="clothes-p">etc</div>'+
+    							'<div class="clothes-info" id="'+data[0].b_etc+'" onclick="brandSearch(id);">'+ data[0].b_etc +'</div>'+
+    						'</div>');
+    					}
+    					
       				 	const prev = document.getElementById('prev');
       				    const next = document.getElementById('next');
       				    const ultag = document.getElementsByClassName('board-img');
