@@ -184,7 +184,7 @@
 	<script>
 
 	
-		// 테이블 하트 리스트
+		/* 테이블 하트 리스트 */
 		function heartIcon(){
 			var unum = '<c:out value="${loginUser.user_num}"/>';
 			
@@ -221,12 +221,10 @@
 		    
 		    // 게시물 좋아요 아이콘 클릭 시 아이콘 변경 
 			$(".cHeart").click(function(){
-				
 				var bnum = $('.cheart',this).attr("id").substring(2);
 				var unum = '<c:out value="${loginUser.user_num}"/>';
 				
 				if(unum.length > 0){
-					
 					//빈하트일때 좋아요 등록
 					if($('.cheart',this).attr('src') == "resources/images/icon/main/heart.png"){
 						

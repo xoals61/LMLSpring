@@ -185,94 +185,92 @@
 
 	<script>
 	
-		// 하트 리스트
-		function heartIcon(){
-			
-			var unum = '<c:out value="${loginUser.user_num}"/>';
-			
-			if(unum.length > 0){
-				$.ajax({
-					url:"BoardHeart.do",
-					data:{unum:unum},
-					success:function(data){	
-						if(data.length > 0){
-							for(var i=0; i<data.length; i++){
-								$('#th'+data[i]).attr('src','resources/images/icon/main/heart2.png');
-							}
-						}
-					},
-					error:function(request,status,error){
-						console.log("** error code : " + request.status + "\n"
-							+ "message : " + request.responseText + "\n"
-							+ "error : " + error);
-					}
-				});
-			}
-		}
+	/* 테이블 하트 리스트 */
+	function heartIcon(){
+		var unum = '<c:out value="${loginUser.user_num}"/>';
 		
-		// 게시물 마우스오버
-		function boardHover(){
-		  	$('.chover').hide();
-		    $('.content').mouseover(function(){
-		        $('.chover',this).show();
-		    });
-		    $('.content').mouseout(function(){
-		        $('.chover').hide();
-		    });
-		    
-		    /* 게시물 좋아요 아이콘 클릭 시 아이콘 변경 */
-			$(".cHeart").click(function(){
-				
-				var bnum = $('.cheart',this).attr("id").substring(2);
-				var unum = '<c:out value="${loginUser.user_num}"/>';
-				
-				if(unum.length > 0){
-					
-					//빈하트일때 좋아요 등록
-					if($('.cheart',this).attr('src') == "resources/images/icon/main/heart.png"){
-						
-						$.ajax({
-							url:"BoardAddHeart.do",
-							data:{bnum:bnum, unum:unum},
-							success:function(data){	
-								if(data == "success"){
-									$('#th'+bnum).attr('src','resources/images/icon/main/heart2.png');
-								}else{
-									alert('좋아요 실패');
-								}
-							},
-							error:function(request,status,error){
-								console.log("** error code : " + request.status + "\n"
-									+ "message : " + request.responseText + "\n"
-									+ "error : " + error);
-							}
-						});
-						
-					//꽉찬하트일때 좋아요 취소
-					}else if($('.cheart',this).attr('src') == "resources/images/icon/main/heart2.png"){
-						
-						 $.ajax({
-							url:"BoardDelHeart.do",
-							data:{bnum:bnum, unum:unum},
-							success:function(data){	
-								if(data == "success"){
-									$('#th'+bnum).attr('src','resources/images/icon/main/heart.png');
-								}else{
-									alert('좋아요 취소 실패');
-								}
-							},
-							error:function(request,status,error){
-								console.log("** error code : " + request.status + "\n"
-									+ "message : " + request.responseText + "\n"
-									+ "error : " + error);
-							}
-						});
-				 	} 
-				}else{
-					alert('로그인 후 이용 가능합니다.');
+		if(unum.length > 0){
+			$.ajax({
+				url:"BoardHeart.do",
+				data:{unum:unum},
+				success:function(data){	
+					if(data.length > 0){
+						for(var i=0; i<data.length; i++){
+							$('#th'+data[i]).attr('src','resources/images/icon/main/heart2.png');
+						}
+					}
+				},
+				error:function(request,status,error){
+					console.log("** error code : " + request.status + "\n"
+						+ "message : " + request.responseText + "\n"
+						+ "error : " + error);
 				}
 			});
 		}
+	}
+	
+	/* 테이블 게시물 마우스 오버 */
+	function boardHover(){
+	  	$('.chover').hide();
+	    $('.content').mouseover(function(){
+	        $('.chover',this).show();
+	    });
+	    $('.content').mouseout(function(){
+	        $('.chover').hide();
+	        
+	    });
+	    
+	    // 게시물 좋아요 아이콘 클릭 시 아이콘 변경 
+		$(".cHeart").click(function(){
+			var bnum = $('.cheart',this).attr("id").substring(2);
+			var unum = '<c:out value="${loginUser.user_num}"/>';
+			
+			if(unum.length > 0){
+				//빈하트일때 좋아요 등록
+				if($('.cheart',this).attr('src') == "resources/images/icon/main/heart.png"){
+					
+					$.ajax({
+						url:"BoardAddHeart.do",
+						data:{bnum:bnum, unum:unum},
+						success:function(data){	
+							if(data == "success"){
+								$('#th'+bnum).attr('src','resources/images/icon/main/heart2.png');
+							}else{
+								alert('좋아요 실패');
+							}
+						},
+						error:function(request,status,error){
+							console.log("** error code : " + request.status + "\n"
+								+ "message : " + request.responseText + "\n"
+								+ "error : " + error);
+						}
+					});
+					
+				//꽉찬하트일때 좋아요 취소
+				}else if($('.cheart',this).attr('src') == "resources/images/icon/main/heart2.png"){
+					
+					 $.ajax({
+						url:"BoardDelHeart.do",
+						data:{bnum:bnum, unum:unum},
+						success:function(data){	
+							if(data == "success"){
+								$('#th'+bnum).attr('src','resources/images/icon/main/heart.png');
+							}else{
+								alert('좋아요 취소 실패');
+							}
+						},
+						error:function(request,status,error){
+							console.log("** error code : " + request.status + "\n"
+								+ "message : " + request.responseText + "\n"
+								+ "error : " + error);
+						}
+					});
+			 	} 
+			}else{
+				alert('로그인 후 이용 가능합니다.');
+			}
+		});
+	}
 
 
 		/* 체형별 */
@@ -340,15 +338,28 @@
 					hashUSerAjax();
 					replyList();
 					
-					$('.board-detail').append('<div class="board-img">'+
+					var page = "userPage.do?id=" + data[0].b_user_id;
+					
+					if(data[0].b_user_id=='${loginUser.id}'){
+						page = "MyPage.do?uNum=${loginUser.user_num}&page=1";
+					}
+					
+					$('.board-detail').append(
+							'<div class="slide">'
+						    + '<img id="prev" src="resources/images/minwoo/next-1.png" alt="prev">'
+						    + '<img id="next" src="resources/images/minwoo/next-1.png" alt="next">'
+							+ '<div id="num1" class="board-img">' +
+							'<span>' +
 							'<img src="resources/buploadFiles/'+ data[0].image1 +'">'+
+							'</span>' +
+							'</div>'+
 							'</div>'+
 							'<div class="board-right">'+
 								'<div class="board-user">'+
 									'<div class="board-userImg">'+
-									'<a href="userPage.do?id='+data[0].b_user_id+'"><img src="resources/images/profileImg/'+ data[0].b_profile_img +'"></a>'+
+									'<a href="'+page + '"><img src="resources/images/profileImg/'+ data[0].b_profile_img +'"></a>'+
 									'</div>'+
-									'<a href="userPage.do?id='+data[0].b_user_id+'"><div class="board-id">'+
+									'<a href="'+page + '"><div class="board-id">'+
 											'<p>'+ data[0].b_name +'</p>'+
 										'</div></a>'+
 									'<div class="board-follow" id="fo'+data[0].b_user_num+'" onclick="addFollow(id);"></div>'+
@@ -366,10 +377,9 @@
 									'<div class="board-etc">'+
 		                              '<img src="resources/images/icon/main/menu1.png">'+
 		                              '<ul class="boardSub">'+
-		                                      '<a href="#"><li><div class="boardSub1">수정</div></li></a>'+
-		                                       '<a href="#"><li><div class="boardSub1">삭제</div></li></a>'+
-		                                       '<a href="#"><li><div class="boardSub1">신고</div></li></a>'+
-		                                   '</ul>'+
+		                              '<a href="bUpdateView.do?bnum='+bnum+'" id="idboardUp"><li><div class="boardSub1">수정</div></li></a>'+
+		                              '<a href="Settings3.do" id="idboardDecla"><li><div class="boardSub1">신고</div></li></a>'+
+		                              '</ul>'+
 		                           '</div>'+
 								'</div>'+
 								'<div class="board-clothesInfo">'+
@@ -392,14 +402,15 @@
 							'</div>');
 					
 					followList(data[0].b_user_num);
-					boardSub(data[0].b_user_num);
+					boardSub(data[0].b_user_num, bnum);
+					
 					if(data[0].b_top !=null){
 						$('.board-clothesInfo').append('<div class="clothesInfo-div">'+
 								'<div class="clothes-img">'+
 								'<img src="resources/images/detailImg/top.png">'+
 							'</div>'+
-							'<div class="clothes-p">상의</div>'+
-							'<div class="clothes-info">'+ data[0].b_top +'</div>'+
+							'<div class="clothes-p">top</div>'+
+							'<div class="clothes-info" id="'+data[0].b_top+'" onclick="brandSearch(id);">'+ data[0].b_top +'</div>'+
 						'</div>');
 					}
 					if(data[0].b_bottom !=null){
@@ -407,47 +418,94 @@
 								'<div class="clothes-img">'+
 								'<img src="resources/images/detailImg/pants.png">'+
 							'</div>'+
-							'<div class="clothes-p">상의</div>'+
-							'<div class="clothes-info">'+ data[0].b_bottom +'</div>'+
+							'<div class="clothes-p">bottom</div>'+
+							'<div class="clothes-info" id="'+data[0].b_bottom+'" onclick="brandSearch(id);">'+ data[0].b_bottom +'</div>'+
 						'</div>');
 					}
 					if(data[0].b_shoes !=null){
 						$('.board-clothesInfo').append('<div class="clothesInfo-div">'+
 								'<div class="clothes-img">'+
-								'<img src="resources/images/detailImg/pants.png">'+
+								'<img src="resources/images/detailImg/shoes.png">'+
 							'</div>'+
-							'<div class="clothes-p">상의</div>'+
-							'<div class="clothes-info">'+ data[0].b_shoes +'</div>'+
+							'<div class="clothes-p">shoes</div>'+
+							'<div class="clothes-info" id="'+data[0].b_shoes+'" onclick="brandSearch(id);">'+ data[0].b_shoes +'</div>'+
 						'</div>');
 					}
 					if(data[0].b_acc !=null){
 						$('.board-clothesInfo').append('<div class="clothesInfo-div">'+
 								'<div class="clothes-img">'+
-								'<img src="resources/images/detailImg/pants.png">'+
+								'<img src="resources/images/detailImg/bag.png">'+
 							'</div>'+
-							'<div class="clothes-p">상의</div>'+
-							'<div class="clothes-info">'+ data[0].b_acc +'</div>'+
-						'</div>');
-					}
-					if(data[0].b_acc !=null){
-						$('.board-clothesInfo').append('<div class="clothesInfo-div">'+
-								'<div class="clothes-img">'+
-								'<img src="resources/images/detailImg/pants.png">'+
-							'</div>'+
-							'<div class="clothes-p">상의</div>'+
-							'<div class="clothes-info">'+ data[0].b_acc +'</div>'+
+							'<div class="clothes-p">acc</div>'+
+							'<div class="clothes-info" id="'+data[0].b_acc+'" onclick="brandSearch(id);">'+ data[0].b_acc +'</div>'+
 						'</div>');
 					}
 					if(data[0].b_etc !=null){
 						$('.board-clothesInfo').append('<div class="clothesInfo-div">'+
 								'<div class="clothes-img">'+
-								'<img src="resources/images/detailImg/pants.png">'+
+								'<img src="resources/images/detailImg/watch.png">'+
 							'</div>'+
-							'<div class="clothes-p">상의</div>'+
-							'<div class="clothes-info">'+ data[0].b_etc +'</div>'+
+							'<div class="clothes-p">etc</div>'+
+							'<div class="clothes-info" id="'+data[0].b_etc+'" onclick="brandSearch(id);">'+ data[0].b_etc +'</div>'+
 						'</div>');
 					}
 					
+					// 디테일 사진 슬라이드
+				 	const prev = document.getElementById('prev');
+				    const next = document.getElementById('next');
+				    const ultag = document.getElementsByClassName('board-img');
+				    const imgArr =[data[0].image2,data[0].image3,data[0].image4,data[0].image5];
+				    var num = 0; // imgcheck에 사용하는 전역변수
+				    let arr = imgcheck(); // 배열 정렬, 배열이 없으면 화살표 안보이게 설정.
+				    imgmake(arr); // 이미지 생성
+				    
+				    function imgmake(arr){
+				        //이미지가 있으면 생성
+				        for(let i = 0; i<arr.length; i++){
+				          var para = document.createElement('span');
+				          var img = document.createElement('img');
+				          var element = document.getElementById("num1");
+				          img.src="resources/buploadFiles/"+arr[i];
+				          para.appendChild(img);
+				          element.appendChild(para);
+				        }
+				      }
+				    
+				      function imgcheck(){
+				        let arr=[];
+				        
+				        //배열 null 개수 체크 밑 제거
+				        for(let i = 0; i<imgArr.length; i++){
+				          if(imgArr[i]!=null){
+				            num++;
+				            arr.push(imgArr[i]);
+				          }
+				        }
+				        // 배열안에 아무것도 없으면 화살표 버튼(이미지)을 안보이게 설정.
+				        if(num==0){
+				          prev.style.display='none';
+				          next.style.display='none';
+				        }
+				        return arr;
+				      }
+				      
+				      function prevfun(){
+				        if((ultag[0].id.substring(3,4) != '1'))
+				          ultag[0].id = ultag[0].id.substring(0,3) + ((Number(ultag[0].id.substring(3,4)))-1);
+				        else
+				          ultag[0].id = ('num' + String(arr.length+1));
+				        
+				      }
+				      
+				      function nextfun(){
+				        if((ultag[0].id.substring(3,4) != String((arr.length+1))))
+				          ultag[0].id = ultag[0].id.substring(0,3) + ((Number(ultag[0].id.substring(3,4)))+1);
+				        else
+				          ultag[0].id = 'num1';
+				      }
+				      
+				      prev.addEventListener("click",prevfun);
+				      next.addEventListener("click",nextfun);
 				},
 				error:function(request,status,error){
 					console.log("** error code : " + request.status + "\n"
@@ -456,6 +514,7 @@
 				}
 			});
 			
+			/* 다른 곳 누르면 모달 꺼짐 */ 
 			window.onclick = function(event) {
 			    if (event.target == modal) {
 			        modal.style.display = "none";
@@ -464,48 +523,43 @@
 			    }
 			}
 			
+		
 			
-			function boardSub(bunum){
-	            var unum = '<c:out value="${loginUser.user_num}"/>';
+			/* 디테일 부메뉴(수정, 신고) */
+			function boardSub(bunum, bnum){
+	        	var unum = '<c:out value="${loginUser.user_num}"/>';
 	            var bunum = bunum;
+	            var bnum = bnum;
 	            
-	            if(unum.length>0){
-	               if(unum == bunum){
-	                  
-	               }
-	            }
-	            
-	               $('.boardSub').hide();
-	               $('.board-etc').click(function(){
-	                   $('ul',this).slideToggle("fast");
-	               });
-	         }
+	            $('.boardSub').hide();
+	            $('.board-etc').click(function(){
+	            	$('ul',this).slideToggle("fast");
+	            	if(unum.length>0){
+		            	if(unum == bunum){
+		               		$('#idboardUp').show();
+		               		$('#idboardDecla').hide();
+		               	}else{
+		               		$('#idboardUp').hide();
+		               		$('#idboardDecla').show();
+		            	}
+		            }else{
+		            	$('#idboardUp').hide();
+	               		$('#idboardDecla').show();
+	            	}
+	            });
+	        }
 	           
-	           $("body").click(function(e){
-	               if(!$('.board-etc').has(e.target).length){
-	                   $('.boardSub').hide();
-	               }
-	           });
+			/* 다른 곳 클릭하면 디테일 부메뉴 숨김 */
+	        $("body").click(function(e){
+	            if(!$('.board-etc').has(e.target).length){
+	                $('.boardSub').hide();
+	            }
+	        });
 			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
+
+	     	/* 디테일 해쉬태그, 좋아요 리스트 불러오기 */
 			function hashHeartAjax(){
-				// 해쉬태그 불러오기
-				//게시글 해쉬태그
+	     		// 해시태그
 				$.ajax({
 					url:"BoardDetailHash.do",
 					data:{bnum:bnum},
@@ -521,10 +575,6 @@
 							+ "error : " + error);
 					}
 				});
-				//사용자태그
-			
-				
-				
 				
 				
 				// 디테일 좋아요 리스트 & 내가 좋아요 눌렀음 빨간하트로.
@@ -550,10 +600,9 @@
 					}
 				});
 			}
+	     	
 			
-			
-			
-			
+			/* 디테일 유저태그 리스트 불러오기*/
 			function hashUSerAjax(){
 				$.ajax({
 					url:"UserDetailHash.do",
@@ -573,11 +622,8 @@
 				
 			}
 			
-			
-			
-			
+			/* 디테일 팔로우 리스트 불러오기*/
 			function followList(bunum){
-				// 디테일 팔로우리스트 가져오기
 				var unum = '<c:out value="${loginUser.user_num}"/>';
 				var bunum = bunum;
 				if(unum.length>0){
@@ -602,7 +648,7 @@
 				}
 			}
 			
-			// 디테일 댓글 리스트
+			/* 디테일 댓글 리스트 불러오기*/
 			function replyList(){
 				$.ajax({
 					url:"BoardDetailComm.do",
@@ -610,15 +656,22 @@
 					dataType:"JSON",
 					success:function(data){	
 						if(data.length > 0){
+							var page = "userPage.do?id=" + data[0].c_id;
+							
+							if(data[0].c_id=='${loginUser.id}'){
+								page = "MyPage.do?uNum=${loginUser.user_num}";
+							}
+							
 							var unum1 = '<c:out value="${loginUser.user_num}"/>';
 							$('.commentCount').empty();
 							$('.commentCount').append('<p>댓글 ('+data.length+')</p>');
 							$('.board-commentDiv').empty();
 							for(var i=0; i<data.length; i++){
+								console.log('ㅆㅣ아이디  : ' + data[i].c_id);
 								$('.board-commentDiv').append(''+
 										'<div class="board-comment">'+
 										'<div class="comment-img">'+
-											'<a href="./jiman/MyPage.html"><img src="resources/images/profileImg/'+ data[i].profile +'"></a>'+
+											'<a href="'+page + '"><img src="resources/images/profileImg/'+ data[i].profile +'"></a>'+
 										'</div>'+
 										'<div class="comment-content">'+
 											'<p class="comment-user" id="tag'+data[i].c_unum+'" onclick="tagComment(id);">'+ data[i].uname +'</p>'+
@@ -634,9 +687,9 @@
 							
 							
 						}else{
-							//$('.commentCount').empty();
+							$('.commentCount').empty();
 							$('.commentCount').append('<p>댓글 ('+data.length+')</p>');
-							//$('.board-commentDiv').empty();
+							$('.board-commentDiv').empty();
 							$('.board-commentDiv').append(''+
 								'<div class="board-comment">'+
 									//'<div class="comment-img"></div>'+
@@ -654,8 +707,13 @@
 					}
 				});
 			}
-			
-			
+
+		}
+		
+		/* 디테일 스타일태그 클릭 시 네이버 검색 */
+		function brandSearch(brand){
+			var newWindow = window.open("about:blank");
+			newWindow.location.href = 'https://search.naver.com/search.naver?where=nexearch&sm=top_hty&fbm=1&ie=utf8&query='+brand;
 		}
 		
 		function addFollow(bunum){
@@ -835,9 +893,9 @@
 						$('.board-commentDiv').scrollTop($('.board-commentDiv').prop('scrollHeight'));
 					}else{
 						console.log(data.length);
-						//$('.commentCount').empty();
+						$('.commentCount').empty();
 						$('.commentCount').append('<p>댓글 ('+data.length+')</p>');
-						//$('.board-commentDiv').empty();
+						$('.board-commentDiv').empty();
 						$('.board-commentDiv').append(''+
 							'<div class="board-comment">'+
 								//'<div class="comment-img"></div>'+
