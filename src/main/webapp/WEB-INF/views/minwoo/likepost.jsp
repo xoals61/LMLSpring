@@ -341,14 +341,14 @@
 				dataType:"JSON",
 				success:function(data){	
 					hashHeartAjax();
+					hashUSerAjax();
 					replyList();
 					
 					var page = "userPage.do?id=" + data[0].b_user_id;
-
-					if(data[0].b_user_id=='${loginUser.id}'){
-						page = "MyPage.do?uNum=${loginUser.user_num}";
-					}
 					
+					if(data[0].b_user_id=='${loginUser.id}'){
+						page = "MyPage.do?uNum=${loginUser.user_num}&page=1";
+					}
 					
 					$('.board-detail').append(
 							'<div class="slide">'
@@ -357,7 +357,7 @@
 							+ '<div id="num1" class="board-img">' +
 							'<span>' +
 							'<img src="resources/buploadFiles/'+ data[0].image1 +'">'+
-							'<span>' +
+							'</span>' +
 							'</div>'+
 							'</div>'+
 							'<div class="board-right">'+
@@ -373,6 +373,7 @@
 								'<div class="board-textDiv">'+
 									'<div class="board-text">'+ data[0].b_content +'</div>'+
 									'<div class="board-hashtag"></div>'+
+									'<div class="board-Usertag"></div>'+
 								'</div>'+
 								'<div class="board-stateicon">'+
 									'<div class="board-heartCount"></div>'+
@@ -380,8 +381,12 @@
 										'<img src="resources/images/icon/menu/iconmonstr-heart-thin-72.png" id="h'+bnum+'" onclick="addHeart('+bnum+');">'+
 									'</div>'+
 									'<div class="board-etc">'+
-										'<img src="resources/images/icon/main/menu1.png">'+
-									'</div>'+
+		                              '<img src="resources/images/icon/main/menu1.png">'+
+		                              '<ul class="boardSub">'+
+		                              '<a href="bUpdateView.do?bnum='+bnum+'" id="idboardUp"><li><div class="boardSub1">수정</div></li></a>'+
+		                              '<a href="Settings3.do" id="idboardDecla"><li><div class="boardSub1">신고</div></li></a>'+
+		                              '</ul>'+
+		                           '</div>'+
 								'</div>'+
 								'<div class="board-clothesInfo">'+
 									
@@ -403,14 +408,15 @@
 							'</div>');
 					
 					followList(data[0].b_user_num);
+					boardSub(data[0].b_user_num, bnum);
 					
 					if(data[0].b_top !=null){
 						$('.board-clothesInfo').append('<div class="clothesInfo-div">'+
 								'<div class="clothes-img">'+
 								'<img src="resources/images/detailImg/top.png">'+
 							'</div>'+
-							'<div class="clothes-p">상의</div>'+
-							'<div class="clothes-info">'+ data[0].b_top +'</div>'+
+							'<div class="clothes-p">top</div>'+
+							'<div class="clothes-info" id="'+data[0].b_top+'" onclick="brandSearch(id);">'+ data[0].b_top +'</div>'+
 						'</div>');
 					}
 					if(data[0].b_bottom !=null){
@@ -418,51 +424,39 @@
 								'<div class="clothes-img">'+
 								'<img src="resources/images/detailImg/pants.png">'+
 							'</div>'+
-							'<div class="clothes-p">상의</div>'+
-							'<div class="clothes-info">'+ data[0].b_bottom +'</div>'+
+							'<div class="clothes-p">bottom</div>'+
+							'<div class="clothes-info" id="'+data[0].b_bottom+'" onclick="brandSearch(id);">'+ data[0].b_bottom +'</div>'+
 						'</div>');
 					}
 					if(data[0].b_shoes !=null){
 						$('.board-clothesInfo').append('<div class="clothesInfo-div">'+
 								'<div class="clothes-img">'+
-								'<img src="resources/images/detailImg/pants.png">'+
+								'<img src="resources/images/detailImg/shoes.png">'+
 							'</div>'+
-							'<div class="clothes-p">상의</div>'+
-							'<div class="clothes-info">'+ data[0].b_shoes +'</div>'+
+							'<div class="clothes-p">shoes</div>'+
+							'<div class="clothes-info" id="'+data[0].b_shoes+'" onclick="brandSearch(id);">'+ data[0].b_shoes +'</div>'+
 						'</div>');
 					}
 					if(data[0].b_acc !=null){
 						$('.board-clothesInfo').append('<div class="clothesInfo-div">'+
 								'<div class="clothes-img">'+
-								'<img src="resources/images/detailImg/pants.png">'+
+								'<img src="resources/images/detailImg/bag.png">'+
 							'</div>'+
-							'<div class="clothes-p">상의</div>'+
-							'<div class="clothes-info">'+ data[0].b_acc +'</div>'+
-						'</div>');
-					}
-					if(data[0].b_acc !=null){
-						$('.board-clothesInfo').append('<div class="clothesInfo-div">'+
-								'<div class="clothes-img">'+
-								'<img src="resources/images/detailImg/pants.png">'+
-							'</div>'+
-							'<div class="clothes-p">상의</div>'+
-							'<div class="clothes-info">'+ data[0].b_acc +'</div>'+
+							'<div class="clothes-p">acc</div>'+
+							'<div class="clothes-info" id="'+data[0].b_acc+'" onclick="brandSearch(id);">'+ data[0].b_acc +'</div>'+
 						'</div>');
 					}
 					if(data[0].b_etc !=null){
 						$('.board-clothesInfo').append('<div class="clothesInfo-div">'+
 								'<div class="clothes-img">'+
-								'<img src="resources/images/detailImg/pants.png">'+
+								'<img src="resources/images/detailImg/watch.png">'+
 							'</div>'+
-							'<div class="clothes-p">상의</div>'+
-							'<div class="clothes-info">'+ data[0].b_etc +'</div>'+
+							'<div class="clothes-p">etc</div>'+
+							'<div class="clothes-info" id="'+data[0].b_etc+'" onclick="brandSearch(id);">'+ data[0].b_etc +'</div>'+
 						'</div>');
 					}
-					console.log(data[0].image1);
-					console.log(data[0].image2);
-					console.log(data[0].image3);
-					console.log(data[0].image4);
-					console.log(data[0].image5);
+					
+					// 디테일 사진 슬라이드
 				 	const prev = document.getElementById('prev');
 				    const next = document.getElementById('next');
 				    const ultag = document.getElementsByClassName('board-img');
@@ -470,6 +464,7 @@
 				    var num = 0; // imgcheck에 사용하는 전역변수
 				    let arr = imgcheck(); // 배열 정렬, 배열이 없으면 화살표 안보이게 설정.
 				    imgmake(arr); // 이미지 생성
+				    
 				    function imgmake(arr){
 				        //이미지가 있으면 생성
 				        for(let i = 0; i<arr.length; i++){
@@ -481,6 +476,7 @@
 				          element.appendChild(para);
 				        }
 				      }
+				    
 				      function imgcheck(){
 				        let arr=[];
 				        
@@ -506,12 +502,14 @@
 				          ultag[0].id = ('num' + String(arr.length+1));
 				        
 				      }
+				      
 				      function nextfun(){
 				        if((ultag[0].id.substring(3,4) != String((arr.length+1))))
 				          ultag[0].id = ultag[0].id.substring(0,3) + ((Number(ultag[0].id.substring(3,4)))+1);
 				        else
 				          ultag[0].id = 'num1';
 				      }
+				      
 				      prev.addEventListener("click",prevfun);
 				      next.addEventListener("click",nextfun);
 				},
@@ -522,6 +520,7 @@
 				}
 			});
 			
+			/* 다른 곳 누르면 모달 꺼짐 */ 
 			window.onclick = function(event) {
 			    if (event.target == modal) {
 			        modal.style.display = "none";
@@ -530,8 +529,43 @@
 			    }
 			}
 			
+		
+			
+			/* 디테일 부메뉴(수정, 신고) */
+			function boardSub(bunum, bnum){
+	        	var unum = '<c:out value="${loginUser.user_num}"/>';
+	            var bunum = bunum;
+	            var bnum = bnum;
+	            
+	            $('.boardSub').hide();
+	            $('.board-etc').click(function(){
+	            	$('ul',this).slideToggle("fast");
+	            	if(unum.length>0){
+		            	if(unum == bunum){
+		               		$('#idboardUp').show();
+		               		$('#idboardDecla').hide();
+		               	}else{
+		               		$('#idboardUp').hide();
+		               		$('#idboardDecla').show();
+		            	}
+		            }else{
+		            	$('#idboardUp').hide();
+	               		$('#idboardDecla').show();
+	            	}
+	            });
+	        }
+	           
+			/* 다른 곳 클릭하면 디테일 부메뉴 숨김 */
+	        $("body").click(function(e){
+	            if(!$('.board-etc').has(e.target).length){
+	                $('.boardSub').hide();
+	            }
+	        });
+			
+
+	     	/* 디테일 해쉬태그, 좋아요 리스트 불러오기 */
 			function hashHeartAjax(){
-				// 해쉬태그 불러오기
+	     		// 해시태그
 				$.ajax({
 					url:"BoardDetailHash.do",
 					data:{bnum:bnum},
@@ -547,6 +581,7 @@
 							+ "error : " + error);
 					}
 				});
+				
 				
 				// 디테일 좋아요 리스트 & 내가 좋아요 눌렀음 빨간하트로.
 				$.ajax({
@@ -571,9 +606,30 @@
 					}
 				});
 			}
+	     	
 			
+			/* 디테일 유저태그 리스트 불러오기*/
+			function hashUSerAjax(){
+				$.ajax({
+					url:"UserDetailHash.do",
+					data:{bnum:bnum},
+					dataType:"JSON",
+					success:function(data){	
+						for(var i=0; i<data.length; i++){
+				$('.board-Usertag').append('<a href=\'Search.do?keyword='+data[i]+'\'>' +"@" +data[i] + ' </a>');
+						}
+					},
+					error:function(request,status,error){
+						console.log("** error code : " + request.status + "\n"
+							+ "message : " + request.responseText + "\n"
+							+ "error : " + error);
+					}
+				});
+				
+			}
+			
+			/* 디테일 팔로우 리스트 불러오기*/
 			function followList(bunum){
-				// 디테일 팔로우리스트 가져오기
 				var unum = '<c:out value="${loginUser.user_num}"/>';
 				var bunum = bunum;
 				if(unum.length>0){
@@ -598,7 +654,7 @@
 				}
 			}
 			
-			// 디테일 댓글 리스트
+			/* 디테일 댓글 리스트 불러오기*/
 			function replyList(){
 				$.ajax({
 					url:"BoardDetailComm.do",
@@ -606,15 +662,22 @@
 					dataType:"JSON",
 					success:function(data){	
 						if(data.length > 0){
+							var page = "userPage.do?id=" + data[0].c_id;
+							
+							if(data[0].c_id=='${loginUser.id}'){
+								page = "MyPage.do?uNum=${loginUser.user_num}";
+							}
+							
 							var unum1 = '<c:out value="${loginUser.user_num}"/>';
 							$('.commentCount').empty();
 							$('.commentCount').append('<p>댓글 ('+data.length+')</p>');
 							$('.board-commentDiv').empty();
 							for(var i=0; i<data.length; i++){
+								console.log('ㅆㅣ아이디  : ' + data[i].c_id);
 								$('.board-commentDiv').append(''+
 										'<div class="board-comment">'+
 										'<div class="comment-img">'+
-											'<a href="./jiman/MyPage.html"><img src="resources/images/profileImg/'+ data[i].profile +'"></a>'+
+											'<a href="'+page + '"><img src="resources/images/profileImg/'+ data[i].profile +'"></a>'+
 										'</div>'+
 										'<div class="comment-content">'+
 											'<p class="comment-user" id="tag'+data[i].c_unum+'" onclick="tagComment(id);">'+ data[i].uname +'</p>'+
@@ -630,9 +693,9 @@
 							
 							
 						}else{
-							//$('.commentCount').empty();
+							$('.commentCount').empty();
 							$('.commentCount').append('<p>댓글 ('+data.length+')</p>');
-							//$('.board-commentDiv').empty();
+							$('.board-commentDiv').empty();
 							$('.board-commentDiv').append(''+
 								'<div class="board-comment">'+
 									//'<div class="comment-img"></div>'+
@@ -650,8 +713,7 @@
 					}
 				});
 			}
-			
-			
+
 		}
 		
 		function addFollow(bunum){
