@@ -20,14 +20,13 @@
 	<jsp:include page="WEB-INF/views/common/header.jsp" />
 	<script>
 		$(function(){
+			
 			$.ajax({
 				url:"IndexAjax.do",
 				dataType:"JSON",
-				success:function(data){					
-					
+				success:function(data){
 					var a = 0;	// tr
 					var b = 0;	// data[b]
-					
 					var row = Math.ceil(data.length/3);		// 총 tr
 					
 					addTable();
@@ -45,18 +44,13 @@
 						heartIcon();
 						for(var i=0; i<7; i++){	// 행
 							if(a<row){
-								
 								$('#table').append('<tr id="'+a+'">');
-							
 								for(var j=0; j<3; j++){	// 열
 									if(b < data.length){
 									var page = "userPage.do?id=" + data[b].b_user_id;
 										if(data[b].b_user_id=='${loginUser.id}'){
-											page = "MyPage.do?uNum=${loginUser.user_num}";
-											
-											
+											page = "MyPage.do?uNum=${loginUser.user_num}&page=1";
 										}
-										
 										$('#'+a).append('<td>'+
 													'<div class="content">'+
 														'<div>'+

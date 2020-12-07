@@ -72,13 +72,11 @@ public class BoardController {
 		b.setImage5(renameFileList[4]);
 		
 		int result = bService.insertStylePost(b);
-		int getbnum = bService.getbnum();
+		int getbnum = bService.getbnum();	// ㅇ
 		
 		String b_hash =b.getB_hash();
-		//System.out.println("1. b_hash는 : " + b_hash);
 		
 		String[] slist = b_hash.split(",");
-		//System.out.println("2. slist는 : " + slist);
 		
 		if(b_hash.length() > 0) {
 			for(int i=0; i<slist.length; i++){
@@ -91,12 +89,8 @@ public class BoardController {
 		}
 		
 		String tagUser = b.getT_unum();
-		//System.out.println("3. tagUser는 : " + tagUser);
 		String[] tagUserArr = tagUser.split(",");
-		//System.out.println("4. tagUserArr는 : " + Integer.parseInt(tagUserArr[0].toString()));
 		
-        //System.out.println("4. tagUserArr는 : " + tagUserArr);
-        
 		if(tagUser.length() > 0) {
 			for(int i=0; i<tagUserArr.length; i++){
 				Board bo = new Board();
