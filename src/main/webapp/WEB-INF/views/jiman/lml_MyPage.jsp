@@ -40,7 +40,7 @@
 		</div>
 		
 		
-	<div class="myModal" id="myModal" style="display: none;">
+	<div class="myModal10" id="myModal10" style="display: none;">
 		<div class="board-detail10" id="board-detail10" style="display: none;">
 		<h4 style="margin: 13px 0px 0 206px;">팔로워</h4>
 			<div class="mo_fallower">
@@ -255,16 +255,19 @@
         
         
           /* 모달팝업 디테일 */
-              var modal = document.getElementById('myModal');
+              var modal = document.getElementById('myModal10');
               var detail = document.getElementById('board-detail10');
               var modalwoo = document.getElementById('myModal1');
               var detailwoo = document.getElementById('board-detail1');
-              
+           	var modal2 =  document.getElementById('myModal2');
+            var detail2 = document.getElementById('board-detail2');
+           	
 
               $('#myfalwer').click(function(){
-                  $('.myModal').css('display','block');
+                  $('.myModal10').css('display','block');
                   $('.board-detail10').css('display','block');
                 
+                  
                   
               });
               $('#myfalowoo').click(function(){
@@ -275,14 +278,22 @@
               
       
               window.onclick = function(event) {
+            	  console.log(event.target);
                   if (event.target == modal) {
                       modal.style.display = "none";
                       detail.style.display = "none";
+                      $('myModal2').style.display = "none";
                   }
-                  if (event.target == modalwoo) {
+                  else if (event.target == modalwoo) {
                 	  modalwoo.style.display = "none";
                 	  detailwoo.style.display = "none";
+                	  $('myModal2').style.display = "none";
                   }
+                  else if (event.target == modal2) {
+    			        modal2.style.display = "none";
+    			        detail2.style.display = "none";
+    			        $('.board-detail2').empty();
+    			    }
               }
         
               $(document).ready(function(){
@@ -577,13 +588,13 @@
       				}
       			});
       			
-      			window.onclick = function(event) {
+      	/* 		window.onclick = function(event) {
       			    if (event.target == modal2) {
       			        modal2.style.display = "none";
       			        detail2.style.display = "none";
       			        $('.board-detail2').empty();
       			    }
-      			}
+      			} */
       			
       			function boardSub(bunum, bnum){
     	        	var unum = '<c:out value="${loginUser.user_num}"/>';
