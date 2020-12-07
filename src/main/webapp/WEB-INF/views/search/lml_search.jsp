@@ -67,7 +67,7 @@
 											</div>
 											<div class="cBtn">
 												<div class="cHeart" >
-													<img src="resources/images/icon/main/heart.png" id="th${tagBoard.b_num}" class="cheart" onclick="addHeart(id);">
+													<img src="resources/images/icon/main/heart.png" id="th${tagBoard.b_num}" class="cheart">
 												</div>
 												<div class="cComment" onclick="modalDetail('${tagBoard.b_num}')">
 													<div class="cbox"></div>
@@ -172,7 +172,7 @@
 		$(function(){
 			console.log('하트리스트 ?? ');
 			var unum = '<c:out value="${loginUser.user_num}"/>';
-			
+			boardHover();
 			if(unum.length > 0){
 				$.ajax({
 					url:"BoardHeart.do",
@@ -194,23 +194,21 @@
 		});
 		
 		
-		// 게시물 마우스오버
-		$(function(){
+		/* 테이블 게시물 마우스 오버 */
+		function boardHover(){
 		  	$('.chover').hide();
 		    $('.content').mouseover(function(){
 		        $('.chover',this).show();
 		    });
 		    $('.content').mouseout(function(){
 		        $('.chover').hide();
+		        
 		    });
 		    
-		});
-		
-		function addHeart(id){
-			console.log('에드하트');
-			 /* 게시물 좋아요 아이콘 클릭 시 아이콘 변경 */
-				
-				var bnum = id.substring(2);
+		    // 게시물 좋아요 아이콘 클릭 시 아이콘 변경 
+			$(".cHeart").click(function(e){
+				e.stopPropagation();
+				var bnum = $('.cheart',this).attr("id").substring(2);
 				var unum = '<c:out value="${loginUser.user_num}"/>';
 				
 				if(unum.length > 0){
@@ -258,7 +256,8 @@
 				}else{
 					alert('로그인 후 이용 가능합니다.');
 				}
-			
+			});
+		    
 		}
 
 
