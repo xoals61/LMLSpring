@@ -31,8 +31,6 @@
 	<jsp:include page="../common/header.jsp" />
 	
 	<!-- 팔로워 모달 -->
-	
-	
 		<div class="myModal3" id="myModal3" style="display: none;">
 			<div class="board-detail3" id="board-detail3" style="display: none;">
 				
