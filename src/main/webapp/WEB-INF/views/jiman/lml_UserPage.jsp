@@ -14,10 +14,10 @@
 <link
 	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500&display=swap"
 	rel="stylesheet">
-<link rel="stylesheet" href="resources/css/final_main2.css">
-<link rel="stylesheet" href="resources/css/jmCSS/final_mypage.css">
 <link rel="stylesheet" href="resources/css/minwoo/slide.css">
 <link rel="stylesheet" href="resources/css/final_detail.css">
+<link rel="stylesheet" href="resources/css/final_main2.css">
+<link rel="stylesheet" href="resources/css/jmCSS/final_mypage.css">
 </head>
 <body>
 	<!-- 상세보기 모달(detail)  -->
@@ -32,8 +32,8 @@
 	<jsp:include page="../common/header.jsp" />
 
 	<!-- 팔로워 모달 -->
-	<div class="myModal" id="myModal" style="display: none;">
-		<div class="board-detail" id="board-detail" style="display: none;">
+	<div class="myModal10" id="myModal10" style="display: none;">
+		<div class="board-detail10" id="board-detail10" style="display: none;">
 			<h4 style="margin: 13px 0px 0 206px;">팔로워</h4>
 			<div class="mo_fallower"></div>
 		</div>
@@ -481,14 +481,16 @@
 		/* 알림 아이콘 클릭 시 아이콘 변경 */
 
 		/* 모달팝업 디테일 */
-		var modal = document.getElementById('myModal');
-		var detail = document.getElementById('board-detail');
+		var modal = document.getElementById('myModal10');
+		var detail = document.getElementById('board-detail10');
 		var modalwoo = document.getElementById('myModal1');
 		var detailwoo = document.getElementById('board-detail1');
+		var modal2 =  document.getElementById('myModal2');
+        var detail2 = document.getElementById('board-detail2');
 
 		$('#myfalwer').click(function() {
-			$('.myModal').css('display', 'block');
-			$('.board-detail').css('display', 'block');
+			$('.myModal10').css('display', 'block');
+			$('.board-detail10').css('display', 'block');
 
 		});
 		$('#myfalowoo').click(function() {
@@ -500,11 +502,17 @@
 			if (event.target == modal) {
 				modal.style.display = "none";
 				detail.style.display = "none";
+				$('myModal2').style.display = "none";
 			}
-			if (event.target == modalwoo) {
+			else if (event.target == modalwoo) {
 				modalwoo.style.display = "none";
 				detailwoo.style.display = "none";
-			}
+				$('myModal2').style.display = "none";
+			}else if (event.target == modal2) {
+		        modal2.style.display = "none";
+		        detail2.style.display = "none";
+		        $('.board-detail2').empty();
+		    }
 		}
 
 		function followBtn(name, id) {
