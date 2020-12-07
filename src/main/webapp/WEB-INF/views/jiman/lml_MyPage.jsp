@@ -14,10 +14,10 @@
 <link
 	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500&display=swap"
 	rel="stylesheet">
-<link rel="stylesheet" href="resources/css/final_main2.css">
-<link rel="stylesheet" href="resources/css/jmCSS/final_mypage.css">
 <link rel="stylesheet" href="resources/css/minwoo/slide.css">
 <link rel="stylesheet" href="resources/css/final_detail.css">
+<link rel="stylesheet" href="resources/css/final_main2.css">
+<link rel="stylesheet" href="resources/css/jmCSS/final_mypage.css">
 </head>
 <body>
 
@@ -41,7 +41,7 @@
 		
 		
 	<div class="myModal" id="myModal" style="display: none;">
-		<div class="board-detail" id="board-detail" style="display: none;">
+		<div class="board-detail10" id="board-detail10" style="display: none;">
 		<h4 style="margin: 13px 0px 0 206px;">팔로워</h4>
 			<div class="mo_fallower">
 			
@@ -256,14 +256,14 @@
         
           /* 모달팝업 디테일 */
               var modal = document.getElementById('myModal');
-              var detail = document.getElementById('board-detail');
+              var detail = document.getElementById('board-detail10');
               var modalwoo = document.getElementById('myModal1');
               var detailwoo = document.getElementById('board-detail1');
               
 
               $('#myfalwer').click(function(){
                   $('.myModal').css('display','block');
-                  $('.board-detail').css('display','block');
+                  $('.board-detail10').css('display','block');
                 
                   
               });

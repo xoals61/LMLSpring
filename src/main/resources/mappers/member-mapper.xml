@@ -197,10 +197,10 @@
 
 	</update>
 
-	<select id="finduNum" parameterType="String" resultType="_int">
+	<select id="finduNum" parameterType="String" resultType="integer">
 		SELECT
 		USER_NUM FROM LML_MEM
-		WHERE ID=#{id}
+		WHERE ID=#{id} AND DEL_FLAG='N'
 	</select>
 
 

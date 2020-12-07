@@ -196,8 +196,18 @@ table {
 	overflow: auto; /* Enable scroll if needed */
 	/*  background-color: rgba(0, 0, 0, 0.781); Fallback color */
 }
-
-.board-detail {
+.myModal1 {
+	/* display: none; Hidden by default */
+	position: fixed; /* Stay in place */
+	z-index: 15; /*Sit on top*/
+	left: 0;
+	top: 0;
+	width: 100%; /* Full width */
+	height: 100%; /* Full height */
+	overflow: auto; /* Enable scroll if needed */
+	/*  background-color: rgba(0, 0, 0, 0.781); Fallback color */
+}
+.board-detail10 {
 	width: 500px;
 	height: 609px;
 	/* margin: 0 auto; */
@@ -233,17 +243,7 @@ table {
 	position: relative;
 }
 
-.myModal1 {
-	/* display: none; Hidden by default */
-	position: fixed; /* Stay in place */
-	z-index: 15; /*Sit on top*/
-	left: 0;
-	top: 0;
-	width: 100%; /* Full width */
-	height: 100%; /* Full height */
-	overflow: auto; /* Enable scroll if needed */
-	/*  background-color: rgba(0, 0, 0, 0.781); Fallback color */
-}
+
 
 .board-detail1 {
 	width: 500px;
