@@ -164,9 +164,9 @@
 							
 							
 							
-							var img = "<table class='add_table'><tr><td class='imgtd' rowspan='2' style='width: 10%;'><a class='taga' href='userPage.do?id="+data[i].id+"'><img style='width:75px; height:69px;' class='userimg' src='resources/images/profileImg/"+ data[i].rename_profile_img+"'></a></td>"+
-							"<td class='idtd' style='width: 30%;'><a class='taga' href='userPage.do?id="+data[i].id+"'>"+data[i].id+"</a></td><td class='btntd' rowspan='2' style='width: 30%;'>"+ "<input class='"+data[i].btn+"' id='"+ data[i].from_follower +"'  name='"+data[i].btn+"' type='button' value='"+value+"' onclick='followBtn(this.name, this.id);'>"
-									+"</td></tr><tr><td  class='nametd'><a class='taga' href='userPage.do?id="+data[i].id+"'>"+data[i].uname+"</a></td></tr></table>";
+							var img = "<table class='add_table'><tr><td class='imgtd' rowspan='2' style='width: 10%;'><a class='taga' href='userPage.do?p=1&id="+data[i].id+"'><img style='width:75px; height:69px;' class='userimg' src='resources/images/profileImg/"+ data[i].rename_profile_img+"'></a></td>"+
+							"<td class='idtd' style='width: 30%;'><a class='taga' href='userPage.do?p=1&id="+data[i].id+"'>"+data[i].id+"</a></td><td class='btntd' rowspan='2' style='width: 30%;'>"+ "<input class='"+data[i].btn+"' id='"+ data[i].from_follower +"'  name='"+data[i].btn+"' type='button' value='"+value+"' onclick='followBtn(this.name, this.id);'>"
+									+"</td></tr><tr><td  class='nametd'><a class='taga' href='userPage.do?p=1&id="+data[i].id+"'>"+data[i].uname+"</a></td></tr></table>";
 							
 						/* $('.mo_fallower').append("<tr><td class='imgtd' rowspan='2' style='width:10%'><img class='userimg' src='resources/images/profileImg/"+data[i].rename_profile_img+"></tr></td>"); */
 						/* $('.mo_fallower').append("<table class='add_table'><tr><td class='imgtd' rowspan='2' style='width: 10%;'><img style='width:80px; height:80px;' class='userimg' src='resources/images/profileImg/"+ data[i].rename_profile_img+"'><td>");
@@ -213,9 +213,9 @@
 							}
 							
 							
-							var img = "<table class='add_table'><tr><td class='imgtd' rowspan='2' style='width: 10%;'><a class='taga' href='userPage.do?id="+data[i].id+"'><img style='width:75px; height:69px;' class='userimg' src='resources/images/profileImg/"+ data[i].rename_profile_img+"'></a></td>"+
-							"<td class='idtd' style='width: 30%;'><a class='taga' href='userPage.do?id="+data[i].id+"'>"+data[i].id+"</a></td><td class='btntd' rowspan='2' style='width: 30%;'>"+ "<input class='"+data[i].btn+"' id='"+ data[i].to_follow +"'  name='"+data[i].btn+"' type='button' value='"+value+"' onclick='followBtn(this.name, this.id);'>"
-									+"</td></tr><tr><td  class='nametd'><a class='taga' href='userPage.do?id="+data[i].id+"'>"+data[i].uname+"</a></td></tr></table>";
+							var img = "<table class='add_table'><tr><td class='imgtd' rowspan='2' style='width: 10%;'><a class='taga' href='userPage.do?p=1&id="+data[i].id+"'><img style='width:75px; height:69px;' class='userimg' src='resources/images/profileImg/"+ data[i].rename_profile_img+"'></a></td>"+
+							"<td class='idtd' style='width: 30%;'><a class='taga' href='userPage.do?p=1&id="+data[i].id+"'>"+data[i].id+"</a></td><td class='btntd' rowspan='2' style='width: 30%;'>"+ "<input class='"+data[i].btn+"' id='"+ data[i].to_follow +"'  name='"+data[i].btn+"' type='button' value='"+value+"' onclick='followBtn(this.name, this.id);'>"
+									+"</td></tr><tr><td  class='nametd'><a class='taga' href='userPage.do?p=1&id="+data[i].id+"'>"+data[i].uname+"</a></td></tr></table>";
 							
 						/* $('.mo_fallower').append("<tr><td class='imgtd' rowspan='2' style='width:10%'><img class='userimg' src='resources/images/profileImg/"+data[i].rename_profile_img+"></tr></td>"); */
 						/* $('.mo_fallower').append("<table class='add_table'><tr><td class='imgtd' rowspan='2' style='width: 10%;'><img style='width:80px; height:80px;' class='userimg' src='resources/images/profileImg/"+ data[i].rename_profile_img+"'><td>");
@@ -414,7 +414,7 @@
       					hashUSerAjax();
       					replyList();
       					
-      					var page = "userPage.do?id=" + data[0].b_user_id;
+      					var page = "userPage.do?p=1&id=" + data[0].b_user_id;
 
       					if(data[0].b_user_id=='${loginUser.id}'){
       						page = "MyPage.do?uNum=${loginUser.user_num}&page=1";
@@ -719,7 +719,7 @@
     					dataType:"JSON",
     					success:function(data){	
     						if(data.length > 0){
-    							var page = "userPage.do?id=" + data[0].c_id;
+    							var page = "userPage.do?p=1&id=" + data[0].c_id;
     							
     							if(data[0].c_id=='${loginUser.id}'){
     								page = "MyPage.do?uNum=${loginUser.user_num}";
@@ -954,7 +954,7 @@
     				success:function(data){	
     					if(data.length > 0){
     						
-    						var page = "userPage.do?id=" + data[0].c_id;
+    						var page = "userPage.do?p=1&id=" + data[0].c_id;
     						
     						if(data[0].c_id=='${loginUser.id}'){
     							page = "MyPage.do?uNum=${loginUser.user_num}";

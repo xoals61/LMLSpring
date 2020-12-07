@@ -128,24 +128,37 @@ public class JM_memberController {
 
 
 	@RequestMapping("userPage.do")
-	private String userPage(String id, Model model) {
+	private String userPage(String id, Model model ,int p) {
 		Member m = mService.userPage(id);
 
 		int uNum = mService.finduNum(id);
 		int Follow = mService.countFollowList(uNum);
 		int Follower = mService.countFollowerList(uNum);
-		ArrayList<Board> list = mService.myPost(uNum);
+		/*ArrayList<Board> list = mService.myPost(uNum);*/
 		int boardCount =mService.boardCount(uNum);
 
-
-		if (m != null) {
+		if(p ==1) {
+			ArrayList<Board> list = mService.myPost(uNum);
 			model.addAttribute("Userboardlist", list);
+			System.out.println("유저태그 포스트 안드러오나");
+		}else if(p ==2) {
+			System.out.println("유저태그 포스트 들어오나");
+			ArrayList<Board> list = mService.usertagPost(uNum);
+			model.addAttribute("Userboardlist", list);
+				
+		}
+		
+		if (m != null) {
+			 
+			
+			
+			/* model.addAttribute("Userboardlist", list); */
 			model.addAttribute("User", m);
 			model.addAttribute("Follow", Follow);
 			model.addAttribute("Follower", Follower);
 			model.addAttribute("boardCount", boardCount);
 
-			System.out.println("Userboardlist : " + list);
+			/* System.out.println("Userboardlist : " + list); */
 			System.out.println("User : " + m);
 			System.out.println("Follow : " + Follow);
 			System.out.println("Follower : " + Follower);

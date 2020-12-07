@@ -66,11 +66,11 @@
 																		+ '<div class="chContnet">'
 																		+ '<div class="user">'
 																		+ '<div class="userImg">'
-																		+ '<a href="userPage.do?id='
+																		+ '<a href="userPage.do?p=1&id='
 																		+ data[b].q_user_id
 																		+ '"><img src="resources/images/profileImg/'+ data[b].q_profile_img +'"></a>'
 																		+ '</div>'
-																		+ '<a href="userPage.do?id='
+																		+ '<a href="userPage.do?p=1&id='
 																		+ data[b].q_user_id
 																		+ '"><div class="userId">'
 																		+ data[b].q_name
@@ -568,11 +568,11 @@
 													+ '<div class="board-right">'
 													+ '<div class="board-user">'
 													+ '<div class="board-userImg">'
-													+ '<a href="userPage.do?id='
+													+ '<a href="userPage.do?p=1&id='
 													+ data[0].q_user_id
 													+ '"><img src="resources/images/profileImg/'+ data[0].q_profile_img +'"></a>'
 													+ '</div>'
-													+ '<a href="userPage.do?id='
+													+ '<a href="userPage.do?p=1&id='
 													+ data[0].q_user_id
 													+ '"><div class="board-id">'
 													+ '<p>'
@@ -771,7 +771,7 @@
 														''
 																+ '<div class="board-comment">'
 																+ '<div class="comment-img">'
-																+ '<a href="./jiman/MyPage.html"><img src="resources/images/profileImg/'+ data[i].profile +'"></a>'
+																+ '<a href="MyPage.do?uNum=${loginUser.user_num}&page=1"><img src="resources/images/profileImg/'+ data[i].profile +'"></a>'
 																+ '</div>'
 																+ '<div class="comment-content">'
 																+ '<p class="comment-user" id="tag'
@@ -986,7 +986,7 @@
 													''
 															+ '<div class="board-comment">'
 															+ '<div class="comment-img">'
-															+ '<a href="./jiman/MyPage.html"><img src="resources/images/profileImg/'+ data[i].profile +'"></a>'
+															+ '<a href="MyPage.do?uNum=${loginUser.user_num}&page=1"><img src="resources/images/profileImg/'+ data[i].profile +'"></a>'
 															+ '</div>'
 															+ '<div class="comment-content">'
 															+ '<p class="comment-user" id="tag'
@@ -1095,7 +1095,7 @@
 		}
 
 		function infoPage(id) {
-			location.href = "userPage.do?id=" + id;
+			location.href = "userPage.do?p=1&id=" + id;
 		}
 	</script>
 	

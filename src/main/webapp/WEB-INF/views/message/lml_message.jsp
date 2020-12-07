@@ -77,7 +77,7 @@
                                     	
 
                                        
-                                       $(".useridatag").attr("href","userPage.do?id=${message.touser}");
+                                       $(".useridatag").attr("href","userPage.do?p=1&id=${message.touser}");
                                        
                                        
                                        

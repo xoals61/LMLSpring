@@ -270,6 +270,11 @@ public class MemberServiceImpl implements MemberService {
 		return mDao.loginUserFollowList(loginUserNum);
 	}
 
+	@Override
+	public ArrayList<Board> usertagPost(int uNum) {
+		return mDao.mytagPost(uNum);
+	}
+
 
 
 

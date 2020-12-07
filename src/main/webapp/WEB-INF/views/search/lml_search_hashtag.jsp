@@ -53,10 +53,10 @@
 										<div class="chContnet">
 											<div class="user">
 												<div class="userImg">
-													<a href="userPage.do?id=${ tagBoard.b_user_id }"><img
+													<a href="userPage.do?p=1&id=${ tagBoard.b_user_id }"><img
 														src="resources/images/profileImg/${ tagBoard.b_profile_img}"></a>
 												</div>
-												<a href="userPage.do?id=${ tagBoard.b_user_id }">
+												<a href="userPage.do?p=1&id=${ tagBoard.b_user_id }">
 												<div class="userId">${ tagBoard.b_name}</div></a>
 											</div>
 											<div class="con" onclick="modalDetail('${tagBoard.b_num}');">
@@ -193,9 +193,9 @@
 							'<div class="board-right">'+
 								'<div class="board-user">'+
 									'<div class="board-userImg">'+
-									'<a href="userPage.do?id='+data[0].b_user_id+'"><img src="resources/images/profileImg/'+ data[0].b_profile_img +'"></a>'+
+									'<a href="userPage.do?p=1&id='+data[0].b_user_id+'"><img src="resources/images/profileImg/'+ data[0].b_profile_img +'"></a>'+
 									'</div>'+
-									'<a href="userPage.do?id='+data[0].b_user_id+'"><div class="board-id">'+
+									'<a href="userPage.do?p=1&id='+data[0].b_user_id+'"><div class="board-id">'+
 											'<p>'+ data[0].b_name +'</p>'+
 										'</div></a>'+
 									'<div class="board-follow" id="fo'+data[0].b_user_num+'" onclick="addFollow(id);"></div>'+
@@ -487,7 +487,7 @@
 						success:function(data){	
 							if(data.length > 0){
 								
-								var page = "userPage.do?id=" + data[0].c_id;
+								var page = "userPage.do?p=1&id=" + data[0].c_id;
 								
 								if(data[0].c_id=='${loginUser.id}'){
 									page = "MyPage.do?uNum=${loginUser.user_num}";
@@ -689,7 +689,7 @@
 				success:function(data){	
 					if(data.length > 0){
 						
-						var page = "userPage.do?id=" + data[0].c_id;
+						var page = "userPage.do?p=1&id=" + data[0].c_id;
 						
 						if(data[0].c_id=='${loginUser.id}'){
 							page = "MyPage.do?uNum=${loginUser.user_num}";
@@ -767,7 +767,7 @@
         
             
             function infoPage(id){
-            	location.href="userPage.do?id="+id;
+            	location.href="userPage.do?p=1&id="+id;
             }
             
             $(document).ready(function(){

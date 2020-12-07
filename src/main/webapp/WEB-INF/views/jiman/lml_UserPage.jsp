@@ -21,7 +21,7 @@
 </head>
 <body>
 	<!-- 상세보기 모달(detail)  -->
-	>
+	
 	<div class="myModal2" id="myModal2" style="display: none;">
 		<div class="board-detail2" id="board-detail2" style="display: none;">
 
@@ -139,6 +139,20 @@
 	</section>
 
 	<script>
+	  function my(){
+    	  location.href="userPage.do?id=${User.id}&p=1";
+      }
+      
+      function tag(){
+    	  location.href="userPage.do?id=${User.id}&p=2";
+      }
+      
+	
+	
+	
+	
+	
+	
 		$(function() {
 
 			var toFollow = '<c:out value="${User.user_num}"/>';
@@ -355,10 +369,10 @@
 														value = '팔로우';
 													}
 
-													var img = "<table class='add_table'><tr><td class='imgtd' rowspan='2' style='width: 10%;'><a class='taga' href='userPage.do?id="
+													var img = "<table class='add_table'><tr><td class='imgtd' rowspan='2' style='width: 10%;'><a class='taga' href='userPage.do?p=1&id="
 															+ data[i].id
 															+ "'><img style='width:75px; height:69px;' class='userimg' src='resources/images/profileImg/"+ data[i].rename_profile_img+"'></a></td>"
-															+ "<td class='idtd' style='width: 30%;'><a class='taga' href='userPage.do?id="
+															+ "<td class='idtd' style='width: 30%;'><a class='taga' href='userPage.do?p=1&id="
 															+ data[i].id
 															+ "'>"
 															+ data[i].id
@@ -372,7 +386,7 @@
 															+ "' type='button' value='"
 															+ value
 															+ "' onclick='followBtn(this.name, this.id);'>"
-															+ "</td></tr><tr><td  class='nametd'><a class='taga' href='userPage.do?id="
+															+ "</td></tr><tr><td  class='nametd'><a class='taga' href='userPage.do?p=1&id="
 															+ data[i].id
 															+ "'>"
 															+ data[i].uname
@@ -421,10 +435,10 @@
 														value = '팔로우';
 													}
 
-													var img = "<table class='add_table'><tr><td class='imgtd' rowspan='2' style='width: 10%;'><a class='taga' href='userPage.do?id="
+													var img = "<table class='add_table'><tr><td class='imgtd' rowspan='2' style='width: 10%;'><a class='taga' href='userPage.do?p=1&id="
 															+ data[i].id
 															+ "'><img style='width:75px; height:69px;' class='userimg' src='resources/images/profileImg/"+ data[i].rename_profile_img+"'></a></td>"
-															+ "<td class='idtd' style='width: 30%;'><a class='taga' href='userPage.do?id="
+															+ "<td class='idtd' style='width: 30%;'><a class='taga' href='userPage.do?p=1&id="
 															+ data[i].id
 															+ "'>"
 															+ data[i].id
@@ -438,7 +452,7 @@
 															+ "' type='button' value='"
 															+ value
 															+ "' onclick='followBtn(this.name, this.id);'>"
-															+ "</td></tr><tr><td  class='nametd'><a class='taga' href='userPage.do?id="
+															+ "</td></tr><tr><td  class='nametd'><a class='taga' href='userPage.do?p=1&id="
 															+ data[i].id
 															+ "'>"
 															+ data[i].uname
@@ -620,10 +634,10 @@
 					hashUSerAjax();
 					replyList();
 					
-					var page = "userPage.do?id=" + data[0].b_user_id;
+					var page = "userPage.do?p=1&id=" + data[0].b_user_id;
 					
 					if(data[0].b_user_id=='${loginUser.id}'){
-						page = "MyPage.do?uNum=${loginUser.user_num}";
+						page = "MyPage.do?page=1&uNum=${loginUser.user_num}";
 					}
 					
 					$('.board-detail2').append(
@@ -938,10 +952,10 @@
 					dataType:"JSON",
 					success:function(data){	
 						if(data.length > 0){
-							var page = "userPage.do?id=" + data[0].c_id;
+							var page = "userPage.do?p=1&id=" + data[0].c_id;
 							
 							if(data[0].c_id=='${loginUser.id}'){
-								page = "MyPage.do?uNum=${loginUser.user_num}";
+								page = "MyPage.do?page=1&uNum=${loginUser.user_num}";
 							}
 							
 							var unum1 = '<c:out value="${loginUser.user_num}"/>';
@@ -1167,10 +1181,10 @@
 				success:function(data){	
 					if(data.length > 0){
 						
-						var page = "userPage.do?id=" + data[0].c_id;
+						var page = "userPage.do?p=1&id=" + data[0].c_id;
 						
 						if(data[0].c_id=='${loginUser.id}'){
-							page = "MyPage.do?uNum=${loginUser.user_num}";
+							page = "MyPage.do?page=1&uNum=${loginUser.user_num}";
 						}
 						
 						var unum1 = '<c:out value="${loginUser.user_num}"/>';

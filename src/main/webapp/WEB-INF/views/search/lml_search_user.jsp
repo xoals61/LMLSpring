@@ -76,7 +76,7 @@
     	
     	console.log('id:'+ id);
     	//console.log("MyPage.do?uNum="+uNum);
-    	location.href="userPage.do?id="+id;
+    	location.href="userPage.do?p=1&id="+id;
     	
     	
     	

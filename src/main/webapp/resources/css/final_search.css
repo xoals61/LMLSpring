@@ -40,6 +40,11 @@ section {
 	float: left;
 	margin: 15px 15px 0px;
 }
+.hashMore:hover{
+		   background: -webkit-linear-gradient(30deg, red,orange,green,blue,purple);
+    color: transparent;
+    -webkit-background-clip: text;
+}
 
 /* 검색 게시물 테이블 */
 .hashTable {

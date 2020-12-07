@@ -50,9 +50,9 @@
 							
 								for(var j=0; j<3; j++){	// 열
 									if(b < data.length){
-									var page = "userPage.do?id=" + data[b].b_user_id;
+									var page = "userPage.do?p=1&id=" + data[b].b_user_id;
 										if(data[b].b_user_id=='${loginUser.id}'){
-											page = "MyPage.do?uNum=${loginUser.user_num}";
+											page = "MyPage.do?page=1&uNum=${loginUser.user_num}";
 											
 											
 										}
@@ -344,7 +344,7 @@
 					hashUSerAjax();
 					replyList();
 					
-					var page = "userPage.do?id=" + data[0].b_user_id;
+					var page = "userPage.do?p=1&id=" + data[0].b_user_id;
 					
 					if(data[0].b_user_id=='${loginUser.id}'){
 						page = "MyPage.do?uNum=${loginUser.user_num}&page=1";
@@ -662,10 +662,10 @@
 					dataType:"JSON",
 					success:function(data){	
 						if(data.length > 0){
-							var page = "userPage.do?id=" + data[0].c_id;
+							var page = "userPage.do?p=1&id=" + data[0].c_id;
 							
 							if(data[0].c_id=='${loginUser.id}'){
-								page = "MyPage.do?uNum=${loginUser.user_num}";
+								page = "MyPage.do?page=1&uNum=${loginUser.user_num}";
 							}
 							
 							var unum1 = '<c:out value="${loginUser.user_num}"/>';
@@ -877,7 +877,7 @@
 							$('.board-commentDiv').append(''+
 									'<div class="board-comment">'+
 									'<div class="comment-img">'+
-										'<a href="./jiman/MyPage.html"><img src="resources/images/profileImg/'+ data[i].profile +'"></a>'+
+										'<a href="MyPage.do?page=1&uNum=${loginUser.user_num}"><img src="resources/images/profileImg/'+ data[i].profile +'"></a>'+
 									'</div>'+
 									'<div class="comment-content">'+
 										'<p class="comment-user" id="tag'+data[i].c_unum+'" onclick="tagComment(id);">'+ data[i].uname +'</p>'+
@@ -971,7 +971,7 @@
 		
 		
 		function infoPage(id){
-			location.href="userPage.do?id="+id;
+			location.href="userPage.do?p=1&id="+id;
 		}
     </script>
 

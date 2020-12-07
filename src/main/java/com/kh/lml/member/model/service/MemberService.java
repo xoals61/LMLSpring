@@ -105,6 +105,8 @@ public interface MemberService {
 
 	ArrayList<Integer> loginUserFollowList(int loginUserNum);
 
+	ArrayList<Board> usertagPost(int uNum);
+
 	
 
 
