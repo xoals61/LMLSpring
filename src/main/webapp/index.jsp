@@ -694,9 +694,9 @@
 							
 							
 						}else{
-							//$('.commentCount').empty();
+							$('.commentCount').empty();
 							$('.commentCount').append('<p>댓글 ('+data.length+')</p>');
-							//$('.board-commentDiv').empty();
+							$('.board-commentDiv').empty();
 							$('.board-commentDiv').append(''+
 								'<div class="board-comment">'+
 									//'<div class="comment-img"></div>'+
@@ -922,10 +922,9 @@
 						console.log("scrollHeight : " + $('.board-commentDiv').prop('scrollHeight'));
 						$('.board-commentDiv').scrollTop($('.board-commentDiv').prop('scrollHeight'));
 					}else{
-						console.log(data.length);
-						//$('.commentCount').empty();
+						$('.commentCount').empty();
 						$('.commentCount').append('<p>댓글 ('+data.length+')</p>');
-						//$('.board-commentDiv').empty();
+						$('.board-commentDiv').empty();
 						$('.board-commentDiv').append(''+
 							'<div class="board-comment">'+
 								//'<div class="comment-img"></div>'+

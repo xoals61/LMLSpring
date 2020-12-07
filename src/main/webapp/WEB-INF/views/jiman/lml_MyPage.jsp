@@ -469,7 +469,7 @@
       								'</div>'+
       							'</div>');
       					
-      					followList(data[0].b_user_num);
+      					//followList(data[0].b_user_num);
       					boardSub(data[0].b_user_num, bnum);
       					
       					if(data[0].b_top !=null){
@@ -608,6 +608,12 @@
     	            });
     	        }
       			
+      			$("body").click(function(e){
+    	            if(!$('.board-etc').has(e.target).length){
+    	                $('.boardSub').hide();
+    	            }
+    	        });
+      			
       			function hashHeartAjax(){
       				// 해쉬태그 불러오기
       				$.ajax({
@@ -650,7 +656,27 @@
       				});
       			}
       			
-      			function followList(bunum){
+      			/* 디테일 유저태그 리스트 불러오기*/
+    			function hashUSerAjax(){
+    				$.ajax({
+    					url:"UserDetailHash.do",
+    					data:{bnum:bnum},
+    					dataType:"JSON",
+    					success:function(data){	
+    						for(var i=0; i<data.length; i++){
+    				$('.board-Usertag').append('<a href=\'Search.do?keyword='+data[i]+'\'>' +"@" +data[i] + ' </a>');
+    						}
+    					},
+    					error:function(request,status,error){
+    						console.log("** error code : " + request.status + "\n"
+    							+ "message : " + request.responseText + "\n"
+    							+ "error : " + error);
+    					}
+    				});
+    				
+    			}
+      			
+      			/* function followList(bunum){
       				// 디테일 팔로우리스트 가져오기
       				var unum = '<c:out value="${loginUser.user_num}"/>';
       				var bunum = bunum;
@@ -674,7 +700,7 @@
       						});
       					}
       				}
-      			}
+      			} */
       			
       			// 디테일 댓글 리스트
       			function replyList(){
