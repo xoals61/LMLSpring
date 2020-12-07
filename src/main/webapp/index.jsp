@@ -190,9 +190,8 @@
 	<script>
 
 	
-		// 하트 리스트
+		// 테이블 하트 리스트
 		function heartIcon(){
-			
 			var unum = '<c:out value="${loginUser.user_num}"/>';
 			
 			if(unum.length > 0){
@@ -215,7 +214,7 @@
 			}
 		}
 		
-		// 게시물 마우스오버
+		/* 테이블 게시물 마우스 오버 */
 		function boardHover(){
 		  	$('.chover').hide();
 		    $('.content').mouseover(function(){
@@ -226,7 +225,7 @@
 		        
 		    });
 		    
-		    /* 게시물 좋아요 아이콘 클릭 시 아이콘 변경 */
+		    // 게시물 좋아요 아이콘 클릭 시 아이콘 변경 
 			$(".cHeart").click(function(){
 				
 				var bnum = $('.cheart',this).attr("id").substring(2);
@@ -411,6 +410,7 @@
 					
 					followList(data[0].b_user_num);
 					boardSub(data[0].b_user_num, bnum);
+					
 					if(data[0].b_top !=null){
 						$('.board-clothesInfo').append('<div class="clothesInfo-div">'+
 								'<div class="clothes-img">'+
@@ -456,6 +456,8 @@
 							'<div class="clothes-info" id="'+data[0].b_etc+'" onclick="brandSearch(id);">'+ data[0].b_etc +'</div>'+
 						'</div>');
 					}
+					
+					// 디테일 사진 슬라이드
 				 	const prev = document.getElementById('prev');
 				    const next = document.getElementById('next');
 				    const ultag = document.getElementsByClassName('board-img');
@@ -519,6 +521,7 @@
 				}
 			});
 			
+			// 다른 곳 누르면 모달 꺼짐
 			window.onclick = function(event) {
 			    if (event.target == modal) {
 			        modal.style.display = "none";
@@ -529,7 +532,7 @@
 			
 		
 			
-			
+			// 디테일 부메뉴(수정, 신고)
 			function boardSub(bunum, bnum){
 	        	var unum = '<c:out value="${loginUser.user_num}"/>';
 	            var bunum = bunum;
@@ -553,16 +556,17 @@
 	            });
 	        }
 	           
-	           $("body").click(function(e){
-	               if(!$('.board-etc').has(e.target).length){
-	                   $('.boardSub').hide();
-	               }
-	           });
+			// 다른 곳 클릭하면 디테일 부메뉴 숨김
+	        $("body").click(function(e){
+	            if(!$('.board-etc').has(e.target).length){
+	                $('.boardSub').hide();
+	            }
+	        });
 			
-			
+
+	     	/* 디테일 해쉬태그, 좋아요 리스트 불러오기 */
 			function hashHeartAjax(){
-				// 해쉬태그 불러오기
-				//게시글 해쉬태그
+	     		// 해시태그
 				$.ajax({
 					url:"BoardDetailHash.do",
 					data:{bnum:bnum},
@@ -603,8 +607,9 @@
 					}
 				});
 			}
+	     	
 			
-			
+			/* 디테일 유저태그 리스트 불러오기*/
 			function hashUSerAjax(){
 				$.ajax({
 					url:"UserDetailHash.do",
@@ -624,11 +629,8 @@
 				
 			}
 			
-			
-			
-			
+			/* 디테일 팔로우 리스트 불러오기*/
 			function followList(bunum){
-				// 디테일 팔로우리스트 가져오기
 				var unum = '<c:out value="${loginUser.user_num}"/>';
 				var bunum = bunum;
 				if(unum.length>0){
@@ -653,7 +655,7 @@
 				}
 			}
 			
-			// 디테일 댓글 리스트
+			/* 디테일 댓글 리스트 불러오기*/
 			function replyList(){
 				$.ajax({
 					url:"BoardDetailComm.do",
@@ -661,7 +663,6 @@
 					dataType:"JSON",
 					success:function(data){	
 						if(data.length > 0){
-							
 							var page = "userPage.do?id=" + data[0].c_id;
 							
 							if(data[0].c_id=='${loginUser.id}'){
@@ -713,15 +714,16 @@
 					}
 				});
 			}
-			
-			
+
 		}
 		
+		/* 디테일 스타일태그 클릭 시 네이버 검색 */
 		function brandSearch(brand){
 			var newWindow = window.open("about:blank");
 			newWindow.location.href = 'https://search.naver.com/search.naver?where=nexearch&sm=top_hty&fbm=1&ie=utf8&query='+brand;
 		}
 		
+		/* 디테일 팔로우 버튼 */
 		function addFollow(bunum){
 			var fromFollow = '<c:out value="${loginUser.user_num}"/>';
 			var toFollow = bunum.substring(2);
@@ -750,6 +752,7 @@
 			}
 		}
 		
+		/* 디테일 좋아요 눌러버려 */
 		function addHeart(bnum){
 			var bnum = bnum;
 			var unum = '<c:out value="${loginUser.user_num}"/>';
@@ -798,6 +801,7 @@
 					});
 			 	} 
 				
+				// 좋아요 수
 				function detailHeartCount(){
 					$.ajax({
 						url:"BoardDetailHeart.do",
@@ -819,7 +823,7 @@
 		}
 		
 		
-		// 댓글등록 ajax
+		/* 디테일 댓글 등록 */
 		function cSubmit(){
 			var comment = $('.c-content').val();
 			comment.split("@");
@@ -854,19 +858,31 @@
 			}
 		}
 		
-		var tagname ="";
-		// 태그 댓글등록 ajax
-		function tagComment(id){
-			var tagunum = id.substring(3);
-			tagname = tagname+"@"+ $('#'+id).html();
-			
-			
-			$('.c-content').val(tagname+' ');
-			
-			
+		/* 댓글 삭제 */
+		function commentDelete(id,bnum){
+			console.log('삭제 아뒤, 비넘 : ' + id + ', ' + bnum);
+			var del = confirm('댓글을 삭제하시겠습니까?');
+			if(del == true){
+				$.ajax({
+					url:"CommentDelete.do",
+					data:{cno:id},
+					success:function(data){	
+						if(data == "success"){
+							getReplyList(bnum);
+						}else{
+							alert('댓글 삭제 실패');
+						}
+					},
+					error:function(request,status,error){
+						console.log("** error code : " + request.status + "\n"
+							+ "message : " + request.responseText + "\n"
+							+ "error : " + error);
+					}
+				});
+			}else{}
 		}
 		
-		// 댓글 리스트 ajax
+		/* 디테일 댓글 등록,삭제 시 실행되는 댓글리스트 */
 		function getReplyList(bnum){
 			console.log('해당 댓글 글넘 : ' + bnum);
 			$.ajax({
@@ -928,29 +944,16 @@
 			});
 		}
 		
-		// 댓글 삭제
-		function commentDelete(id,bnum){
-			console.log('삭제 아뒤, 비넘 : ' + id + ', ' + bnum);
-			var del = confirm('댓글을 삭제하시겠습니까?');
-			if(del == true){
-				$.ajax({
-					url:"CommentDelete.do",
-					data:{cno:id},
-					success:function(data){	
-						if(data == "success"){
-							getReplyList(bnum);
-						}else{
-							alert('댓글 삭제 실패');
-						}
-					},
-					error:function(request,status,error){
-						console.log("** error code : " + request.status + "\n"
-							+ "message : " + request.responseText + "\n"
-							+ "error : " + error);
-					}
-				});
-			}else{}
+		
+		/* 디테일 댓글 태그 */
+		var tagname ="";
+		function tagComment(id){
+			var tagunum = id.substring(3);
+			tagname = tagname+"@"+ $('#'+id).html();
+			
+			$('.c-content').val(tagname+' ');
 		}
+		
 
 		
  
